@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://graphml.graphdrawing.org/xmlns" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd
+http://graphml.graphdrawing.org/xmlns
+http://graphml.graphdrawing.org/xmlns ">
+    <key id="vertex_label" for="node" attr.name="Vertex Label" attr.type="string" />
+    <graph edgedefault="undirected">
+        <node id="0" name="Lecture Hall" number="108" attr="inside">
+            <data key="vertex_label">55.7535822464872 48.74364696443081</data>
+        </node>
+        <node id="1" name="Lecture Hall" number="108" attr="door">
+            <data key="vertex_label">55.75351300169925 48.74356213957071</data>
+        </node>
+        <node id="2" name="First floor hallway" attr="Front of Lecture Hall 108">
+            <data key="vertex_label">55.75348111509343 48.743486031889915</data>
+        </node>
+        <node id="3" name="First floor hallway" attr="Center for first stairs">
+            <data key="vertex_label">55.7533941343379 48.74359533190727</data>
+        </node>
+        <node id="4" name="First floor hallway" attr="Second elevator">
+            <data key="vertex_label">55.75332319110521 48.743708319962025</data>
+        </node>
+        <node id="5" name="First floor hallway" attr="School entrance">
+            <data key="vertex_label">55.75322205903976 48.74382667243481</data>
+        </node>
+        <node id="6" name="First floor hallway" attr="Front of the Cava">
+            <data key="vertex_label">55.75319696466204 48.74386690557003</data>
+        </node>
+        <node id="7" name="First floor hallway" attr="Cava">
+            <data key="vertex_label">55.753252059064145 48.74399967491627</data>
+        </node>
+        <node id="8" name="First floor hallway" attr="Third elevator">
+            <data key="vertex_label">55.75359507657064 48.74334756284952</data>
+        </node>
+        <node id="9" name="First floor hallway" attr="Near the second stairs, center for dormitory hallway">
+            <data key="vertex_label">55.75368318894154 48.743244633078575</data>
+        </node>
+        <node id="10" name="First floor hallway" attr="Near the second stairs, rounded stairs entrance">
+            <data key="vertex_label">55.753716962152986 48.74323759227991</data>
+        </node>
+        <node id="11" name="First floor hallway" attr="First floor hallway center">
+            <data key="vertex_label">55.75377545200309 48.74334890395403</data>
+        </node>
+        <node id="12" name="First floor hallway" attr="First floor hallway center to canteen first step">
+            <data key="vertex_label">55.75384865853058 48.74340120702982</data>
+        </node>
+        <node id="13" name="First floor hallway" attr="First floor hallway center to canteen second step, door to round stairs">
+            <data key="vertex_label">55.75393941179274 48.74343238770962</data>
+        </node>
+        <node id="14" name="First floor hallway" attr="Canteen first entrance in hallway">
+            <data key="vertex_label">55.75409582388414 48.743500113487244</data>
+        </node>
+        <node id="15" name="First floor hallway" attr="Canteen first entrance door">
+            <data key="vertex_label">55.754104691619645 48.743458203971386</data>
+        </node>
+        <node id="16" name="Universiy canteen" attr="Center from first entrance">
+            <data key="vertex_label">55.75411714418097 48.743320405483246</data>
+        </node>
+        <node id="17" name="University canteen" attr="Center">
+            <data key="vertex_label">55.75421412308315 48.743347227573395</data>
+        </node>
+        <node id="18" name="First floor hallway" attr="Canteen second entrance in hallway">
+            <data key="vertex_label">55.7542616690716 48.743575885891914</data>
+        </node>
+        <node id="19" name="First floor hallway" attr="Canteen second entrance door">
+            <data key="vertex_label">55.75426619725797 48.74352090060711</data>
+        </node>
+        <node id="19" name="University canteen" attr="Canteen second entrance kassa">
+            <data key="vertex_label">55.7542861967414 48.743378072977066</data>
+        </node>
+        <edge id="DEFAULT" source="0" target="1" />
+        <edge id="DEFAULT" source="1" target="2" />
+        <edge id="DEFAULT" source="2" target="3" />
+        <edge id="DEFAULT" source="3" target="4" />
+        <edge id="DEFAULT" source="4" target="5" />
+        <edge id="DEFAULT" source="5" target="6" />
+        <edge id="DEFAULT" source="6" target="7" />
+        <edge id="DEFAULT" source="2" target="8" />
+        <edge id="DEFAULT" source="8" target="9" />
+        <edge id="DEFAULT" source="9" target="10" />
+        <edge id="DEFAULT" source="10" target="11" />
+        <edge id="DEFAULT" source="11" target="12" />
+        <edge id="DEFAULT" source="12" target="13" />
+        <edge id="DEFAULT" source="13" target="14" />
+        <edge id="DEFAULT" source="14" target="15" />
+        <edge id="DEFAULT" source="15" target="16" />
+        <edge id="DEFAULT" source="16" target="17" />
+        <edge id="DEFAULT" source="14" target="18" />
+        <edge id="DEFAULT" source="18" target="19" />
+        <edge id="DEFAULT" source="19" target="17" />
+    </graph>
+</graphml>
