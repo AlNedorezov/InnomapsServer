@@ -17,9 +17,11 @@ import java.util.List;
 public class GraphHandler implements HttpHandler {
 
     public static final String baseGraphUrl = "/innomaps/graphml/";
+    private GraphCache floorCache = new GraphCache();
 
     @Override
     public void handle(HttpExchange httpExchange) {
+        System.out.println("Got request " + httpExchange.getRequestURI().toString());
         String path = httpExchange.getRequestURI().getPath();
         String command = path.substring(path.indexOf(baseGraphUrl) + baseGraphUrl.length());
 
@@ -58,6 +60,12 @@ public class GraphHandler implements HttpHandler {
         }
         String[] pair = toProcess.split("=");
         int floor = Integer.parseInt(pair[1]);
+        String result = floorCache.getFloorData(floor);
+        if (result != null) {
+            System.out.println("Cache hit for floor " + floor);
+            return result;
+        }
+        System.out.println("Cache miss for floor " + floor);
         List<String> lines;
         try {
             lines = Files.readAllLines(Paths.get("res/floor/" + floor + ".xml"), Charset.defaultCharset());
@@ -68,10 +76,11 @@ public class GraphHandler implements HttpHandler {
         if (lines.isEmpty()) {
             return "";
         }
-        StringBuilder result = new StringBuilder();
-        lines.forEach(result::append);
-        System.out.println(result.toString());
-        return result.toString();
+        StringBuilder buildResult = new StringBuilder();
+        lines.forEach(buildResult::append);
+        result = buildResult.toString();
+        floorCache.addNewFloor(floor, result);
+        return result;
     }
 
     private boolean checkFloorRequestString(String toCheck) {
