@@ -8,10 +8,14 @@ import java.util.HashMap;
  */
 public class GraphCache {
     private static HashMap<Integer, String> floorCache;
+    private static HashMap<Integer, byte[]> md5FloorCache;
 
     public GraphCache() {
         if (floorCache == null) {
             floorCache = new HashMap<>();
+        }
+        if (md5FloorCache == null) {
+            md5FloorCache = new HashMap<>();
         }
     }
 
@@ -19,7 +23,13 @@ public class GraphCache {
         floorCache.put(floor, data);
     }
 
+    public synchronized void addNewMd5Floor(int floor, byte[] md5) {
+        md5FloorCache.put(floor, md5);
+    }
+
     public String getFloorData(int floor) {
         return floorCache.get(floor);
     }
+
+    public byte[] getMd5FloorData(int floor) {return md5FloorCache.get(floor); }
 }

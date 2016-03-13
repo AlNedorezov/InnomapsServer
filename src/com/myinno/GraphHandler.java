@@ -8,6 +8,9 @@ import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -48,10 +51,40 @@ public class GraphHandler implements HttpHandler {
     }
 
     private String processMD5(String toProcess) {
-        if (toProcess == null) {
+        if (!checkFloorRequestString(toProcess)) {
             return "";
         }
-        return toProcess;
+        String[] pair = toProcess.split("=");
+        int floor = Integer.parseInt(pair[1]);
+        MessageDigest md5Digest;
+        try {
+            md5Digest = MessageDigest.getInstance("md5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return "";
+        }
+
+        byte[] md5 = floorCache.getMd5FloorData(floor);
+        if (md5 != null) {
+            System.out.println("MD5 cache hit for floor " + floor);
+            return Arrays.toString(md5);
+        }
+
+        System.out.println("MD5 cache miss for floor " + floor);
+        byte[] data;
+        try {
+            data = readBytesFromFile("res/floor/" + floor + ".xml");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+        if (data.length == 0) {
+            return "";
+        }
+
+        md5 = md5Digest.digest(data);
+        floorCache.addNewMd5Floor(floor, md5);
+        return Arrays.toString(md5);
     }
 
     private String processLoadMap(String toProcess) {
@@ -68,7 +101,7 @@ public class GraphHandler implements HttpHandler {
         System.out.println("Cache miss for floor " + floor);
         List<String> lines;
         try {
-            lines = readFromFile("res/floor/" + floor + ".xml");
+            lines = readLinesFromFile("res/floor/" + floor + ".xml");
         } catch (IOException e) {
             e.printStackTrace();
             return "";
@@ -88,7 +121,11 @@ public class GraphHandler implements HttpHandler {
         return pair.length == 2 && pair[0].equals("floor") && pair[1].matches("^[0-9]{1,9}$");
     }
 
-    private synchronized List<String> readFromFile(String filename) throws IOException {
+    private synchronized List<String> readLinesFromFile(String filename) throws IOException {
         return Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
+    }
+
+    private synchronized byte[] readBytesFromFile(String filename) throws IOException {
+        return Files.readAllBytes(Paths.get(filename));
     }
 }
