@@ -76,6 +76,6 @@ public class GraphHandler implements HttpHandler {
 
     private boolean checkFloorRequestString(String toCheck) {
         String pair[] = toCheck.split("=");
-        return pair.length == 2 && pair[0].equals("floor") && pair[1].matches("^[0-9]+$");
+        return pair.length == 2 && pair[0].equals("floor") && pair[1].matches("^[0-9]{1,9}$");
     }
 }
