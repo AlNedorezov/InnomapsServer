@@ -15,7 +15,7 @@ public class GraphCache {
         }
     }
 
-    public void addNewFloor(int floor, String data) {
+    public synchronized void addNewFloor(int floor, String data) {
         floorCache.put(floor, data);
     }
 

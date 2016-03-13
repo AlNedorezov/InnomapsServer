@@ -68,7 +68,7 @@ public class GraphHandler implements HttpHandler {
         System.out.println("Cache miss for floor " + floor);
         List<String> lines;
         try {
-            lines = Files.readAllLines(Paths.get("res/floor/" + floor + ".xml"), Charset.defaultCharset());
+            lines = readFromFile("res/floor/" + floor + ".xml");
         } catch (IOException e) {
             e.printStackTrace();
             return "";
@@ -86,5 +86,9 @@ public class GraphHandler implements HttpHandler {
     private boolean checkFloorRequestString(String toCheck) {
         String pair[] = toCheck.split("=");
         return pair.length == 2 && pair[0].equals("floor") && pair[1].matches("^[0-9]{1,9}$");
+    }
+
+    private synchronized List<String> readFromFile(String filename) throws IOException {
+        return Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
     }
 }
