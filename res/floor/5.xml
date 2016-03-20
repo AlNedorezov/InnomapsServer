@@ -13,7 +13,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75315658720834 48.74383237212896</data>
         </node>
         <node id="5003" name="Fifth floor hallway" attr="hallway center, front of 501">
-            <data key="vertex_label">55.75314375698064,48.743665404617786</data>
+            <data key="vertex_label">55.75314375698064 48.743665404617786</data>
         </node>        
         <node id="5004" name="Room 501" number="501" type="door">
             <data key="vertex_label">55.75313658714569 48.74364998191595</data>
