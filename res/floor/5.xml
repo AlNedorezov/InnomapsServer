@@ -162,7 +162,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="5052" name="Room 516" number="516" type="door">
             <data key="vertex_label">55.753264323218424 48.74401543289423</data>
         </node>
-        <node id="5053" name="Room 505" number="505" type="room" attr="center">
+        <node id="5053" name="Room 516" number="516" type="room" attr="center">
             <data key="vertex_label">55.7532531911401 48.74396312981844</data>
         </node>
         <!-- Just for fun :) -->
