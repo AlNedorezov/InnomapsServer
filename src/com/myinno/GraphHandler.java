@@ -125,7 +125,7 @@ public class GraphHandler implements HttpHandler {
     }
 
     private synchronized List<String> readLinesFromFile(String filename) throws IOException {
-        return Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
+        return Files.readAllLines(Paths.get(filename), Charset.forName("UTF-8"));
     }
 
     private synchronized byte[] readBytesFromFile(String filename) throws IOException {

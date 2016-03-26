@@ -70,15 +70,15 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
 
         <node id="3114" name="Meeting Room 3" number="3" type="room" attr = "meeting room">
-            <data key="vertex_label">55.753411870125916,48.74347295612097</data>
+            <data key="vertex_label">55.753411870125916 48.74347295612097</data>
         </node>
 
         <node id="3115" name="Room 307" number="307" type="room">
-            <data key="vertex_label">55.75345432277725,48.74318562448025</data>
+            <data key="vertex_label">55.75345432277725 48.74318562448025</data>
         </node>
 
         <node id="3116" name="Room 308" number="308" type="room">
-            <data key="vertex_label">55.753526963873476,48.74310180544853</data>
+            <data key="vertex_label">55.753526963873476 48.74310180544853</data>
         </node>
 
         <!--Line4-->
@@ -99,7 +99,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753657528828384 48.742884546518326</data>
         </node>
 
-        <node id="3121" name="Reading hall"  type="room" attr="Reading hall" >
+        <node id="3121" name="Reading hall" type="room" attr="Reading hall" >
             <data key="vertex_label">55.753713377288356 48.74298680573702</data>
         </node>
 
@@ -164,23 +164,23 @@ http://graphml.graphdrawing.org/xmlns ">
 
 
         <node id="3135" name="316" number="316" type="room" >
-            <data key="vertex_label">55.75344847374804,48.743902780115604</data>
+            <data key="vertex_label">55.75344847374804 48.743902780115604</data>
         </node>
 
         <node id="3136" name="Meeting Room 2" number="5" type="room" attr = "meeting room">
-            <data key="vertex_label">55.75332017224138,48.7438078969717</data>
+            <data key="vertex_label">55.75332017224138 48.7438078969717</data>
         </node>
 
         <node id="3137" name="317" number="317" type="room" >
-            <data key="vertex_label">55.75339979469667,48.74395038932562</data>
+            <data key="vertex_label">55.75339979469667 48.74395038932562</data>
         </node>
 
         <node id="3138" name="318" number="318" type="room" >
-            <data key="vertex_label">55.75335036086915,48.74399799853563</data>
+            <data key="vertex_label">55.75335036086915 48.74399799853563</data>
         </node>
 
         <node id="3139" name="319" number="319" type="office room" attr = "Department for work with students" >
-            <data key="vertex_label">55.753257530764216,48.74402616173029</data>
+            <data key="vertex_label">55.753257530764216 48.74402616173029</data>
         </node>
 
         <node id="3140" name="320" number="320" type="office room" attr = "the study of mathematics" >
@@ -284,7 +284,7 @@ http://graphml.graphdrawing.org/xmlns ">
 
         <!--Line4-->
 
-        <node id="3222" name="Stair1 on line4"  type="door" >
+        <node id="3222" name="Stair1 on line4" type="door" >
             <data key="vertex_label">55.75357564276614 48.74308135360479</data>
         </node>
 
@@ -304,11 +304,11 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75366790608206 48.742962665855885</data>
         </node>
 
-        <node id="3227" name="Reading hall"  type="door" attr="Reading hall" >
+        <node id="3227" name="Reading hall" type="door" attr="Reading hall" >
             <data key="vertex_label">55.75369281147963 48.74298110604286</data>
         </node>
 
-        <node id="3228" name="Stair2 on line4"  type="door" >
+        <node id="3228" name="Stair2 on line4" type="door" >
             <data key="vertex_label">55.753760735210356 48.7429790943861</data>
         </node>
 
@@ -316,11 +316,11 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75386262058466 48.742998875677586</data>
         </node>
 
-        <node id="3808" name="Holway in Reading hall"  type="door" >
-            <data key="vertex_label">55.75394922294358,48.74339919537306</data>
+        <node id="3808" name="Holway in Reading hall" type="door" >
+            <data key="vertex_label">55.75394922294358 48.74339919537306</data>
         </node>
 
-        <node id="3230" name="Canteen left door"  type="door" >
+        <node id="3230" name="Canteen left door" type="door" >
             <data key="vertex_label">55.75399544852486 48.743292577564716</data>
         </node>
 
@@ -392,7 +392,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75349432256645 48.74376431107521</data>
         </node>
 
-        <node id="3248" name="Stair1 on line6"  type="door" >
+        <node id="3248" name="Stair1 on line6" type="door" >
             <data key="vertex_label">55.75346186991042 48.74380152672529</data>
         </node>
 
@@ -418,7 +418,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75324488924909 48.7440100684762</data>
         </node>
 
-        <node id="3254" name="Stair1 on line7"  type="door" >
+        <node id="3254" name="Stair1 on line7" type="door" >
             <data key="vertex_label">55.75322696470572 48.744105622172356</data>
         </node>
 
@@ -457,7 +457,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="3304" name="Line1_l3" attr="front of room 300 left door">
             <data key="vertex_label">55.75297073717454 48.743738159537315</data>
         </node>
-        <!-- Line2 the line2 runs from Line1  to 305 -->
+        <!-- Line2 the line2 runs from Line1 to 305 -->
         <node id="3305" name="Line2_l1" attr="front of room 301 door">
             <data key="vertex_label">55.75306470004342 48.74384678900242</data>
         </node>
@@ -494,10 +494,10 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75330922885803 48.74354772269726</data>
         </node>
 
-        <!-- Line3 the line3 runs from 306  to 308 -->
+        <!-- Line3 the line3 runs from 306 to 308 -->
 
         <node id="3314" name="Line3_l1" attr="Line3 cross Line2 and Line7">
-            <data key="vertex_label">55.753337153347374,48.74351017177105</data>
+            <data key="vertex_label">55.753337153347374 48.74351017177105</data>
         </node>
 
         <node id="3315" name="Line3_l2" attr="front of room 306 door">
@@ -541,7 +541,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753609227393106 48.74324329197407</data>
         </node>
 
-        <!-- Line4 the line4 runs from 308  to University Canteen -->
+        <!-- Line4 the line4 runs from 308 to University Canteen -->
         <node id="3326" name="Line4_l1" attr="Line4 cross Line3 and Line6">
             <data key="vertex_label">55.75361205755697 48.743168860673904</data>
         </node>
@@ -599,7 +599,7 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
 
         <node id="3807" name="Line4_20_1Э" attr="front of elevator2">
-            <data key="vertex_label">55.753955637925486,48.74336667358875</data>
+            <data key="vertex_label">55.753955637925486 48.74336667358875</data>
         </node>
 
         <node id="3340" name="Line4_20_1" attr="front of Circle stairs">
@@ -613,7 +613,7 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
 
         <node id="3810" name="Line5_l2" attr="front of stair2 on line5">
-            <data key="vertex_label">55.75408506939374,48.743171878159046</data>
+            <data key="vertex_label">55.75408506939374 48.743171878159046</data>
         </node>
 
         <node id="3342" name="Line5_l2" attr="front of elevator and front of door2">
@@ -658,10 +658,10 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
 
         <node id="3811" name="Line6_l2_1" attr="front of room 313 door2">
-            <data key="vertex_label">55.753560171186685,48.74356549233198</data>
+            <data key="vertex_label">55.753560171186685 48.74356549233198</data>
         </node>
 
-        <node id="3352" name="Line6_l3" attr="front of Meeting  room4">
+        <node id="3352" name="Line6_l3" attr="front of Meeting room4">
             <data key="vertex_label">55.75361866127187 48.74345116317272</data>
         </node>
 
@@ -693,7 +693,7 @@ http://graphml.graphdrawing.org/xmlns ">
 
         <!-- Line7 the line7 runs from 316 to Line1 -->
         <node id="3359" name="Line7_l1" attr="front of room 316">
-            <data key="vertex_label">55.7534073418404,48.74376364052296</data>
+            <data key="vertex_label">55.7534073418404 48.74376364052296</data>
         </node>
 
         <node id="3360" name="Line7_l2" attr="front of elevator1 on Line7">
@@ -721,11 +721,11 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
 
         <node id="3366" name="Line7_l8" attr="front of star1">
-            <data key="vertex_label">55.75319243635154,48.74403487890959</data>
+            <data key="vertex_label">55.75319243635154 48.74403487890959</data>
         </node>
 
         <node id="3367" name="Line7_l8" attr="front of room 320">
-            <data key="vertex_label">55.75317639858104,48.74406035989523</data>
+            <data key="vertex_label">55.75317639858104 48.74406035989523</data>
         </node>
 
 
@@ -741,7 +741,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="3403" name="Elevator on line3" >
             <data key="vertex_label">55.75358790681866 48.74326776713133</data>
         </node>
-        <!--  -->
+        <!-- -->
         <node id="3815" name="Stair on line3" >
             <data key="vertex_label">55.75358790681866 48.74326776713133</data>
         </node>
@@ -809,7 +809,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3802" target="3804" />
         <edge id="DEFAULT" source="3803" target="3805" />
 
-        <!-- Line1  Connection door to room-->
+        <!-- Line1 Connection door to room-->
         <edge id="DEFAULT" source="3802" target="3806" />
         <edge id="DEFAULT" source="3803" target="3806" />
         <edge id="DEFAULT" source="3201" target="3101" />
@@ -838,7 +838,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3313" target="3211" />
 
 
-        <!-- Line2  Connection door to room-->
+        <!-- Line2 Connection door to room-->
         <edge id="DEFAULT" source="3204" target="3103" />
         <edge id="DEFAULT" source="3206" target="3105" />
         <edge id="DEFAULT" source="3208" target="3106" />
@@ -847,7 +847,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3211" target="3108" />
 
 
-        <!-- Line2  Connection door and stair and elevator-->
+        <!-- Line2 Connection door and stair and elevator-->
         <edge id="DEFAULT" source="3204" target="3401" />
         <edge id="DEFAULT" source="3207" target="3402" />
 
@@ -876,7 +876,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3325" target="3221" />
 
 
-        <!-- Line3  Connection door to room-->
+        <!-- Line3 Connection door to room-->
         <edge id="DEFAULT" source="3213" target="3109" />
         <edge id="DEFAULT" source="3214" target="3110" />
         <edge id="DEFAULT" source="3215" target="3111" />
@@ -886,7 +886,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3220" target="3116" />
 
 
-        <!-- Line3  Connection door and stair and elevator-->
+        <!-- Line3 Connection door and stair and elevator-->
         <edge id="DEFAULT" source="3212" target="3212" />
         <edge id="DEFAULT" source="3221" target="3403" />
 
@@ -927,7 +927,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3808" target="3346" />
 
 
-        <!-- Line4  Connection door to room-->
+        <!-- Line4 Connection door to room-->
         <edge id="DEFAULT" source="3227" target="3121" />
         <edge id="DEFAULT" source="3224" target="3118" />
         <edge id="DEFAULT" source="3225" target="3119" />
@@ -935,7 +935,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3229" target="3122" />
 
 
-        <!-- Line4  Connection door and stair and elevator-->
+        <!-- Line4 Connection door and stair and elevator-->
         <edge id="DEFAULT" source="3222" target="3404" />
         <edge id="DEFAULT" source="3327" target="3814" />
         <edge id="DEFAULT" source="3228" target="3405" />
@@ -968,7 +968,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3346" target="3239" />
         <edge id="DEFAULT" source="3810" target="3809" />
 
-        <!-- Line5  Connection door to room-->
+        <!-- Line5 Connection door to room-->
         <edge id="DEFAULT" source="3235" target="3126" />
         <edge id="DEFAULT" source="3232" target="3123" />
         <edge id="DEFAULT" source="3233" target="3124" />
@@ -976,7 +976,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3238" target="3127" />
         <edge id="DEFAULT" source="3239" target="3128" />
 
-        <!-- Line5  Connection door and stair and elevator-->
+        <!-- Line5 Connection door and stair and elevator-->
         <edge id="DEFAULT" source="3809" target="3813" />
         <edge id="DEFAULT" source="3342" target="3812" />
 
@@ -1006,7 +1006,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3355" target="3248" />
 
 
-        <!-- Line6  Connection door to room-->
+        <!-- Line6 Connection door to room-->
         <edge id="DEFAULT" source="3240" target="3129" />
         <edge id="DEFAULT" source="3241" target="3130" />
         <edge id="DEFAULT" source="3242" target="3130" />
@@ -1016,7 +1016,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3246" target="3134" />
 
 
-        <!-- Line6  Connection door and stair and elevator-->
+        <!-- Line6 Connection door and stair and elevator-->
         <edge id="DEFAULT" source="3248" target="3408" />
         <edge id="DEFAULT" source="3358" target="3409" />
 
@@ -1043,7 +1043,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3367" target="3355" />
 
 
-        <!-- Line7  Connection door to room-->
+        <!-- Line7 Connection door to room-->
         <edge id="DEFAULT" source="3249" target="3135" />
         <edge id="DEFAULT" source="3250" target="3136" />
         <edge id="DEFAULT" source="3251" target="3137" />
@@ -1051,7 +1051,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3253" target="3139" />
         <edge id="DEFAULT" source="3255" target="3140" />
 
-        <!-- Line6  Connection door and stair and elevator-->
+        <!-- Line6 Connection door and stair and elevator-->
         <edge id="DEFAULT" source="3360" target="3410" />
         <edge id="DEFAULT" source="254" target="3411" />
 
