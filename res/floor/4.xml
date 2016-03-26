@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://graphml.graphdrawing.org/xmlns" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd
+http://graphml.graphdrawing.org/xmlns
+http://graphml.graphdrawing.org/xmlns ">
+    <key id="vertex_label" for="node" attr.name="Vertex Label" attr.type="string" />
+    <graph edgedefault="undirected">
+
+        <!--Rooms-->
+        <node id="4001" name="Room 401" type="room">
+            <data key="vertex_label">55.752873000456326 48.74390847980976</data>
+        </node>
+        <node id="4003" name="Room 403" type="room">
+            <data key="vertex_label">55.752918472589286 48.74384846538305</data>
+        </node>
+        <node id="4006" name="Room 406" type="room" attr="Jooyong Lee">
+            <data key="vertex_label">55.752964510711394 48.743793815374374</data>
+        </node>
+        <node id="4009" name="Room 409" type="room" attr="software engineering laboratory (Inna Baskakova)">
+            <data key="vertex_label">55.753010926140135 48.743731789290905</data>
+        </node>
+        <node id="4013" name="Room 413" type="room" attr="software engineering laboratory">
+            <data key="vertex_label">55.75308809638522 48.74361712485552</data>
+        </node>
+        <node id="4002" name="Room 402" type="room">
+            <data key="vertex_label">55.75293488782758 48.74402113258839</data>
+        </node>
+        <node id="4004" name="Room 404" type="room">
+            <data key="vertex_label">55.75295715216273 48.743993639945984</data>
+        </node>
+        <node id="4005" name="Room 405" type="room">
+            <data key="vertex_label">55.75298017120775 48.74396312981844</data>
+        </node>
+        <node id="4007" name="Room 407" type="room" attr="service science and engineering Manuel Mazzara">
+            <data key="vertex_label">55.753026775298295 48.74389339238405</data>
+        </node>
+        <node id="4008" name="Room 408" type="room" attr="software engineering laboratory Bertran Meyer">
+            <data key="vertex_label">55.75304545465497 48.743863217532635</data>
+        </node>
+        <node id="4010" name="Room 410" type="room" attr="software engineering laboratory Nestor Catano">
+            <data key="vertex_label">55.753067718927014 48.743840754032135</data>
+        </node>
+        <node id="4011" name="Room 411" type="room">
+            <data key="vertex_label">55.75309356810827 48.7438115850091</data>
+        </node>
+        <node id="4012" name="Room 412" type="room">
+            <data key="vertex_label">55.753135266386465 48.74374587088823</data>
+        </node>
+        <node id="4076" name="Room 476" type="room" attr="msit-se headquarters">
+            <data key="vertex_label">55.753075266134985 48.74439060688019</data>
+        </node>
+        <node id="4072" name="Room 472" type="room">
+            <data key="vertex_label">55.753118285192585 48.74433260411024</data>
+        </node>
+        <node id="4070" name="Room 470" type="room">
+            <data key="vertex_label">55.7531665872358 48.74427057802677</data>
+        </node>
+        <node id="4069" name="Room 469" type="room">
+            <data key="vertex_label">55.75321036091081 48.74420586973429</data>
+        </node>
+        <node id="4075" name="Room 475" type="room" attr="msit-se mommy's room">
+            <data key="vertex_label">55.753034511194556 48.744257502257824</data>
+        </node>
+        <node id="4074" name="Room 474" type="room" attr="msit-se Mohamad Kassab's office">
+            <data key="vertex_label">55.753055266030664 48.74421928077936</data>
+        </node>
+        <node id="4073" name="Room 473" type="room">
+            <data key="vertex_label">55.75307828501778 48.74419279396534</data>
+        </node>
+        <node id="4071" name="Room 471" type="room">
+            <data key="vertex_label">55.75309903983058 48.744155913591385</data>
+        </node>
+        <node id="4068" name="Room 468" type="room">
+            <data key="vertex_label">55.75314583245893 48.74410193413496</data>
+        </node>
+        <node id="4067" name="Room 467" type="room">
+            <data key="vertex_label">55.7531703608304 48.74407410621643</data>
+        </node>
+        <node id="4066" name="Room 466" type="room">
+            <data key="vertex_label">55.75319262503115 48.74403588473797</data>
+        </node>
+        <node id="4065" name="Room 465" type="room">
+            <data key="vertex_label">55.7532148892192 48.744014762341976</data>
+        </node>
+        <node id="4064" name="Room 464" type="room" attr="msit-se visiting professors">
+            <data key="vertex_label">55.75323790811212 48.74398458749056</data>
+        </node>
+        <node id="4063" name="Room 463" type="room">
+            <data key="vertex_label">55.753295455285 48.74411232769489</data>
+        </node>
+        <node id="4014" name="Room 414" type="room">
+            <data key="vertex_label">55.75317432310435 48.74363087117672</data>
+        </node>
+        <node id="4015" name="Room 415" type="room">
+            <data key="vertex_label">55.75314885133627 48.7435282766819</data>
+        </node>
+        <node id="4016" name="Room 416" type="room">
+            <data key="vertex_label">55.75322130432186 48.743432722985744</data>
+        </node>
+        <node id="4017" name="Room 417" type="room">
+            <data key="vertex_label">55.75326847416207 48.743498772382736</data>
+        </node>
+        <node id="4062" name="Room 462" type="room" attr="msit-se meeting room for students">
+            <data key="vertex_label">55.75331602130323 48.743978552520275</data>
+        </node>
+        <node id="4061" name="Room 461" type="room" attr="msit-se cave #2">
+            <data key="vertex_label">55.753362058956114 48.744041584432125</data>
+        </node>
+        <node id="4060" name="Room 460" type="room" attr="msit-se cave #1">
+            <data key="vertex_label">55.7534305492982 48.74395273625851</data>
+        </node>
+        <node id="4059" name="Room 459" type="room">
+            <data key="vertex_label">55.75341054937603 48.7438565120101</data>
+        </node>
+        <node id="4018" name="Room 418" type="room" attr="Artificial intelligence in games development lab">
+            <data key="vertex_label">55.75330979489519 48.74333918094635</data>
+        </node>
+        <node id="4019" name="Room 419" type="room" attr="Liber lab on machine learning and data representation">
+            <data key="vertex_label">55.75345243599375 48.74325904995203</data>
+        </node>
+        <node id="4020" name="Room 420" type="room" attr="Liber lab on machine learning and data representation">
+            <data key="vertex_label">55.75342639837181 48.74315645545721</data>
+        </node>
+        <node id="4021" name="Room 421" type="room">
+            <data key="vertex_label">55.7534931904975 48.74306961894035</data>
+        </node>
+        <node id="4022" name="Room 422" type="room">
+            <data key="vertex_label">55.75353922794129 48.743139021098614</data>
+        </node>
+        <node id="4052" name="Room 452" type="room">
+            <data key="vertex_label">55.75368149084635 48.743496760725975</data>
+        </node>
+        <node id="4053" name="Room 453" type="room">
+            <data key="vertex_label">55.753619604659626 48.74357722699642</data>
+        </node>
+        <node id="4054" name="Room 454" type="room">
+            <data key="vertex_label">55.753647906281586 48.74366506934166</data>
+        </node>
+        <node id="4055" name="Room 455" type="room">
+            <data key="vertex_label">55.75358998227331 48.74374117702246</data>
+        </node>
+        <node id="4056" name="Room 456" type="room">
+            <data key="vertex_label">55.75355658630763 48.74365970492363</data>
+        </node>
+        <node id="4057" name="Room 457" type="room">
+            <data key="vertex_label">55.753503567794915 48.74373212456703</data>
+        </node>
+        <node id="4058" name="Room 458" type="room" attr="msit-se TA's room">
+            <data key="vertex_label">55.753531114789155 48.74381795525551</data>
+        </node>
+
+
+        <!-- wc -->
+        <node id="4800" name="Central wc" type="wc" attr="men wc">
+            <data key="vertex_label">55.75338470040482 48.7433710321784</data>
+        </node>
+        <node id="4801" name="Central wc" type="wc" attr="persons with disabilities wc">
+            <data key="vertex_label">55.7533667759257 48.74333951622248</data>
+        </node>
+        <node id="4802" name="Central wc" type="wc" attr="women wc">
+            <data key="vertex_label">55.753354134445985 48.743302300572395</data>
+        </node>
+
+        <!-- special rooms without numbers -->
+        <node id="4100" name="Staff room">
+            <data key="vertex_label">55.753115077632906 48.743773363530636</data>
+        </node>
+        <node id="4101" name="Cleaning service room">
+            <data key="vertex_label">55.75334281371441 48.74324966222048</data>
+        </node>
+        <node id="4102" name="Small open lounge near wcs">
+            <data key="vertex_label">55.75341715312505 48.74348368495703</data>
+        </node>
+        <node id="4103" name="Meeting room #2">
+            <data key="vertex_label">55.75346111519718 48.74339818954468</data>
+        </node>
+        <node id="4104" name="Small open lounge near room 453">
+            <data key="vertex_label">55.7535563976298 48.743481673300266</data>
+        </node>
+        <node id="4105" name="Meeting room #3">
+            <data key="vertex_label">55.75361620846362 48.74342903494835</data>
+        </node>
+        <node id="4106" name="Evil babka's room">
+            <data key="vertex_label">55.75370979242339 48.74358158558607</data>
+        </node>
+
+        <!--Hallways-->
+        <node id="4900" name="Fourth floor hallway" attr="Hallway near room 401">
+            <data key="vertex_label">55.752889604394845 48.74399531632662</data>
+        </node>
+        <node id="4901" name="Fourth floor hallway" attr="Hallway near room 403 and room 404">
+            <data key="vertex_label">55.752938661444595 48.74393530189991</data>
+        </node>
+        <node id="4902" name="Fourth floor hallway" attr="Hallway near room 406">
+            <data key="vertex_label">55.752983756139756 48.74387729912996</data>
+        </node>
+        <node id="4903" name="Fourth floor hallway" attr="Hallway near room 409 and room 408">
+            <data key="vertex_label">55.75302696397869 48.743813931941986</data>
+        </node>
+        <node id="4904" name="Fourth floor hallway" attr="Stairs near room 411">
+            <data key="vertex_label">55.75307394537371 48.74375123530626</data>
+        </node>
+        <node id="4905" name="Fourth floor hallway" type="door" attr="Hallway door near room 413">
+            <data key="vertex_label">55.753132436188 48.74367780983448</data>
+        </node>
+        <node id="4906" name="Fourth floor hallway" attr="Hallway near room 413">
+            <data key="vertex_label">55.7531460211388 48.743666745722294</data>
+        </node>
+        <node id="4907" name="Fourth floor hallway" attr="Hallway near room 402">
+            <data key="vertex_label">55.75291583105603 48.74396748840809</data>
+        </node>
+        <node id="4908" name="Fourth floor hallway" attr="Hallway near room 405">
+            <data key="vertex_label">55.75296243522344 48.74390546232462</data>
+        </node>
+        <node id="4909" name="Fourth floor hallway" attr="Hallway near room 407">
+            <data key="vertex_label">55.753006775169084 48.74384142458439</data>
+        </node>
+        <node id="4910" name="Fourth floor hallway" attr="Hallway near room 410">
+            <data key="vertex_label">55.7530520584658 48.743789456784725</data>
+        </node>
+        <node id="4911" name="Fourth floor hallway" attr="Hallway near staff room">
+            <data key="vertex_label">55.75309753039001 48.743725419044495</data>
+        </node>
+        <node id="4912" name="Fourth floor hallway" attr="Hallway near room 412">
+            <data key="vertex_label">55.75312149275201 48.74369792640209</data>
+        </node>
+        <node id="4913" name="Fourth floor hallway" type="door" attr="Hallway door opposite room 401">
+            <data key="vertex_label">55.75293092552933 48.744086176157</data>
+        </node>
+        <node id="4914" name="Fourth floor hallway" attr="South hallway">
+            <data key="vertex_label">55.752962812584904 48.74416831880808</data>
+        </node>
+        <node id="4915" name="Fourth floor hallway" type="door" attr="Hallway door opposite room 476">
+            <data key="vertex_label">55.75300073739221 48.74425046145916</data>
+        </node>
+        <node id="4916" name="Fourth floor hallway" attr="Hallway near room 476">
+            <data key="vertex_label">55.753038850843026 48.744336292147636</data>
+        </node>
+        <node id="4917" name="Fourth floor hallway" attr="Hallway near room 476 and room 475">
+            <data key="vertex_label">55.75306300192128 48.74430678784847</data>
+        </node>
+        <node id="4918" name="Fourth floor hallway" attr="Hallway near room 474">
+            <data key="vertex_label">55.7530831907018 48.74427627772093</data>
+        </node>
+        <node id="4919" name="Fourth floor hallway" attr="Hallway near room 473 and room 472">
+            <data key="vertex_label">55.75310262475167 48.74425180256367</data>
+        </node>
+        <node id="4920" name="Fourth floor hallway" attr="Hallway near room 471">
+            <data key="vertex_label">55.7531282852299 48.74421626329422</data>
+        </node>
+        <node id="4921" name="Fourth floor hallway" attr="Hallway near room 470">
+            <data key="vertex_label">55.753151492853725 48.744183741509914</data>
+        </node>
+        <node id="4922" name="Fourth floor hallway" attr="Hallway near room 468">
+            <data key="vertex_label">55.75317488914347 48.744156919419765</data>
+        </node>
+        <node id="4923" name="Fourth floor hallway" attr="Hallway near room 469 and room 467">
+            <data key="vertex_label">55.75319564390485 48.744133450090885</data>
+        </node>
+        <node id="4924" name="Fourth floor hallway" attr="Stairs near room 466">
+            <data key="vertex_label">55.75321809677069 48.744100257754326</data>
+        </node>
+        <node id="4925" name="Fourth floor hallway" attr="Hallway near room 465">
+            <data key="vertex_label">55.75323885150909 48.744071424007416</data>
+        </node>
+        <node id="4926" name="Fourth floor hallway" attr="Hallway near room 464">
+            <data key="vertex_label">55.753265077935474 48.744037225842476</data>
+        </node>
+        <node id="4927" name="Fourth floor hallway" type="door" attr="Hallway door near room 463">
+            <data key="vertex_label">55.75327187038835 48.744030855596066</data>
+        </node>
+        <node id="4928" name="Fourth floor hallway" attr="Hallway near room 463">
+            <data key="vertex_label">55.75328356849888 48.74401040375233</data>
+        </node>
+        <node id="4929" name="Fourth floor hallway" attr="Hallway near room 463 and room 464">
+            <data key="vertex_label">55.75326111567073 48.74394569545984</data>
+        </node>
+        <node id="4930" name="Fourth floor hallway" attr="Hallway near 1-5 floors elevator">
+            <data key="vertex_label">55.75319583258447 48.74377470463514</data>
+        </node>
+        <node id="4931" name="Fourth floor hallway" attr="Hallway near room 412 and 413">
+            <data key="vertex_label">55.7531694174318 48.74372340738773</data>
+        </node>
+        <node id="4932" name="Fourth floor hallway" attr="Hallway near room 414">
+            <data key="vertex_label">55.75320696467915 48.74367244541645</data>
+        </node>
+        <node id="4933" name="Fourth floor hallway" attr="Hallway near rooms 414-417">
+            <data key="vertex_label">55.75324941755349 48.7436144426465</data>
+        </node>
+        <node id="4934" name="Fourth floor hallway" attr="Hallway near room 415 and room 416">
+            <data key="vertex_label">55.75321602129622 48.74353498220444</data>
+        </node>
+        <node id="4935" name="Fourth floor hallway" attr="Hallway near room 417">
+            <data key="vertex_label">55.75328828547793 48.743558786809444</data>
+        </node>
+        <node id="4936" name="Fourth floor hallway" type="door" attr="Hallway door near room 417">
+            <data key="vertex_label">55.75332526657395 48.74353129416704</data>
+        </node>
+        <node id="4937" name="Fourth floor hallway" attr="Hallway near room 462">
+            <data key="vertex_label">55.7532862100072 48.74391585588455</data>
+        </node>
+        <node id="4938" name="Fourth floor hallway" attr="Hallway near rooms 459-462">
+            <data key="vertex_label">55.75333979485208 48.74384343624115</data>
+        </node>
+        <node id="4939" name="Fourth floor hallway" attr="Hallway near room 460 and room 461">
+            <data key="vertex_label">55.753376964577996 48.74391283839941</data>
+        </node>
+        <node id="4940" name="Fourth floor hallway" attr="Hallway near room 459">
+            <data key="vertex_label">55.7533860211556 48.74378778040409</data>
+        </node>
+        <node id="4941" name="Fourth floor hallway" type="door" attr="Hallway door near room 459">
+            <data key="vertex_label">55.75341224748303 48.7437492236495</data>
+        </node>
+        <node id="4942" name="Fourth floor hallway" attr="Hallway between room 413 and room 463">
+            <data key="vertex_label">55.75322564394955 48.74384209513664</data>
+        </node>
+        <node id="4943" name="Fourth floor hallway" attr="Hallway near door near room 417">
+            <data key="vertex_label">55.753337530705195 48.74351520091295</data>
+        </node>
+        <node id="4944" name="Fourth floor hallway" attr="Hallway between room 417 and room 459">
+            <data key="vertex_label">55.75337904004389 48.743620812892914</data>
+        </node>
+        <node id="4945" name="Fourth floor hallway" attr="Hallway near door near room 459">
+            <data key="vertex_label">55.75343017194126 48.74372944235802</data>
+        </node>
+        <node id="4946" name="Fourth floor hallway" attr="Hallway near room 418">
+            <data key="vertex_label">55.7533501721903 48.74340254813433</data>
+        </node>
+        <node id="4947" name="Fourth floor hallway" attr="Hallway near man wc">
+            <data key="vertex_label">55.753367530640766 48.74339584261179</data>
+        </node>
+        <node id="4948" name="Fourth floor hallway" attr="Hallway near disabilities wc">
+            <data key="vertex_label">55.753352625015296 48.74335493892431</data>
+        </node>
+        <node id="4949" name="Fourth floor hallway" attr="Hallway near women wc">
+            <data key="vertex_label">55.75333885145755 48.74332074075937</data>
+        </node>
+        <node id="4950" name="Fourth floor hallway" attr="Hallway near small open lounge near wcs">
+            <data key="vertex_label">55.7533931909447 48.74345015734434</data>
+        </node>
+        <node id="4951" name="Fourth floor hallway" attr="Hallway near meeting room #2">
+            <data key="vertex_label">55.753446775642615 48.743352591991425</data>
+        </node>
+        <node id="4952" name="Fourth floor hallway" attr="Hallway near room 419">
+            <data key="vertex_label">55.75349715273866 48.74329727143049</data>
+        </node>
+        <node id="4953" name="Fourth floor hallway" attr="Hallway near rooms 419-422">
+            <data key="vertex_label">55.75352413370343 48.74325904995203</data>
+        </node>
+        <node id="4954" name="Fourth floor hallway" attr="Hallway near room 420 and room 421">
+            <data key="vertex_label">55.753492624463014 48.743181601166725</data>
+        </node>
+        <node id="4955" name="Fourth floor hallway" attr="Hallway near room 422">
+            <data key="vertex_label">55.75356885036616 48.743205070495605</data>
+        </node>
+        <node id="4956" name="Fourth floor hallway" type="door" attr="Hallway door near room 422">
+            <data key="vertex_label">55.75359696334728 48.743169866502285</data>
+        </node>
+        <node id="4957" name="Fourth floor hallway" attr="Hallway near room 457">
+            <data key="vertex_label">55.75347432267698 48.74376464635134</data>
+        </node>
+        <node id="4958" name="Fourth floor hallway" attr="Hallway near room 456">
+            <data key="vertex_label">55.75352941668735 48.74359533190727</data>
+        </node>
+        <node id="4959" name="Fourth floor hallway" attr="Hallway near rooms 453-456">
+            <data key="vertex_label">55.753561869287175 48.74355141073465</data>
+        </node>
+        <node id="4960" name="Fourth floor hallway" attr="Hallway near room 454 and room 455">
+            <data key="vertex_label">55.753587718140956 48.743617460131645</data>
+        </node>
+        <node id="4961" name="Fourth floor hallway" attr="Hallway near room 453">
+            <data key="vertex_label">55.75357734086594 48.743531964719296</data>
+        </node>
+        <node id="4962" name="Fourth floor hallway" attr="Hallway near meeting room #3">
+            <data key="vertex_label">55.75365073644265 48.74343540519476</data>
+        </node>
+        <node id="4963" name="Fourth floor hallway" attr="Hallway near room 452">
+            <data key="vertex_label">55.753671679628184 48.74340455979109</data>
+        </node>
+        <node id="4964" name="Fourth floor hallway" type="door" attr="Hallway door near room 452">
+            <data key="vertex_label">55.75368828322671 48.74338511377573</data>
+        </node>
+        <node id="4965" name="Fourth floor hallway" attr="Hallway near door near room 452">
+            <data key="vertex_label">55.75369696237768 48.743371702730656</data>
+        </node>
+        <node id="4966" name="Fourth floor hallway" attr="Hallway near evil babka's room">
+            <data key="vertex_label">55.75375960314914 48.74351419508457</data>
+        </node>
+        <node id="4967" name="Fourth floor hallway" attr="Hallway near door near room 422">
+            <data key="vertex_label">55.753607151939455 48.743157126009464</data>
+        </node>
+
+        <!-- edges -->
+        <!-- beetween hallways-->
+        <edge id="DEFAULT" source="4900" target="4907" />
+        <edge id="DEFAULT" source="4907" target="4901" />
+        <edge id="DEFAULT" source="4901" target="4908" />
+        <edge id="DEFAULT" source="4908" target="4902" />
+        <edge id="DEFAULT" source="4902" target="4909" />
+        <edge id="DEFAULT" source="4909" target="4903" />
+        <edge id="DEFAULT" source="4903" target="4910" />
+        <edge id="DEFAULT" source="4910" target="4904" />
+        <edge id="DEFAULT" source="4904" target="4911" />
+        <edge id="DEFAULT" source="4911" target="4912" />
+        <edge id="DEFAULT" source="4912" target="4905" />
+        <edge id="DEFAULT" source="4905" target="4906" />
+        <edge id="DEFAULT" source="4900" target="4913" />
+        <edge id="DEFAULT" source="4913" target="4914" />
+        <edge id="DEFAULT" source="4914" target="4915" />
+        <edge id="DEFAULT" source="4915" target="4916" />
+        <edge id="DEFAULT" source="4916" target="4917" />
+        <edge id="DEFAULT" source="4917" target="4918" />
+        <edge id="DEFAULT" source="4918" target="4919" />
+        <edge id="DEFAULT" source="4919" target="4920" />
+        <edge id="DEFAULT" source="4920" target="4921" />
+        <edge id="DEFAULT" source="4921" target="4922" />
+        <edge id="DEFAULT" source="4922" target="4923" />
+        <edge id="DEFAULT" source="4923" target="4924" />
+        <edge id="DEFAULT" source="4924" target="4925" />
+        <edge id="DEFAULT" source="4925" target="4926" />
+        <edge id="DEFAULT" source="4926" target="4927" />
+        <edge id="DEFAULT" source="4927" target="4928" />
+        <edge id="DEFAULT" source="4928" target="4929" />
+        <edge id="DEFAULT" source="4930" target="4931" />
+        <edge id="DEFAULT" source="4906" target="4931" />
+        <edge id="DEFAULT" source="4931" target="4932" />
+        <edge id="DEFAULT" source="4932" target="4933" />
+        <edge id="DEFAULT" source="4933" target="4934" />
+        <edge id="DEFAULT" source="4933" target="4935" />
+        <edge id="DEFAULT" source="4935" target="4936" />
+        <edge id="DEFAULT" source="4929" target="4937" />
+        <edge id="DEFAULT" source="4937" target="4938" />
+        <edge id="DEFAULT" source="4938" target="4939" />
+        <edge id="DEFAULT" source="4938" target="4940" />
+        <edge id="DEFAULT" source="4929" target="4942" />
+        <edge id="DEFAULT" source="4930" target="4942" />
+        <edge id="DEFAULT" source="4940" target="4941" />
+        <edge id="DEFAULT" source="4936" target="4943" />
+        <edge id="DEFAULT" source="4941" target="4945" />
+        <edge id="DEFAULT" source="4943" target="4944" />
+        <edge id="DEFAULT" source="4944" target="4945" />
+        <edge id="DEFAULT" source="4943" target="4946" />
+        <edge id="DEFAULT" source="4946" target="4947" />
+        <edge id="DEFAULT" source="4947" target="4948" />
+        <edge id="DEFAULT" source="4948" target="4949" />
+        <edge id="DEFAULT" source="4943" target="4950" />
+        <edge id="DEFAULT" source="4947" target="4950" />
+        <edge id="DEFAULT" source="4950" target="4951" />
+        <edge id="DEFAULT" source="4951" target="4952" />
+        <edge id="DEFAULT" source="4952" target="4953" />
+        <edge id="DEFAULT" source="4953" target="4954" />
+        <edge id="DEFAULT" source="4953" target="4955" />
+        <edge id="DEFAULT" source="4955" target="4956" />
+        <edge id="DEFAULT" source="4945" target="4957" />
+        <edge id="DEFAULT" source="4945" target="4958" />
+        <edge id="DEFAULT" source="4958" target="4959" />
+        <edge id="DEFAULT" source="4959" target="4960" />
+        <edge id="DEFAULT" source="4959" target="4961" />
+        <edge id="DEFAULT" source="4961" target="4962" />
+        <edge id="DEFAULT" source="4962" target="4963" />
+        <edge id="DEFAULT" source="4963" target="4964" />
+        <edge id="DEFAULT" source="4964" target="4965" />
+        <edge id="DEFAULT" source="4965" target="4966" />
+        <edge id="DEFAULT" source="4965" target="4967" />
+        <edge id="DEFAULT" source="4956" target="4967" />
+
+        <!-- beetween a hallway and a room-->
+        <edge id="DEFAULT" source="4001" target="4900" />
+        <edge id="DEFAULT" source="4002" target="4907" />
+        <edge id="DEFAULT" source="4003" target="4901" />
+        <edge id="DEFAULT" source="4004" target="4901" />
+        <edge id="DEFAULT" source="4005" target="4908" />
+        <edge id="DEFAULT" source="4006" target="4902" />
+        <edge id="DEFAULT" source="4007" target="4909" />
+        <edge id="DEFAULT" source="4008" target="4903" />
+        <edge id="DEFAULT" source="4009" target="4903" />
+        <edge id="DEFAULT" source="4010" target="4910" />
+        <edge id="DEFAULT" source="4011" target="4904" />
+        <edge id="DEFAULT" source="4012" target="4912" />
+        <edge id="DEFAULT" source="4013" target="4906" />
+        <edge id="DEFAULT" source="4100" target="4911" />
+        <edge id="DEFAULT" source="4076" target="4917" />
+        <edge id="DEFAULT" source="4075" target="4917" />
+        <edge id="DEFAULT" source="4074" target="4918" />
+        <edge id="DEFAULT" source="4073" target="4919" />
+        <edge id="DEFAULT" source="4072" target="4919" />
+        <edge id="DEFAULT" source="4071" target="4920" />
+        <edge id="DEFAULT" source="4070" target="4921" />
+        <edge id="DEFAULT" source="4069" target="4923" />
+        <edge id="DEFAULT" source="4068" target="4922" />
+        <edge id="DEFAULT" source="4067" target="4923" />
+        <edge id="DEFAULT" source="4066" target="4924" />
+        <edge id="DEFAULT" source="4065" target="4925" />
+        <edge id="DEFAULT" source="4064" target="4926" />
+        <edge id="DEFAULT" source="4063" target="4928" />
+        <edge id="DEFAULT" source="4014" target="4932" />
+        <edge id="DEFAULT" source="4015" target="4934" />
+        <edge id="DEFAULT" source="4016" target="4934" />
+        <edge id="DEFAULT" source="4062" target="4937" />
+        <edge id="DEFAULT" source="4061" target="4939" />
+        <edge id="DEFAULT" source="4060" target="4939" />
+        <edge id="DEFAULT" source="4059" target="4940" />
+        <edge id="DEFAULT" source="4018" target="4946" />
+        <edge id="DEFAULT" source="4101" target="4949" />
+        <edge id="DEFAULT" source="4102" target="4950" />
+        <edge id="DEFAULT" source="4103" target="4951" />
+        <edge id="DEFAULT" source="4019" target="4952" />
+        <edge id="DEFAULT" source="4020" target="4954" />
+        <edge id="DEFAULT" source="4021" target="4954" />
+        <edge id="DEFAULT" source="4022" target="4955" />
+        <edge id="DEFAULT" source="4057" target="4957" />
+        <edge id="DEFAULT" source="4058" target="4957" />
+        <edge id="DEFAULT" source="4053" target="4960" />
+        <edge id="DEFAULT" source="4054" target="4960" />
+        <edge id="DEFAULT" source="4055" target="4960" />
+        <edge id="DEFAULT" source="4056" target="4960" />
+        <edge id="DEFAULT" source="4104" target="4961" />
+        <edge id="DEFAULT" source="4105" target="4962" />
+        <edge id="DEFAULT" source="4052" target="4963" />
+        <edge id="DEFAULT" source="4106" target="4966" />
+
+        <!-- beetween a hallway and a wc-->
+        <edge id="DEFAULT" source="4800" target="4947" />
+        <edge id="DEFAULT" source="4801" target="4948" />
+        <edge id="DEFAULT" source="4802" target="4949" />
+
+    </graph>
+</graphml>
