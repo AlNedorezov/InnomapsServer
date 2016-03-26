@@ -3,6 +3,7 @@ package com.myinno;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
@@ -40,14 +41,16 @@ public class GraphHandler implements HttpHandler {
 
     private void response(HttpExchange httpExchange, String text) {
         try {
-            httpExchange.sendResponseHeaders(200, text.length());
-            OutputStream os = httpExchange.getResponseBody();
-            os.write(text.getBytes());
-            os.close();
+            httpExchange.sendResponseHeaders(200, 0);
+            try (BufferedOutputStream out = new BufferedOutputStream(httpExchange.getResponseBody())) {
+                out.write(text.getBytes());
+                out.flush();
+            }
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private String processMD5(String toProcess) {
