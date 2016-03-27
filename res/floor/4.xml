@@ -147,6 +147,30 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4058" name="Room 458" type="room" attr="msit-se TA's room">
             <data key="vertex_label">55.753531114789155 48.74381795525551</data>
         </node>
+        <node id="4025" name="Room 425" type="room">
+            <data key="vertex_label">55.75374752782753 48.74310113489628</data>
+        </node>
+        <node id="4026" name="Room 426" type="room">
+            <data key="vertex_label">55.75381997970112 48.74290566891432</data>
+        </node>
+        <node id="4027" name="Room 427" type="room">
+            <data key="vertex_label">55.75385337544131 48.74296400696039</data>
+        </node>
+        <node id="4029" name="Room 429" type="room">
+            <data key="vertex_label">55.753906016126244 48.74297473579645</data>
+        </node>
+        <node id="4030" name="Room 430" type="room">
+            <data key="vertex_label">55.75395016632333 48.74296937137842</data>
+        </node>
+        <node id="4031" name="Room 431" type="room">
+            <data key="vertex_label">55.7539950711734 48.743008598685265</data>
+        </node>
+        <node id="4033" name="Room 433" type="room">
+            <data key="vertex_label">55.75395865674014 48.74319367110729</data>
+        </node>
+        <node id="4050" name="Room 450" type="room">
+            <data key="vertex_label">55.75384790382483 48.74327849596739</data>
+        </node>
 
 
         <!-- wc -->
@@ -181,6 +205,18 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
         <node id="4106" name="Evil babka's room">
             <data key="vertex_label">55.75370979242339 48.74358158558607</data>
+        </node>
+        <node id="4107" name="Unknown room near director's room">
+            <data key="vertex_label">55.75358111442082 48.74298010021448</data>
+        </node>
+        <node id="4108" name="Director's room">
+            <data key="vertex_label">55.75364601950742 48.74289460480213</data>
+        </node>
+        <node id="4109" name="Director's room #2">
+            <data key="vertex_label">55.75372450923536 48.74287750571966</data>
+        </node>
+        <node id="4110" name="Unknown room near room 425">
+            <data key="vertex_label">55.75382809279318 48.74316181987524</data>
         </node>
 
         <!--Hallways-->
@@ -388,6 +424,45 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4967" name="Fourth floor hallway" attr="Hallway near door near room 422">
             <data key="vertex_label">55.753607151939455 48.743157126009464</data>
         </node>
+        <node id="4968" name="Fourth floor hallway" attr="Hallway near stairs">
+            <data key="vertex_label">55.75362356688794 48.74309442937374</data>
+        </node>
+        <node id="4969" name="Fourth floor hallway" type="door" attr="Hallway door near director's room entrance">
+            <data key="vertex_label">55.75364677421709 48.743076995015144</data>
+        </node>
+        <node id="4970" name="Fourth floor hallway" attr="Hallway near director's room">
+            <data key="vertex_label">55.75365243453919 48.74303575605154</data>
+        </node>
+        <node id="4971" name="Fourth floor hallway" attr="Hallway near director's room #2">
+            <data key="vertex_label">55.753707150943754 48.74296333640814</data>
+        </node>
+        <node id="4972" name="Fourth floor hallway" type="door" attr="Hallway door near director's room #2">
+            <data key="vertex_label">55.753728282775995 48.74297238886356</data>
+        </node>
+        <node id="4973" name="Fourth floor hallway" attr="Hallway near room 425">
+            <data key="vertex_label">55.753707150943754 48.74296333640814</data>
+        </node>
+        <node id="4974" name="Fourth floor hallway" attr="Hallway near room 426">
+            <data key="vertex_label">55.75381337602032 48.743024691939354</data>
+        </node>
+        <node id="4975" name="Fourth floor hallway" attr="Hallway near room 427">
+            <data key="vertex_label">55.75383903603093 48.74303475022316</data>
+        </node>
+        <node id="4976" name="Fourth floor hallway" attr="Hallway near room 429">
+            <data key="vertex_label">55.753892054087686 48.74304078519344</data>
+        </node>
+        <node id="4977" name="Fourth floor hallway" attr="Hallway near room 430">
+            <data key="vertex_label">55.75394658148012 48.74304112046957</data>
+        </node>
+        <node id="4978" name="Fourth floor hallway" attr="Hallway near room 431">
+            <data key="vertex_label">55.7539795997603 48.74310113489628</data>
+        </node>
+        <node id="4979" name="Fourth floor hallway" attr="Hallway near room 450">
+            <data key="vertex_label">55.753845451030955 48.74340355396271</data>
+        </node>
+        <node id="4980" name="Fourth floor hallway" attr="Hallway near room 449">
+            <data key="vertex_label">55.753957336008746 48.74344412237406</data>
+        </node>
 
         <!-- edges -->
         <!-- beetween hallways-->
@@ -462,6 +537,20 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4965" target="4966" />
         <edge id="DEFAULT" source="4965" target="4967" />
         <edge id="DEFAULT" source="4956" target="4967" />
+        <edge id="DEFAULT" source="4967" target="4968" />
+        <edge id="DEFAULT" source="4968" target="4969" />
+        <edge id="DEFAULT" source="4969" target="4970" />
+        <edge id="DEFAULT" source="4970" target="4971" />
+        <edge id="DEFAULT" source="4971" target="4972" />
+        <edge id="DEFAULT" source="4972" target="4973" />
+        <edge id="DEFAULT" source="4973" target="4974" />
+        <edge id="DEFAULT" source="4974" target="4975" />
+        <edge id="DEFAULT" source="4975" target="4976" />
+        <edge id="DEFAULT" source="4976" target="4977" />
+        <edge id="DEFAULT" source="4977" target="4978" />
+        <edge id="DEFAULT" source="4966" target="4979" />
+        <edge id="DEFAULT" source="4979" target="4980" />
+
 
         <!-- beetween a hallway and a room-->
         <edge id="DEFAULT" source="4001" target="4900" />
@@ -517,6 +606,19 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4105" target="4962" />
         <edge id="DEFAULT" source="4052" target="4963" />
         <edge id="DEFAULT" source="4106" target="4966" />
+        <edge id="DEFAULT" source="4107" target="4968" />
+        <edge id="DEFAULT" source="4108" target="4970" />
+        <edge id="DEFAULT" source="4025" target="4970" />
+        <edge id="DEFAULT" source="4109" target="4971" />
+        <edge id="DEFAULT" source="4025" target="4973" />
+        <edge id="DEFAULT" source="4026" target="4974" />
+        <edge id="DEFAULT" source="4027" target="4975" />
+        <edge id="DEFAULT" source="4110" target="4975" />
+        <edge id="DEFAULT" source="4029" target="4976" />
+        <edge id="DEFAULT" source="4030" target="4977" />
+        <edge id="DEFAULT" source="4031" target="4978" />
+        <edge id="DEFAULT" source="4033" target="4978" />
+        <edge id="DEFAULT" source="4050" target="4979" />
 
         <!-- beetween a hallway and a wc-->
         <edge id="DEFAULT" source="4800" target="4947" />
