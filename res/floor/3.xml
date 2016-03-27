@@ -203,7 +203,7 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
 
         <node id="3202" name="Room 300 right door" number="300" type="door">
-            <data key="vertex_label">(55.753009982737666 48.743864223361015</data>
+            <data key="vertex_label">55.753009982737666 48.743864223361015</data>
         </node>
 
         <node id="3203" name="Room 300 left door" number="300" type="door">
@@ -887,7 +887,7 @@ http://graphml.graphdrawing.org/xmlns ">
 
 
         <!-- Line3 Connection door and stair and elevator-->
-        <edge id="DEFAULT" source="3212" target="3212" />
+        <!--<edge id="DEFAULT" source="3212" target="3212" /> -->
         <edge id="DEFAULT" source="3221" target="3403" />
 
 
@@ -1053,7 +1053,7 @@ http://graphml.graphdrawing.org/xmlns ">
 
         <!-- Line6 Connection door and stair and elevator-->
         <edge id="DEFAULT" source="3360" target="3410" />
-        <edge id="DEFAULT" source="254" target="3411" />
+        <!-- <edge id="DEFAULT" source="254" target="3411" /> -->
 
     </graph>
 </graphml>
