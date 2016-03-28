@@ -171,6 +171,12 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4050" name="Room 450" type="room">
             <data key="vertex_label">55.75384790382483 48.74327849596739</data>
         </node>
+        <node id="4032" name="Room 432" type="room">
+            <data key="vertex_label">55.75403073087045 48.74301798641682</data>
+        </node>
+        <node id="4049" name="Room 449" type="room">
+            <data key="vertex_label">55.753918468750975 48.743306659162045</data>
+        </node>
 
 
         <!-- wc -->
@@ -217,6 +223,9 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
         <node id="4110" name="Unknown room near room 425">
             <data key="vertex_label">55.75382809279318 48.74316181987524</data>
+        </node>
+        <node id="4111" name="Meeting room #4">
+            <data key="vertex_label">55.75399922203928 48.74352257698774</data>
         </node>
 
         <!--Hallways-->
@@ -463,6 +472,363 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4980" name="Fourth floor hallway" attr="Hallway near room 449">
             <data key="vertex_label">55.753957336008746 48.74344412237406</data>
         </node>
+        <node id="4981" name="Fourth floor hallway" attr="Hallway near meeting room #4">
+            <data key="vertex_label">55.75400261820194 48.74345652759075</data>
+        </node>
+        <node id="4982" name="Fourth floor hallway" attr="Hallway near room 432">
+            <data key="vertex_label">55.75401563682276 48.74311555176973</data>
+        </node>
+        <node id="4983" name="Fourth floor hallway" type="door" attr="Hallway door near room 432">
+            <data key="vertex_label">55.75407469225103 48.743134662508965</data>
+        </node>
+        <node id="4984" name="Fourth floor hallway" attr="Hallway near room 433">
+            <data key="vertex_label">55.753991675010056 48.743194341659546</data>
+        </node>
+        <node id="4985" name="Fourth floor hallway" attr="Hallway near room 449">
+            <data key="vertex_label">55.75397714697475 48.74332208186388</data>
+        </node>
+        <node id="4986" name="Fourth floor hallway" type="door" attr="Hallway door near room 449">
+            <data key="vertex_label">55.75396601509985 48.74339684844017</data>
+        </node>
+
+
+
+
+        <!-- Nodes by Max -->
+        <!--Rooms-->
+        <!--Line1 -->
+        <node id="3501" name="room 434" number="434" type="room">
+        <data key="vertex_label">55.754141105916574 48.74305084347725</data>
+        </node>
+    
+        <node id="3509" name="Relax Room" attr="Relax Room" type="room">
+        <data key="vertex_label">55.754078277082456 48.74322820454836</data>
+        </node>
+        
+        <node id="3502" name="room 435" type="room">
+        <data key="vertex_label">55.75415469051606 48.743233904242516</data>
+        </node>
+        
+        <node id="3503" name="room 437" type="room">
+        <data key="vertex_label">55.75423487729157 48.74326407909393</data>
+        </node>
+
+        <node id="3504" name="room 436" type="room" attr="door1">
+        <data key="vertex_label">55.75428864950754 48.743139021098614</data>
+        </node>     
+        
+        <node id="3506" name="room 438" type="room">
+        <data key="vertex_label">55.75430487549499 48.74331034719944</data>
+        </node>     
+        
+        <node id="3507" name="room 443" type="room">
+        <data key="vertex_label">55.75439034482907 48.74342333525419</data>
+        </node>         
+
+        <node id="3508" name="room 439" type="room">
+        <data key="vertex_label">55.75442185334429 48.74319300055504</data>
+        </node>
+    
+        
+        
+        <!--stair and elevator Line1 -->
+        <node id="3551" name="Stair on line1" type="stair" >
+        <data key="vertex_label">55.754384873287925 48.74317925423384</data>
+        </node>
+        
+        
+        
+        <!--Line2 -->       
+        <node id="3509" name="room 440" number="440" type="room">
+        <data key="vertex_label">55.754497700084904 48.743219152092934</data>
+        </node>
+    
+        <node id="3510" name="room 441" number="441" type="room">
+        <data key="vertex_label">55.754496756718396 48.74331571161747</data>
+        </node>     
+        
+        <node id="3511" name="room 442" number="442" type="room">
+        <data key="vertex_label">55.75448487029835 48.74341495335102</data>
+        </node> 
+        
+        <node id="3512" name="room 444" number="444" type="room">
+        <data key="vertex_label">55.75447279520128 48.74350145459175</data>
+        </node> 
+    
+        <node id="3513" name="room 445" number="445" type="room">
+        <data key="vertex_label">55.75446147479437 48.74359633773565</data>
+        </node> 
+        
+        
+        <!--stair and elevator Line2 -->
+        <node id="3552" name="stair on line2" type="stair" >
+        <data key="vertex_label">55.754447512954634 48.74367043375969</data>
+        </node>
+        
+        <!--Line3 -->
+        <!--stair and elevator Line3 -->        
+    
+        <node id="3554" name="stair1 on line3" type="stair" >
+        <data key="vertex_label">55.75411337067797 48.743589632213116</data>
+        </node>     
+    
+        <node id="3553" name="elevator1 on line3" type="elevtor" >
+        <data key="vertex_label">55.75435053463276 48.74362953007221</data>
+        </node>     
+    
+        <!--Line4 -->
+    
+        <node id="3514" name="room 448" number="448" type="room">
+        <data key="vertex_label">55.7542063874208 48.743440099060535</data>
+        </node>
+        
+        <node id="3515" name="room 446" number="446" type="room">
+        <data key="vertex_label">55.75430430947228 48.74348636716604</data>
+        </node>     
+        
+        
+        <node id="3516" name="room 447" number="447" type="room">
+        <data key="vertex_label">55.75431789401493 48.74340455979109</data>
+        </node>
+        
+        
+        <!-- Room doors -->     
+        <!--Line1 -->   
+        <node id="3401" name="room 434" number="434" type="door">
+        <data key="vertex_label">55.75411035187528 48.7431276217103</data>
+        </node>
+    
+        
+        <node id="3402" name="room 435" type="door">
+        <data key="vertex_label">55.75416695438653 48.743194341659546</data>
+        </node>
+    
+        <node id="3403" name="room 437" type="door">
+        <data key="vertex_label">55.754254310767664 48.743230886757374</data>
+        </node>
+    
+        <node id="3404" name="room 436" type="door" attr="door1">
+        <data key="vertex_label">55.75423261319665 48.743180595338345</data>
+        </node>
+        
+        <node id="3405" name="room 436" type="door" attr="door2">
+        <data key="vertex_label">55.7543488365666 48.74322351068258</data>
+        </node>     
+        
+        <node id="3406" name="room 438" type="door">
+        <data key="vertex_label">55.75430430947228 48.74325402081013</data>
+        </node>     
+        
+        <node id="3407" name="room 443" type="door">
+        <data key="vertex_label">55.75439242024105 48.74329324811697</data>
+        </node>         
+
+        <node id="3408" name="room 439" type="door">
+        <data key="vertex_label">55.75442902294299 48.74325938522816</data>
+        </node>
+        
+        
+        <!--Line2 -->
+        <node id="3409" name="room 440" number="440" type="door">
+        <data key="vertex_label">55.75446939907955 48.7432412803173</data>
+        </node>
+    
+        <node id="3410" name="room 441" number="441" type="door">
+        <data key="vertex_label">55.754463361529076 48.74327715486288</data>
+        </node>     
+        
+        <node id="3411" name="room 442" number="442" type="door">
+        <data key="vertex_label">55.754444682851386 48.743422999978065</data>
+        </node> 
+        
+        <node id="3412" name="room 444" number="444" type="door">
+        <data key="vertex_label">55.754437890602745 48.743461556732655</data>
+        </node> 
+        
+        <node id="3451" name="room 443" number="443" type="door" attr="door2 front on 442">
+        <data key="vertex_label">55.75442826824846 48.74335661530495</data>
+        </node>
+
+        <node id="3452" name="room 443" number="443" type="door" attr="door3 front on 444">
+        <data key="vertex_label">55.754410910270046 48.74349173158407</data>
+        </node>
+
+        <node id="3453" name="room 443" number="443" type="door" attr="door4 front on 445">
+        <data key="vertex_label">55.7544027972992 48.74355141073465</data>
+        </node>
+        
+        <node id="3413" name="room 445" number="445" type="door">
+        <data key="vertex_label">55.75442260803895 48.743603713810444</data>
+        </node>
+    
+        
+        
+        <!--Line3 -->
+        <!--nothing --> 
+    
+        
+        
+        
+        <!--Line4 -->   
+        <node id="3414" name="room 448" number="448" type="door">
+        <data key="vertex_label">55.754243178971876 48.74348636716604</data>
+        </node>
+        
+        <node id="3415" name="room 446" number="446" type="door">
+        <data key="vertex_label">55.75426714063005 48.74345015734434</data>
+        </node>     
+        
+        
+        <node id="3416" name="room 447" number="447" type="door">
+        <data key="vertex_label">55.75427487628034 48.7433971837163</data>
+        </node>
+        
+        <node id="3417" name="room 438" number="438" type="door">
+        <data key="vertex_label">55.75428751746166 48.74331135302782</data>
+        </node>     
+        
+        <!--Line5 -->
+        <node id="3555" name="Relax room" attr="Relax Room" type="door">
+        <data key="vertex_label">55.754069975367095 48.743295930325985</data>
+        </node>     
+        
+        <!--Hallways-->
+        <!--Line1 -->
+        <node id="3301" name="Line1_r1" attr="Line1 cross KostyaLine1">
+        <data key="vertex_label">55.75408808819836 48.74313600361347</data>
+        </node>
+        
+        <node id="3302" name="Line1_r2" attr="Line1 cross Line3">
+        <data key="vertex_label">55.75411714418097 48.743150755763054</data>
+        </node>     
+
+        <node id="3313" name="Line1_r3" attr="front of room 434">
+        <data key="vertex_label">55.75410525764525 48.74314572662115</data>
+        </node> 
+        
+        <node id="3303" name="Line1_r4" attr="direct on point between 434 and 436">
+        <data key="vertex_label">55.7541912934411 48.74317824840546</data>
+        </node> 
+        
+        <node id="3304" name="Line1_r5" attr="point between 434 and 436">
+        <data key="vertex_label">55.75419789705794 48.74310079962015</data>
+        </node>
+        
+        <node id="3305" name="Line1_r6" attr="front of room 435 door1">
+        <data key="vertex_label">55.75423997150469 48.74320238828659</data>
+        </node> 
+        
+        <node id="3314" name="Line1_r7" attr="Line1 cross Line3">
+        <data key="vertex_label">55.7542880834846 48.7432225048542</data>
+        </node>     
+
+        <node id="3306" name="Line1_r6" attr="front of room 438">
+        <data key="vertex_label">55.75431034704738 48.743227533996105</data>
+        </node> 
+
+        <node id="3307" name="Line1_r8" attr="front of room 436 door2">
+        <data key="vertex_label">55.75434996861072 48.743248991668224</data>
+        </node>         
+
+        <node id="3308" name="Line1_r9" attr="front of stair1 on line1">
+        <data key="vertex_label">55.75437411887719 48.74325234442949</data>
+        </node>     
+
+        <node id="3309" name="Line1_r10" attr="point between 443 and 438">
+        <data key="vertex_label">55.75436581722477 48.74333247542381</data>
+        </node> 
+        
+        <node id="3311" name="Line1_r11" attr="front of room 443">
+        <data key="vertex_label">55.75439940117138 48.743273466825485</data>
+        </node>         
+
+        <node id="3312" name="Line1_r12" attr="front of room 439">
+        <data key="vertex_label">55.75442940029026 48.74328050762415</data>
+        </node> 
+        
+        <node id="3310" name="Line1_r13" attr="Line1 cross Line3">
+        <data key="vertex_label">55.75444845632234 48.74328922480345</data>
+        </node>
+    
+    
+        <!--Line2 -->
+        <node id="3314" name="Line2_r1" attr="front of room 440">
+        <data key="vertex_label">55.75445430520162 48.743247985839844</data>
+        </node> 
+
+        <node id="3315" name="Line2_r2" attr="front of room 443 door1 near 439">
+        <data key="vertex_label">55.7544397773386 48.74336566776037</data>
+        </node>         
+
+        <node id="3316" name="Line2_r3" attr="front of room 442">
+        <data key="vertex_label">55.7544331737627 48.74341629445553</data>
+        </node>
+
+        <node id="3317" name="Line2_r4" attr="front of room 444 and 443 door centr">
+        <data key="vertex_label">55.7544275135539 48.743455186486244</data>
+        </node>     
+            
+        <node id="3318" name="Line2_r5" attr="front of room 443 door3 near 445">
+        <data key="vertex_label">55.754414872417975 48.74355141073465</data>
+        </node> 
+            
+        <node id="3320" name="Line2_r6" attr="front of elevator1 on line2">
+        <data key="vertex_label">55.75439996719272 48.74365132302046</data>
+        </node>
+        
+        <node id="3319" name="Line2_r7" attr="front of room 445 and cross line2">
+        <data key="vertex_label">55.754404495363 48.74360404908657</data>
+        </node> 
+        
+        
+        
+        <!--Line3-->
+
+        
+                
+        <node id="3321" name="Line3_r1" attr="line1 cross line4 and line2">
+        <data key="vertex_label">55.75423355656955 48.74355677515268</data>
+        </node>     
+                
+        <node id="3322" name="Line3_r2" attr="front of stair1 on line3">
+        <data key="vertex_label">55.75409110700275 48.74349407851696</data>
+        </node>
+        
+        <node id="3323" name="Line3_r3" attr="line1 cross line5 and Kostya's line2">
+        <data key="vertex_label">55.754048655044464 48.74347798526287</data>
+        </node> 
+        
+        
+        <!--Line4-->
+
+        <node id="3324" name="Line4_r1" attr="front of room 448">
+        <data key="vertex_label">55.754254310767664 48.743492402136326</data>
+        </node>         
+
+        <node id="3325" name="Line4_r2" attr="front of room 446">
+        <data key="vertex_label">55.754259404978235 48.743447475135326</data>
+        </node>
+        
+        <node id="3326" name="Line4_r3" attr="front of room 447">
+        <data key="vertex_label">55.75426374449043 48.743388801813126</data>
+        </node> 
+        
+        <node id="3327" name="Line4_r4" attr="front of room 438">
+        <data key="vertex_label">55.75427695169845 48.74330297112465</data>
+        </node>                 
+        
+        <!--Line5-->        
+        
+        <node id="3328" name="Line5_r1" attr="direct on R R">
+        <data key="vertex_label">55.754092805080134 48.74332241714001</data>
+        </node>         
+    
+        <node id="3329" name="Line5_r2" attr="front of R R">
+        <data key="vertex_label">55.754067899937965 48.743312023580074</data>
+        </node> 
+
+
+
 
         <!-- edges -->
         <!-- beetween hallways-->
@@ -550,6 +916,13 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4977" target="4978" />
         <edge id="DEFAULT" source="4966" target="4979" />
         <edge id="DEFAULT" source="4979" target="4980" />
+        <edge id="DEFAULT" source="4980" target="4981" />
+        <edge id="DEFAULT" source="4978" target="4982" />
+        <edge id="DEFAULT" source="4982" target="4983" />
+        <edge id="DEFAULT" source="4982" target="4984" />
+        <edge id="DEFAULT" source="4984" target="4985" />
+        <edge id="DEFAULT" source="4985" target="4986" />
+        <edge id="DEFAULT" source="4980" target="4986" />
 
 
         <!-- beetween a hallway and a room-->
@@ -619,11 +992,151 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4031" target="4978" />
         <edge id="DEFAULT" source="4033" target="4978" />
         <edge id="DEFAULT" source="4050" target="4979" />
+        <edge id="DEFAULT" source="4111" target="4981" />
+        <edge id="DEFAULT" source="4032" target="4982" />
+        <edge id="DEFAULT" source="4049" target="4985" />
 
         <!-- beetween a hallway and a wc-->
         <edge id="DEFAULT" source="4800" target="4947" />
         <edge id="DEFAULT" source="4801" target="4948" />
         <edge id="DEFAULT" source="4802" target="4949" />
+
+
+
+
+
+        <!-- Edged by Max -->
+        <!-- Connection Line1 along the corridor-->
+        <edge id="DEFAULT" source="3301" target="3313" />
+        <edge id="DEFAULT" source="3313" target="3302" />
+        <edge id="DEFAULT" source="3302" target="3328" />
+        <edge id="DEFAULT" source="3328" target="3303" />
+        <edge id="DEFAULT" source="3303" target="3304" />
+        <edge id="DEFAULT" source="3304" target="3305" />
+        <edge id="DEFAULT" source="3305" target="3314" />
+        <edge id="DEFAULT" source="3314" target="3327" />
+        <edge id="DEFAULT" source="3306" target="3307" />
+        <edge id="DEFAULT" source="3307" target="3308" />
+        <edge id="DEFAULT" source="3308" target="3309" />
+        <edge id="DEFAULT" source="3311" target="3312" />
+        <edge id="DEFAULT" source="3312" target="3310" />
+    
+        
+        <!-- Connection Line1 to door-->
+        <edge id="DEFAULT" source="3313" target="3401" />
+        <edge id="DEFAULT" source="3303" target="3402" />
+        <edge id="DEFAULT" source="3305" target="3403" />
+        <edge id="DEFAULT" source="3307" target="3405" />
+        <edge id="DEFAULT" source="3312" target="3408" />
+    
+        
+        <!-- Line1  Connection door to room-->      
+        <edge id="DEFAULT" source="3401" target="3501" />
+        <edge id="DEFAULT" source="3402" target="3502" />
+        <edge id="DEFAULT" source="3403" target="3503" />
+        <edge id="DEFAULT" source="3404" target="3504" />
+        <edge id="DEFAULT" source="3405" target="3504" />
+        <edge id="DEFAULT" source="3406" target="3506" />
+        <edge id="DEFAULT" source="3408" target="3508" />
+        <edge id="DEFAULT" source="3407" target="3507" />       
+        
+        <!-- Line1  Connection door and stair and elevator-->
+        <edge id="DEFAULT" source="3308" target="3551" />
+        
+        
+        
+        
+        <!-- Connection Line2 along the corridor-->
+        <edge id="DEFAULT" source="3310" target="3314" />
+        <edge id="DEFAULT" source="3310" target="3315" />
+        <edge id="DEFAULT" source="3315" target="3316" />
+        <edge id="DEFAULT" source="3316" target="3317" />
+        <edge id="DEFAULT" source="3317" target="3318" />
+        <edge id="DEFAULT" source="3318" target="3319" />       
+        <edge id="DEFAULT" source="3319" target="3320" />       
+        <edge id="DEFAULT" source="3319" target="3321" />
+        
+        <!-- Connection Line2 to door-->
+        <edge id="DEFAULT" source="3314" target="3409" />
+        <edge id="DEFAULT" source="3310" target="3410" />
+        <edge id="DEFAULT" source="3315" target="3451" />
+        <edge id="DEFAULT" source="3316" target="3411" />
+        <edge id="DEFAULT" source="3317" target="3412" />
+        <edge id="DEFAULT" source="3317" target="3452" />
+        <edge id="DEFAULT" source="3318" target="3453" />
+        <edge id="DEFAULT" source="3319" target="3413" />
+
+        <!-- Line2  Connection door to room-->
+        <edge id="DEFAULT" source="3409" target="3509" />
+        <edge id="DEFAULT" source="3410" target="3510" />
+        <edge id="DEFAULT" source="3451" target="3507" />
+        <edge id="DEFAULT" source="3411" target="3511" />
+        <edge id="DEFAULT" source="3452" target="3507" />
+        <edge id="DEFAULT" source="3412" target="3512" />
+        <edge id="DEFAULT" source="3453" target="3507" />
+        <edge id="DEFAULT" source="3413" target="3513" />
+        
+        <!-- Line2  Connection door and stair and elevator-->
+        <edge id="DEFAULT" source="3320" target="3552" />
+        <edge id="DEFAULT" source="3320" target="3553" />
+        
+        
+        
+        <!-- Connection Line3 along the corridor--> 
+        <edge id="DEFAULT" source="3321" target="3324" />
+        <edge id="DEFAULT" source="3321" target="3322" />
+        <edge id="DEFAULT" source="3322" target="3323" />
+        
+        <!-- Connection Line3 to door-->
+        <!-- nothing-->
+        
+        <!-- Line3  Connection door to room-->
+        <!-- nothing-->
+        
+        <!-- Line3  Connection door and stair and elevator-->
+        <edge id="DEFAULT" source="3322" target="3554" />
+        
+        
+        
+        
+        <!-- Connection Line4 along the corridor-->
+        <edge id="DEFAULT" source="3324" target="3325" />
+        <edge id="DEFAULT" source="3325" target="3326" />
+        <edge id="DEFAULT" source="3326" target="3327" />
+        
+        <!-- Connection Line4 to door-->    
+        <edge id="DEFAULT" source="3325" target="3415" />
+        <edge id="DEFAULT" source="3324" target="3414" />
+        <edge id="DEFAULT" source="3326" target="3416" />
+        <edge id="DEFAULT" source="3327" target="3417" />
+
+        <!-- Line4  Connection door to room-->
+        <edge id="DEFAULT" source="3415" target="3515" />
+        <edge id="DEFAULT" source="3414" target="3514" />
+        <edge id="DEFAULT" source="3416" target="3516" />
+        <edge id="DEFAULT" source="3417" target="3506" />
+              
+        <!-- Line4  Connection door and stair and elevator-->
+        <!-- nothing-->
+        
+
+        
+        
+        <!-- Connection Line5 along the corridor-->
+        <edge id="DEFAULT" source="3323" target="3328" />
+        <edge id="DEFAULT" source="3328" target="3329" />
+        <edge id="DEFAULT" source="3328" target="3302" />
+        
+        <!-- Connection Line4 to door-->    
+        <edge id="DEFAULT" source="3402" target="3509" />
+    
+        <!-- Line4  Connection door and stair and elevator-->
+        <!-- nothing--> 
+
+
+        <!-- Cross links -->
+        <edge id="DEFAULT" source="3323" target="4981" />
+        <edge id="DEFAULT" source="3301" target="4983" />
 
     </graph>
 </graphml>
