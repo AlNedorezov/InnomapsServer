@@ -19,7 +19,7 @@ public class Main {
         }
         server.createContext(GraphHandler.baseGraphUrl, new GraphHandler());
         server.setExecutor(java.util.concurrent.Executors.newFixedThreadPool(4));
-        System.out.println("Staring listening on port " + port);
+        System.out.println("Starting listening on port " + port);
         server.start();
     }
 }
