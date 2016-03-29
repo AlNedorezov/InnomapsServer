@@ -18,9 +18,9 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="5004" name="Room 501" number="501" type="door">
             <data key="vertex_label">55.75313658714569 48.74364998191595</data>
         </node>
-        <node id="5005" name="Room 501" number="501" type="room" attr="center">
+        <!-- <node id="5005" name="Room 501" number="501" type="room" attr="center">
             <data key="vertex_label">55.75309356810827 48.743619471788406</data>
-        </node>
+        </node> -->
         <node id="5006" name="Fifth floor hallway" attr="hallway center, front of 506">
             <data key="vertex_label">55.753100549271096 48.743726424872875</data>
         </node>

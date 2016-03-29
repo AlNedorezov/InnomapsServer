@@ -26,9 +26,9 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75300922801568 48.743727430701256</data>
         </node>
 
-        <node id="3104" name="Meeting Room 1" number="1" type="room" attr = "meeting room">
+        <!-- <node id="3104" name="Meeting Room 1" number="1" type="room" attr = "meeting room">
             <data key="vertex_label">55.75357602012165 48.74319065362215</data>
-        </node>
+        </node> -->
 
         <node id="3105" name="Room 302" number="302" type="room" attr="Language study">
             <data key="vertex_label">55.75312809654996 48.74370161443949</data>
@@ -69,9 +69,9 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75335922877411 48.74329425394535</data>
         </node>
 
-        <node id="3114" name="Meeting Room 3" number="3" type="room" attr = "meeting room">
+        <!-- <node id="3114" name="Meeting Room 3" number="3" type="room" attr = "meeting room">
             <data key="vertex_label">55.753411870125916 48.74347295612097</data>
-        </node>
+        </node> -->
 
         <node id="3115" name="Room 307" number="307" type="room">
             <data key="vertex_label">55.75345432277725 48.74318562448025</data>
@@ -83,9 +83,9 @@ http://graphml.graphdrawing.org/xmlns ">
 
         <!--Line4-->
 
-        <node id="3117" name="Relax room 1" number="R R 1" type="room" attr="student Association">
+        <!-- <node id="3117" name="Relax room 1" number="R R 1" type="room" attr="student Association">
             <data key="vertex_label">55.75366035898876 48.743082359433174</data>
-        </node>
+        </node> -->
 
         <node id="3118" name="Room 309-1" number="309-1" type="room" attr="office room" >
             <data key="vertex_label">55.75357469937734 48.74297574162483</data>
@@ -140,9 +140,9 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75370318872392 48.743530958890915</data>
         </node>
 
-        <node id="3130" name="Room 313" number="313" type="room">
+       <!--  <node id="3130" name="Room 313" number="313" type="room">
             <data key="vertex_label">55.75363413282814 48.74361779540777</data>
-        </node>
+        </node> -->
 
         <node id="3131" name="Meeting Room 4" number="5" type="room" attr = "meeting room">
             <data key="vertex_label">55.753559605153164 48.743497766554356</data>
@@ -167,25 +167,25 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75344847374804 48.743902780115604</data>
         </node>
 
-        <node id="3136" name="Meeting Room 2" number="5" type="room" attr = "meeting room">
+        <!-- <node id="3136" name="Meeting Room 2" number="5" type="room" attr = "meeting room">
             <data key="vertex_label">55.75332017224138 48.7438078969717</data>
-        </node>
+        </node> -->
 
         <node id="3137" name="317" number="317" type="room" >
             <data key="vertex_label">55.75339979469667 48.74395038932562</data>
         </node>
 
-        <node id="3138" name="318" number="318" type="room" >
+        <!-- <node id="3138" name="318" number="318" type="room" >
             <data key="vertex_label">55.75335036086915 48.74399799853563</data>
-        </node>
+        </node> -->
 
-        <node id="3139" name="319" number="319" type="office room" attr = "Department for work with students" >
+        <!-- <node id="3139" name="319" number="319" type="office room" attr = "Department for work with students" >
             <data key="vertex_label">55.753257530764216 48.74402616173029</data>
-        </node>
+        </node> -->
 
-        <node id="3140" name="320" number="320" type="office room" attr = "the study of mathematics" >
+        <!-- <node id="3140" name="320" number="320" type="office room" attr = "the study of mathematics" >
             <data key="vertex_label">55.75321696469372 48.74420017004013</data>
-        </node>
+        </node> -->
 
 
         <!-- Room doors -->
@@ -222,17 +222,17 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75315111549409 48.74371938407421</data>
         </node>
 
-        <node id="3207" name="Meeting Room 1" number="1" type="door" attr = "meeting room">
+        <!-- <node id="3207" name="Meeting Room 1" number="1" type="door" attr = "meeting room">
             <data key="vertex_label">55.753104511552124 48.74384578317404</data>
-        </node>
+        </node> -->
 
         <node id="3208" name="Room 303" number="303" type="door" attr="the computer lab">
             <data key="vertex_label">55.753209040154104 48.74364025890827</data>
         </node>
 
-        <node id="3209" name="Elevator on line2" type="door">
+        <!-- <node id="3209" name="Elevator on line2" type="door">
             <data key="vertex_label">55.753163191000354 48.74381996691227</data>
-        </node>
+        </node> -->
 
         <node id="3210" name="Room 304" number="304" type="door">
             <data key="vertex_label">55.75322922885901 48.74360974878073</data>
@@ -266,9 +266,9 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753377530614166 48.7433710321784</data>
         </node>
 
-        <node id="3218" name="Meeting Room 3" number="3" type="door" attr = "meeting room">
+        <!-- <node id="3218" name="Meeting Room 3" number="3" type="door" attr = "meeting room">
             <data key="vertex_label">55.75342111537394 48.74343205243349</data>
-        </node>
+        </node> -->
 
         <node id="3219" name="Room 307" number="307" type="door">
             <data key="vertex_label">55.753523756347406 48.743231892585754</data>
@@ -368,13 +368,13 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75367224566005 48.743449822068214</data>
         </node>
 
-        <node id="3241" name="Room 313 door1" number="313" type="door">
+        <!-- <node id="3241" name="Room 313 door1" number="313" type="door">
             <data key="vertex_label">55.753625831018226 48.74349944293499</data>
         </node>
 
         <node id="3242" name="Room 313 door2" number="313" type="door" attr = "near 314">
             <data key="vertex_label">55.75356451077666 48.743580244481564</data>
-        </node>
+        </node> -->
 
         <node id="3243" name="Meeting Room 4" number="5" type="door" attr = "meeting room">
             <data key="vertex_label">55.75358752946325 48.74349441379309</data>
@@ -402,29 +402,29 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753415266339736 48.743781074881554</data>
         </node>
 
-        <node id="3250" name="Meeting Room 2" number="5" type="door" attr = "meeting room">
+        <!-- <node id="3250" name="Meeting Room 2" number="5" type="door" attr = "meeting room">
             <data key="vertex_label">55.75331507790814 48.74385550618172</data>
-        </node>
+        </node> -->
 
         <node id="3251" name="317" number="317" type="door" >
             <data key="vertex_label">55.75334149296216 48.74387729912996</data>
         </node>
 
-        <node id="3252" name="318" number="318" type="door" >
+        <!-- <node id="3252" name="318" number="318" type="door" >
             <data key="vertex_label">55.753304700560584 48.743926249444485</data>
-        </node>
+        </node> -->
 
-        <node id="3253" name="319" number="319" type="door" attr = "Department for work with students" >
+        <!-- <node id="3253" name="319" number="319" type="door" attr = "Department for work with students" >
             <data key="vertex_label">55.75324488924909 48.7440100684762</data>
-        </node>
+        </node> -->
 
-        <node id="3254" name="Stair1 on line7" type="door" >
+        <!-- <node id="3254" name="Stair1 on line7" type="door" >
             <data key="vertex_label">55.75322696470572 48.744105622172356</data>
-        </node>
+        </node> -->
 
-        <node id="3255" name="320" number="320" type="door" attr = "the study of mathematics" >
+        <!-- <node id="3255" name="320" number="320" type="door" attr = "the study of mathematics" >
             <data key="vertex_label">55.75320319108809 48.744136802852154</data>
-        </node>
+        </node> -->
 
         <!-- the corridor -->
         <!-- Line1 the line1 runs from 321 the study to 300 -->
@@ -734,17 +734,17 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75304847354005 48.743681497871876</data>
         </node>
 
-        <node id="3402" name="Elevator on line2" >
+        <!-- <node id="3402" name="Elevator on line2" >
             <data key="vertex_label">55.753154323050815 48.74383371323347</data>
-        </node>
+        </node> -->
 
         <node id="3403" name="Elevator on line3" >
             <data key="vertex_label">55.75358790681866 48.74326776713133</data>
         </node>
         <!-- -->
-        <node id="3815" name="Stair on line3" >
+        <!-- <node id="3815" name="Stair on line3" >
             <data key="vertex_label">55.75358790681866 48.74326776713133</data>
-        </node>
+        </node> -->
 
         <node id="3814" name="Stair0 on line4" type="stair" >
             <data key="vertex_label">55.75366469856759 48.74317053705454</data>
@@ -786,9 +786,9 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753363002350085 48.74372776597738</data>
         </node>
 
-        <node id="3411" name="Stair1 on line7" type="stair" >
+        <!-- <node id="3411" name="Stair1 on line7" type="stair" >
             <data key="vertex_label">55.75325488925394 48.744155913591385</data>
-        </node>
+        </node> -->
 
 
         <!-- Connection Line1 along the corridor-->
@@ -843,13 +843,13 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="3206" target="3105" />
         <edge id="DEFAULT" source="3208" target="3106" />
         <edge id="DEFAULT" source="3210" target="3107" />
-        <edge id="DEFAULT" source="3207" target="3104" />
+        <!-- <edge id="DEFAULT" source="3207" target="3104" /> -->
         <edge id="DEFAULT" source="3211" target="3108" />
 
 
         <!-- Line2 Connection door and stair and elevator-->
         <edge id="DEFAULT" source="3204" target="3401" />
-        <edge id="DEFAULT" source="3207" target="3402" />
+        <!-- <edge id="DEFAULT" source="3207" target="3402" /> -->
 
         <!-- Connection Line3 along the corridor-->
         <edge id="DEFAULT" source="3314" target="3315" />
@@ -1008,8 +1008,8 @@ http://graphml.graphdrawing.org/xmlns ">
 
         <!-- Line6 Connection door to room-->
         <edge id="DEFAULT" source="3240" target="3129" />
-        <edge id="DEFAULT" source="3241" target="3130" />
-        <edge id="DEFAULT" source="3242" target="3130" />
+        <!-- <edge id="DEFAULT" source="3241" target="3130" />
+        <edge id="DEFAULT" source="3242" target="3130" /> -->
         <edge id="DEFAULT" source="3243" target="3131" />
         <edge id="DEFAULT" source="3244" target="3132" />
         <edge id="DEFAULT" source="3245" target="3133" />
@@ -1045,11 +1045,11 @@ http://graphml.graphdrawing.org/xmlns ">
 
         <!-- Line7 Connection door to room-->
         <edge id="DEFAULT" source="3249" target="3135" />
-        <edge id="DEFAULT" source="3250" target="3136" />
+        <!-- <edge id="DEFAULT" source="3250" target="3136" /> -->
         <edge id="DEFAULT" source="3251" target="3137" />
-        <edge id="DEFAULT" source="3252" target="3138" />
-        <edge id="DEFAULT" source="3253" target="3139" />
-        <edge id="DEFAULT" source="3255" target="3140" />
+        <!-- <edge id="DEFAULT" source="3252" target="3138" /> -->
+        <!-- <edge id="DEFAULT" source="3253" target="3139" /> -->
+        <!-- <edge id="DEFAULT" source="3255" target="3140" /> -->
 
         <!-- Line6 Connection door and stair and elevator-->
         <edge id="DEFAULT" source="3360" target="3410" />

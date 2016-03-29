@@ -513,9 +513,9 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.75423487729157 48.74326407909393</data>
         </node>
 
-        <node id="4504" name="room 436" type="room" attr="door1">
+        <!-- <node id="4504" name="room 436" type="room" attr="door1">
         <data key="vertex_label">55.75428864950754 48.743139021098614</data>
-        </node>     
+        </node>    -->  
         
         <node id="4506" name="room 438" type="room">
         <data key="vertex_label">55.75430487549499 48.74331034719944</data>
@@ -532,9 +532,9 @@ http://graphml.graphdrawing.org/xmlns ">
         
         
         <!--stair and elevator Line1 -->
-        <node id="4551" name="Stair on line1" type="stair" >
+        <!-- <node id="4551" name="Stair on line1" type="stair" >
         <data key="vertex_label">55.754384873287925 48.74317925423384</data>
-        </node>
+        </node> -->
         
         
         
@@ -607,13 +607,13 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.754254310767664 48.743230886757374</data>
         </node>
     
-        <node id="4404" name="room 436" type="door" attr="door1">
+        <!-- <node id="4404" name="room 436" type="door" attr="door1">
         <data key="vertex_label">55.75423261319665 48.743180595338345</data>
-        </node>
+        </node> -->
         
-        <node id="4405" name="room 436" type="door" attr="door2">
+        <!-- <node id="4405" name="room 436" type="door" attr="door2">
         <data key="vertex_label">55.7543488365666 48.74322351068258</data>
-        </node>     
+        </node>   -->   
         
         <node id="4406" name="room 438" type="door">
         <data key="vertex_label">55.75430430947228 48.74325402081013</data>
@@ -688,9 +688,9 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>     
         
         <!--Line5 -->
-        <node id="4555" name="Relax room" attr="Relax Room" type="door">
+        <!-- <node id="4555" name="Relax room" attr="Relax Room" type="door">
         <data key="vertex_label">55.754069975367095 48.743295930325985</data>
-        </node>     
+        </node>    -->  
         
         <!--Hallways-->
         <!--Line1 -->
@@ -722,21 +722,21 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.7542880834846 48.7432225048542</data>
         </node>     
 
-        <node id="4306" name="Line1_r6" attr="front of room 438">
+        <!-- <node id="4306" name="Line1_r6" attr="front of room 438">
         <data key="vertex_label">55.75431034704738 48.743227533996105</data>
-        </node> 
+        </node>  -->
 
-        <node id="4307" name="Line1_r8" attr="front of room 436 door2">
+        <!-- <node id="4307" name="Line1_r8" attr="front of room 436 door2">
         <data key="vertex_label">55.75434996861072 48.743248991668224</data>
-        </node>         
+        </node>  -->        
 
-        <node id="4308" name="Line1_r9" attr="front of stair1 on line1">
+        <!-- <node id="4308" name="Line1_r9" attr="front of stair1 on line1">
         <data key="vertex_label">55.75437411887719 48.74325234442949</data>
-        </node>     
+        </node>  -->    
 
-        <node id="4309" name="Line1_r10" attr="point between 443 and 438">
+        <!-- <node id="4309" name="Line1_r10" attr="point between 443 and 438">
         <data key="vertex_label">55.75436581722477 48.74333247542381</data>
-        </node> 
+        </node>  -->
         
         <node id="4311" name="Line1_r11" attr="front of room 443">
         <data key="vertex_label">55.75439940117138 48.743273466825485</data>
@@ -957,6 +957,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4014" target="4932" />
         <edge id="DEFAULT" source="4015" target="4934" />
         <edge id="DEFAULT" source="4016" target="4934" />
+        <edge id="DEFAULT" source="4017" target="4935" />
         <edge id="DEFAULT" source="4062" target="4937" />
         <edge id="DEFAULT" source="4061" target="4939" />
         <edge id="DEFAULT" source="4060" target="4939" />
@@ -1015,9 +1016,9 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4304" target="4305" />
         <edge id="DEFAULT" source="4305" target="4314" />
         <edge id="DEFAULT" source="4314" target="4327" />
-        <edge id="DEFAULT" source="4306" target="4307" />
-        <edge id="DEFAULT" source="4307" target="4308" />
-        <edge id="DEFAULT" source="4308" target="4309" />
+        <!-- <edge id="DEFAULT" source="4306" target="4307" /> -->
+        <!-- <edge id="DEFAULT" source="4307" target="4308" /> -->
+        <!-- <edge id="DEFAULT" source="4308" target="4309" /> -->
         <edge id="DEFAULT" source="4311" target="4312" />
         <edge id="DEFAULT" source="4312" target="4310" />
     
@@ -1026,7 +1027,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4313" target="4401" />
         <edge id="DEFAULT" source="4303" target="4402" />
         <edge id="DEFAULT" source="4305" target="4403" />
-        <edge id="DEFAULT" source="4307" target="4405" />
+        <!-- <edge id="DEFAULT" source="4307" target="4405" /> -->
         <edge id="DEFAULT" source="4312" target="4408" />
     
         
@@ -1034,14 +1035,14 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4401" target="4501" />
         <edge id="DEFAULT" source="4402" target="4502" />
         <edge id="DEFAULT" source="4403" target="4503" />
-        <edge id="DEFAULT" source="4404" target="4504" />
-        <edge id="DEFAULT" source="4405" target="4504" />
+        <!-- <edge id="DEFAULT" source="4404" target="4504" /> -->
+        <!-- <edge id="DEFAULT" source="4405" target="4504" /> -->
         <edge id="DEFAULT" source="4406" target="4506" />
         <edge id="DEFAULT" source="4408" target="4508" />
         <edge id="DEFAULT" source="4407" target="4507" />       
         
         <!-- Line1  Connection door and stair and elevator-->
-        <edge id="DEFAULT" source="4308" target="4551" />
+        <!-- <edge id="DEFAULT" source="4308" target="4551" /> -->
         
         
         

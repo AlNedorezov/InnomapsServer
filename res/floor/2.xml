@@ -45,9 +45,9 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="2011" name="2nd floor hallway" attr="lady WC">
             <data key="vertex_label">55.75339205887283 48.74340321868658</data>
         </node>
-        <node id="2012" name="2nd floor hallway" attr="disabled WC">
+        <!-- <node id="2012" name="2nd floor hallway" attr="disabled WC">
             <data key="vertex_label">55.75337790797161 48.74336063861847</data>
-        </node>
+        </node> -->
         <node id="2013" name="2nd floor hallway" attr="men WC">
             <data key="vertex_label">55.75336432310157 48.74332509934902</data>
         </node>
@@ -266,6 +266,10 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.7532484741568 48.74400436878204</data>
         </node>
 
+        <node id="2100" name="Stairs" attr="stairs" type="stairs">
+            <data key="vertex_label">55.75367149095086 48.7431551143527</data>
+        </node>
+
 
         <!-- Hallway connections 2nd floor-->
         <edge id="DEFAULT" source="2000" target="2001" />
@@ -362,6 +366,8 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="2086" target="2051" />
         <edge id="DEFAULT" source="2087" target="2050" />
         <edge id="DEFAULT" source="2088" target="2049" />
+
+        <edge id="DEFAULT" source="2017" target="2100" />
 
 
     </graph>
