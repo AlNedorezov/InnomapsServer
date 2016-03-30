@@ -497,7 +497,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <!-- Nodes by Max -->
         <!--Rooms-->
         <!--Line1 -->
-        <node id="4501" name="room 434" number="434" type="room">
+        <node id="4501" name="Room 434" number="434" type="room">
         <data key="vertex_label">55.754141105916574 48.74305084347725</data>
         </node>
     
@@ -505,11 +505,11 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.754078277082456 48.74322820454836</data>
         </node>
         
-        <node id="4502" name="room 435" type="room">
+        <node id="4502" name="Room 435" type="room">
         <data key="vertex_label">55.75415469051606 48.743233904242516</data>
         </node>
         
-        <node id="4503" name="room 437" type="room">
+        <node id="4503" name="Room 437" type="room">
         <data key="vertex_label">55.75423487729157 48.74326407909393</data>
         </node>
 
@@ -517,15 +517,15 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.75428864950754 48.743139021098614</data>
         </node>    -->  
         
-        <node id="4506" name="room 438" type="room">
+        <node id="4506" name="Room 438" type="room">
         <data key="vertex_label">55.75430487549499 48.74331034719944</data>
         </node>     
         
-        <node id="4507" name="room 443" type="room">
+        <node id="4507" name="Room 443" type="room">
         <data key="vertex_label">55.75439034482907 48.74342333525419</data>
         </node>         
 
-        <node id="4508" name="room 439" type="room">
+        <node id="4508" name="Room 439" type="room">
         <data key="vertex_label">55.75442185334429 48.74319300055504</data>
         </node>
     
@@ -539,71 +539,71 @@ http://graphml.graphdrawing.org/xmlns ">
         
         
         <!--Line2 -->       
-        <node id="4509" name="room 440" number="440" type="room">
+        <node id="4509" name="Room 440" number="440" type="room">
         <data key="vertex_label">55.754497700084904 48.743219152092934</data>
         </node>
     
-        <node id="4510" name="room 441" number="441" type="room">
+        <node id="4510" name="Room 441" number="441" type="room">
         <data key="vertex_label">55.754496756718396 48.74331571161747</data>
         </node>     
         
-        <node id="4511" name="room 442" number="442" type="room">
+        <node id="4511" name="Room 442" number="442" type="room">
         <data key="vertex_label">55.75448487029835 48.74341495335102</data>
         </node> 
         
-        <node id="4512" name="room 444" number="444" type="room">
+        <node id="4512" name="Room 444" number="444" type="room">
         <data key="vertex_label">55.75447279520128 48.74350145459175</data>
         </node> 
     
-        <node id="4513" name="room 445" number="445" type="room">
+        <node id="4513" name="Room 445" number="445" type="room">
         <data key="vertex_label">55.75446147479437 48.74359633773565</data>
         </node> 
         
         
         <!--stair and elevator Line2 -->
-        <node id="4552" name="stair on line2" type="stair" >
+        <node id="4552" name="Stair" type="stair" attr="Stair on line2">
         <data key="vertex_label">55.754447512954634 48.74367043375969</data>
         </node>
         
         <!--Line3 -->
         <!--stair and elevator Line3 -->        
     
-        <node id="4554" name="stair1 on line3" type="stair" >
+        <node id="4554" name="Stair" type="stair" attr="stair1 on line3">
         <data key="vertex_label">55.75411337067797 48.743589632213116</data>
         </node>     
     
-        <node id="4553" name="elevator1 on line3" type="elevtor" >
+        <node id="4553" name="Elevator" type="elevtor" attr="elevator1 on line3">
         <data key="vertex_label">55.75435053463276 48.74362953007221</data>
         </node>     
     
         <!--Line4 -->
     
-        <node id="4514" name="room 448" number="448" type="room">
+        <node id="4514" name="Room 448" number="448" type="room">
         <data key="vertex_label">55.7542063874208 48.743440099060535</data>
         </node>
         
-        <node id="4515" name="room 446" number="446" type="room">
+        <node id="4515" name="Room 446" number="446" type="room">
         <data key="vertex_label">55.75430430947228 48.74348636716604</data>
         </node>     
         
         
-        <node id="4516" name="room 447" number="447" type="room">
+        <node id="4516" name="Room 447" number="447" type="room">
         <data key="vertex_label">55.75431789401493 48.74340455979109</data>
         </node>
         
         
         <!-- Room doors -->     
         <!--Line1 -->   
-        <node id="4401" name="room 434" number="434" type="door">
+        <node id="4401" name="Room 434" number="434" type="door">
         <data key="vertex_label">55.75411035187528 48.7431276217103</data>
         </node>
     
         
-        <node id="4402" name="room 435" type="door">
+        <node id="4402" name="Room 435" type="door">
         <data key="vertex_label">55.75416695438653 48.743194341659546</data>
         </node>
     
-        <node id="4403" name="room 437" type="door">
+        <node id="4403" name="Room 437" type="door">
         <data key="vertex_label">55.754254310767664 48.743230886757374</data>
         </node>
     
@@ -615,49 +615,49 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.7543488365666 48.74322351068258</data>
         </node>   -->   
         
-        <node id="4406" name="room 438" type="door">
+        <node id="4406" name="Room 438" type="door">
         <data key="vertex_label">55.75430430947228 48.74325402081013</data>
         </node>     
         
-        <node id="4407" name="room 443" type="door">
+        <node id="4407" name="Room 443" type="door">
         <data key="vertex_label">55.75439242024105 48.74329324811697</data>
         </node>         
 
-        <node id="4408" name="room 439" type="door">
+        <node id="4408" name="Room 439" type="door">
         <data key="vertex_label">55.75442902294299 48.74325938522816</data>
         </node>
         
         
         <!--Line2 -->
-        <node id="4409" name="room 440" number="440" type="door">
+        <node id="4409" name="Room 440" number="440" type="door">
         <data key="vertex_label">55.75446939907955 48.7432412803173</data>
         </node>
     
-        <node id="4410" name="room 441" number="441" type="door">
+        <node id="4410" name="Room 441" number="441" type="door">
         <data key="vertex_label">55.754463361529076 48.74327715486288</data>
         </node>     
         
-        <node id="4411" name="room 442" number="442" type="door">
+        <node id="4411" name="Room 442" number="442" type="door">
         <data key="vertex_label">55.754444682851386 48.743422999978065</data>
         </node> 
         
-        <node id="4412" name="room 444" number="444" type="door">
+        <node id="4412" name="Room 444" number="444" type="door">
         <data key="vertex_label">55.754437890602745 48.743461556732655</data>
         </node> 
         
-        <node id="4451" name="room 443" number="443" type="door" attr="door2 front on 442">
+        <node id="4451" name="Room 443" number="443" type="door" attr="door2 front on 442">
         <data key="vertex_label">55.75442826824846 48.74335661530495</data>
         </node>
 
-        <node id="4452" name="room 443" number="443" type="door" attr="door3 front on 444">
+        <node id="4452" name="Room 443" number="443" type="door" attr="door3 front on 444">
         <data key="vertex_label">55.754410910270046 48.74349173158407</data>
         </node>
 
-        <node id="4453" name="room 443" number="443" type="door" attr="door4 front on 445">
+        <node id="4453" name="Room 443" number="443" type="door" attr="door4 front on 445">
         <data key="vertex_label">55.7544027972992 48.74355141073465</data>
         </node>
         
-        <node id="4413" name="room 445" number="445" type="door">
+        <node id="4413" name="Room 445" number="445" type="door">
         <data key="vertex_label">55.75442260803895 48.743603713810444</data>
         </node>
     
@@ -670,20 +670,20 @@ http://graphml.graphdrawing.org/xmlns ">
         
         
         <!--Line4 -->   
-        <node id="4414" name="room 448" number="448" type="door">
+        <node id="4414" name="Room 448" number="448" type="door">
         <data key="vertex_label">55.754243178971876 48.74348636716604</data>
         </node>
         
-        <node id="4415" name="room 446" number="446" type="door">
+        <node id="4415" name="Room 446" number="446" type="door">
         <data key="vertex_label">55.75426714063005 48.74345015734434</data>
         </node>     
         
         
-        <node id="4416" name="room 447" number="447" type="door">
+        <node id="4416" name="Room 447" number="447" type="door">
         <data key="vertex_label">55.75427487628034 48.7433971837163</data>
         </node>
         
-        <node id="4417" name="room 438" number="438" type="door">
+        <node id="4417" name="Room 438" number="438" type="door">
         <data key="vertex_label">55.75428751746166 48.74331135302782</data>
         </node>     
         
@@ -694,31 +694,31 @@ http://graphml.graphdrawing.org/xmlns ">
         
         <!--Hallways-->
         <!--Line1 -->
-        <node id="4301" name="Line1_r1" attr="Line1 cross KostyaLine1">
+        <node id="4301" name="Fourth floor hallway" attr="Line1 cross KostyaLine1">
         <data key="vertex_label">55.75408808819836 48.74313600361347</data>
         </node>
         
-        <node id="4302" name="Line1_r2" attr="Line1 cross Line3">
+        <node id="4302" name="Fourth floor hallway" attr="Line1 cross Line3">
         <data key="vertex_label">55.75411714418097 48.743150755763054</data>
         </node>     
 
-        <node id="4313" name="Line1_r3" attr="front of room 434">
+        <node id="4313" name="Fourth floor hallway" attr="front of room 434">
         <data key="vertex_label">55.75410525764525 48.74314572662115</data>
         </node> 
         
-        <node id="4303" name="Line1_r4" attr="direct on point between 434 and 436">
+        <node id="4303" name="Fourth floor hallway" attr="direct on point between 434 and 436">
         <data key="vertex_label">55.7541912934411 48.74317824840546</data>
         </node> 
         
-        <node id="4304" name="Line1_r5" attr="point between 434 and 436">
+        <node id="4304" name="Fourth floor hallway" attr="point between 434 and 436">
         <data key="vertex_label">55.75419789705794 48.74310079962015</data>
         </node>
         
-        <node id="4305" name="Line1_r6" attr="front of room 435 door1">
+        <node id="4305" name="Fourth floor hallway" attr="front of room 435 door1">
         <data key="vertex_label">55.75423997150469 48.74320238828659</data>
         </node> 
         
-        <node id="4314" name="Line1_r7" attr="Line1 cross Line3">
+        <node id="4314" name="Fourth floor hallway" attr="Line1 cross Line3">
         <data key="vertex_label">55.7542880834846 48.7432225048542</data>
         </node>     
 
@@ -738,45 +738,45 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.75436581722477 48.74333247542381</data>
         </node>  -->
         
-        <node id="4311" name="Line1_r11" attr="front of room 443">
+        <node id="4311" name="Fourth floor hallway" attr="front of room 443">
         <data key="vertex_label">55.75439940117138 48.743273466825485</data>
         </node>         
 
-        <node id="4312" name="Line1_r12" attr="front of room 439">
+        <node id="4312" name="Fourth floor hallway" attr="front of room 439">
         <data key="vertex_label">55.75442940029026 48.74328050762415</data>
         </node> 
         
-        <node id="4310" name="Line1_r13" attr="Line1 cross Line3">
+        <node id="4310" name="Fourth floor hallway" attr="Line1 cross Line3">
         <data key="vertex_label">55.75444845632234 48.74328922480345</data>
         </node>
     
     
         <!--Line2 -->
-        <node id="4314" name="Line2_r1" attr="front of room 440">
+        <node id="4314" name="Fourth floor hallway" attr="front of room 440">
         <data key="vertex_label">55.75445430520162 48.743247985839844</data>
         </node> 
 
-        <node id="4315" name="Line2_r2" attr="front of room 443 door1 near 439">
+        <node id="4315" name="Fourth floor hallway" attr="front of room 443 door1 near 439">
         <data key="vertex_label">55.7544397773386 48.74336566776037</data>
         </node>         
 
-        <node id="4316" name="Line2_r3" attr="front of room 442">
+        <node id="4316" name="Fourth floor hallway" attr="front of room 442">
         <data key="vertex_label">55.7544331737627 48.74341629445553</data>
         </node>
 
-        <node id="4317" name="Line2_r4" attr="front of room 444 and 443 door centr">
+        <node id="4317" name="Fourth floor hallway" attr="front of room 444 and 443 door centr">
         <data key="vertex_label">55.7544275135539 48.743455186486244</data>
         </node>     
             
-        <node id="4318" name="Line2_r5" attr="front of room 443 door3 near 445">
+        <node id="4318" name="Fourth floor hallway" attr="front of room 443 door3 near 445">
         <data key="vertex_label">55.754414872417975 48.74355141073465</data>
         </node> 
             
-        <node id="4320" name="Line2_r6" attr="front of elevator1 on line2">
+        <node id="4320" name="Fourth floor hallway" attr="front of elevator1 on line2">
         <data key="vertex_label">55.75439996719272 48.74365132302046</data>
         </node>
         
-        <node id="4319" name="Line2_r7" attr="front of room 445 and cross line2">
+        <node id="4319" name="Fourth floor hallway" attr="front of room 445 and cross line2">
         <data key="vertex_label">55.754404495363 48.74360404908657</data>
         </node> 
         
@@ -786,44 +786,44 @@ http://graphml.graphdrawing.org/xmlns ">
 
         
                 
-        <node id="4321" name="Line3_r1" attr="line1 cross line4 and line2">
+        <node id="4321" name="Fourth floor hallway" attr="line1 cross line4 and line2">
         <data key="vertex_label">55.75423355656955 48.74355677515268</data>
         </node>     
                 
-        <node id="4322" name="Line3_r2" attr="front of stair1 on line3">
+        <node id="4322" name="Fourth floor hallway" attr="front of stair1 on line3">
         <data key="vertex_label">55.75409110700275 48.74349407851696</data>
         </node>
         
-        <node id="4323" name="Line3_r3" attr="line1 cross line5 and Kostya's line2">
+        <node id="4323" name="Fourth floor hallway" attr="line1 cross line5 and Kostya's line2">
         <data key="vertex_label">55.754048655044464 48.74347798526287</data>
         </node> 
         
         
         <!--Line4-->
 
-        <node id="4324" name="Line4_r1" attr="front of room 448">
+        <node id="4324" name="Fourth floor hallway" attr="front of room 448">
         <data key="vertex_label">55.754254310767664 48.743492402136326</data>
         </node>         
 
-        <node id="4325" name="Line4_r2" attr="front of room 446">
+        <node id="4325" name="Fourth floor hallway" attr="front of room 446">
         <data key="vertex_label">55.754259404978235 48.743447475135326</data>
         </node>
         
-        <node id="4326" name="Line4_r3" attr="front of room 447">
+        <node id="4326" name="Fourth floor hallway" attr="front of room 447">
         <data key="vertex_label">55.75426374449043 48.743388801813126</data>
         </node> 
         
-        <node id="4327" name="Line4_r4" attr="front of room 438">
+        <node id="4327" name="Fourth floor hallway" attr="front of room 438">
         <data key="vertex_label">55.75427695169845 48.74330297112465</data>
         </node>                 
         
         <!--Line5-->        
         
-        <node id="4328" name="Line5_r1" attr="direct on R R">
+        <node id="4328" name="Fourth floor hallway" attr="direct on R R">
         <data key="vertex_label">55.754092805080134 48.74332241714001</data>
         </node>         
     
-        <node id="4329" name="Line5_r2" attr="front of R R">
+        <node id="4329" name="Fourth floor hallway" attr="front of R R">
         <data key="vertex_label">55.754067899937965 48.743312023580074</data>
         </node> 
 
