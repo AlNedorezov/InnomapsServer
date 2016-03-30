@@ -236,7 +236,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="93" name="University Canteen first door entrance" attr="canteen first door entrance, connection with WC room entrance">
             <data key="vertex_label">55.754117710206394 48.743341863155365</data>
         </node>
-        <node id="95" name="University Canteen center" type="canteen" attr="center">
+        <node id="95" name="University Canteen center" type="food" attr="center">
             <data key="vertex_label">55.75421676452847 48.74331135302782</data>
         </node>
         <node id="97" name="University Canteen second door entrance" attr="canteen 2nd door entrance">
@@ -260,7 +260,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="109" name="Room 106" number="106" type="room">
             <data key="vertex_label">55.753406209768904 48.74389037489891</data>
         </node>
-        <node id="111" name="Cafe CAVA" type="cafe" attr = "Cafe CAVA">
+        <node id="111" name="Cafe CAVA" type="food" attr = "Cafe CAVA">
             <data key="vertex_label">55.753273945859824 48.74402079731226</data>
         </node>
 
