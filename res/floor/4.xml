@@ -6,175 +6,175 @@ http://graphml.graphdrawing.org/xmlns ">
     <graph edgedefault="undirected">
 
         <!--Rooms-->
-        <node id="4001" name="Room 401" type="room">
+        <node id="4001" name="Room 401" number="401" type="room">
             <data key="vertex_label">55.752873000456326 48.74390847980976</data>
         </node>
-        <node id="4003" name="Room 403" type="room">
+        <node id="4003" name="Room 403" number="403" type="room">
             <data key="vertex_label">55.752918472589286 48.74384846538305</data>
         </node>
-        <node id="4006" name="Room 406" type="room" attr="Jooyong Lee">
+        <node id="4006" name="Room 406" type="room" number="406" attr="Jooyong Lee">
             <data key="vertex_label">55.752964510711394 48.743793815374374</data>
         </node>
-        <node id="4009" name="Room 409" type="room" attr="software engineering laboratory (Inna Baskakova)">
+        <node id="4009" name="Room 409" type="room" number="409" attr="software engineering laboratory (Inna Baskakova)">
             <data key="vertex_label">55.753010926140135 48.743731789290905</data>
         </node>
-        <node id="4013" name="Room 413" type="room" attr="software engineering laboratory">
+        <node id="4013" name="Room 413" number="413" type="room" attr="software engineering laboratory">
             <data key="vertex_label">55.75308809638522 48.74361712485552</data>
         </node>
-        <node id="4002" name="Room 402" type="room">
+        <node id="4002" name="Room 402" number="402" type="room">
             <data key="vertex_label">55.75293488782758 48.74402113258839</data>
         </node>
-        <node id="4004" name="Room 404" type="room">
+        <node id="4004" name="Room 404" number="404" type="room">
             <data key="vertex_label">55.75295715216273 48.743993639945984</data>
         </node>
-        <node id="4005" name="Room 405" type="room">
+        <node id="4005" name="Room 405" number="405" type="room">
             <data key="vertex_label">55.75298017120775 48.74396312981844</data>
         </node>
-        <node id="4007" name="Room 407" type="room" attr="service science and engineering Manuel Mazzara">
+        <node id="4007" name="Room 407" type="room" number="407" attr="service science and engineering Manuel Mazzara">
             <data key="vertex_label">55.753026775298295 48.74389339238405</data>
         </node>
-        <node id="4008" name="Room 408" type="room" attr="software engineering laboratory Bertran Meyer">
+        <node id="4008" name="Room 408" type="room" number="408" attr="software engineering laboratory Bertran Meyer">
             <data key="vertex_label">55.75304545465497 48.743863217532635</data>
         </node>
-        <node id="4010" name="Room 410" type="room" attr="software engineering laboratory Nestor Catano">
+        <node id="4010" name="Room 410" type="room" number="410" attr="software engineering laboratory Nestor Catano">
             <data key="vertex_label">55.753067718927014 48.743840754032135</data>
         </node>
-        <node id="4011" name="Room 411" type="room">
+        <node id="4011" name="Room 411" number="411" type="room">
             <data key="vertex_label">55.75309356810827 48.7438115850091</data>
         </node>
-        <node id="4012" name="Room 412" type="room">
+        <node id="4012" name="Room 412" number="412" type="room">
             <data key="vertex_label">55.753135266386465 48.74374587088823</data>
         </node>
-        <node id="4076" name="Room 476" type="room" attr="msit-se headquarters">
+        <node id="4076" name="Room 476" type="room" number="476" attr="msit-se headquarters">
             <data key="vertex_label">55.753075266134985 48.74439060688019</data>
         </node>
-        <node id="4072" name="Room 472" type="room">
+        <node id="4072" name="Room 472" number="472" type="room">
             <data key="vertex_label">55.753118285192585 48.74433260411024</data>
         </node>
-        <node id="4070" name="Room 470" type="room">
+        <node id="4070" name="Room 470" number="470" type="room">
             <data key="vertex_label">55.7531665872358 48.74427057802677</data>
         </node>
-        <node id="4069" name="Room 469" type="room">
+        <node id="4069" name="Room 469" number="469" type="room">
             <data key="vertex_label">55.75321036091081 48.74420586973429</data>
         </node>
-        <node id="4075" name="Room 475" type="room" attr="msit-se mommy's room">
+        <node id="4075" name="Room 475" type="room" number="475" attr="msit-se mommy's room">
             <data key="vertex_label">55.753034511194556 48.744257502257824</data>
         </node>
-        <node id="4074" name="Room 474" type="room" attr="msit-se Mohamad Kassab's office">
+        <node id="4074" name="Room 474" type="room" number="474" attr="msit-se Mohamad Kassab's office">
             <data key="vertex_label">55.753055266030664 48.74421928077936</data>
         </node>
-        <node id="4073" name="Room 473" type="room">
+        <node id="4073" name="Room 473" number="473" type="room">
             <data key="vertex_label">55.75307828501778 48.74419279396534</data>
         </node>
-        <node id="4071" name="Room 471" type="room">
+        <node id="4071" name="Room 471" number="471" type="room">
             <data key="vertex_label">55.75309903983058 48.744155913591385</data>
         </node>
-        <node id="4068" name="Room 468" type="room">
+        <node id="4068" name="Room 468" number="468" type="room">
             <data key="vertex_label">55.75314583245893 48.74410193413496</data>
         </node>
-        <node id="4067" name="Room 467" type="room">
+        <node id="4067" name="Room 467" number="467" type="room">
             <data key="vertex_label">55.7531703608304 48.74407410621643</data>
         </node>
-        <node id="4066" name="Room 466" type="room">
+        <node id="4066" name="Room 466" number="466" type="room">
             <data key="vertex_label">55.75319262503115 48.74403588473797</data>
         </node>
-        <node id="4065" name="Room 465" type="room">
+        <node id="4065" name="Room 465" number="465" type="room">
             <data key="vertex_label">55.7532148892192 48.744014762341976</data>
         </node>
-        <node id="4064" name="Room 464" type="room" attr="msit-se visiting professors">
+        <node id="4064" name="Room 464" type="room" number="464" attr="msit-se visiting professors">
             <data key="vertex_label">55.75323790811212 48.74398458749056</data>
         </node>
-        <node id="4063" name="Room 463" type="room">
+        <node id="4063" name="Room 463" number="463" type="room">
             <data key="vertex_label">55.753295455285 48.74411232769489</data>
         </node>
-        <node id="4014" name="Room 414" type="room">
+        <node id="4014" name="Room 414" number="414" type="room">
             <data key="vertex_label">55.75317432310435 48.74363087117672</data>
         </node>
-        <node id="4015" name="Room 415" type="room">
+        <node id="4015" name="Room 415" number="415" type="room">
             <data key="vertex_label">55.75314885133627 48.7435282766819</data>
         </node>
-        <node id="4016" name="Room 416" type="room">
+        <node id="4016" name="Room 416" number="416" type="room">
             <data key="vertex_label">55.75322130432186 48.743432722985744</data>
         </node>
-        <node id="4017" name="Room 417" type="room">
+        <node id="4017" name="Room 417" number="417" type="room">
             <data key="vertex_label">55.75326847416207 48.743498772382736</data>
         </node>
-        <node id="4062" name="Room 462" type="room" attr="msit-se meeting room for students">
+        <node id="4062" name="Room 462" number="462" type="room" attr="msit-se meeting room for students">
             <data key="vertex_label">55.75331602130323 48.743978552520275</data>
         </node>
-        <node id="4061" name="Room 461" type="room" attr="msit-se cave #2">
+        <node id="4061" name="Room 461" number="461" type="room" attr="msit-se cave #2">
             <data key="vertex_label">55.753362058956114 48.744041584432125</data>
         </node>
-        <node id="4060" name="Room 460" type="room" attr="msit-se cave #1">
+        <node id="4060" name="Room 460" number="460" type="room" attr="msit-se cave #1">
             <data key="vertex_label">55.7534305492982 48.74395273625851</data>
         </node>
-        <node id="4059" name="Room 459" type="room">
+        <node id="4059" name="Room 459" number="459" type="room">
             <data key="vertex_label">55.75341054937603 48.7438565120101</data>
         </node>
-        <node id="4018" name="Room 418" type="room" attr="Artificial intelligence in games development lab">
+        <node id="4018" name="Room 418" number="418" type="room" attr="Artificial intelligence in games development lab">
             <data key="vertex_label">55.75330979489519 48.74333918094635</data>
         </node>
-        <node id="4019" name="Room 419" type="room" attr="Liber lab on machine learning and data representation">
+        <node id="4019" name="Room 419" number="419" type="room" attr="Liber lab on machine learning and data representation">
             <data key="vertex_label">55.75345243599375 48.74325904995203</data>
         </node>
-        <node id="4020" name="Room 420" type="room" attr="Liber lab on machine learning and data representation">
+        <node id="4020" name="Room 420" number="420" type="room" attr="Liber lab on machine learning and data representation">
             <data key="vertex_label">55.75342639837181 48.74315645545721</data>
         </node>
-        <node id="4021" name="Room 421" type="room">
+        <node id="4021" name="Room 421" number="421" type="room">
             <data key="vertex_label">55.7534931904975 48.74306961894035</data>
         </node>
-        <node id="4022" name="Room 422" type="room">
+        <node id="4022" name="Room 422" number="422" type="room">
             <data key="vertex_label">55.75353922794129 48.743139021098614</data>
         </node>
-        <node id="4052" name="Room 452" type="room">
+        <node id="4052" name="Room 452" number="452" type="room">
             <data key="vertex_label">55.75368149084635 48.743496760725975</data>
         </node>
-        <node id="4053" name="Room 453" type="room">
+        <node id="4053" name="Room 453" number="453" type="room">
             <data key="vertex_label">55.753619604659626 48.74357722699642</data>
         </node>
-        <node id="4054" name="Room 454" type="room">
+        <node id="4054" name="Room 454" number="454" type="room">
             <data key="vertex_label">55.753647906281586 48.74366506934166</data>
         </node>
-        <node id="4055" name="Room 455" type="room">
+        <node id="4055" name="Room 455" number="455" type="room">
             <data key="vertex_label">55.75358998227331 48.74374117702246</data>
         </node>
-        <node id="4056" name="Room 456" type="room">
+        <node id="4056" name="Room 456" number="456" type="room">
             <data key="vertex_label">55.75355658630763 48.74365970492363</data>
         </node>
-        <node id="4057" name="Room 457" type="room">
+        <node id="4057" name="Room 457" number="457" type="room">
             <data key="vertex_label">55.753503567794915 48.74373212456703</data>
         </node>
-        <node id="4058" name="Room 458" type="room" attr="msit-se TA's room">
+        <node id="4058" name="Room 458" number="458" type="room" attr="msit-se TA's room">
             <data key="vertex_label">55.753531114789155 48.74381795525551</data>
         </node>
-        <node id="4025" name="Room 425" type="room">
+        <node id="4025" name="Room 425" number="425" type="room">
             <data key="vertex_label">55.75374752782753 48.74310113489628</data>
         </node>
-        <node id="4026" name="Room 426" type="room">
+        <node id="4026" name="Room 426" number="426" type="room">
             <data key="vertex_label">55.75381997970112 48.74290566891432</data>
         </node>
-        <node id="4027" name="Room 427" type="room">
+        <node id="4027" name="Room 427" number="427" type="room">
             <data key="vertex_label">55.75385337544131 48.74296400696039</data>
         </node>
-        <node id="4029" name="Room 429" type="room">
+        <node id="4029" name="Room 429" number="429" type="room">
             <data key="vertex_label">55.753906016126244 48.74297473579645</data>
         </node>
-        <node id="4030" name="Room 430" type="room">
+        <node id="4030" name="Room 430" number="430" type="room">
             <data key="vertex_label">55.75395016632333 48.74296937137842</data>
         </node>
-        <node id="4031" name="Room 431" type="room">
+        <node id="4031" name="Room 431" number="431" type="room">
             <data key="vertex_label">55.7539950711734 48.743008598685265</data>
         </node>
-        <node id="4033" name="Room 433" type="room">
+        <node id="4033" name="Room 433" number="433" type="room">
             <data key="vertex_label">55.75395865674014 48.74319367110729</data>
         </node>
-        <node id="4050" name="Room 450" type="room">
+        <node id="4050" name="Room 450" number="450" type="room">
             <data key="vertex_label">55.75384790382483 48.74327849596739</data>
         </node>
-        <node id="4032" name="Room 432" type="room">
+        <node id="4032" name="Room 432" number="432" type="room">
             <data key="vertex_label">55.75403073087045 48.74301798641682</data>
         </node>
-        <node id="4049" name="Room 449" type="room">
+        <node id="4049" name="Room 449" number="449" type="room">
             <data key="vertex_label">55.753918468750975 48.743306659162045</data>
         </node>
 
@@ -505,11 +505,11 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.754078277082456 48.74322820454836</data>
         </node>
         
-        <node id="4502" name="Room 435" type="room">
+        <node id="4502" name="Room 435" number="435" type="room">
         <data key="vertex_label">55.75415469051606 48.743233904242516</data>
         </node>
         
-        <node id="4503" name="Room 437" type="room">
+        <node id="4503" name="Room 437" number="437" type="room">
         <data key="vertex_label">55.75423487729157 48.74326407909393</data>
         </node>
 
@@ -517,15 +517,15 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.75428864950754 48.743139021098614</data>
         </node>    -->  
         
-        <node id="4506" name="Room 438" type="room">
+        <node id="4506" name="Room 438" number="438" type="room">
         <data key="vertex_label">55.75430487549499 48.74331034719944</data>
         </node>     
         
-        <node id="4507" name="Room 443" type="room">
+        <node id="4507" name="Room 443" number="443" type="room">
         <data key="vertex_label">55.75439034482907 48.74342333525419</data>
         </node>         
 
-        <node id="4508" name="Room 439" type="room">
+        <node id="4508" name="Room 439" number="439" type="room">
         <data key="vertex_label">55.75442185334429 48.74319300055504</data>
         </node>
     
@@ -599,11 +599,11 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
     
         
-        <node id="4402" name="Room 435" type="door">
+        <node id="4402" name="Room 435" number="435" type="door">
         <data key="vertex_label">55.75416695438653 48.743194341659546</data>
         </node>
     
-        <node id="4403" name="Room 437" type="door">
+        <node id="4403" name="Room 437" number="437" type="door">
         <data key="vertex_label">55.754254310767664 48.743230886757374</data>
         </node>
     
@@ -615,15 +615,15 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.7543488365666 48.74322351068258</data>
         </node>   -->   
         
-        <node id="4406" name="Room 438" type="door">
+        <node id="4406" name="Room 438" number="438" type="door">
         <data key="vertex_label">55.75430430947228 48.74325402081013</data>
         </node>     
         
-        <node id="4407" name="Room 443" type="door">
+        <node id="4407" name="Room 443" number="443" type="door">
         <data key="vertex_label">55.75439242024105 48.74329324811697</data>
         </node>         
 
-        <node id="4408" name="Room 439" type="door">
+        <node id="4408" name="Room 439" number="439" type="door">
         <data key="vertex_label">55.75442902294299 48.74325938522816</data>
         </node>
         
