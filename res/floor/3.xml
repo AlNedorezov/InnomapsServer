@@ -53,7 +53,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753315266587165 48.743349239230156</data>
         </node>
 
-        <node id="3110" name="service room 2" number="sr 2" type="room" attr="staff room" >
+        <node id="3110" name="Service room 2"  type="room" attr="staff room" >
             <data key="vertex_label">55.75335168162107 48.743238262832165</data>
         </node>
 
@@ -87,11 +87,11 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75366035898876 48.743082359433174</data>
         </node> -->
 
-        <node id="3118" name="Room 309-1" number="309-1" type="room" attr="office room" >
+        <node id="3118" name="Room 309-1" number="3091" type="room" attr="office room" >
             <data key="vertex_label">55.75357469937734 48.74297574162483</data>
         </node>
 
-        <node id="3119" name="Room 309-2" number="309-2" type="room" attr="office room" >
+        <node id="3119" name="Room 309-2" number="3092" type="room" attr="office room" >
             <data key="vertex_label">55.75360677458425 48.74293953180313</data>
         </node>
 
@@ -125,7 +125,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75410620102123 48.74333079904318</data>
         </node>
 
-        <node id="3127" name="Relax room 2" number="R R 2" type="room" attr="near Hangar">
+        <node id="3127" name="Relax room 2" type="room" attr="near Hangar">
             <data key="vertex_label">55.7543173279924 48.743527606129646</data>
         </node>
 
@@ -148,22 +148,22 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753559605153164 48.743497766554356</data>
         </node>
 
-        <node id="3132" name="314" number="314" type="room" attr ="office room" >
+        <node id="3132" name="Room 314" number="314" type="room" attr ="office room" >
             <data key="vertex_label">55.75356639755475 48.74370664358139</data>
         </node>
 
-        <node id="3133" name="315-1" number="315-1" type="room" attr ="office room" >
+        <node id="3133" name="Room 315-1" number="3151" type="room" attr ="office room" >
             <data key="vertex_label">55.75353658645009 48.743782080709934</data>
         </node>
 
-        <node id="3134" name="315-2" number="315-2" type="room" attr ="office room" >
+        <node id="3134" name="Room 315-2" number="315-2" type="room" attr ="office room" >
             <data key="vertex_label">55.75350639796643 48.74382130801678</data>
         </node>
 
         <!--Line7-->
 
 
-        <node id="3135" name="316" number="316" type="room" >
+        <node id="3135" name="Room 316" number="316" type="room" >
             <data key="vertex_label">55.75344847374804 48.743902780115604</data>
         </node>
 
@@ -171,7 +171,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75332017224138 48.7438078969717</data>
         </node> -->
 
-        <node id="3137" name="317" number="317" type="room" >
+        <node id="3137" name="Room 317" number="317" type="room" >
             <data key="vertex_label">55.75339979469667 48.74395038932562</data>
         </node>
 
@@ -190,11 +190,11 @@ http://graphml.graphdrawing.org/xmlns ">
 
         <!-- Room doors -->
 
-        <node id="3804" name="room 321 door1" number="321" type="door">
+        <node id="3804" name="Room 321" number="321" type="door" attr ="Room 321 door1">
             <data key="vertex_label">55.75313092674875 48.74413948506117</data>
         </node>
 
-        <node id="3805" name="room 321 door2" number="321" type="door">
+        <node id="3805" name="Room 321" number="321" type="door" attr ="room 321 door2">
             <data key="vertex_label">55.75319168163308 48.74428164213896</data>
         </node>
 
@@ -206,15 +206,15 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753009982737666 48.743864223361015</data>
         </node>
 
-        <node id="3203" name="Room 300 left door" number="300" type="door">
+        <node id="3203" name="Room 300" number="300" type="door" attr ="Room 300 left door">
             <data key="vertex_label">55.752962057862 48.74375157058239</data>
         </node>
         <!-- Line2 -->
-        <node id="3204" name="Room 301 door" number="301" type="door">
+        <node id="3204" name="Room 301" number="301" type="door" attr ="Room 301 door">
             <data key="vertex_label">55.75303960556445 48.743779398500929</data>
         </node>
 
-        <node id="3205" name="Stair on line2" type="door">
+        <node id="3205" name="Stair" type="door" attr ="Stair on line2">
             <data key="vertex_label">55.7530737566935 48.743736147880554</data>
         </node>
 
@@ -242,7 +242,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75330526659779 48.74351754784584</data>
         </node>
         <!-- Line3 -->
-        <node id="3212" name="Stair on line3" type="door" >
+        <node id="3212" name="Stair" type="door" attr="Stair on line3">
             <data key="vertex_label">55.75331262508078 48.74343238770962</data>
         </node>
 
@@ -250,7 +250,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753342247677736 48.74338913708925</data>
         </node>
 
-        <node id="3214" name="service room 2" number="sr 2" type="door" attr="staff room" >
+        <node id="3214" name="Service room 2" type="door" attr="staff room" >
             <data key="vertex_label">55.75333809674193 48.74330431222916</data>
         </node>
 
