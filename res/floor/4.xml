@@ -501,9 +501,9 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.754141105916574 48.74305084347725</data>
         </node>
     
-        <node id="4509" name="Relax Room" attr="Relax Room" type="room">
+        <!-- <node id="4509" name="Relax Room" attr="Relax Room" type="room">
         <data key="vertex_label">55.754078277082456 48.74322820454836</data>
-        </node>
+        </node> -->
         
         <node id="4502" name="Room 435" number="435" type="room">
         <data key="vertex_label">55.75415469051606 48.743233904242516</data>
@@ -718,9 +718,9 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.75423997150469 48.74320238828659</data>
         </node> 
         
-        <node id="4314" name="Fourth floor hallway" attr="Line1 cross Line3">
+        <!-- <node id="4314" name="Fourth floor hallway" attr="Line1 cross Line3">
         <data key="vertex_label">55.7542880834846 48.7432225048542</data>
-        </node>     
+        </node>    -->  
 
         <!-- <node id="4306" name="Line1_r6" attr="front of room 438">
         <data key="vertex_label">55.75431034704738 48.743227533996105</data>
