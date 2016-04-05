@@ -745,7 +745,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75358790681866 48.74326776713133</data>
         </node> -->
 
-        <node id="3814" name="Stair" type="stair" attr="name="Stair0 on line4" ">
+        <node id="3814" name="Stair" type="stair" attr="Stair0 on line4">
             <data key="vertex_label">55.75366469856759 48.74317053705454</data>
         </node>
 
