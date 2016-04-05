@@ -32,4 +32,9 @@ public class GraphCache {
     }
 
     public byte[] getMd5FloorData(int floor) {return md5FloorCache.get(floor); }
+
+    public static synchronized void clearCache(int floor) {
+        floorCache.remove(floor);
+        md5FloorCache.remove(floor);
+    }
 }
