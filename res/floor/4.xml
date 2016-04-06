@@ -227,6 +227,13 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4111" name="Meeting room #4">
             <data key="vertex_label">55.75399922203928 48.74352257698774</data>
         </node>
+        <node id="4112" name="Stairs" attr="emergency stairs" type="stairs">
+            <data key="vertex_label">55.7530716812114 48.74373145401478</data>
+        </node>
+        <node id="4113" name="Stairs" attr="stairs" type="stairs">
+            <data key="vertex_label">55.75365262321659 48.74317858368158</data>
+        </node>
+
 
         <!--Hallways-->
         <node id="4900" name="Fourth floor hallway" attr="Hallway near room 401">
@@ -996,6 +1003,8 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4111" target="4981" />
         <edge id="DEFAULT" source="4032" target="4982" />
         <edge id="DEFAULT" source="4049" target="4985" />
+        <edge id="DEFAULT" source="4112" target="4904" />
+        <edge id="DEFAULT" source="4113" target="4967" />
 
         <!-- beetween a hallway and a wc-->
         <edge id="DEFAULT" source="4800" target="4947" />

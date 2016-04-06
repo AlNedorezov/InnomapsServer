@@ -1,5 +1,6 @@
 package com.myinno;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -34,6 +35,7 @@ public class GraphCache {
     public byte[] getMd5FloorData(int floor) {return md5FloorCache.get(floor); }
 
     public static synchronized void clearCache(int floor) {
+        System.out.println("Clearing cache for floor " + floor);
         floorCache.remove(floor);
         md5FloorCache.remove(floor);
     }
