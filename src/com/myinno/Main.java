@@ -1,7 +1,9 @@
 package com.myinno;
 
+import com.sun.glass.ui.SystemClipboard;
 import com.sun.net.httpserver.HttpServer;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -21,5 +23,15 @@ public class Main {
         server.setExecutor(java.util.concurrent.Executors.newFixedThreadPool(4));
         System.out.println("Starting listening on port " + port);
         server.start();
+        Listener listener = new Listener();
+
+        try {
+          // listener.listenForChanges("/home/saian/helloworld");
+            listener.listenForChanges(System.getProperty("user.dir")+ File.separator+"res"+
+                    File.separator+"floor");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
