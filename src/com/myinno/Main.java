@@ -1,6 +1,5 @@
 package com.myinno;
 
-import com.sun.glass.ui.SystemClipboard;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.File;
@@ -26,9 +25,8 @@ public class Main {
         Listener listener = new Listener();
 
         try {
-          // listener.listenForChanges("/home/saian/helloworld");
-            listener.listenForChanges(System.getProperty("user.dir")+ File.separator+"res"+
-                    File.separator+"floor");
+            listener.listenForChanges(System.getProperty("user.dir") + File.separator + "res" +
+                    File.separator + "floor");
         } catch (IOException e) {
             e.printStackTrace();
         }
