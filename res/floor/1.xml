@@ -200,10 +200,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1069" name="Room 105" number="105" type="room">
             <data key="vertex_label">55.753250360950176 48.743498772382736</data>
         </node>
-        <node id="1071" name="Central WC" type="wc" attr="men">
+        <node id="1071" name="Men WC" type="wc" attr="men Central WC">
             <data key="vertex_label">55.75340111544691 48.74330598860979</data>
         </node>
-        <node id="1073" name="Central WC" type="wc" attr="women">
+        <node id="1073" name="women WC" type="wc" attr="women">
             <data key="vertex_label">55.75343017194126 48.7433797493577</data>
         </node>
         <node id="1075" name="Room 107" number="107" type="room">
