@@ -42,7 +42,7 @@ input_files_names = ["1.xml", "2.xml", "3.xml", "4.xml", "5.xml"]
 input_files_descriptors = []
 output_file_name = "9.xml"
 output_file_descriptor = None
-interfloors_file = "interfloors.xml"
+interfloors_file = "6.xml"
 interfloors_file_descriptor = None
 
 def copy_interfloors_edges(file_input, file_output):
