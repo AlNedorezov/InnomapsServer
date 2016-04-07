@@ -180,13 +180,13 @@ http://graphml.graphdrawing.org/xmlns ">
 
 
         <!-- wc -->
-        <node id="4800" name="Central wc" type="wc" attr="men wc">
+        <node id="4800" name="Men wc" type="wc" attr="Central men wc">
             <data key="vertex_label">55.75338470040482 48.7433710321784</data>
         </node>
-        <node id="4801" name="Central wc" type="wc" attr="persons with disabilities wc">
+        <node id="4801" name="Persons with disabilities wc" type="wc" attr="Central persons with disabilities wc">
             <data key="vertex_label">55.7533667759257 48.74333951622248</data>
         </node>
-        <node id="4802" name="Central wc" type="wc" attr="women wc">
+        <node id="4802" name="Women wc" type="wc" attr="Central women wc">
             <data key="vertex_label">55.753354134445985 48.743302300572395</data>
         </node>
 
@@ -209,21 +209,21 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4105" name="Meeting room #3">
             <data key="vertex_label">55.75361620846362 48.74342903494835</data>
         </node>
-        <node id="4106" name="Evil babka's room">
+        <node id="4106" name="Room 451" number="451">
             <data key="vertex_label">55.75370979242339 48.74358158558607</data>
         </node>
-        <node id="4107" name="Unknown room near director's room">
+  <!--      <node id="4107" name="Unknown room near director's room">
             <data key="vertex_label">55.75358111442082 48.74298010021448</data>
-        </node>
+        </node>  -->
         <node id="4108" name="Director's room">
             <data key="vertex_label">55.75364601950742 48.74289460480213</data>
         </node>
         <node id="4109" name="Director's room #2">
             <data key="vertex_label">55.75372450923536 48.74287750571966</data>
         </node>
-        <node id="4110" name="Unknown room near room 425">
+   <!--     <node id="4110" name="Unknown room near room 425">
             <data key="vertex_label">55.75382809279318 48.74316181987524</data>
-        </node>
+        </node>-->
         <node id="4111" name="Meeting room #4">
             <data key="vertex_label">55.75399922203928 48.74352257698774</data>
         </node>
