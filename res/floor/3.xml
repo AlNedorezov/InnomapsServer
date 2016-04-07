@@ -57,15 +57,15 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75335168162107 48.743238262832165</data>
         </node>
 
-        <node id="3111" name="Central WC" type="wc" attr="men">
+        <node id="3111" name="Men WC" type="wc" attr="men Central">
             <data key="vertex_label">55.753372058930914 48.743323758244514</data>
         </node>
 
-        <node id="3112" name="Central WC" type="wc" attr="women">
+        <node id="3112" name="Women WC" type="wc" attr="women Central">
             <data key="vertex_label">55.753386587191635 48.74335661530495</data>
         </node>
 
-        <node id="3113" name="Central WC" type="wc" attr="persons with disabilities">
+        <node id="3113" name="Persons with disabilities wc" type="wc" attr="persons with disabilities">
             <data key="vertex_label">55.75335922877411 48.74329425394535</data>
         </node>
 
