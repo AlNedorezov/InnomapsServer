@@ -114,7 +114,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1035" name="First floor, hallway to dormitory" attr="front of 113">
             <data key="vertex_label">55.75366941550054 48.742984123528004</data>
         </node>
-        <node id="1036" name="First floor, hallway to dormitory" attr="front of secondary fast response clinic" type="clinic">
+        <node id="1036" name="First floor, hallway to dormitory" attr="front of secondary fast response clinic">
             <data key="vertex_label">55.75369564163744 48.742969036102295</data>
         </node>
         <node id="1037" name="Hall with rounded stairs" attr="exit in the corner of hall with rounded stairs">
@@ -224,7 +224,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1085" name="Room 113" number="113" type="room">
             <data key="vertex_label">55.75365488734518 48.742886893451214</data>
         </node>
-        <node id="1087" name="Fast response clinic" type="room" attr = "clinic">
+        <node id="1087" name="Fast response clinic" type="clinic" attr = "clinic">
             <data key="vertex_label">55.75369733973202 48.742917738854885</data>
         </node>
         <node id="1089" name="University Canteen's WC" type="wc" attr="men">
