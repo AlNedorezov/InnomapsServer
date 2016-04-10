@@ -270,6 +270,11 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75367149095086 48.7431551143527</data>
         </node>
 
+        <node id="2221" name="Reading hall" number="2" type="reading" attr="2 floor reading hall">
+            <data key="vertex_label">55.753809413811275 48.74314270913601</data>
+        </node>
+
+
 
         <!-- Hallway connections 2nd floor-->
         <edge id="DEFAULT" source="2000" target="2001" />
@@ -368,6 +373,8 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="2088" target="2049" />
 
         <edge id="DEFAULT" source="2017" target="2100" />
+        <edge id="DEFAULT" source="2023" target="2221" />
+        <edge id="DEFAULT" source="2027" target="2221" />
 
 
     </graph>

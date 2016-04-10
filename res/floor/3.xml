@@ -99,8 +99,8 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753657528828384 48.742884546518326</data>
         </node>
 
-        <node id="3121" name="Reading hall" type="room" attr="Reading hall" >
-            <data key="vertex_label">55.753713377288356 48.74298680573702</data>
+        <node id="3121" name="Reading hall" number="3" type="reading" attr="3 floor reading hall" >
+            <data key="vertex_label">55.753809413811275 48.74314270913601</data>
         </node>
 
         <node id="3122" name="Library" number="lib 1" type="service" >

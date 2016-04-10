@@ -263,6 +263,9 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1111" name="Cafe CAVA" type="food" attr = "Cafe CAVA">
             <data key="vertex_label">55.753273945859824 48.74402079731226</data>
         </node>
+        <node id="1112" name="Reading hall" number="1" type="reading" attr="1 floor reading hall">
+            <data key="vertex_label">55.753809413811275 48.74314270913601</data>
+        </node>
 
 
 
@@ -462,6 +465,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="1107" target="1108" />
         <edge id="DEFAULT" source="1109" target="1110" />
         <edge id="DEFAULT" source="1111" target="1048" />
+        <edge id="DEFAULT" source="1040" target="1112" />
 
 
     </graph>
