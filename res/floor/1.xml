@@ -96,7 +96,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1029" name="First floor, school hallway" attr="front of 1st classroom">
             <data key="vertex_label">55.753145455099244 48.743669763207436</data>
         </node>
-        <node id="1030" name="First floor, school hallway" attr="front of stair doors">
+        <node id="1030" name="First floor, school hallway" attr="front of stairs doors">
             <data key="vertex_label">55.75310168135142 48.74372139573097</data>
         </node>
         <node id="1031" name="First floor, school hallway" attr="front of 4th classroom">
@@ -114,7 +114,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1035" name="First floor, hallway to dormitory" attr="front of 113">
             <data key="vertex_label">55.75366941550054 48.742984123528004</data>
         </node>
-        <node id="1036" name="First floor, hallway to dormitory" attr="front of secondary fast response clinic">
+        <node id="1036" name="First floor, hallway to dormitory" attr="front of secondary fast response clinic" type="clinic">
             <data key="vertex_label">55.75369564163744 48.742969036102295</data>
         </node>
         <node id="1037" name="Hall with rounded stairs" attr="exit in the corner of hall with rounded stairs">

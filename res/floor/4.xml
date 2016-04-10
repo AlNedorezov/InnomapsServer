@@ -538,8 +538,8 @@ http://graphml.graphdrawing.org/xmlns ">
     
         
         
-        <!--stair and elevator Line1 -->
-        <!-- <node id="4551" name="Stair on line1" type="stair" >
+        <!--stairs and elevator Line1 -->
+        <!-- <node id="4551" name="Stairs on line1" type="stairs" >
         <data key="vertex_label">55.754384873287925 48.74317925423384</data>
         </node> -->
         
@@ -567,19 +567,19 @@ http://graphml.graphdrawing.org/xmlns ">
         </node> 
         
         
-        <!--stair and elevator Line2 -->
-        <node id="4552" name="Stair" type="stair" attr="Stair on line2">
+        <!--stairs and elevator Line2 -->
+        <node id="4552" name="Stairs" type="stairs" attr="Stairs on line2">
         <data key="vertex_label">55.754447512954634 48.74367043375969</data>
         </node>
         
         <!--Line3 -->
-        <!--stair and elevator Line3 -->        
+        <!--stairs and elevator Line3 -->        
     
-        <node id="4554" name="Stair" type="stair" attr="stair1 on line3">
+        <node id="4554" name="Stairs" type="stairs" attr="stairs1 on line3">
         <data key="vertex_label">55.75411337067797 48.743589632213116</data>
         </node>     
     
-        <node id="4553" name="Elevator" type="elevtor" attr="elevator1 on line3">
+        <node id="4553" name="Elevator" type="elevator" attr="elevator1 on line3">
         <data key="vertex_label">55.75435053463276 48.74362953007221</data>
         </node>     
     
@@ -737,7 +737,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.75434996861072 48.743248991668224</data>
         </node>  -->        
 
-        <!-- <node id="4308" name="Line1_r9" attr="front of stair1 on line1">
+        <!-- <node id="4308" name="Line1_r9" attr="front of stairs1 on line1">
         <data key="vertex_label">55.75437411887719 48.74325234442949</data>
         </node>  -->    
 
@@ -797,7 +797,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.75423355656955 48.74355677515268</data>
         </node>     
                 
-        <node id="4322" name="Fourth floor hallway" attr="front of stair1 on line3">
+        <node id="4322" name="Fourth floor hallway" attr="front of stairs1 on line3">
         <data key="vertex_label">55.75409110700275 48.74349407851696</data>
         </node>
         
@@ -1050,7 +1050,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4408" target="4508" />
         <edge id="DEFAULT" source="4407" target="4507" />       
         
-        <!-- Line1  Connection door and stair and elevator-->
+        <!-- Line1  Connection door and stairs and elevator-->
         <!-- <edge id="DEFAULT" source="4308" target="4551" /> -->
         
         
@@ -1086,7 +1086,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4453" target="4507" />
         <edge id="DEFAULT" source="4413" target="4513" />
         
-        <!-- Line2  Connection door and stair and elevator-->
+        <!-- Line2  Connection door and stairs and elevator-->
         <edge id="DEFAULT" source="4320" target="4552" />
         <edge id="DEFAULT" source="4320" target="4553" />
         
@@ -1103,7 +1103,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <!-- Line3  Connection door to room-->
         <!-- nothing-->
         
-        <!-- Line3  Connection door and stair and elevator-->
+        <!-- Line3  Connection door and stairs and elevator-->
         <edge id="DEFAULT" source="4322" target="4554" />
         
         
@@ -1126,7 +1126,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <edge id="DEFAULT" source="4416" target="4516" />
         <edge id="DEFAULT" source="4417" target="4506" />
               
-        <!-- Line4  Connection door and stair and elevator-->
+        <!-- Line4  Connection door and stairs and elevator-->
         <!-- nothing-->
         
 
@@ -1140,7 +1140,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <!-- Connection Line4 to door-->    
         <edge id="DEFAULT" source="4402" target="4509" />
     
-        <!-- Line4  Connection door and stair and elevator-->
+        <!-- Line4  Connection door and stairs and elevator-->
         <!-- nothing--> 
 
 
