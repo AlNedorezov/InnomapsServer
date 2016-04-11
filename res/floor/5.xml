@@ -3,7 +3,7 @@
 http://graphml.graphdrawing.org/xmlns ">
     <key id="vertex_label" for="node" attr.name="Vertex Label" attr.type="string" />
     <graph edgedefault="undirected">
-        <node id="5000" name="Stairs" attr="stairs" type="stairs">
+        <node id="5000" name="Stairs 1" attr="stairs" type="stairs">
             <data key="vertex_label">55.75320394580634 48.743712678551674</data>
         </node>
         <node id="5001" name="Fifth floor hallway" attr="near stairs">
@@ -39,7 +39,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="5011" name="Room 507" number="507" type="room" attr="center">
             <data key="vertex_label">55.7530999832309 48.74380890280008</data>
         </node>
-        <node id="5012" name="Stairs" attr="emergency stairs" type="stairs">
+        <node id="5012" name="Stairs 2" attr="emergency stairs" type="stairs">
             <data key="vertex_label">55.753072624612365 48.743733800947666</data>
         </node>
         <node id="5013" name="Fifth floor hallway" attr="hallway center, front of 508 and 502">
@@ -138,7 +138,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="5044" name="Room 514" number="514" type="room" attr="center">
             <data key="vertex_label">55.75319809673957 48.744039572775364</data>
         </node>
-        <node id="5045" name="Stairs" attr="emergency stairs" type="stairs">
+        <node id="5045" name="Stairs 3" attr="emergency stairs" type="stairs">
             <data key="vertex_label">55.7532309269739 48.744109980762005</data>
         </node>
         <node id="5046" name="Fifth floor hallway" attr="hallway center, front of 515">
