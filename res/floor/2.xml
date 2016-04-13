@@ -275,7 +275,95 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
 
 
+        <!-- add by Max -->
+        
+    <node id="2401" name="Stairs" type="stairs" attr="Stairs1">
+            <data key="vertex_label">55.75304847354005 48.743681497871876</data>
+        </node>        
+    
+    <node id="2815" name="Stairs" type="stairs" attr="Stairs2">
+            <data key="vertex_label">55.75327809680245 48.743385784327984</data>
+        </node>
+    
+    <node id="2404" name="Stairs" type="stairs" attr="Stairs3">
+            <data key="vertex_label">55.75355847308612 48.743036426603794</data>
+        </node>
+        
+    <node id="2814" name="Stairs" type="stairs" attr="Stairs4">
+            <data key="vertex_label">55.75366469856759 48.74317053705454</data>
+        </node>      
+        
+    <node id="2405" name="Stairs" type="stairs" attr="Stairs5">
+            <data key="vertex_label">55.753767527576926 48.74291270971298</data>
+        </node>        
+    <node id="2333" name="2nd floor hallway"  attr="front stairs5">
+            <data key="vertex_label">55.75375545225776 48.74300692230463</data>
+        </node>
+    <node id="2406" name="Stairs" type="stairs" attr="Stairs6">
+            <data key="vertex_label">55.753887148505385 48.74320238828659</data>
+        </node>
+    
+    <node id="2813" name="Stairs" type="stairs" attr="Stairs7">
+            <data key="vertex_label">55.75407148477 48.743032068014145</data>
+        </node>
+    
+    <node id="2408" name="Stairs" type="stairs" attr="Stairs8">
+            <data key="vertex_label">55.75347771888536 48.74384846538305</data>
+        </node>
+        
+    <node id="2411" name="Stairs" type="stairs" attr="Stairs9">
+            <data key="vertex_label">55.75347771888536 48.74384846538305</data>
+        </node>       
+        
+    <node id="2366" name="2nd floor hallway"  attr="front stairs9">
+            <data key="vertex_label">55.75319243635154 48.74403487890959</data>
+        </node>         
+        
+   <node id="2409" name="Stairs" type="stairs" attr="Stairs10">
+            <data key="vertex_label">55.75343828511441 48.743621818721294</data>
+        </node>
+        
+<!--   <node id="" name="Elevator" type="elevator" attr="Elevator11">
+            <data key="vertex_label"></data> 
+        </node>     -->   
+    <node id="2402" name="Elevator" type="elevator" attr="Elevator11">
+    <data key="vertex_label">55.75315243625278 48.743831031024456</data> 
+            
+    <node id="2410" name="Elevator" type="elevator" attr="Elevator12">
+    <data key="vertex_label">55.753363002350085 48.74372776597738</data> 
+    </node>
+        
+    <node id="2403" name="Elevator" type="elevator" attr="Elevator13">
+            <data key="vertex_label">55.75358790681866 48.74326776713133</data> 
+        </node>
 
+   <node id="2407" name="Elevator" type="elevator" attr="Elevator14">
+            <data key="vertex_label">55.75379243291087 48.742968030273914</data> 
+        </node>
+        
+      <node id="2812" name="Elevator" type="elevator" attr="Elevator15">
+            <data key="vertex_label">55.75402337252292 48.743403889238834</data> 
+        </node>     
+        
+   <edge id="DEFAULT" source="2003" target="2401" /> 
+   <edge id="DEFAULT" source="2007" target="2815" /> 
+   <edge id="DEFAULT" source="2018" target="2404" />
+    <edge id="DEFAULT" source="2017" target="2814" />  
+    <edge id="DEFAULT" source="2333" target="2405" /> 
+    <edge id="DEFAULT" source="2333" target="2023" /> 
+   <edge id="DEFAULT" source="2031" target="2406" />
+   <edge id="DEFAULT" source="2035" target="2813" />
+   <edge id="DEFAULT" source="2040" target="2408" />
+   <edge id="DEFAULT" source="2366" target="2411" />
+   <edge id="DEFAULT" source="2366" target="2046" />
+    <edge id="DEFAULT" source="2041" target="2409" />
+    
+    <edge id="DEFAULT" source="2006" target="2402" />
+    <edge id="DEFAULT" source="2042" target="2410" />
+    <edge id="DEFAULT" source="2016" target="2403" />
+    <edge id="DEFAULT" source="2025" target="2407" />
+    <edge id="DEFAULT" source="2030" target="2812" />
+        <!--end -->
         <!-- Hallway connections 2nd floor-->
         <edge id="DEFAULT" source="2000" target="2001" />
         <edge id="DEFAULT" source="2001" target="2002" />
