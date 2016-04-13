@@ -343,7 +343,97 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753337153347374 48.74382499605417</data>
         </node>
 
+        
+        <!--add by Max -->
+         <node id="1205" name="First floor hallway"  type="door">
+            <data key="vertex_label">55.7530737566935 48.743736147880554</data>
+        </node>
+        
+        <node id="1401" name="Stairs"  type="stairs" attr = "Stairs1">
+            <data key="vertex_label">55.75304847354005 48.743681497871876</data>
+        </node>
+        
+        <node id="1815" name="Stairs"  type="stairs" attr = "Stairs2">
+            <data key="vertex_label">55.75327809680245 48.743385784327984</data>
+        </node>
+        
+        <node id="1404" name="Stairs"  type="stairs" attr = "Stairs3">
+            <data key="vertex_label">55.75355847308612 48.743036426603794</data>
+        </node>     
+        
+        <node id="1814" name="Stairs"  type="stairs" attr = "Stairs4">
+            <data key="vertex_label">55.75366469856759 48.74317053705454</data>
+        </node>
+        
+        <node id="1405" name="Stairs"  type="stairs" attr = "Stairs5">
+        <data key="vertex_label">55.753767527576926 48.74291270971298</data>
+        </node>
+        
+         <node id="1406" name="Stairs"  type="stairs" attr = "Stairs6">
+            <data key="vertex_label">55.753887148505385 48.74320238828659</data>
+            </node>    
+        
+        <node id="1813" name="Stairs"  type="stairs" attr = "Stairs7">
+            <data key="vertex_label">55.75407148477 48.743032068014145</data>
+            </node>
+            
+            
+        <node id="1235" name="First floor hallway"  type="door">
+        <data key="vertex_label">55.75405393795737 48.74313399195671</data>
+        </node>  
+        
+        <node id="1408" name="Stairs"  type="stairs" attr = "Stairs8">
+            <data key="vertex_label">55.75347771888536 48.74384846538305</data>
+            </node>
+            
+        <node id="1411" name="Stairs"  type="stairs" attr = "Stairs9">
+            <data key="vertex_label">55.753253757178044 48.74415993690491</data>
+            </node>            
 
+        <node id="1409" name="Stairs"  type="stairs" attr = "Stairs10">
+            <data key="vertex_label">55.75343828511441 48.743621818721294</data>
+            </node>
+        
+       <node id="1402" name="Elevator"  type="elevator" attr = "Stairs11">
+            <data key="vertex_label">55.75315243625278 48.743831031024456</data>
+            </node>         
+
+       <node id="1410" name="Elevator"  type="elevator" attr = "Stairs12">
+            <data key="vertex_label">55.753363002350085 48.74372776597738</data>
+            </node>  
+            
+       <node id="1403" name="Elevator"  type="elevator" attr = "Stairs13">
+            <data key="vertex_label">55.75358790681866 48.74326776713133</data>
+            </node>   
+            
+        <node id="1407" name="Elevator"  type="elevator" attr = "Stairs14">
+            <data key="vertex_label">55.75379243291087 48.742968030273914</data>
+            </node>    
+            
+        <node id="1812" name="Elevator"  type="elevator" attr = "Stairs15">
+            <data key="vertex_label">55.75402337252292 48.743403889238834</data>
+            </node>   
+            
+            
+        <edge id="DEFAULT" source="1205" target="1031" />
+        <edge id="DEFAULT" source="1205" target="1401" />
+        <edge id="DEFAULT" source="1056" target="1815" />
+        <edge id="DEFAULT" source="1082" target="1404" />
+        <edge id="DEFAULT" source="1018" target="1814" />
+        <edge id="DEFAULT" source="1037" target="1405" />
+        <edge id="DEFAULT" source="1047" target="1406" />
+        <edge id="DEFAULT" source="1235" target="1041" />
+        <edge id="DEFAULT" source="1235" target="1813" />
+        <edge id="DEFAULT" source="1050" target="1408" />
+        <edge id="DEFAULT" source="1003" target="1411" />
+        <edge id="DEFAULT" source="1003" target="1402" />
+        <edge id="DEFAULT" source="1049" target="1410" /> 
+        <edge id="DEFAULT" source="1051" target="1403" />         
+        <edge id="DEFAULT" source="1039" target="1407" />
+        <edge id="DEFAULT" source="1043" target="1812" />
+        
+        
+        <!-- end  -->
         <!-- Hallway connections-->
         <edge id="DEFAULT" source="1000" target="1001" />
         <edge id="DEFAULT" source="1001" target="1002" />
