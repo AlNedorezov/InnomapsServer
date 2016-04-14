@@ -346,72 +346,72 @@ http://graphml.graphdrawing.org/xmlns ">
         
         <!--add by Max -->
          <node id="1205" name="First floor hallway"  type="door">
-            <data key="vertex_label">55.7530737566935 48.7437361478805541</data>
+            <data key="vertex_label">55.7530737566935 48.7437361471</data>
         </node>
         
         <node id="1401" name="Stairs"  type="stairs" attr = "Stairs1">
-            <data key="vertex_label">55.75304847354005 48.7436814978718761</data>
+            <data key="vertex_label">55.75304847354005 48.74368149721</data>
         </node>
         
         <node id="1815" name="Stairs"  type="stairs" attr = "Stairs2">
-            <data key="vertex_label">55.75327809680245 48.7433857843279841</data>
+            <data key="vertex_label">55.75327809680245 48.743385784333</data>
         </node>
         
         <node id="1404" name="Stairs"  type="stairs" attr = "Stairs3">
-            <data key="vertex_label">55.75355847308612 48.7430364266037941</data>
+            <data key="vertex_label">55.75355847308612 48.74303642641</data>
         </node>     
         
         <node id="1814" name="Stairs"  type="stairs" attr = "Stairs4">
-            <data key="vertex_label">55.75366469856759 48.743170537054541</data>
+            <data key="vertex_label">55.75366469856759 48.74317053752</data>
         </node>
         
         <node id="1405" name="Stairs"  type="stairs" attr = "Stairs5">
-        <data key="vertex_label">55.753767527576926 48.742912709712981</data>
+        <data key="vertex_label">55.753767527576926 48.74291270976</data>
         </node>
         
          <node id="1406" name="Stairs"  type="stairs" attr = "Stairs6">
-            <data key="vertex_label">55.753887148505385 48.743202388286591</data>
+            <data key="vertex_label">55.753887148505385 48.7432023887</data>
             </node>    
         
         <node id="1813" name="Stairs"  type="stairs" attr = "Stairs7">
-            <data key="vertex_label">55.75407148477 48.7430320680141451</data>
+            <data key="vertex_label">55.75407148477 48.74303206808</data>
             </node>
             
             
         <node id="1235" name="First floor hallway"  type="door">
-        <data key="vertex_label">55.75405393795737 48.743133991956711</data>
+        <data key="vertex_label">55.75405393795737 48.7431339919</data>
         </node>  
         
         <node id="1408" name="Stairs"  type="stairs" attr = "Stairs8">
-            <data key="vertex_label">55.75347771888536 48.743848465383051</data>
+            <data key="vertex_label">55.75347771888536 48.7438484610</data>
             </node>
             
         <node id="1411" name="Stairs"  type="stairs" attr = "Stairs9">
-            <data key="vertex_label">55.753253757178044 48.744159936904911</data>
+            <data key="vertex_label">55.753253757178044 48.7441599311</data>
             </node>            
 
         <node id="1409" name="Stairs"  type="stairs" attr = "Stairs10">
-            <data key="vertex_label">55.75343828511441 48.7436218187212941</data>
+            <data key="vertex_label">55.75343828511441 48.7436218112</data>
             </node>
         
        <node id="1402" name="Elevator"  type="elevator" attr = "Stairs11">
-            <data key="vertex_label">55.75315243625278 48.7438310310244561</data>
+            <data key="vertex_label">55.75315243625278 48.7438310313</data>
             </node>         
 
        <node id="1410" name="Elevator"  type="elevator" attr = "Stairs12">
-            <data key="vertex_label">55.753363002350085 48.743727765977381</data>
+            <data key="vertex_label">55.753363002350085 48.7437277614</data>
             </node>  
             
        <node id="1403" name="Elevator"  type="elevator" attr = "Stairs13">
-            <data key="vertex_label">55.75358790681866 48.743267767131331</data>
+            <data key="vertex_label">55.75358790681866 48.7432677615</data>
             </node>   
             
         <node id="1407" name="Elevator"  type="elevator" attr = "Stairs14">
-            <data key="vertex_label">55.75379243291087 48.7429680302739141</data>
+            <data key="vertex_label">55.75379243291087 48.7429680316</data>
             </node>    
             
         <node id="1812" name="Elevator"  type="elevator" attr = "Stairs15">
-            <data key="vertex_label">55.75402337252292 48.7434038892388341</data>
+            <data key="vertex_label">55.75402337252292 48.7434038817</data>
             </node>   
             
             
