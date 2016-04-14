@@ -327,23 +327,24 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label"></data> 
         </node>     -->   
     <node id="2402" name="Elevator" type="elevator" attr="Elevator11">
-    <data key="vertex_label">55.75315243625278 48.743831031024456</data> 
+        <data key="vertex_label">55.75315243625278 48.743831031024456</data> 
+    </node>
             
     <node id="2410" name="Elevator" type="elevator" attr="Elevator12">
-    <data key="vertex_label">55.753363002350085 48.74372776597738</data> 
+        <data key="vertex_label">55.753363002350085 48.74372776597738</data> 
     </node>
         
     <node id="2403" name="Elevator" type="elevator" attr="Elevator13">
-            <data key="vertex_label">55.75358790681866 48.74326776713133</data> 
-        </node>
+        <data key="vertex_label">55.75358790681866 48.74326776713133</data> 
+    </node>
 
-   <node id="2407" name="Elevator" type="elevator" attr="Elevator14">
-            <data key="vertex_label">55.75379243291087 48.742968030273914</data> 
-        </node>
+    <node id="2407" name="Elevator" type="elevator" attr="Elevator14">
+       <data key="vertex_label">55.75379243291087 48.742968030273914</data> 
+    </node>
         
-      <node id="2812" name="Elevator" type="elevator" attr="Elevator15">
-            <data key="vertex_label">55.75402337252292 48.743403889238834</data> 
-        </node>     
+    <node id="2812" name="Elevator" type="elevator" attr="Elevator15">
+        <data key="vertex_label">55.75402337252292 48.743403889238834</data> 
+    </node>
         
    <edge id="DEFAULT" source="2003" target="2401" /> 
    <edge id="DEFAULT" source="2007" target="2815" /> 
