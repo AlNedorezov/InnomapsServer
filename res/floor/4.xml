@@ -912,7 +912,7 @@ http://graphml.graphdrawing.org/xmlns ">
         
    <node id="4207" name="Elevator" type="elevator" attr="Elevator14">
         <data key="vertex_label">55.75379243291087 48.742968030273914</data>
-        </node        
+        </node>
     
     <node id="" name="Elevator" type="elevator" attr="Elevator15">
         <data key="vertex_label">55.75402337252292 48.743403889238834</data>
