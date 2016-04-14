@@ -22,7 +22,7 @@
 <!--Stair4 -->
 <edge id="STAIRS" source="1814" target="2814" />
 <edge id="STAIRS" source="2814" target="3814" />
-<edge id="STAIRS" source="3814" target="4814" />
+<edge id="STAIRS" source="3814" target="4113" />
 
 
 <!--Stair5 -->
