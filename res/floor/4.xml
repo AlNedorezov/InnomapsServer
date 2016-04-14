@@ -887,7 +887,7 @@ http://graphml.graphdrawing.org/xmlns ">
         </node>
     
     <node id="4358" name="Fourth floor hallway"  attr=" front of Stair10">
-        <data key="vertex_label">55.75343828511441 48.743621818721294</data>
+        <data key="vertex_label">55.75340507769744 48.743670769035816</data>
         </node>
     
 <!--   <node id="" name="Elevator" type="elevator" attr="Elevator11">
