@@ -203,7 +203,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1071" name="Men WC" type="wc" attr="men Central WC">
             <data key="vertex_label">55.75340111544691 48.74330598860979</data>
         </node>
-        <node id="1073" name="women WC" type="wc" attr="women">
+        <node id="1073" name="Women WC" type="wc" attr="women">
             <data key="vertex_label">55.75343017194126 48.7433797493577</data>
         </node>
         <node id="1075" name="Room 107" number="107" type="room">
@@ -285,10 +285,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1070" name="Room 105" number="105" type="door">
             <data key="vertex_label">55.7533165873 48.74358292669058</data>
         </node>
-        <node id="1072" name="Central WC" type="wc door" attr="men">
+        <node id="1072" name="Men WC" type="wc door" attr="men Central">
             <data key="vertex_label">55.753370738179676 48.74336030334234</data>
         </node>
-        <node id="1074" name="Central WC" type="wc door" attr="women">
+        <node id="1074" name="Women WC" type="wc door" attr="women Central">
             <data key="vertex_label">55.75340130412553 48.74342434108257</data>
         </node>
         <node id="1076" name="Room 107" number="107" type="door">
@@ -312,10 +312,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1088" name="Fast response clinic" type="door" attr = "clinic">
             <data key="vertex_label">55.75369771708636 48.74295696616173</data>
         </node>
-        <node id="1090" name="University Canteen's WC" type="wc" attr="men">
+        <node id="1090" name="Men WC" type="wc" attr="men University Canteen's">
             <data key="vertex_label">55.75402299517174 48.74327916651964</data>
         </node>
-        <node id="1092" name="University Canteen's WC" type="wc" attr="women">
+        <node id="1092" name="Women WC" type="wc" attr="women University Canteen's">
             <data key="vertex_label">55.75403393835481 48.74333046376705</data>
         </node>
         <node id="1094" name="University Canteen first door entrance" type="door" attr="canteen first door entrance, connection with WC room entrance">
