@@ -65,6 +65,7 @@
 <edge id="STAIRS" source="1402" target="2402" />
 <edge id="STAIRS" source="2402" target="3402" />
 <edge id="STAIRS" source="3402" target="4202" />
+<edge id="STAIRS" source="4202" target="5002" />
 
 <!--Elevator12 -->
 <edge id="STAIRS" source="1410" target="2410" />
