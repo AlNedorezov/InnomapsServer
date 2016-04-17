@@ -283,7 +283,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75316488911809 48.74362047761679</data>
         </node>
         <node id="1070" name="Room 105" number="105" type="door">
-            <data key="vertex_label">55.75331658734029 48.74358292669058</data>
+            <data key="vertex_label">55.7533165873 48.74358292669058</data>
         </node>
         <node id="1072" name="Central WC" type="wc door" attr="men">
             <data key="vertex_label">55.753370738179676 48.74336030334234</data>

@@ -224,7 +224,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75305017166282 48.7438457831740</data>
         </node>
         <node id="2063" name="Room 203" number="203" type="door">
-            <data key="vertex_label">55.75331658734029 48.74358292669058</data>
+            <data key="vertex_label">55.7533165874 48.74358292669058</data>
         </node>
         <node id="2088" name="Deputy director office"  type="door" attr="Office">
             <data key="vertex_label">55.753356964628345 48.743401542305946</data>
