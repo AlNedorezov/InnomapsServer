@@ -109,15 +109,15 @@ http://graphml.graphdrawing.org/xmlns ">
 
         <!--Line5-->
 
-        <node id="3123" name="University Canteen's WC" type="wc" attr="men">
+        <node id="3123" name="Men WC" type="wc" attr="men University Canteen's">
             <data key="vertex_label">55.754022806496145 48.74326944351196</data>
         </node>
 
-        <node id="3124" name="University Canteen's WC" type="wc" attr="women">
+        <node id="3124" name="Women WC" type="wc" attr="women">
             <data key="vertex_label">55.75404280610438 48.743280842900276</data>
         </node>
 
-        <node id="3125" name="University Canteen's WC" type="wc" attr="persons with disabilities">
+        <node id="3125" name="Persons with disabilities WC" type="wc" attr="persons with disabilities University Canteen's WC">
             <data key="vertex_label">55.75403167424823 48.74335527420044</data>
         </node>
 
@@ -254,15 +254,15 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75333809674193 48.74330431222916</data>
         </node>
 
-        <node id="3215" name="Central WC" type="door" attr="men">
+        <node id="3215" name="Men WC" type="door" attr="men Central WC">
             <data key="vertex_label">55.753364700459144 48.74333683401346</data>
         </node>
 
-        <node id="3216" name="Central WC" type="door" attr="women">
+        <node id="3216" name="Women WC" type="door" attr="women">
             <data key="vertex_label">55.75335111558455 48.743307664990425</data>
         </node>
 
-        <node id="3217" name="Central WC" type="door" attr="persons with disabilities">
+        <node id="3217" name="Persons with disabilities WC" type="door" attr="persons with disabilities">
             <data key="vertex_label">55.753377530614166 48.7433710321784</data>
         </node>
 
@@ -326,15 +326,15 @@ http://graphml.graphdrawing.org/xmlns ">
 
         <!--Line5-->
 
-        <node id="3232" name="University Canteen's WC" type="door" attr="men">
+        <node id="3232" name="Men WC" type="door" attr="men University Canteen's WC">
             <data key="vertex_label">55.7540207310645 48.74328386038542</data>
         </node>
 
-        <node id="3233" name="University Canteen's WC" type="door" attr="women">
+        <node id="3233" name="Women WC" type="door" attr="women University Canteen's">
             <data key="vertex_label">55.754044504183845 48.74329660087824</data>
         </node>
 
-        <node id="3234" name="University Canteen's WC" type="door" attr="persons with disabilities">
+        <node id="3234" name="Persons with disabilities WC" type="door" attr="persons with disabilities University Canteen's">
             <data key="vertex_label">55.75403544775914 48.7433297932148</data>
         </node>
 
