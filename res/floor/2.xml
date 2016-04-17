@@ -229,10 +229,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="2088" name="Deputy director office"  type="door" attr="Office">
             <data key="vertex_label">55.753356964628345 48.743401542305946</data>
         </node>
-        <node id="2086" name="WC" type="wc door" attr="men">
+        <node id="2086" name="Men WC" type="wc door" attr="men">
             <data key="vertex_label">55.753372624967156 48.74332241714001</data>
         </node>
-        <node id="2087" name="WC" type="wc door" attr="women">
+        <node id="2087" name=" Women WC" type="wc door" attr="women">
             <data key="vertex_label">55.75340243619713 48.74338913708925</data>
         </node>
         <node id="2067" name="Room 207" number="207" type="door">
