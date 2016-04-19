@@ -179,11 +179,11 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75334187031996 48.7440100684762</data>
         </node> 
 
-         <node id="3139" name="319" number="319" type="office room" attr = "Department for work with students" >
+         <node id="3139" name="319" number="319" type="room" attr = "Department for work with students" >
             <data key="vertex_label">55.753257530764216 48.74402616173029</data>
         </node> 
 
-         <node id="3140" name="320" number="320" type="office room" attr = "the study of mathematics" >
+         <node id="3140" name="320" number="320" type="room" attr = "the study of mathematics" >
             <data key="vertex_label">55.75321696469372 48.74420017004013</data>
         </node> 
 
