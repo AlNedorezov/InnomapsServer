@@ -65,7 +65,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753386587191635 48.74335661530495</data>
         </node>
 
-        <node id="3113" name="Persons with disabilities wc" type="wc" attr="persons with disabilities">
+        <node id="3113" name="WC for people  with disabilities" type="wc" attr="persons with disabilities">
             <data key="vertex_label">55.75335922877411 48.74329425394535</data>
         </node>
 
@@ -117,7 +117,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75404280610438 48.743280842900276</data>
         </node>
 
-        <node id="3125" name="Persons with disabilities WC" type="wc" attr="persons with disabilities University Canteen's WC">
+        <node id="3125" name="WC for people  with disabilities" type="wc" attr="persons with disabilities University Canteen's WC">
             <data key="vertex_label">55.75403167424823 48.74335527420044</data>
         </node>
 
@@ -262,7 +262,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75335111558455 48.743307664990425</data>
         </node>
 
-        <node id="3217" name="Persons with disabilities WC" type="door" attr="persons with disabilities">
+        <node id="3217" name="WC for people  with disabilities" type="door" attr="persons with disabilities">
             <data key="vertex_label">55.753377530614166 48.7433710321784</data>
         </node>
 
@@ -334,7 +334,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.754044504183845 48.74329660087824</data>
         </node>
 
-        <node id="3234" name="Persons with disabilities WC" type="door" attr="persons with disabilities University Canteen's">
+        <node id="3234" name="WC for people  with disabilities" type="door" attr="persons with disabilities University Canteen's">
             <data key="vertex_label">55.75403544775914 48.7433297932148</data>
         </node>
 
