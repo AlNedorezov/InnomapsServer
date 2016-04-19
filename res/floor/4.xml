@@ -183,7 +183,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4800" name="Men wc" type="wc" attr="men wc Central">
             <data key="vertex_label">55.75338470040482 48.7433710321784</data>
         </node>
-        <node id="4801" name="Persons with disabilities wc" type="wc" attr="Central wc">
+        <node id="4801" name="WC for people  with disabilities" type="wc" attr="Central wc">
             <data key="vertex_label">55.7533667759257 48.74333951622248</data>
         </node>
         <node id="4802" name="Women wc" type="wc" attr="women wc">
