@@ -200,13 +200,13 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4102" name="Small open lounge near wcs">
             <data key="vertex_label">55.75341715312505 48.74348368495703</data>
         </node>
-        <node id="4103" name="Meeting room #2">
+        <node id="4103" name="Meeting room 4.2" number="2" type="room" attr = "meeting room">
             <data key="vertex_label">55.75346111519718 48.74339818954468</data>
         </node>
         <node id="4104" name="Small open lounge near room 453">
             <data key="vertex_label">55.7535563976298 48.743481673300266</data>
         </node>
-        <node id="4105" name="Meeting room #3">
+        <node id="4105" name="Meeting room 4.3" number="3" type="room" attr = "meeting room">
             <data key="vertex_label">55.75361620846362 48.74342903494835</data>
         </node>
         <node id="4106" name="Evil babka's room">
@@ -224,7 +224,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4110" name="Unknown room near room 425">
             <data key="vertex_label">55.75382809279318 48.74316181987524</data>
         </node>
-        <node id="4111" name="Meeting room #4">
+        <node id="4111" name="Meeting room 4.4" number="4" type="room" attr = "meeting room">
             <data key="vertex_label">55.75399922203928 48.74352257698774</data>
         </node>
 
@@ -382,7 +382,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4950" name="Fourth floor hallway" attr="Hallway near small open lounge near wcs">
             <data key="vertex_label">55.7533931909447 48.74345015734434</data>
         </node>
-        <node id="4951" name="Fourth floor hallway" attr="Hallway near meeting room #2">
+        <node id="4951" name="Fourth floor hallway" attr="Hallway near meeting room 4.2">
             <data key="vertex_label">55.753446775642615 48.743352591991425</data>
         </node>
         <node id="4952" name="Fourth floor hallway" attr="Hallway near room 419">
@@ -415,7 +415,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4961" name="Fourth floor hallway" attr="Hallway near room 453">
             <data key="vertex_label">55.75357734086594 48.743531964719296</data>
         </node>
-        <node id="4962" name="Fourth floor hallway" attr="Hallway near meeting room #3">
+        <node id="4962" name="Fourth floor hallway" attr="Hallway near meeting room 4.3">
             <data key="vertex_label">55.75365073644265 48.74343540519476</data>
         </node>
         <node id="4963" name="Fourth floor hallway" attr="Hallway near room 452">
@@ -472,7 +472,7 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4980" name="Fourth floor hallway" attr="Hallway near room 449">
             <data key="vertex_label">55.753957336008746 48.74344412237406</data>
         </node>
-        <node id="4981" name="Fourth floor hallway" attr="Hallway near meeting room #4">
+        <node id="4981" name="Fourth floor hallway" attr="Hallway near meeting room 4.4">
             <data key="vertex_label">55.75400261820194 48.74345652759075</data>
         </node>
         <node id="4982" name="Fourth floor hallway" attr="Hallway near room 432">

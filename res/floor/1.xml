@@ -209,10 +209,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1075" name="Room 107" number="107" type="room">
             <data key="vertex_label">55.753476398137686 48.74319568276405</data>
         </node>
-        <node id="1077" name="Meeting Room 3" number="3" type="room" attr = "meeting room">
+        <node id="1077" name="Meeting Room 1.3" number="3" type="room" attr = "meeting room">
             <data key="vertex_label">55.75357602012165 48.74319065362215</data>
         </node>
-        <node id="1079" name="Meeting Room 4" number="4" type="room" attr = "meeting room">
+        <node id="1079" name="Meeting Room 1.4" number="4" type="room" attr = "meeting room">
             <data key="vertex_label">55.75360677458425 48.74315310269594</data>
         </node>
         <node id="1081" name="Room 111" number="111" type="room">
@@ -242,10 +242,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1097" name="University Canteen second door entrance" attr="canteen 2nd door entrance">
             <data key="vertex_label">55.7542792157908 48.74342132359743</data>
         </node>
-        <node id="1099" name="Meeting Room 2" number="2" type="room" attr = "meeting room">
+        <node id="1099" name="Meeting Room 1.2" number="2" type="room" attr = "meeting room">
             <data key="vertex_label">55.75367413243294 48.74340087175369</data>
         </node>
-        <node id="1101" name="Meeting Room 1" number="1" type="room" attr = "meeting room">
+        <node id="1101" name="Meeting Room 1.1" number="1" type="room" attr = "meeting room">
             <data key="vertex_label">55.753656208086795 48.74344144016504</data>
         </node>
         <node id="1103" name="Room 110" number="110" type="room">
@@ -294,10 +294,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1076" name="Room 107" number="107" type="door">
             <data key="vertex_label">55.753538284551595 48.74326676130295</data>
         </node>
-        <node id="1078" name="Meeting Room 3" number="3" type="door" attr = "meeting room">
+        <node id="1078" name="Meeting Room 1.3" number="3" type="door" attr = "meeting room">
             <data key="vertex_label">55.75359941615675 48.74321814626455</data>
         </node>
-        <node id="1080" name="Meeting Room 4" number="4" type="door" attr = "meeting room">
+        <node id="1080" name="Meeting Room 1.4" number="4" type="door" attr = "meeting room">
             <data key="vertex_label">55.75362318953289 48.74318461865187</data>
         </node>
         <node id="1082" name="Room 111" number="111" type="door">
@@ -324,10 +324,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="1098" name="University Canteen second door entrance" type="door" attr="canteen 2nd door entrance">
             <data key="vertex_label">55.754267329304476 48.74351855367422</data>
         </node>
-        <node id="1100" name="Meeting Room 2" number="2" type="door" attr = "meeting room">
+        <node id="1100" name="Meeting Room 1.2" number="2" type="door" attr = "meeting room">
             <data key="vertex_label">55.753659415601994 48.74337639659643</data>
         </node>
-        <node id="1102" name="Meeting Room 1" number="1" type="door" attr = "meeting room">
+        <node id="1102" name="Meeting Room 1.1" number="1" type="door" attr = "meeting room">
             <data key="vertex_label">55.75364017050695 48.74340187758207</data>
         </node>
         <node id="1104" name="Room 110" number="110" type="door">

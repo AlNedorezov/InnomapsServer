@@ -7,7 +7,7 @@ http://graphml.graphdrawing.org/xmlns ">
 
 
         <!-- 2nd floor hallway-->
-        <node id="2000" name="2nd floor hallway" attr="front of Conference room 2">
+        <node id="2000" name="2nd floor hallway" attr="front of meeting room 2.2">
             <data key="vertex_label">55.75303677535904 48.74381963163614</data>
         </node>
 
@@ -15,7 +15,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75304073764656 48.74380923807621</data>
         </node>
 
-        <node id="2002" name="2nd floor hallway" attr="front of Conference room 1">
+        <node id="2002" name="2nd floor hallway" attr="front of meeting room 2.1">
             <data key="vertex_label">55.75306281324105 48.74378979206085</data>
         </node>
         <node id="2003" name="2nd floor hallway" attr="right wing, turn">
@@ -120,10 +120,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="2036" name="2nd floor hallway" attr="front of right wing">
             <data key="vertex_label">55.753694698251515 48.74337639659643</data>
         </node>
-        <node id="2037" name="2nd floor hallway" attr="front of conference room 3">
+        <node id="2037" name="2nd floor hallway" attr="front of meeting room 2.3">
             <data key="vertex_label">55.753656774118916 48.74341394752264</data>
         </node>
-        <node id="2038" name="2nd floor hallway" attr="front of conference room 4">
+        <node id="2038" name="2nd floor hallway" attr="front of meeting room 2.4">
             <data key="vertex_label">55.75373545250218 48.74345250427723</data>
         </node>
         <node id="2039" name="2nd floor hallway" attr="in front of stairs">
@@ -153,10 +153,10 @@ http://graphml.graphdrawing.org/xmlns ">
 
 
         <!-- Inside of rooms -->
-        <node id="2047" name="Conference room 1" number="1" type="room" attr="conference room">
+        <node id="2047" name="Meeting Room 2.1" number="1" type="room" attr = "meeting room">
             <data key="vertex_label">55.7530863982641 48.743839748203754</data>
         </node>
-        <node id="2048" name="Conference room 2" number="2" type="room" attr="conference room">
+        <node id="2048" name="Meeting Room 2.2" number="2" type="room" attr = "meeting room">
             <data key="vertex_label">55.753062624560805 48.743875958025455</data>
         </node>
         <node id="2201" name="Room 201" number="201" type="room">
@@ -189,13 +189,13 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="2211" name="Room 211" number="211" type="room">
             <data key="vertex_label">55.75385016794209 48.74294355511665</data>
         </node>
-        <node id="2052" name="Conference room 3" number="3" type="room" attr="conference room">
+        <node id="2052" name="Meeting Room 2.3" number="3" type="room" attr = "meeting room">
             <data key="vertex_label">55.753671679628184 48.74346625059843</data>
         </node>
         <node id="2212" name="Room 212"  number="212" type="room">
             <data key="vertex_label">55.75371583009053 48.74354939907789</data>
         </node>
-        <node id="2053" name="Conference room 4" number="4" type="room" attr="conference room">
+        <node id="2053" name="Meeting Room 2.4" number="4" type="room" attr = "meeting room">
             <data key="vertex_label">55.75377205582064 48.743510507047176</data>
         </node>
         <node id="2205" name="Room 205" number="205" type="room">
@@ -217,10 +217,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="2062" name="Room 202" number="202" type="door">
             <data key="vertex_label">55.753037341400145 48.743781074881554</data>
         </node>
-        <node id="2081" name="Conference room 1" number="1" type="door" attr="conference room">
+        <node id="2081" name="Meeting room 2.1" number="1" type="door" attr="meeting room">
             <data key="vertex_label">55.753072624612365 48.743812926113605</data>
         </node>
-        <node id="2082" name="Conference room 2" number="2" type="door" attr="conference room">
+        <node id="2082" name="Meeting room 2.2" number="2" type="door" attr="meeting room">
             <data key="vertex_label">55.75305017166282 48.7438457831740</data>
         </node>
         <node id="2063" name="Room 203" number="203" type="door">
@@ -247,10 +247,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="2071" name="Room 211" number="211" type="door">
             <data key="vertex_label">55.753837526619016 48.74302703887224</data>
         </node>
-        <node id="2083" name="Conference Room 3" number="3" type="door" attr="conference room">
+        <node id="2083" name="Meeting Room 2.3" number="3" type="door" attr="meeting room">
             <data key="vertex_label">55.75366601930888 48.74344412237406</data>
         </node>
-        <node id="2084" name="Conference Room 4" number="4" type="door" attr="conference room">
+        <node id="2084" name="Meeting Room 2.4" number="4" type="door" attr="meeting room">
             <data key="vertex_label">55.75374016942659 48.74347630888224</data>
         </node>
         <node id="2072" name="Room 212" number="212" type="door">

@@ -26,7 +26,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75300922801568 48.743727430701256</data>
         </node>
 
-         <node id="3104" name="Meeting Room 1" number="1" type="room" attr = "meeting room">
+         <node id="3104" name="Meeting Room 3.1" number="1" type="room" attr = "meeting room">
             <data key="vertex_label">55.7530933794282 48.743883334100246</data>
         </node> 
 
@@ -69,7 +69,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75335922877411 48.74329425394535</data>
         </node>
 
-         <node id="3114" name="Meeting Room 3" number="3" type="room" attr = "meeting room">
+         <node id="3114" name="Meeting Room 3.3" number="3" type="room" attr = "meeting room">
             <data key="vertex_label">55.753411870125916 48.74347195029259</data>
         </node> 
 
@@ -129,7 +129,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.7543173279924 48.743527606129646</data>
         </node>
 
-        <node id="3128" name="Meeting Room 5" number="5" type="room" attr = "meeting room">
+        <node id="3128" name="Meeting Room 3.5" number="5" type="room" attr = "meeting room">
             <data key="vertex_label">55.75393092137177 48.74349910765886</data>
         </node>
 
@@ -144,7 +144,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75363318944074 48.74361410737038</data>
         </node> 
 
-        <node id="3131" name="Meeting Room 4" number="5" type="room" attr = "meeting room">
+        <node id="3131" name="Meeting Room 3.4" number="4" type="room" attr = "meeting room">
             <data key="vertex_label">55.753559605153164 48.743497766554356</data>
         </node>
 
@@ -167,7 +167,7 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.75344847374804 48.743902780115604</data>
         </node>
 
-        <node id="3136" name="Meeting Room 2" number="5" type="room" attr = "meeting room">
+        <node id="3136" name="Meeting Room 3.2" number="2" type="room" attr = "meeting room">
             <data key="vertex_label">55.75332149299434 48.74380722641945</data>
         </node> 
 
