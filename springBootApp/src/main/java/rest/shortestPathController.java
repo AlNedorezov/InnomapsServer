@@ -10,6 +10,7 @@ import pathfinding.LatLng;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/7/16.
@@ -23,11 +24,14 @@ public class shortestPathController {
                                                @RequestParam(value = "vertexOneLongitude", defaultValue = "0") double vertexOneLongitude,
                                                @RequestParam(value = "vertexTwoLatitude", defaultValue = "0") double vertexTwoLatitude,
                                                @RequestParam(value = "vertexTwoLongitude", defaultValue = "0") double vertexTwoLongitude) throws Exception {
-
-        System.out.println("vertexOneLatitude:  " + vertexOneLatitude);
-        System.out.println("vertexOneLongitude: " + vertexOneLongitude);
-        System.out.println("vertexTwoLatitude:  " + vertexTwoLatitude);
-        System.out.println("vertexTwoLongitude: " + vertexTwoLongitude);
+        // This data will be written in the log on the server
+        Date currentDate = new Date();
+        System.out.println("Received POST request for building a shortest path on " + currentDate );
+        System.out.println("with the following start and finish coordinates:");
+        System.out.println("start point latitude:   " + vertexOneLatitude);
+        System.out.println("start point longitude:  " + vertexOneLongitude);
+        System.out.println("finish point latitude:  " + vertexTwoLatitude);
+        System.out.println("finish point longitude: " + vertexTwoLongitude);
         LatLng vertexOne = new LatLng(vertexOneLatitude, vertexOneLongitude);
         LatLng vertexTwo = new LatLng(vertexTwoLatitude, vertexTwoLongitude);
         JGraphTWrapper jGraphTWrapper;
