@@ -35,7 +35,7 @@ public class LatLngGraphVertex {
 
     @Override
     public boolean equals(Object o) {
-        return getClass() == o.getClass() && ((LatLngGraphVertex)o).getVertex().equals(getVertex());
+        return getClass() == o.getClass() && ((LatLngGraphVertex) o).getVertex().equals(getVertex());
     }
 
     @Override

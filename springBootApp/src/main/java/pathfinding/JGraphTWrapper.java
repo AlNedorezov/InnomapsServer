@@ -31,6 +31,7 @@ public class JGraphTWrapper {
 
     /**
      * Adds new vertex.
+     *
      * @param v - vertex to add
      * @return id of vertex added
      */
@@ -46,10 +47,11 @@ public class JGraphTWrapper {
 
     /**
      * Adds new edge of given type.
-     * @param v1 - vertex edge begins
-     * @param v2 - vertex edge ends
-     * @param v1Index - v1 vertex index
-     * @param v2Index - v2 vertex index
+     *
+     * @param v1               - vertex edge begins
+     * @param v2               - vertex edge ends
+     * @param v1Index          - v1 vertex index
+     * @param v2Index          - v2 vertex index
      * @param graphElementType - edge type (see LatLngGraphEdge.GraphElementType)
      */
     public void addEdge(LatLng v1, LatLng v2, int v1Index, int v2Index, GraphElementType graphElementType) {
@@ -65,6 +67,7 @@ public class JGraphTWrapper {
 
     /**
      * Shortest path using all edges.
+     *
      * @param v1 - start LatLng
      * @param v2 - end LatLng
      * @return sequential list of LatLng objects
@@ -85,17 +88,18 @@ public class JGraphTWrapper {
         ArrayList<LatLngGraphVertex> pointsList = new ArrayList<>();
         LatLngGraphVertex testVertexFrom = foundPath.get(0).getV1();
         LatLngGraphVertex testVertexTo = foundPath.get(0).getV2();
-        pointsList.add(testVertexFrom.equals(vTemp1) ?  testVertexFrom : testVertexTo);
+        pointsList.add(testVertexFrom.equals(vTemp1) ? testVertexFrom : testVertexTo);
         for (int i = 0; i < foundPath.size(); ++i) {
             testVertexFrom = foundPath.get(i).getV1();
             testVertexTo = foundPath.get(i).getV2();
-            pointsList.add(pointsList.get(pointsList.size()-1).equals(testVertexFrom) ? testVertexTo : testVertexFrom);
+            pointsList.add(pointsList.get(pointsList.size() - 1).equals(testVertexFrom) ? testVertexTo : testVertexFrom);
         }
         return pointsList;
     }
 
     /**
      * Shortest path with only default edges.
+     *
      * @param v1 - start LatLng
      * @param v2 - end LatLng
      * @return sequential list of LatLng objects
@@ -115,6 +119,7 @@ public class JGraphTWrapper {
 
     /**
      * Stores graph into the file using GraphML format.
+     *
      * @param filename - exported file name
      */
     public void exportGraphML(String filename) {
@@ -124,6 +129,7 @@ public class JGraphTWrapper {
     /**
      * Imports graph from the file of GraphML format. Doesn't return anything but if import was
      * successful internal graph object will be replaced by the imported one.
+     *
      * @param inputStream - stream to read.
      */
     public void importGraphML(InputStream inputStream) throws XmlPullParserException, FileNotFoundException {
@@ -143,7 +149,7 @@ public class JGraphTWrapper {
         boolean nodeDataFound = false;
 
         while (eventType != XmlPullParser.END_DOCUMENT) {
-            if(eventType == XmlPullParser.START_TAG) {
+            if (eventType == XmlPullParser.START_TAG) {
                 String tagName = xpp.getName();
                 switch (tagName) {
                     case "node":
@@ -178,7 +184,7 @@ public class JGraphTWrapper {
                         }
                         break;
                 }
-            } else if(eventType == XmlPullParser.TEXT) {
+            } else if (eventType == XmlPullParser.TEXT) {
                 if (id != -1 && nodeDataFound) {
                     String[] coords = xpp.getText().split(" ");
                     LatLng latLng = new LatLng(Double.valueOf(coords[0]), Double.valueOf(coords[1]));
@@ -199,14 +205,14 @@ public class JGraphTWrapper {
 
         try {
             br.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
      * Returns all graph vertices as array (warning - this method complexity is O(n))
+     *
      * @return array of graph vertices
      */
     public LatLngGraphVertex[] getVertices() {

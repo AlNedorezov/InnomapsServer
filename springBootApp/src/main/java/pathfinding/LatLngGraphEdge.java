@@ -29,7 +29,7 @@ public class LatLngGraphEdge extends DefaultWeightedEdge {
     @Override
     public boolean equals(Object o) {
         return getClass() == o.getClass() &&
-                ((LatLngGraphEdge)o).getGraphEdgeType().equals(graphEdgeType) &&
+                ((LatLngGraphEdge) o).getGraphEdgeType().equals(graphEdgeType) &&
                 ((LatLngGraphEdge) o).getSource() == getSource() &&
                 ((LatLngGraphEdge) o).getTarget() == getTarget();
     }

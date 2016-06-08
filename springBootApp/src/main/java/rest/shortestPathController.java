@@ -5,14 +5,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmlpull.v1.XmlPullParserException;
-import pathfinding.LatLng;
 import pathfinding.JGraphTWrapper;
+import pathfinding.LatLng;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  * Created by alnedorezov on 6/7/16.
@@ -37,7 +34,7 @@ public class shortestPathController {
 
         FileInputStream inputStream = null;
         try {
-            inputStream =  new FileInputStream("9.xml");
+            inputStream = new FileInputStream("9.xml");
         } catch (IOException e) {
             e.printStackTrace();
         }
