@@ -12,6 +12,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.xmlpull.v1.XmlPullParserException;
+import pathfinding.JGraphTWrapper;
+import pathfinding.LatLngGraphVertex;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 
 /**
  * Created by alnedorezov on 6/7/16.
@@ -39,6 +45,9 @@ public class Application {
 
         // Insert demo data into the database
         // new Application().insertDemoDataInTheDatabase();
+
+        // Inserting coordinates from xml to the database
+        new Application().writeCoordinatesFromXmlToDB();
 
         // Run Spring application
         SpringApplication.run(Application.class, args);
@@ -98,5 +107,41 @@ public class Application {
 
         coordinateDao.create(new Coordinate(id, latitude, longitude, floor, type, name, description));
         connectionSource.close();
+    }
+
+    /**
+     * Inserting coordinates from xml to the database
+     */
+    private void writeCoordinatesFromXmlToDB() throws Exception {
+        LatLngGraphVertex[] coordinatesList;
+        JGraphTWrapper jGraphTWrapper = null;
+        FileInputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream("9.xml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (inputStream != null) {
+            try {
+                jGraphTWrapper = new JGraphTWrapper();
+                jGraphTWrapper.importGraphML(inputStream);
+            } catch (XmlPullParserException | IOException e) {
+                e.printStackTrace();
+            }
+
+            // create our data source
+            ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE_URL, "sa", "sa");
+            setupDatabase(connectionSource, false);
+
+            coordinatesList = new LatLngGraphVertex[jGraphTWrapper.getVertices().length];
+            coordinatesList = jGraphTWrapper.getVertices();
+
+            for(int i=0; i<coordinatesList.length; i++) {
+                if(coordinatesList[i] != null)
+                    coordinateDao.create(new Coordinate(0, coordinatesList[i].getVertex().getLatitude(), coordinatesList[i].getVertex().getLongitude(),
+                                    (int) Math.floor(coordinatesList[i].getVertexId()/1000), coordinatesList[i].getGraphVertexType().toString(), "", ""));
+            }
+            connectionSource.close();
+        }
     }
 }
