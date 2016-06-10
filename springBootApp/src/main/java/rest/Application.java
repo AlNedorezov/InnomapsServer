@@ -13,8 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.xmlpull.v1.XmlPullParserException;
-import pathfinding.JGraphTWrapper;
-import pathfinding.LatLngGraphVertex;
+import xmlToDB.ExtendedJGraphTWrapper;
+import xmlToDB.LatLngExtendedGraphVertex;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        // Initial connect to the database // for demo values
+        // Initial connect to the database // check that tables are created
         new Application().connectToDB();
 
         // Insert demo data into the database
@@ -96,6 +96,7 @@ public class Application {
         String type;
         String name;
         String description;
+        Integer roomNumber;
 
         id=0;
         latitude = 55.75310771911266;
@@ -104,8 +105,9 @@ public class Application {
         type = "room";
         name = "Classroom 1";
         description = "";
+        roomNumber = 1;
 
-        coordinateDao.create(new Coordinate(id, latitude, longitude, floor, type, name, description));
+        coordinateDao.create(new Coordinate(id, latitude, longitude, floor, type, name, description, roomNumber));
         connectionSource.close();
     }
 
@@ -113,8 +115,8 @@ public class Application {
      * Inserting coordinates from xml to the database
      */
     private void writeCoordinatesFromXmlToDB() throws Exception {
-        LatLngGraphVertex[] coordinatesList;
-        JGraphTWrapper jGraphTWrapper = null;
+        LatLngExtendedGraphVertex[] coordinatesList;
+        ExtendedJGraphTWrapper jGraphTWrapper = null;
         FileInputStream inputStream = null;
         try {
             inputStream = new FileInputStream("9.xml");
@@ -123,7 +125,7 @@ public class Application {
         }
         if (inputStream != null) {
             try {
-                jGraphTWrapper = new JGraphTWrapper();
+                jGraphTWrapper = new ExtendedJGraphTWrapper();
                 jGraphTWrapper.importGraphML(inputStream);
             } catch (XmlPullParserException | IOException e) {
                 e.printStackTrace();
@@ -133,13 +135,13 @@ public class Application {
             ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE_URL, "sa", "sa");
             setupDatabase(connectionSource, false);
 
-            coordinatesList = new LatLngGraphVertex[jGraphTWrapper.getVertices().length];
             coordinatesList = jGraphTWrapper.getVertices();
 
             for(int i=0; i<coordinatesList.length; i++) {
                 if(coordinatesList[i] != null)
                     coordinateDao.create(new Coordinate(0, coordinatesList[i].getVertex().getLatitude(), coordinatesList[i].getVertex().getLongitude(),
-                                    (int) Math.floor(coordinatesList[i].getVertexId()/1000), coordinatesList[i].getGraphVertexType().toString(), "", ""));
+                                    (int) Math.floor(coordinatesList[i].getVertexId()/1000), coordinatesList[i].getGraphVertexType().toString(),
+                                    coordinatesList[i].getName(), coordinatesList[i].getDescription(), coordinatesList[i].getNumber()));
             }
             connectionSource.close();
         }

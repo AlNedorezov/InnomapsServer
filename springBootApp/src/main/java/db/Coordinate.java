@@ -26,8 +26,10 @@ public class Coordinate {
     private String name;
     @DatabaseField
     private String description;
+    @DatabaseField
+    private Integer roomNumber;
 
-    public Coordinate(int id, double latitude, double longitude, int floor, String type, String name, String description) {
+    public Coordinate(int id, double latitude, double longitude, int floor, String type, String name, String description, Integer roomNumber) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -35,6 +37,7 @@ public class Coordinate {
         this.type = type;
         this.name = name;
         this.description = description;
+        this.roomNumber = roomNumber;
     }
 
     public Coordinate() {
@@ -67,5 +70,9 @@ public class Coordinate {
 
     public String getDescription() {
         return description;
+    }
+
+    public Integer getRoomNumber() {
+        return roomNumber;
     }
 }
