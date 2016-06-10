@@ -10,6 +10,7 @@ import pathfinding.LatLng;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -23,7 +24,7 @@ public class shortestPathController {
     public VerticesListObject findShortestPath(@RequestParam(value = "vertexOneLatitude", defaultValue = "0") double vertexOneLatitude,
                                                @RequestParam(value = "vertexOneLongitude", defaultValue = "0") double vertexOneLongitude,
                                                @RequestParam(value = "vertexTwoLatitude", defaultValue = "0") double vertexTwoLatitude,
-                                               @RequestParam(value = "vertexTwoLongitude", defaultValue = "0") double vertexTwoLongitude) throws Exception {
+                                               @RequestParam(value = "vertexTwoLongitude", defaultValue = "0") double vertexTwoLongitude) throws SQLException {
         // This data will be written in the log on the server
         Date currentDate = new Date();
         System.out.println("Received POST request for building a shortest path on " + currentDate );
