@@ -73,7 +73,7 @@ public class Application {
     }
 
     /**
-     * Setup our database and DAOs
+     * Inserting demo data to the database
      */
     private void insertDemoDataInTheDatabase() throws Exception {
         // create our data source
