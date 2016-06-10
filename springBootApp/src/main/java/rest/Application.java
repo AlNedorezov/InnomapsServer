@@ -47,7 +47,7 @@ public class Application {
         // new Application().insertDemoDataInTheDatabase();
 
         // Inserting coordinates from xml to the database
-        new Application().writeCoordinatesFromXmlToDB();
+        // new Application().writeCoordinatesFromXmlToDB();
 
         // Run Spring application
         SpringApplication.run(Application.class, args);
