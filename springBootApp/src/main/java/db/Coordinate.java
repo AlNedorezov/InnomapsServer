@@ -14,11 +14,11 @@ import java.util.Date;
 public class Coordinate {
     @DatabaseField(generatedId = true, unique = true)
     private int id;
-    @DatabaseField
+    @DatabaseField(uniqueCombo = true)
     private double latitude;
-    @DatabaseField
+    @DatabaseField(uniqueCombo = true)
     private double longitude;
-    @DatabaseField
+    @DatabaseField(uniqueCombo = true)
     private int floor;
     @DatabaseField
     private String type;
