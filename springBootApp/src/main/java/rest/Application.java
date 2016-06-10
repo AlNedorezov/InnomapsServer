@@ -55,7 +55,7 @@ public class Application {
     }
 
     private void connectToDB() throws SQLException {
-        JdbcConnectionSource connectionSource = null;
+        JdbcConnectionSource connectionSource;
         // create our data source
         connectionSource = new JdbcConnectionSource(DATABASE_URL, "sa", "sa");
         // setup our database and DAOs
