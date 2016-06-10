@@ -18,6 +18,7 @@ import xmlToDB.LatLngExtendedGraphVertex;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by alnedorezov on 6/7/16.
@@ -38,7 +39,7 @@ public class Application {
     @Autowired
     private MyBean myBean;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws SQLException {
 
         // Initial connect to the database // check that tables are created
         new Application().connectToDB();
@@ -53,25 +54,18 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    private void connectToDB() throws Exception {
+    private void connectToDB() throws SQLException {
         JdbcConnectionSource connectionSource = null;
-        try {
-            // create our data source
-            connectionSource = new JdbcConnectionSource(DATABASE_URL, "sa", "sa");
-            // setup our database and DAOs
-            setupDatabase(connectionSource, true);
-        } finally {
-            // destroy the data source which should close underlying connections
-            if (connectionSource != null) {
-                //connectionSource.close();
-            }
-        }
+        // create our data source
+        connectionSource = new JdbcConnectionSource(DATABASE_URL, "sa", "sa");
+        // setup our database and DAOs
+        setupDatabase(connectionSource, true);
     }
 
     /**
      * Setup our database and DAOs
      */
-    public void setupDatabase(ConnectionSource connectionSource, boolean createTables) throws Exception {
+    public void setupDatabase(ConnectionSource connectionSource, boolean createTables) throws SQLException {
 
         coordinateDao = DaoManager.createDao(connectionSource, Coordinate.class);
 
@@ -84,7 +78,7 @@ public class Application {
     /**
      * Inserting demo data to the database
      */
-    private void insertDemoDataInTheDatabase() throws Exception {
+    private void insertDemoDataInTheDatabase() throws SQLException {
         // create our data source
         ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE_URL, "sa", "sa");
         setupDatabase(connectionSource, false);
@@ -114,7 +108,7 @@ public class Application {
     /**
      * Inserting coordinates from xml to the database
      */
-    private void writeCoordinatesFromXmlToDB() throws Exception {
+    private void writeCoordinatesFromXmlToDB() throws SQLException {
         LatLngExtendedGraphVertex[] coordinatesList;
         ExtendedJGraphTWrapper jGraphTWrapper = null;
         FileInputStream inputStream = null;
