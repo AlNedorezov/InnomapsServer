@@ -62,8 +62,8 @@ public class JGraphTWrapper {
         graph.addEdge(gv1, gv2, new LatLngGraphEdge(graphElementType));
         LatLngGraphEdge e = graph.getEdge(gv1, gv2);
         double penaltyWeight = (graphElementType == GraphElementType.DEFAULT) ? 0.0 : 1.0;
-        graph.setEdgeWeight(e, haversine(gv1.getVertex().latitude, gv1.getVertex().longitude,
-                gv2.getVertex().latitude, gv2.getVertex().longitude) + penaltyWeight);
+        graph.setEdgeWeight(e, haversine(gv1.getVertex().getLatitude(), gv1.getVertex().getLongitude(),
+                gv2.getVertex().getLatitude(), gv2.getVertex().getLongitude()) + penaltyWeight);
     }
 
     /**
@@ -73,14 +73,14 @@ public class JGraphTWrapper {
      * @param v2 - end LatLng
      * @return sequential list of LatLng objects
      */
-    public ArrayList<LatLngGraphVertex> shortestPath(LatLng v1, LatLng v2) {
+    public ArrayList<LatLngGraphVertex> shortestPath(LatLngFlr v1, LatLng v2) {
         return shortestPathForGraph(v1, v2, graph);
     }
 
-    private ArrayList<LatLngGraphVertex> shortestPathForGraph(LatLng v1, LatLng v2, Graph<LatLngGraphVertex, LatLngGraphEdge> g) {
+    private ArrayList<LatLngGraphVertex> shortestPathForGraph(LatLngFlr v1, LatLng v2, Graph<LatLngGraphVertex, LatLngGraphEdge> g) {
         ArrayList<LatLngGraphVertex> pointsList = new ArrayList<>();
 
-        LatLngGraphVertex vTemp1 = new LatLngGraphVertex(v1, 0, GraphElementType.DEFAULT);
+        LatLngGraphVertex vTemp1 = new LatLngGraphVertex(v1.getLatLng(), 0, GraphElementType.DEFAULT);
         LatLngGraphVertex vTemp2 = new LatLngGraphVertex(v2, 0, GraphElementType.DEFAULT);
         if(!g.containsVertex(vTemp1)) {
             pointsList.add(vTemp1);
@@ -111,7 +111,7 @@ public class JGraphTWrapper {
      * @param v2 - end LatLng
      * @return sequential list of LatLng objects
      */
-    public ArrayList<LatLngGraphVertex> defaultShortestPath(LatLng v1, LatLng v2) {
+    public ArrayList<LatLngGraphVertex> defaultShortestPath(LatLngFlr v1, LatLng v2) {
         Set<LatLngGraphEdge> oldEdges = graph.edgeSet();
         Set<LatLngGraphEdge> defaultEdges = new HashSet<>();
         for (LatLngGraphEdge edge : oldEdges) {
@@ -238,17 +238,17 @@ public class JGraphTWrapper {
         return 6372.8 * c;
     }
 
-    private LatLng findClosestCoordinateToGiven(LatLng v) {
+    private LatLng findClosestCoordinateToGiven(LatLngFlr v) {
         LatLngGraphVertex[] verticesList = new LatLngGraphVertex[graph.vertexSet().size()];
         verticesList = graph.vertexSet().toArray(verticesList);
         LatLng closestCoordinate = null;
         double shortestDistance = Double.MAX_VALUE;
         for(int i=0; i<verticesList.length; i++) {
             LatLng candidateCoordinate = verticesList[i].getVertex();
-            double canditateDistance = calculateDistance(v, candidateCoordinate);
-            if(canditateDistance < shortestDistance) {
+            double candidateDistance = calculateDistance(v, candidateCoordinate);
+            if(candidateDistance < shortestDistance && v.getFloor() == (int) Math.floor(verticesList[i].getVertexId()/1000)) {
                 closestCoordinate = candidateCoordinate;
-                shortestDistance = canditateDistance;
+                shortestDistance = candidateDistance;
             }
         }
 

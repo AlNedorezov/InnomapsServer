@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xmlpull.v1.XmlPullParserException;
 import pathfinding.JGraphTWrapper;
 import pathfinding.LatLng;
+import pathfinding.LatLngFlr;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class shortestPathController {
     @RequestMapping(value = "/resources/shortestPath", method = RequestMethod.POST)
     public VerticesListObject findShortestPath(@RequestParam(value = "vertexOneLatitude", defaultValue = "0") double vertexOneLatitude,
                                                @RequestParam(value = "vertexOneLongitude", defaultValue = "0") double vertexOneLongitude,
+                                               @RequestParam(value = "vertexOneFloor", defaultValue = "1") int vertexOneFloor,
                                                @RequestParam(value = "vertexTwoLatitude", defaultValue = "0") double vertexTwoLatitude,
                                                @RequestParam(value = "vertexTwoLongitude", defaultValue = "0") double vertexTwoLongitude) throws SQLException {
         // This data will be written in the log on the server
@@ -31,9 +33,10 @@ public class shortestPathController {
         System.out.println("with the following start and finish coordinates:");
         System.out.println("start point latitude:   " + vertexOneLatitude);
         System.out.println("start point longitude:  " + vertexOneLongitude);
+        System.out.println("start point floor:  " + vertexOneFloor);
         System.out.println("finish point latitude:  " + vertexTwoLatitude);
         System.out.println("finish point longitude: " + vertexTwoLongitude);
-        LatLng vertexOne = new LatLng(vertexOneLatitude, vertexOneLongitude);
+        LatLngFlr vertexOne = new LatLngFlr(vertexOneLatitude, vertexOneLongitude, vertexOneFloor);
         LatLng vertexTwo = new LatLng(vertexTwoLatitude, vertexTwoLongitude);
         JGraphTWrapper jGraphTWrapper;
 
