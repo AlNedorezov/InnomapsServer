@@ -9,6 +9,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.*;
+import java.sql.Array;
 import java.util.*;
 
 /**
@@ -77,15 +78,21 @@ public class JGraphTWrapper {
     }
 
     private ArrayList<LatLngGraphVertex> shortestPathForGraph(LatLng v1, LatLng v2, Graph<LatLngGraphVertex, LatLngGraphEdge> g) {
+        ArrayList<LatLngGraphVertex> pointsList = new ArrayList<>();
+
         LatLngGraphVertex vTemp1 = new LatLngGraphVertex(v1, 0, GraphElementType.DEFAULT);
         LatLngGraphVertex vTemp2 = new LatLngGraphVertex(v2, 0, GraphElementType.DEFAULT);
+        if(!g.containsVertex(vTemp1)) {
+            pointsList.add(vTemp1);
+            vTemp1 = new LatLngGraphVertex(findClosestCoordinateToGiven(v1), 0, GraphElementType.DEFAULT);
+        }
 
         DijkstraShortestPath<LatLngGraphVertex, LatLngGraphEdge> dijkstraPathFinder = new DijkstraShortestPath<>(g, vTemp1, vTemp2);
         List<LatLngGraphEdge> foundPath = dijkstraPathFinder.getPathEdgeList();
         if (foundPath == null || foundPath.size() == 0) {
             return null;
         }
-        ArrayList<LatLngGraphVertex> pointsList = new ArrayList<>();
+
         LatLngGraphVertex testVertexFrom = foundPath.get(0).getV1();
         LatLngGraphVertex testVertexTo = foundPath.get(0).getV2();
         pointsList.add(testVertexFrom.equals(vTemp1) ? testVertexFrom : testVertexTo);
@@ -221,7 +228,7 @@ public class JGraphTWrapper {
         return v;
     }
 
-    public static double haversine(double lat1, double lon1, double lat2, double lon2) {
+    private static double haversine(double lat1, double lon1, double lat2, double lon2) {
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);
         lat1 = Math.toRadians(lat1);
@@ -229,5 +236,26 @@ public class JGraphTWrapper {
         double a = Math.pow(Math.sin(dLat / 2), 2) + Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
         double c = 2 * Math.asin(Math.sqrt(a));
         return 6372.8 * c;
+    }
+
+    private LatLng findClosestCoordinateToGiven(LatLng v) {
+        LatLngGraphVertex[] verticesList = new LatLngGraphVertex[graph.vertexSet().size()];
+        verticesList = graph.vertexSet().toArray(verticesList);
+        LatLng closestCoordinate = null;
+        double shortestDistance = Double.MAX_VALUE;
+        for(int i=0; i<verticesList.length; i++) {
+            LatLng candidateCoordinate = verticesList[i].getVertex();
+            double canditateDistance = calculateDistance(v, candidateCoordinate);
+            if(canditateDistance < shortestDistance) {
+                closestCoordinate = candidateCoordinate;
+                shortestDistance = canditateDistance;
+            }
+        }
+
+        return closestCoordinate;
+    }
+
+    private double calculateDistance(LatLng v1, LatLng v2) {
+        return Math.sqrt(Math.pow(v1.getLatitude() - v2.getLatitude() ,2) + Math.pow(v1.getLongitude() - v2.getLongitude(),2));
     }
 }
