@@ -20,12 +20,12 @@ public class ClosestPointFromGraphController {
 
     @RequestMapping("/resources/closestPointFromGraph")
     public LatLngFlr findClosestPointFromGraph(@RequestParam(value = "latitude", defaultValue = "0") double latitude,
-                       @RequestParam(value = "longitude", defaultValue = "0") double longitude,
-                       @RequestParam(value = "floor", defaultValue = "1") int floor) throws IOException {
+                                               @RequestParam(value = "longitude", defaultValue = "0") double longitude,
+                                               @RequestParam(value = "floor", defaultValue = "1") int floor) throws IOException {
 
         // This data will be written in the log on the server
         Date currentDate = new Date();
-        System.out.println("Received POST request for finding closest point from graph to the received one on " + currentDate );
+        System.out.println("Received POST request for finding closest point from graph to the received one on " + currentDate);
         System.out.println("Coordinates of the received point:");
         System.out.println("latitude:   " + latitude);
         System.out.println("longitude:  " + longitude);
@@ -50,7 +50,7 @@ public class ClosestPointFromGraphController {
             return null;
         }
 
-        if(jGraphTWrapper.graphContainsVertexWithCoordinates(receivedCoordinates))
+        if (jGraphTWrapper.graphContainsVertexWithCoordinates(receivedCoordinates))
             return receivedCoordinates;
         else
             return jGraphTWrapper.findClosestCoordinateToGiven(receivedCoordinates);

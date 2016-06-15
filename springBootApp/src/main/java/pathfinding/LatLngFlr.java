@@ -32,7 +32,9 @@ public class LatLngFlr extends LatLng {
     }
 
     @JsonIgnore
-    public LatLng getLatLng() { return new LatLng(getLatitude(), getLongitude()); }
+    public LatLng getLatLng() {
+        return new LatLng(getLatitude(), getLongitude());
+    }
 
     @Override
     public int hashCode() {

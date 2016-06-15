@@ -9,7 +9,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.*;
-import java.sql.Array;
 import java.util.*;
 
 /**
@@ -82,7 +81,7 @@ public class JGraphTWrapper {
 
         LatLngGraphVertex vTemp1 = new LatLngGraphVertex(v1.getLatLng(), 0, GraphElementType.DEFAULT);
         LatLngGraphVertex vTemp2 = new LatLngGraphVertex(v2, 0, GraphElementType.DEFAULT);
-        if(!g.containsVertex(vTemp1)) {
+        if (!g.containsVertex(vTemp1)) {
             pointsList.add(vTemp1);
             vTemp1 = new LatLngGraphVertex(findClosestCoordinateToGiven(v1).getLatLng(), 0, GraphElementType.DEFAULT);
         }
@@ -243,10 +242,10 @@ public class JGraphTWrapper {
         verticesList = graph.vertexSet().toArray(verticesList);
         LatLngFlr closestCoordinate = null;
         double shortestDistance = Double.MAX_VALUE;
-        for(int i=0; i<verticesList.length; i++) {
+        for (int i = 0; i < verticesList.length; i++) {
             LatLng candidateCoordinate = verticesList[i].getVertex();
             double candidateDistance = calculateDistance(v, candidateCoordinate);
-            if(candidateDistance < shortestDistance && v.getFloor() == (int) Math.floor(verticesList[i].getVertexId()/1000)) {
+            if (candidateDistance < shortestDistance && v.getFloor() == (int) Math.floor(verticesList[i].getVertexId() / 1000)) {
                 closestCoordinate = new LatLngFlr(candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude(), v.getFloor());
                 shortestDistance = candidateDistance;
             }
@@ -256,12 +255,12 @@ public class JGraphTWrapper {
     }
 
     private double calculateDistance(LatLng v1, LatLng v2) {
-        return Math.sqrt(Math.pow(v1.getLatitude() - v2.getLatitude() ,2) + Math.pow(v1.getLongitude() - v2.getLongitude(),2));
+        return Math.sqrt(Math.pow(v1.getLatitude() - v2.getLatitude(), 2) + Math.pow(v1.getLongitude() - v2.getLongitude(), 2));
     }
 
     public boolean graphContainsVertexWithCoordinates(LatLngFlr c) {
         LatLngGraphVertex vTemp = new LatLngGraphVertex(c.getLatLng(), 0, GraphElementType.DEFAULT);
-        if(graph.containsVertex(vTemp))
+        if (graph.containsVertex(vTemp))
             return true;
         else
             return false;

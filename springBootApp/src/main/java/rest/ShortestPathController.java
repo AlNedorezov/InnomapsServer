@@ -29,7 +29,7 @@ public class ShortestPathController {
                                                @RequestParam(value = "vertexTwoLongitude", defaultValue = "0") double vertexTwoLongitude) throws SQLException {
         // This data will be written in the log on the server
         Date currentDate = new Date();
-        System.out.println("Received POST request for building a shortest path on " + currentDate );
+        System.out.println("Received POST request for building a shortest path on " + currentDate);
         System.out.println("with the following start and finish coordinates:");
         System.out.println("start point latitude:   " + vertexOneLatitude);
         System.out.println("start point longitude:  " + vertexOneLongitude);
