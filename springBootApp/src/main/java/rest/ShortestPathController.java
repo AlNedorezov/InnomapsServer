@@ -19,7 +19,7 @@ import java.util.Date;
  */
 
 @RestController
-public class shortestPathController {
+public class ShortestPathController {
 
     @RequestMapping(value = "/resources/shortestPath", method = RequestMethod.POST)
     public VerticesListObject findShortestPath(@RequestParam(value = "vertexOneLatitude", defaultValue = "0") double vertexOneLatitude,
