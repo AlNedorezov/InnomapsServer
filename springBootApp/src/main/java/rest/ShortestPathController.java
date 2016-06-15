@@ -8,6 +8,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import pathfinding.JGraphTWrapper;
 import pathfinding.LatLng;
 import pathfinding.LatLngFlr;
+import rest.clientServerCommunicationClasses.VerticesListObject;
 
 import java.io.FileInputStream;
 import java.io.IOException;

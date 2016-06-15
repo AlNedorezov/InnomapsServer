@@ -1,4 +1,4 @@
-package rest;
+package rest.clientServerCommunicationClasses;
 
 import pathfinding.LatLngGraphVertex;
 
