@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xmlpull.v1.XmlPullParserException;
 import pathfinding.JGraphTWrapper;
 import pathfinding.LatLngFlr;
+import rest.clientServerCommunicationClasses.ClosestCoordinateWithDistance;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,9 +20,9 @@ import java.util.Date;
 public class ClosestPointFromGraphController {
 
     @RequestMapping("/resources/closestPointFromGraph")
-    public LatLngFlr findClosestPointFromGraph(@RequestParam(value = "latitude", defaultValue = "0") double latitude,
-                                               @RequestParam(value = "longitude", defaultValue = "0") double longitude,
-                                               @RequestParam(value = "floor", defaultValue = "1") int floor) throws IOException {
+    public ClosestCoordinateWithDistance findClosestPointFromGraph(@RequestParam(value = "latitude", defaultValue = "0") double latitude,
+                                                                   @RequestParam(value = "longitude", defaultValue = "0") double longitude,
+                                                                   @RequestParam(value = "floor", defaultValue = "1") int floor) throws IOException {
 
         // This data will be written in the log on the server
         Date currentDate = new Date();
@@ -51,7 +52,7 @@ public class ClosestPointFromGraphController {
         }
 
         if (jGraphTWrapper.graphContainsVertexWithCoordinates(receivedCoordinates))
-            return receivedCoordinates;
+            return new ClosestCoordinateWithDistance(receivedCoordinates, 0);
         else
             return jGraphTWrapper.findClosestCoordinateToGiven(receivedCoordinates);
     }

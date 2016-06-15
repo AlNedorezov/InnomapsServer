@@ -7,6 +7,7 @@ import org.jgrapht.graph.UndirectedWeightedSubgraph;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
+import rest.clientServerCommunicationClasses.ClosestCoordinateWithDistance;
 
 import java.io.*;
 import java.util.*;
@@ -83,7 +84,7 @@ public class JGraphTWrapper {
         LatLngGraphVertex vTemp2 = new LatLngGraphVertex(v2, 0, GraphElementType.DEFAULT);
         if (!g.containsVertex(vTemp1)) {
             pointsList.add(vTemp1);
-            vTemp1 = new LatLngGraphVertex(findClosestCoordinateToGiven(v1).getLatLng(), 0, GraphElementType.DEFAULT);
+            vTemp1 = new LatLngGraphVertex(findClosestCoordinateToGiven(v1).getCoordinate().getLatLng(), 0, GraphElementType.DEFAULT);
         }
 
         DijkstraShortestPath<LatLngGraphVertex, LatLngGraphEdge> dijkstraPathFinder = new DijkstraShortestPath<>(g, vTemp1, vTemp2);
@@ -237,7 +238,7 @@ public class JGraphTWrapper {
         return 6372.8 * c;
     }
 
-    public LatLngFlr findClosestCoordinateToGiven(LatLngFlr v) {
+    public ClosestCoordinateWithDistance findClosestCoordinateToGiven(LatLngFlr v) {
         LatLngGraphVertex[] verticesList = new LatLngGraphVertex[graph.vertexSet().size()];
         verticesList = graph.vertexSet().toArray(verticesList);
         LatLngFlr closestCoordinate = null;
@@ -251,7 +252,7 @@ public class JGraphTWrapper {
             }
         }
 
-        return closestCoordinate;
+        return new ClosestCoordinateWithDistance(closestCoordinate, shortestDistance);
     }
 
     private double calculateDistance(LatLng v1, LatLng v2) {
