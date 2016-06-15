@@ -84,7 +84,7 @@ public class JGraphTWrapper {
         LatLngGraphVertex vTemp2 = new LatLngGraphVertex(v2, 0, GraphElementType.DEFAULT);
         if(!g.containsVertex(vTemp1)) {
             pointsList.add(vTemp1);
-            vTemp1 = new LatLngGraphVertex(findClosestCoordinateToGiven(v1), 0, GraphElementType.DEFAULT);
+            vTemp1 = new LatLngGraphVertex(findClosestCoordinateToGiven(v1).getLatLng(), 0, GraphElementType.DEFAULT);
         }
 
         DijkstraShortestPath<LatLngGraphVertex, LatLngGraphEdge> dijkstraPathFinder = new DijkstraShortestPath<>(g, vTemp1, vTemp2);
@@ -238,16 +238,16 @@ public class JGraphTWrapper {
         return 6372.8 * c;
     }
 
-    private LatLng findClosestCoordinateToGiven(LatLngFlr v) {
+    public LatLngFlr findClosestCoordinateToGiven(LatLngFlr v) {
         LatLngGraphVertex[] verticesList = new LatLngGraphVertex[graph.vertexSet().size()];
         verticesList = graph.vertexSet().toArray(verticesList);
-        LatLng closestCoordinate = null;
+        LatLngFlr closestCoordinate = null;
         double shortestDistance = Double.MAX_VALUE;
         for(int i=0; i<verticesList.length; i++) {
             LatLng candidateCoordinate = verticesList[i].getVertex();
             double candidateDistance = calculateDistance(v, candidateCoordinate);
             if(candidateDistance < shortestDistance && v.getFloor() == (int) Math.floor(verticesList[i].getVertexId()/1000)) {
-                closestCoordinate = candidateCoordinate;
+                closestCoordinate = new LatLngFlr(candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude(), v.getFloor());
                 shortestDistance = candidateDistance;
             }
         }
@@ -257,5 +257,13 @@ public class JGraphTWrapper {
 
     private double calculateDistance(LatLng v1, LatLng v2) {
         return Math.sqrt(Math.pow(v1.getLatitude() - v2.getLatitude() ,2) + Math.pow(v1.getLongitude() - v2.getLongitude(),2));
+    }
+
+    public boolean graphContainsVertexWithCoordinates(LatLngFlr c) {
+        LatLngGraphVertex vTemp = new LatLngGraphVertex(c.getLatLng(), 0, GraphElementType.DEFAULT);
+        if(graph.containsVertex(vTemp))
+            return true;
+        else
+            return false;
     }
 }

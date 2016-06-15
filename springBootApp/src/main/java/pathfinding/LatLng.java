@@ -5,12 +5,17 @@ package pathfinding;
  */
 public class LatLng {
 
-    private final double latitude;
-    private final double longitude;
+    private double latitude;
+    private double longitude;
 
     public LatLng(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    // For deserialization with Jackson
+    public LatLng() {
+        // all persisted classes must define a no-arg constructor with at least package visibility
     }
 
     public double getLatitude() {

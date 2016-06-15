@@ -1,15 +1,22 @@
 package pathfinding;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Created by alnedorezov on 6/12/16.
  */
 public class LatLngFlr extends LatLng {
 
-    private final int floor;
+    private int floor;
 
     public LatLngFlr(double latitude, double longitude, int floor) {
         super(latitude, longitude);
         this.floor = floor;
+    }
+
+    // For deserialization with Jackson
+    public LatLngFlr() {
+        // all persisted classes must define a no-arg constructor with at least package visibility
     }
 
     public double getLatitude() {
@@ -24,6 +31,7 @@ public class LatLngFlr extends LatLng {
         return floor;
     }
 
+    @JsonIgnore
     public LatLng getLatLng() { return new LatLng(getLatitude(), getLongitude()); }
 
     @Override
