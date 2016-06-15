@@ -245,7 +245,7 @@ public class JGraphTWrapper {
         double shortestDistance = Double.MAX_VALUE;
         for (int i = 0; i < verticesList.length; i++) {
             LatLng candidateCoordinate = verticesList[i].getVertex();
-            double candidateDistance = calculateDistance(v, candidateCoordinate);
+            double candidateDistance = haversine(v.getLatitude(), v.getLongitude(), candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude());
             if (candidateDistance < shortestDistance && v.getFloor() == (int) Math.floor(verticesList[i].getVertexId() / 1000)) {
                 closestCoordinate = new LatLngFlr(candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude(), v.getFloor());
                 shortestDistance = candidateDistance;
