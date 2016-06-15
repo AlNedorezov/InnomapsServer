@@ -19,7 +19,7 @@ import java.util.Date;
 public class ClosestPointFromGraphController {
 
     @RequestMapping("/resources/closestPointFromGraph")
-    public LatLngFlr user(@RequestParam(value = "latitude", defaultValue = "0") double latitude,
+    public LatLngFlr closestPointFromGraphController(@RequestParam(value = "latitude", defaultValue = "0") double latitude,
                        @RequestParam(value = "longitude", defaultValue = "0") double longitude,
                        @RequestParam(value = "floor", defaultValue = "1") int floor) throws IOException {
 
