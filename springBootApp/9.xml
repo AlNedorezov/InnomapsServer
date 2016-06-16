@@ -635,10 +635,10 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="2088" name="Deputy director office"  type="door" attr="Office">
             <data key="vertex_label">55.753356964628345 48.743401542305946</data>
         </node>
-        <node id="2086" name="Men WC" type="wc door" attr="men">
+        <node id="2086" name="Men WC" type="wc" attr="men">
             <data key="vertex_label">55.753372624967156 48.74332241714001</data>
         </node>
-        <node id="2087" name=" Women WC" type="wc door" attr="women">
+        <node id="2087" name=" Women WC" type="wc" attr="women">
             <data key="vertex_label">55.75340243619713 48.74338913708925</data>
         </node>
         <node id="2067" name="Room 207" number="207" type="door">
@@ -2059,7 +2059,7 @@ http://graphml.graphdrawing.org/xmlns ">
         
         
         <!--stair and elevator Line1 -->
-        <!-- <node id="4551" name="Stair on line1" type="stair" >
+        <!-- <node id="4551" name="Stair on line1" type="stairs" >
         <data key="vertex_label">55.754384873287925 48.74317925423384</data>
         </node> -->
         
@@ -2088,18 +2088,18 @@ http://graphml.graphdrawing.org/xmlns ">
         
         
         <!--stair and elevator Line2 -->
-        <node id="4552" name="Stair" type="stair" attr="Stair on line2">
+        <node id="4552" name="Stair" type="stairs" attr="Stair on line2">
         <data key="vertex_label">55.754447512954634 48.74367043375969</data>
         </node>
         
         <!--Line3 -->
         <!--stair and elevator Line3 -->        
     
-        <node id="4113" name="Stair" type="stair" attr="stair1 on line3">
+        <node id="4113" name="Stair" type="stairs" attr="stair1 on line3">
         <data key="vertex_label">55.75366469856759 48.74317053775454</data>
         </node>     
     
-        <node id="4553" name="Elevator" type="elevtor" attr="elevator1 on line3">
+        <node id="4553" name="Elevator" type="elevator" attr="elevator1 on line3">
         <data key="vertex_label">55.75435053463276 48.74362953007221</data>
         </node>     
     
@@ -2357,25 +2357,25 @@ http://graphml.graphdrawing.org/xmlns ">
 
 
    <!--add by Max -->
-<!--    <node id="" name="Stair" type="stair" attr="Stair1">
+<!--    <node id="" name="Stair" type="stairs" attr="Stair1">
         <data key="vertex_label"></data>
         </node> -->
 
-    <node id="4201" name="Stair" type="stair" attr="Stair1">
+    <node id="4201" name="Stair" type="stairs" attr="Stair1">
         <data key="vertex_label">55.75304847354005 48.7436814955</data>
         </node>
     
-    <node id="4815" name="Stair" type="stair" attr="Stair2">
+    <node id="4815" name="Stair" type="stairs" attr="Stair2">
         <data key="vertex_label">55.75327809680245 48.7433857842</data>
         </node>
 
-    <node id="4204" name="Stair" type="stair" attr="Stair3">
+    <node id="4204" name="Stair" type="stairs" attr="Stair3">
         <data key="vertex_label">55.75355847308612 48.7430364243</data>
         </node>
         
     <!--Stairs4 уже есть -->        
      
-    <node id="4205" name="Stair" type="stair" attr="Stair5">
+    <node id="4205" name="Stair" type="stairs" attr="Stair5">
         <data key="vertex_label">55.753767527576926 48.7429127044</data>
         </node>
      
@@ -2383,11 +2383,11 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.75375545225776 48.7430069245</data>
         </node>     
      
-    <node id="4206" name="Stair" type="stair" attr="Stair6">
+    <node id="4206" name="Stair" type="stairs" attr="Stair6">
         <data key="vertex_label">55.753887148505385 48.7432023846</data>
         </node>
         
-    <node id="4813" name="Stair" type="stair" attr="Stair7">
+    <node id="4813" name="Stair" type="stairs" attr="Stair7">
         <data key="vertex_label">55.75407148477 48.7430320647</data>
         </node>    
 
@@ -2395,15 +2395,15 @@ http://graphml.graphdrawing.org/xmlns ">
         <data key="vertex_label">55.75405393795737 48.7431339948</data>
         </node> 
     
-    <node id="4208" name="Stair" type="stair" attr="Stair8">
+    <node id="4208" name="Stair" type="stairs" attr="Stair8">
         <data key="vertex_label">55.75347771888536 48.7438484649</data>
         </node>
     
-    <node id="4211" name="Stair" type="stair" attr="Stair9">
+    <node id="4211" name="Stair" type="stairs" attr="Stair9">
         <data key="vertex_label">55.753253757178044 48.7441599350</data>
         </node>
    
-    <node id="4209" name="Stair" type="stair" attr="Stair10">
+    <node id="4209" name="Stair" type="stairs" attr="Stair10">
         <data key="vertex_label">55.75343828511441 48.7436218151</data>
         </node>
     

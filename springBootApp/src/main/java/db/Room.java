@@ -16,12 +16,15 @@ public class Room {
     private int building_id;
     @DatabaseField(unique = true)
     private int coordinate_id;
+    @DatabaseField
+    private int type_id;
 
-    public Room(int id, Integer number, int building_id, int coordinate_id) {
+    public Room(int id, Integer number, int building_id, int coordinate_id, int type_id) {
         this.id = id;
         this.number = number;
         this.building_id = building_id;
         this.coordinate_id = coordinate_id;
+        this.type_id = type_id;
     }
 
     // For deserialization with Jackson
@@ -43,5 +46,9 @@ public class Room {
 
     public int getCoordinate_id() {
         return coordinate_id;
+    }
+
+    public int getType_id() {
+        return type_id;
     }
 }

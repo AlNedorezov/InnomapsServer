@@ -67,9 +67,19 @@ public class ExtendedJGraphTWrapper extends JGraphTWrapper {
                         else
                             number = Integer.valueOf(numberString);
                         String vType = xpp.getAttributeValue(null, "type");
+                        // Possible types up to 17.06.2015 are DEFAULT, ELEVATOR, STAIRS,
+                        // ROOM, FOOD, WC, CLINIC, READING, DOOR, LIBRARY and EASTER_EGG
                         if (vType == null) vertexType = GraphElementType.DEFAULT;
                         else if (vType.equals("stairs")) vertexType = GraphElementType.STAIRS;
                         else if (vType.equals("elevator")) vertexType = GraphElementType.ELEVATOR;
+                        else if (vType.equals("room")) vertexType = GraphElementType.ROOM;
+                        else if (vType.equals("food")) vertexType = GraphElementType.FOOD;
+                        else if (vType.equals("wc")) vertexType = GraphElementType.WC;
+                        else if (vType.equals("clinic")) vertexType = GraphElementType.CLINIC;
+                        else if (vType.equals("reading")) vertexType = GraphElementType.READING;
+                        else if (vType.equals("door")) vertexType = GraphElementType.DOOR;
+                        else if (vType.equals("library")) vertexType = GraphElementType.LIBRARY;
+                        else if (vType.equals("easter egg")) vertexType = GraphElementType.EASTER_EGG;
                         else vertexType = GraphElementType.DEFAULT;
                         description = xpp.getAttributeValue(null, "attr");
                         break;

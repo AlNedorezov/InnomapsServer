@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class JGraphTWrapper {
     public enum GraphElementType {
-        DEFAULT, ELEVATOR, STAIRS
+        DEFAULT, ELEVATOR, STAIRS, ROOM, FOOD, WC, CLINIC, READING, DOOR, LIBRARY, EASTER_EGG
     }
 
     private SimpleWeightedGraph<LatLngGraphVertex, LatLngGraphEdge> graph;
