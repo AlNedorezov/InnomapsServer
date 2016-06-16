@@ -87,21 +87,23 @@ public class Application {
         double latitude;
         double longitude;
         int floor;
-        String type;
         String name;
         String description;
+
+        String type;
         Integer roomNumber;
 
         id=0;
         latitude = 55.75310771911266;
         longitude = 48.743609078228474;
         floor = 1;
-        type = "room";
         name = "Classroom 1";
         description = "";
+
+        type = "room";
         roomNumber = 1;
 
-        coordinateDao.create(new Coordinate(id, latitude, longitude, floor, type, name, description, roomNumber));
+        coordinateDao.create(new Coordinate(id, latitude, longitude, floor, name, description));
         connectionSource.close();
     }
 
@@ -134,8 +136,7 @@ public class Application {
             for(int i=0; i<coordinatesList.length; i++) {
                 if(coordinatesList[i] != null)
                     coordinateDao.create(new Coordinate(0, coordinatesList[i].getVertex().getLatitude(), coordinatesList[i].getVertex().getLongitude(),
-                                    (int) Math.floor(coordinatesList[i].getVertexId()/1000), coordinatesList[i].getGraphVertexType().toString(),
-                                    coordinatesList[i].getName(), coordinatesList[i].getDescription(), coordinatesList[i].getNumber()));
+                            (int) Math.floor(coordinatesList[i].getVertexId()/1000), coordinatesList[i].getName(), coordinatesList[i].getDescription()));
             }
             connectionSource.close();
         }
