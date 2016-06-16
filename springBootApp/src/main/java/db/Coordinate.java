@@ -17,15 +17,18 @@ public class Coordinate {
     @DatabaseField(uniqueCombo = true)
     private int floor;
     @DatabaseField
+    private int type_id;
+    @DatabaseField
     private String name;
     @DatabaseField
     private String description;
 
-    public Coordinate(int id, double latitude, double longitude, int floor, String name, String description) {
+    public Coordinate(int id, double latitude, double longitude, int floor, int type_id, String name, String description) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.floor = floor;
+        this.type_id = type_id;
         this.name = name;
         this.description = description;
     }
@@ -49,6 +52,10 @@ public class Coordinate {
 
     public int getFloor() {
         return floor;
+    }
+
+    public int getType_id() {
+        return type_id;
     }
 
     public String getName() {
