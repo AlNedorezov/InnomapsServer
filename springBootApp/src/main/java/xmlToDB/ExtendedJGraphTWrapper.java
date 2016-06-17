@@ -7,6 +7,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import pathfinding.JGraphTWrapper;
 import pathfinding.LatLng;
 import pathfinding.LatLngGraphEdge;
+import pathfinding.LatLngGraphVertex;
 
 import java.io.*;
 import java.util.HashMap;
@@ -27,6 +28,36 @@ public class ExtendedJGraphTWrapper extends JGraphTWrapper {
                                    String name, String description, Integer number) {
         LatLngExtendedGraphVertex vTemp = new LatLngExtendedGraphVertex(v, id, graphVertexType, name, description, number);
         graph.addVertex(vTemp);
+    }
+
+    /**
+     * Adds new edge of given type.
+     *
+     * @param v1               - vertex edge begins
+     * @param v2               - vertex edge ends
+     * @param v1Index          - v1 vertex index
+     * @param v2Index          - v2 vertex index
+     * @param graphElementType - edge type (see LatLngGraphEdge.GraphElementType)
+     */
+    @Override
+    public void addEdge(LatLng v1, LatLng v2, int v1Index, int v2Index, GraphElementType graphElementType) {
+        LatLngExtendedGraphVertex[] verticesList = getVertices();
+        LatLngExtendedGraphVertex gv1 = null;
+        LatLngExtendedGraphVertex gv2 = null;
+        for(int i=0; i<verticesList.length; i++) {
+            if(verticesList[i].getVertexId() == v1Index)
+                gv1 = verticesList[i];
+            if(verticesList[i].getVertexId() == v2Index)
+                gv2 = verticesList[i];
+            if(gv1 != null && gv2 != null)
+                break;
+        }
+
+        graph.addEdge(gv1, gv2, new LatLngGraphEdge(graphElementType));
+        LatLngGraphEdge e = graph.getEdge(gv1, gv2);
+        double penaltyWeight = (graphElementType == GraphElementType.DEFAULT) ? 0.0 : 1.0;
+        graph.setEdgeWeight(e, haversine(gv1.getVertex().getLatitude(), gv1.getVertex().getLongitude(),
+                gv2.getVertex().getLatitude(), gv2.getVertex().getLongitude()) + penaltyWeight);
     }
 
     /**
@@ -82,6 +113,25 @@ public class ExtendedJGraphTWrapper extends JGraphTWrapper {
                         else if (vType.equals("easter egg")) vertexType = GraphElementType.EASTER_EGG;
                         else vertexType = GraphElementType.DEFAULT;
                         description = xpp.getAttributeValue(null, "attr");
+                        break;
+                    case "edge":
+                        int from = Integer.valueOf(xpp.getAttributeValue(null, "source"));
+                        int to = Integer.valueOf(xpp.getAttributeValue(null, "target"));
+                        String eType = xpp.getAttributeValue(null, "id");
+                        GraphElementType graphEdgeType = GraphElementType.DEFAULT;
+                        switch (eType) {
+                            case "ELEVATOR":
+                                graphEdgeType = GraphElementType.ELEVATOR;
+                                break;
+                            case "STAIRS":
+                                graphEdgeType = GraphElementType.STAIRS;
+                                break;
+                            case "DEFAULT":
+                                graphEdgeType = GraphElementType.DEFAULT;
+                                break;
+                        }
+                        System.out.println(from + ", " + to);
+                        addEdge(verticesMap.get(from), verticesMap.get(to), from, to, graphEdgeType);
                         break;
                     case "data":
                         if (id != -1) {
