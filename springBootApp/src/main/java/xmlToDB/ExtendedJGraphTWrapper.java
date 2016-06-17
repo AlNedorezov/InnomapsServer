@@ -20,10 +20,6 @@ public class ExtendedJGraphTWrapper extends JGraphTWrapper {
     // Graph with extra data from xml
     private SimpleWeightedGraph<LatLngExtendedGraphVertex, LatLngGraphEdge> graph;
 
-    public SimpleWeightedGraph<LatLngExtendedGraphVertex, LatLngGraphEdge> getGraph() {
-        return graph;
-    }
-
     private void addExtendedVertex(LatLng v, int id, JGraphTWrapper.GraphElementType graphVertexType,
                                    String name, String description, Integer number) {
         LatLngExtendedGraphVertex vTemp = new LatLngExtendedGraphVertex(v, id, graphVertexType, name, description, number);
@@ -174,6 +170,12 @@ public class ExtendedJGraphTWrapper extends JGraphTWrapper {
     public LatLngExtendedGraphVertex[] getVertices() {
         LatLngExtendedGraphVertex[] v = new LatLngExtendedGraphVertex[graph.vertexSet().size()];
         v = graph.vertexSet().toArray(v);
+        return v;
+    }
+
+    public LatLngGraphEdge[] getEdges() {
+        LatLngGraphEdge[] v = new LatLngGraphEdge[graph.edgeSet().size()];
+        v = graph.edgeSet().toArray(v);
         return v;
     }
 }
