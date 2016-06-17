@@ -8,6 +8,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import db.*;
+import org.jgrapht.graph.SimpleWeightedGraph;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -15,6 +16,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.xmlpull.v1.XmlPullParserException;
+import pathfinding.JGraphTWrapper;
+import pathfinding.LatLngGraphEdge;
+import pathfinding.LatLngGraphVertex;
 import xmlToDB.ExtendedJGraphTWrapper;
 import xmlToDB.LatLngExtendedGraphVertex;
 
@@ -54,8 +58,8 @@ public class Application {
         // Insert demo data into the database
         // new Application().insertDemoDataInTheDatabase();
 
-        // Inserting coordinates from xml to the database
-         new Application().writeCoordinatesFromXmlToDB();
+        // Inserting coordinates and edges from xml to the database
+        // new Application().writeCoordinatesAndEdgesFromXmlToDB();
 
         // Run Spring application
         SpringApplication.run(Application.class, args);
@@ -123,8 +127,9 @@ public class Application {
     /**
      * Inserting coordinates from xml to the database
      */
-    private void writeCoordinatesFromXmlToDB() throws SQLException {
+    private void writeCoordinatesAndEdgesFromXmlToDB() throws SQLException {
         LatLngExtendedGraphVertex[] coordinatesList;
+        LatLngGraphEdge[] edgesList;
         ExtendedJGraphTWrapper jGraphTWrapper = null;
         FileInputStream inputStream = null;
         try {
@@ -213,6 +218,31 @@ public class Application {
                                 roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 7));
                                 break;
                         }
+                    }
+                }
+            }
+
+            edgesList = jGraphTWrapper.getEdges();
+
+            edgeTypeDao.create(new EdgeType(1, "DEFAULT"));
+            edgeTypeDao.create(new EdgeType(2, "STAIRS"));
+
+            for(int i=0; i<edgesList.length; i++) {
+                if(edgesList[i] != null) {
+                    int source_id, target_id;
+                    QueryBuilder<Coordinate, Integer> qBuilder = coordinateDao.queryBuilder();
+                    qBuilder.where().eq("latitude", edgesList[i].getV1().getVertex().getLatitude()).and().eq("longitude", edgesList[i].getV1().getVertex().getLongitude());
+                    source_id = qBuilder.query().get(0).getId();
+                    qBuilder.reset();
+                    qBuilder.where().eq("latitude", edgesList[i].getV2().getVertex().getLatitude()).and().eq("longitude", edgesList[i].getV2().getVertex().getLongitude());
+                    target_id = qBuilder.query().get(0).getId();
+
+                    switch (edgesList[i].getGraphEdgeType().toString()) {
+                        case "DEFAULT":
+                            edgeDao.create(new Edge(0, 1, source_id, target_id));
+                            break;
+                        case "STAIRS":
+                            edgeDao.create(new Edge(0, 2, source_id, target_id));
                     }
                 }
             }
