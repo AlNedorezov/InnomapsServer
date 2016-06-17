@@ -1020,8 +1020,9 @@ http://graphml.graphdrawing.org/xmlns ">
             <data key="vertex_label">55.753561680609344 48.743182606995106</data>
         </node>
 
+        <!-- Coordinates were the same as of Room 308, they can be incorrect! -->
         <node id="3221" name="Elevator" type="door" attr="Elevator on line2">
-            <data key="vertex_label">55.753561680609344 48.743182606995106</data>
+            <data key="vertex_label">55.753564680609344 48.74319996995106</data>
         </node>
 
         <!--Line4-->
@@ -1975,8 +1976,9 @@ http://graphml.graphdrawing.org/xmlns ">
         <node id="4972" name="Fourth floor hallway" type="door" attr="Hallway door near director's room #2">
             <data key="vertex_label">55.753728282775995 48.74297238886356</data>
         </node>
+        <!-- Coordinates of 4973 were the same as of 4971 and need be checked! -->
         <node id="4973" name="Fourth floor hallway" attr="Hallway near room 425">
-            <data key="vertex_label">55.753707150943754 48.74296333640814</data>
+            <data key="vertex_label">55.753727150943754 48.74298333640814</data>
         </node>
         <node id="4974" name="Fourth floor hallway" attr="Hallway near room 426">
             <data key="vertex_label">55.75381337602032 48.743024691939354</data>
