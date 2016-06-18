@@ -15,9 +15,9 @@ public class EventSchedule {
     @DatabaseField(generatedId = true, unique = true)
     private int id;
     @DatabaseField(uniqueCombo = true)
-    private Date start_datetime;
+    private Date start_datetime = null;
     @DatabaseField(uniqueCombo = true)
-    private Date end_datetime;
+    private Date end_datetime = null;
     @DatabaseField(uniqueCombo = true)
     private int location_id;
     @DatabaseField
