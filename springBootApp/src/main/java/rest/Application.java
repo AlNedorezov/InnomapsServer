@@ -36,16 +36,27 @@ import java.sql.SQLException;
 @SpringBootApplication
 public class Application {
 
-    public final static String DATABASE_URL = "jdbc:h2:tcp://10.90.104.144:9092/test;IFEXISTS=TRUE";
+    protected final static String DATABASE_URL = "jdbc:h2:tcp://10.90.104.144:9092/test;IFEXISTS=TRUE";
     // change 'localhost' to 10.90.104.144 for debug and vice versa for deploy
     // 10.90.104.144 works only for devices connected to the IU network
 
-    public Dao<Coordinate, Integer> coordinateDao;
-    public Dao<Edge, Integer> edgeDao;
-    public Dao<Room, Integer> roomDao;
-    public Dao<CoordinateType, Integer> coordinateTypeDao;
-    public Dao<EdgeType, Integer> edgeTypeDao;
-    public Dao<RoomType, Integer> roomTypeDao;
+    protected Dao<User, Integer> userDao;
+    protected Dao<Role, Integer> roleDao;
+    protected Dao<UserRole, Integer> userRoleDao;
+    protected Dao<CoordinateType, Integer> coordinateTypeDao;
+    protected Dao<EdgeType, Integer> edgeTypeDao;
+    protected Dao<RoomType, Integer> roomTypeDao;
+    protected Dao<Coordinate, Integer> coordinateDao;
+    protected Dao<Edge, Integer> edgeDao;
+    protected Dao<Street, Integer> streetDao;
+    protected Dao<Building, Integer> buildingDao;
+    protected Dao<Room, Integer> roomDao;
+    protected Dao<Photo, Integer> photoDao;
+    protected Dao<BuildingPhoto, Integer> buildingPhotoDao;
+    protected Dao<RoomPhoto, Integer> roomPhotoDao;
+    protected Dao<EventCreator, Integer> eventCreatorDao;
+    protected Dao<Event, Integer> eventDao;
+    protected Dao<EventSchedule, Integer> eventScheduleDao;
 
     @Autowired
     private MyBean myBean;
@@ -78,21 +89,48 @@ public class Application {
      */
     public void setupDatabase(ConnectionSource connectionSource, boolean createTables) throws SQLException {
 
-        coordinateDao = DaoManager.createDao(connectionSource, Coordinate.class);
-        edgeDao = DaoManager.createDao(connectionSource, Edge.class);
-        roomDao = DaoManager.createDao(connectionSource, Room.class);
+        userDao = DaoManager.createDao(connectionSource, User.class);
+        roleDao = DaoManager.createDao(connectionSource, Role.class);
+        userRoleDao = DaoManager.createDao(connectionSource, UserRole.class);
         coordinateTypeDao = DaoManager.createDao(connectionSource, CoordinateType.class);
         edgeTypeDao = DaoManager.createDao(connectionSource, EdgeType.class);
         roomTypeDao = DaoManager.createDao(connectionSource, RoomType.class);
+        coordinateDao = DaoManager.createDao(connectionSource, Coordinate.class);
+        edgeDao = DaoManager.createDao(connectionSource, Edge.class);
+        streetDao = DaoManager.createDao(connectionSource, Street.class);
+        buildingDao = DaoManager.createDao(connectionSource, Building.class);
+        roomDao = DaoManager.createDao(connectionSource, Room.class);
+        photoDao = DaoManager.createDao(connectionSource, Photo.class);
+        buildingPhotoDao = DaoManager.createDao(connectionSource, BuildingPhoto.class);
+        roomPhotoDao = DaoManager.createDao(connectionSource, RoomPhoto.class);
+        eventCreatorDao = DaoManager.createDao(connectionSource, EventCreator.class);
+        eventDao = DaoManager.createDao(connectionSource, Event.class);
+        eventScheduleDao = DaoManager.createDao(connectionSource, EventSchedule.class);
 
         // if you need to create tables
         if (createTables) {
-            TableUtils.createTableIfNotExists(connectionSource, Coordinate.class);
-            TableUtils.createTableIfNotExists(connectionSource, Edge.class);
-            TableUtils.createTableIfNotExists(connectionSource, Room.class);
+            TableUtils.createTableIfNotExists(connectionSource, User.class);
+            TableUtils.createTableIfNotExists(connectionSource, Role.class);
+            TableUtils.createTableIfNotExists(connectionSource, UserRole.class);
             TableUtils.createTableIfNotExists(connectionSource, CoordinateType.class);
             TableUtils.createTableIfNotExists(connectionSource, EdgeType.class);
             TableUtils.createTableIfNotExists(connectionSource, RoomType.class);
+            TableUtils.createTableIfNotExists(connectionSource, Coordinate.class);
+            coordinateDao.updateRaw("ALTER TABLE COORDINATES ALTER COLUMN DESCRIPTION VARCHAR(2500)");
+            TableUtils.createTableIfNotExists(connectionSource, Edge.class);
+            TableUtils.createTableIfNotExists(connectionSource, Street.class);
+            TableUtils.createTableIfNotExists(connectionSource, Building.class);
+            buildingDao.updateRaw("ALTER TABLE BUILDINGS ALTER COLUMN DESCRIPTION VARCHAR(2500)");
+            TableUtils.createTableIfNotExists(connectionSource, Room.class);
+            TableUtils.createTableIfNotExists(connectionSource, Photo.class);
+            photoDao.updateRaw("ALTER TABLE PHOTOS ALTER COLUMN URL VARCHAR(500)");
+            TableUtils.createTableIfNotExists(connectionSource, BuildingPhoto.class);
+            TableUtils.createTableIfNotExists(connectionSource, RoomPhoto.class);
+            TableUtils.createTableIfNotExists(connectionSource, EventCreator.class);
+            TableUtils.createTableIfNotExists(connectionSource, Event.class);
+            eventDao.updateRaw("ALTER TABLE EVENTS ALTER COLUMN DESCRIPTION VARCHAR(2500)");
+            TableUtils.createTableIfNotExists(connectionSource, EventSchedule.class);
+            eventScheduleDao.updateRaw("ALTER TABLE EVENT_SCHEDULES ALTER COLUMN COMMENT VARCHAR(2500)");
         }
     }
 
@@ -150,6 +188,18 @@ public class Application {
             setupDatabase(connectionSource, false);
 
             coordinatesList = jGraphTWrapper.getVertices();
+
+            String IU_description = "Specializing in the field " +
+                    "of modern information technologies, Innopolis University is not only one of Russia’s youngest universities," +
+                    " but also the new city’s intellectual center.\n" +
+                    "The teaching staff consists of leading Russian and foreign IT specialists and robotic science.\n" +
+                    "Driven by the demands of both business and industry, the educational programs are committed to producing" +
+                    " a high-quality stream of professionals for companies located in Innopolis.";
+            // Coordinate for Innopolis University are taken from Google Maps
+            // Coordinate_type=2 (DAFAULT)
+            coordinateDao.create(new Coordinate(0, 55.7541793, 48.744085, 1, 2, "Innopolis University", IU_description));
+            streetDao.create(new Street(1, "Universitetskaya"));
+            buildingDao.create(new Building(1, String.valueOf(1), null, IU_description, 1, 1));
 
             roomTypeDao.create(new RoomType(1, "ROOM"));
             roomTypeDao.create(new RoomType(2, "FOOD"));
