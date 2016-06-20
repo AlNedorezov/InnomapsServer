@@ -109,28 +109,50 @@ public class Application {
 
         // if you need to create tables
         if (createTables) {
+            // when tables are created and only then alter table fields that need to be altered
+            boolean alterCoordinatesTable = false;
+            boolean alterBuildingsTable = false;
+            boolean alterPhotosTable = false;
+            boolean alterEventsTable = false;
+            boolean alterEventSchedulesTable = false;
+
             TableUtils.createTableIfNotExists(connectionSource, User.class);
             TableUtils.createTableIfNotExists(connectionSource, Role.class);
             TableUtils.createTableIfNotExists(connectionSource, UserRole.class);
             TableUtils.createTableIfNotExists(connectionSource, CoordinateType.class);
             TableUtils.createTableIfNotExists(connectionSource, EdgeType.class);
             TableUtils.createTableIfNotExists(connectionSource, RoomType.class);
+            if(!coordinateDao.isTableExists())
+                alterCoordinatesTable = true;
             TableUtils.createTableIfNotExists(connectionSource, Coordinate.class);
-            coordinateDao.updateRaw("ALTER TABLE COORDINATES ALTER COLUMN DESCRIPTION VARCHAR(2500)");
+            if(alterCoordinatesTable)
+                coordinateDao.updateRaw("ALTER TABLE COORDINATES ALTER COLUMN DESCRIPTION VARCHAR(2500)");
             TableUtils.createTableIfNotExists(connectionSource, Edge.class);
             TableUtils.createTableIfNotExists(connectionSource, Street.class);
+            if(!buildingDao.isTableExists())
+                alterBuildingsTable = true;
             TableUtils.createTableIfNotExists(connectionSource, Building.class);
-            buildingDao.updateRaw("ALTER TABLE BUILDINGS ALTER COLUMN DESCRIPTION VARCHAR(2500)");
+            if(alterBuildingsTable)
+                buildingDao.updateRaw("ALTER TABLE BUILDINGS ALTER COLUMN DESCRIPTION VARCHAR(2500)");
             TableUtils.createTableIfNotExists(connectionSource, Room.class);
+            if(!photoDao.isTableExists())
+                alterPhotosTable = true;
             TableUtils.createTableIfNotExists(connectionSource, Photo.class);
-            photoDao.updateRaw("ALTER TABLE PHOTOS ALTER COLUMN URL VARCHAR(500)");
+            if(alterPhotosTable)
+                photoDao.updateRaw("ALTER TABLE PHOTOS ALTER COLUMN URL VARCHAR(500)");
             TableUtils.createTableIfNotExists(connectionSource, BuildingPhoto.class);
             TableUtils.createTableIfNotExists(connectionSource, RoomPhoto.class);
             TableUtils.createTableIfNotExists(connectionSource, EventCreator.class);
+            if(!eventDao.isTableExists())
+                alterEventsTable = true;
             TableUtils.createTableIfNotExists(connectionSource, Event.class);
-            eventDao.updateRaw("ALTER TABLE EVENTS ALTER COLUMN DESCRIPTION VARCHAR(2500)");
+            if(alterEventsTable)
+                eventDao.updateRaw("ALTER TABLE EVENTS ALTER COLUMN DESCRIPTION VARCHAR(2500)");
+            if(!eventScheduleDao.isTableExists())
+                alterEventSchedulesTable = true;
             TableUtils.createTableIfNotExists(connectionSource, EventSchedule.class);
-            eventScheduleDao.updateRaw("ALTER TABLE EVENT_SCHEDULES ALTER COLUMN COMMENT VARCHAR(2500)");
+            if(alterEventSchedulesTable)
+                eventScheduleDao.updateRaw("ALTER TABLE EVENT_SCHEDULES ALTER COLUMN COMMENT VARCHAR(2500)");
         }
     }
 
