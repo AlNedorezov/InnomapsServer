@@ -61,7 +61,7 @@ public class EdgesController {
             } else {
                 String errorMessage = checkIfEdgeCanBeDeleted(source_id, target_id);
                 if (errorMessage.equals("")) {
-                    a.coordinateDao.deleteById(id);
+                    a.edgeDao.deleteById(id);
                     connectionSource.close();
                     return "0. Edge with id=" + id + " was successfully deleted.\n";
                 } else {
