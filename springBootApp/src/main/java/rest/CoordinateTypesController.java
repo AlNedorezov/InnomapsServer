@@ -1,8 +1,6 @@
 package rest;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.stmt.DeleteBuilder;
-import com.j256.ormlite.stmt.PreparedDelete;
 import com.j256.ormlite.stmt.QueryBuilder;
 import db.Coordinate;
 import db.CoordinateType;
@@ -57,11 +55,10 @@ public class CoordinateTypesController {
             } else {
                 QueryBuilder<Coordinate, Integer> qb = a.coordinateDao.queryBuilder();
                 qb.where().eq("type_id", id);
-                if(qb.query().size() > 0) {
+                if (qb.query().size() > 0) {
                     connectionSource.close();
                     return "-1. Delete all coordinates with type " + a.coordinateTypeDao.queryForId(id).getName() + " first.\n";
-                }
-                else {
+                } else {
                     a.coordinateTypeDao.deleteById(id);
                     connectionSource.close();
                     return "0. Coordinate type with id=" + id + " was successfully deleted.\n";

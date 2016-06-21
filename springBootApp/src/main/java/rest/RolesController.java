@@ -55,11 +55,10 @@ public class RolesController {
             } else {
                 QueryBuilder<UserRole, Integer> qb = a.userRoleDao.queryBuilder();
                 qb.where().eq("role_id", id);
-                if(qb.query().size() > 0) {
+                if (qb.query().size() > 0) {
                     connectionSource.close();
                     return "-1. Delete all userroles with role " + a.roleDao.queryForId(id).getName() + " first.\n";
-                }
-                else {
+                } else {
                     a.roleDao.deleteById(id);
                     connectionSource.close();
                     return "0. role with id=" + id + " was successfully deleted.\n";
