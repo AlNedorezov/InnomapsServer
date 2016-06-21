@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.RolesObject;
 
+import java.sql.SQLException;
+
 /**
  * Created by alnedorezov on 6/20/16.
  */
@@ -21,7 +23,7 @@ public class RolesController {
     Application a = new Application();
 
     @RequestMapping("/resources/roles")
-    public RolesObject roles() throws Exception {
+    public RolesObject roles() throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
         RolesObject roles1 = new RolesObject(a.roleDao.queryForAll());
@@ -30,7 +32,7 @@ public class RolesController {
     }
 
     @RequestMapping("/resources/role")
-    public Role role(@RequestParam(value = "id", defaultValue = "-1") int id) throws Exception {
+    public Role role(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
         Role role1 = a.roleDao.queryForId(id);
@@ -40,7 +42,7 @@ public class RolesController {
 
     @RequestMapping(value = "/resources/role", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id,
-                       @RequestParam(value = "name", defaultValue = "!~DELETE") String name) throws Exception {
+                       @RequestParam(value = "name", defaultValue = "!~DELETE") String name) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
 

@@ -4,11 +4,14 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.stmt.QueryBuilder;
 import db.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ParseException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.sql.SQLException;
 
 /**
  * Created by alnedorezov on 6/20/16.
@@ -22,7 +25,7 @@ public class UsersController {
     private PasswordEncoder passwordEncoder;
 
     @RequestMapping("/resources/user")
-    public User user(@RequestParam(value = "id", defaultValue = "-1") int id) throws Exception {
+    public User user(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
         User user1 = a.userDao.queryForId(id);
@@ -34,7 +37,8 @@ public class UsersController {
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id, @RequestParam(value = "email", defaultValue = "") String email,
                        @RequestParam(value = "name", defaultValue = "") String name, @RequestParam(value = "password", defaultValue = "") String password,
                        @RequestParam(value = "activated", defaultValue = "-2") int activated, @RequestParam(value = "activationcode", defaultValue = "") String activation_code,
-                       @RequestParam(value = "created", defaultValue = "-3") String createdStr, @RequestParam(value = "deleted", defaultValue = "null") String strDeleted) throws Exception {
+                       @RequestParam(value = "created", defaultValue = "-3") String createdStr,
+                       @RequestParam(value = "deleted", defaultValue = "null") String strDeleted) throws SQLException, java.text.ParseException {
         boolean deleted = false;
         if (strDeleted.equals("true"))
             deleted = true;

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.UserRolesObject;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class UserRolesController {
     Application a = new Application();
 
     @RequestMapping("/resources/userroles")
-    public UserRolesObject userRoles() throws Exception {
+    public UserRolesObject userRoles() throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
         UserRolesObject userRolesObject1 = new UserRolesObject(a.userRoleDao.queryForAll());
@@ -32,7 +33,7 @@ public class UserRolesController {
     }
 
     @RequestMapping("/resources/userrole")
-    public UserRole userrole(@RequestParam(value = "userid", defaultValue = "-1") int userid) throws Exception {
+    public UserRole userrole(@RequestParam(value = "userid", defaultValue = "-1") int userid) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
         QueryBuilder<UserRole, Integer> qb = a.userRoleDao.queryBuilder();
@@ -44,7 +45,7 @@ public class UserRolesController {
 
     @RequestMapping(value = "/resources/userrole", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "userid", defaultValue = "-1") int userid,
-                       @RequestParam(value = "roleid", defaultValue = "-1") int roleid) throws Exception {
+                       @RequestParam(value = "roleid", defaultValue = "-1") int roleid) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
         QueryBuilder<UserRole, Integer> qb = a.userRoleDao.queryBuilder();

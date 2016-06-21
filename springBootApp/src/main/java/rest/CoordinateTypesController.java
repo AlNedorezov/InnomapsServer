@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.CoordinateTypesObject;
 
+import java.sql.SQLException;
+
 /**
  * Created by alnedorezov on 6/21/16.
  */
@@ -21,7 +23,7 @@ public class CoordinateTypesController {
     Application a = new Application();
 
     @RequestMapping("/resources/coordinatetypes")
-    public CoordinateTypesObject coordinateTypes() throws Exception {
+    public CoordinateTypesObject coordinateTypes() throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
         CoordinateTypesObject coordinateTypes1 = new CoordinateTypesObject(a.coordinateTypeDao.queryForAll());
@@ -30,7 +32,7 @@ public class CoordinateTypesController {
     }
 
     @RequestMapping("/resources/coordinatetype")
-    public CoordinateType coordinateType(@RequestParam(value = "id", defaultValue = "-1") int id) throws Exception {
+    public CoordinateType coordinateType(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
         CoordinateType coordinateType1 = a.coordinateTypeDao.queryForId(id);
@@ -40,7 +42,7 @@ public class CoordinateTypesController {
 
     @RequestMapping(value = "/resources/coordinatetype", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id,
-                       @RequestParam(value = "name", defaultValue = "!~DELETE") String name) throws Exception {
+                       @RequestParam(value = "name", defaultValue = "!~DELETE") String name) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
 

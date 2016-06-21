@@ -22,7 +22,7 @@ public class ClosestPointFromGraphController {
     @RequestMapping("/resources/closestPointFromGraph")
     public ClosestCoordinateWithDistance findClosestPointFromGraph(@RequestParam(value = "latitude", defaultValue = "0") double latitude,
                                                                    @RequestParam(value = "longitude", defaultValue = "0") double longitude,
-                                                                   @RequestParam(value = "floor", defaultValue = "1") int floor) throws IOException {
+                                                                   @RequestParam(value = "floor", defaultValue = "1") int floor) {
 
         // This data will be written in the log on the server
         Date currentDate = new Date();

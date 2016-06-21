@@ -27,7 +27,7 @@ public class ShortestPathController {
                                                @RequestParam(value = "vertexOneLongitude", defaultValue = "0") double vertexOneLongitude,
                                                @RequestParam(value = "vertexOneFloor", defaultValue = "1") int vertexOneFloor,
                                                @RequestParam(value = "vertexTwoLatitude", defaultValue = "0") double vertexTwoLatitude,
-                                               @RequestParam(value = "vertexTwoLongitude", defaultValue = "0") double vertexTwoLongitude) throws SQLException {
+                                               @RequestParam(value = "vertexTwoLongitude", defaultValue = "0") double vertexTwoLongitude) {
         // This data will be written in the log on the server
         Date currentDate = new Date();
         System.out.println("Received POST request for building a shortest path on " + currentDate);
