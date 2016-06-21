@@ -21,7 +21,7 @@ public class UsersController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @RequestMapping("/resources/users")
+    @RequestMapping("/resources/user")
     public User user(@RequestParam(value = "id", defaultValue = "-1") int id) throws Exception {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
@@ -30,7 +30,7 @@ public class UsersController {
         return user1;
     }
 
-    @RequestMapping(value = "/resources/users", method = RequestMethod.POST)
+    @RequestMapping(value = "/resources/user", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id, @RequestParam(value = "email", defaultValue = "") String email,
                        @RequestParam(value = "name", defaultValue = "") String name, @RequestParam(value = "password", defaultValue = "") String password,
                        @RequestParam(value = "activated", defaultValue = "-2") int activated, @RequestParam(value = "activationcode", defaultValue = "") String activation_code,
