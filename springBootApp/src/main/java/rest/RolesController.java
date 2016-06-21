@@ -1,8 +1,6 @@
 package rest;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.stmt.DeleteBuilder;
-import com.j256.ormlite.stmt.PreparedDelete;
 import com.j256.ormlite.stmt.QueryBuilder;
 import db.Role;
 import db.UserRole;
@@ -55,13 +53,17 @@ public class RolesController {
                 connectionSource.close();
                 return "-1. There is no such role.\n";
             } else {
-                a.roleDao.deleteById(id);
-                DeleteBuilder<UserRole, Integer> db = a.userRoleDao.deleteBuilder();
-                db.where().eq("role_id", id);
-                PreparedDelete<UserRole> preparedDelete = db.prepare();
-                a.userRoleDao.delete(preparedDelete);
-                connectionSource.close();
-                return "0. role with id=" + id + " was successfully deleted.\n";
+                QueryBuilder<UserRole, Integer> qb = a.userRoleDao.queryBuilder();
+                qb.where().eq("role_id", id);
+                if(qb.query().size() > 0) {
+                    connectionSource.close();
+                    return "-1. Delete all userroles with role " + a.roleDao.queryForId(id).getName() + " first.\n";
+                }
+                else {
+                    a.roleDao.deleteById(id);
+                    connectionSource.close();
+                    return "0. role with id=" + id + " was successfully deleted.\n";
+                }
             }
         } else {
             name = "ROLE_" + name; // Apparently according to Spring Security convention role names should start with "ROLE_"
