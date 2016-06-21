@@ -34,6 +34,8 @@ import java.sql.SQLException;
 public class Application {
 
     protected final static String DATABASE_URL = "jdbc:h2:tcp://10.90.104.144:9092/test;IFEXISTS=TRUE";
+    protected final static String DATABASE_USERNAME = "sa";
+    protected final static String DATABASE_PASSWORD = "sa";
     // change 'localhost' to 10.90.104.144 for debug and vice versa for deploy
     // 10.90.104.144 works only for devices connected to the IU network
 
@@ -76,7 +78,7 @@ public class Application {
     private void connectToDB() throws SQLException {
         JdbcConnectionSource connectionSource;
         // create our data source
-        connectionSource = new JdbcConnectionSource(DATABASE_URL, "sa", "sa");
+        connectionSource = new JdbcConnectionSource(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         // setup our database and DAOs
         setupDatabase(connectionSource, true);
     }
@@ -158,7 +160,7 @@ public class Application {
      */
     private void insertDemoDataInTheDatabase() throws SQLException {
         // create our data source
-        ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE_URL, "sa", "sa");
+        ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         setupDatabase(connectionSource, false);
 
         int id;
@@ -203,7 +205,7 @@ public class Application {
             }
 
             // create our data source
-            ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE_URL, "sa", "sa");
+            ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
             setupDatabase(connectionSource, false);
 
             coordinatesList = jGraphTWrapper.getVertices();

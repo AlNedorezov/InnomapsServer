@@ -22,7 +22,8 @@ public class EdgeTypesController {
 
     @RequestMapping("/resources/edgetypes")
     public EdgeTypesObject edgeTypes() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
         EdgeTypesObject edgeTypes1 = new EdgeTypesObject(a.edgeTypeDao.queryForAll());
         connectionSource.close();
@@ -31,7 +32,8 @@ public class EdgeTypesController {
 
     @RequestMapping("/resources/edgetype")
     public EdgeType edgeType(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
         EdgeType edgeType1 = a.edgeTypeDao.queryForId(id);
         connectionSource.close();
@@ -41,7 +43,8 @@ public class EdgeTypesController {
     @RequestMapping(value = "/resources/edgetype", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id,
                        @RequestParam(value = "name", defaultValue = "!~DELETE") String name) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
 
         if (name.equals("!~DELETE")) {

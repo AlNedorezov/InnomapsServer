@@ -21,7 +21,8 @@ public class CoordinatesController {
 
     @RequestMapping("/resources/coordinates")
     public CoordinatesObject coordinates() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
         CoordinatesObject coordinates1 = new CoordinatesObject(a.coordinateDao.queryForAll());
         connectionSource.close();
@@ -30,7 +31,8 @@ public class CoordinatesController {
 
     @RequestMapping("/resources/coordinate")
     public Coordinate coordinate(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
         Coordinate coordinate1 = a.coordinateDao.queryForId(id);
         connectionSource.close();
@@ -43,7 +45,8 @@ public class CoordinatesController {
                        @RequestParam(value = "typeid", defaultValue = "-5") int type_id, @RequestParam(value = "name", defaultValue = "!~NO_NAME") String name,
                        @RequestParam(value = "description", defaultValue = "!~NO_DESCRIPTION") String description) throws SQLException {
 
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
 
         if (latitude == -2 && longitude == -3 && floor == -4 && type_id == -5 &&
@@ -248,7 +251,8 @@ public class CoordinatesController {
     }
 
     private String checkIfCoordinateCanBeDeleted(int coordinateId) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 
