@@ -1,7 +1,6 @@
 package rest;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import db.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.CoordinatesObject;
 
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Created by alnedorezov on 6/21/16.
@@ -59,49 +57,44 @@ public class CoordinatesController {
                 return "-1. There is no such coordinate.\n";
             } else {
                 String errorMessage = checkIfCoordinateCanBeDeleted(id);
-                if(errorMessage.equals("")) {
+                if (errorMessage.equals("")) {
                     a.coordinateDao.deleteById(id);
                     connectionSource.close();
                     return "0. Coordinate with id=" + id + " was successfully deleted.\n";
-                }
-                else {
+                } else {
                     connectionSource.close();
                     return "-1. " + errorMessage;
                 }
             }
-        }
-        else {
+        } else {
             if (id == -1) {
                 // Creating a coordinate
                 if (latitude == -2 || longitude == -3 || latitude > 90 || latitude < -90 || longitude > 180 || longitude < -180) {
                     connectionSource.close();
                     return "-1. Wrong parameters.\n";
-                }
-                else
-                {
+                } else {
                     System.out.println("Received POST request: create new coordinate");
                     CoordinateCreateData createData = checkCoordinateCreateData(new CoordinateCreateData(floor, type_id, name, description));
                     a.coordinateDao.create(new Coordinate(id, latitude, longitude, createData.getFloor(),
-                                            createData.getType_id(), createData.getName(), createData.getDescription()));
+                            createData.getType_id(), createData.getName(), createData.getDescription()));
                     QueryBuilder<Coordinate, Integer> qBuilder = a.coordinateDao.queryBuilder();
                     qBuilder.orderBy("id", false); // false for descending order
                     qBuilder.limit(1);
                     Coordinate createdCoordinate = a.coordinateDao.queryForId(qBuilder.query().get(0).getId());
-                    System.out.println(createdCoordinate.getId() + " | " + createdCoordinate.getLatitude()  + " | " +
-                                        createdCoordinate.getLongitude() + " | " + createdCoordinate.getFloor()  + " | " +
-                                        createdCoordinate.getType_id() + " | " + createdCoordinate.getName() + " | " +
-                                        createdCoordinate.getDescription());
+                    System.out.println(createdCoordinate.getId() + " | " + createdCoordinate.getLatitude() + " | " +
+                            createdCoordinate.getLongitude() + " | " + createdCoordinate.getFloor() + " | " +
+                            createdCoordinate.getType_id() + " | " + createdCoordinate.getName() + " | " +
+                            createdCoordinate.getDescription());
                     connectionSource.close();
                     return "0. Coordinate with id=" + createdCoordinate.getId() + " was successfully created.\n";
                 }
-            }
-            else {
+            } else {
                 // Updating a coordinate
                 System.out.println("Received POST request: update coordinate with id=" + id);
                 CoordinateUpdateData updCoordinate = checkDataForUpdates(new CoordinateUpdateData(latitude, longitude, floor, type_id, name, description),
-                                                                            a.coordinateDao.queryForId(id));
+                        a.coordinateDao.queryForId(id));
                 a.coordinateDao.update(new Coordinate(id, updCoordinate.getLatitude(), updCoordinate.getLongitude(), updCoordinate.getFloor(),
-                                                        updCoordinate.getType_id(), updCoordinate.getName(), updCoordinate.getDescription()));
+                        updCoordinate.getType_id(), updCoordinate.getName(), updCoordinate.getDescription()));
                 connectionSource.close();
                 return "0. Coordinate with id=" + id + " was successfully updated.\n";
             }
@@ -261,22 +254,22 @@ public class CoordinatesController {
 
         QueryBuilder<Edge, Integer> qbEdge = a.edgeDao.queryBuilder();
         qbEdge.where().eq("source_id", coordinateId).or().eq("target_id", coordinateId);
-        if(qbEdge.query().size() > 0)
+        if (qbEdge.query().size() > 0)
             errorMessage += "Delete all edges with coordinate " + coordinateId + " first. ";
 
         QueryBuilder<EventSchedule, Integer> qbEventSchedule = a.eventScheduleDao.queryBuilder();
         qbEventSchedule.where().eq("location_id", coordinateId);
-        if(qbEventSchedule.query().size() > 0)
+        if (qbEventSchedule.query().size() > 0)
             errorMessage += "Delete all event schedules with location_id=" + coordinateId + " first. ";
 
         QueryBuilder<Room, Integer> qbRoom = a.roomDao.queryBuilder();
         qbRoom.where().eq("coordinate_id", coordinateId);
-        if(qbRoom.query().size() > 0)
+        if (qbRoom.query().size() > 0)
             errorMessage += "Delete all rooms with coordinate_id=" + coordinateId + " first. ";
 
         QueryBuilder<Building, Integer> qbBuilding = a.buildingDao.queryBuilder();
         qbBuilding.where().eq("coordinate_id", coordinateId);
-        if(qbBuilding.query().size() > 0)
+        if (qbBuilding.query().size() > 0)
             errorMessage += "Delete all buildings with coordinate_id=" + coordinateId + " first. ";
 
         connectionSource.close();
