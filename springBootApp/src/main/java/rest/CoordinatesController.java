@@ -1,8 +1,9 @@
 package rest;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
-import db.Coordinate;
+import db.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.CoordinatesObject;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by alnedorezov on 6/21/16.
@@ -56,9 +58,16 @@ public class CoordinatesController {
                 connectionSource.close();
                 return "-1. There is no such coordinate.\n";
             } else {
-                a.coordinateDao.deleteById(id);
-                connectionSource.close();
-                return "0. Coordinate with id=" + id + " was successfully deleted.\n";
+                String errorMessage = checkIfCoordinateCanBeDeleted(id);
+                if(errorMessage.equals("")) {
+                    a.coordinateDao.deleteById(id);
+                    connectionSource.close();
+                    return "0. Coordinate with id=" + id + " was successfully deleted.\n";
+                }
+                else {
+                    connectionSource.close();
+                    return "-1. " + errorMessage;
+                }
             }
         }
         else {
@@ -243,5 +252,34 @@ public class CoordinatesController {
         public void setDescription(String description) {
             this.description = description;
         }
+    }
+
+    private String checkIfCoordinateCanBeDeleted(int coordinateId) throws SQLException {
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
+        a.setupDatabase(connectionSource, false);
+        String errorMessage = "";
+
+        QueryBuilder<Edge, Integer> qbEdge = a.edgeDao.queryBuilder();
+        qbEdge.where().eq("source_id", coordinateId).or().eq("target_id", coordinateId);
+        if(qbEdge.query().size() > 0)
+            errorMessage += "Delete all edges with coordinate " + coordinateId + " first. ";
+
+        QueryBuilder<EventSchedule, Integer> qbEventSchedule = a.eventScheduleDao.queryBuilder();
+        qbEventSchedule.where().eq("location_id", coordinateId);
+        if(qbEventSchedule.query().size() > 0)
+            errorMessage += "Delete all event schedules with location_id=" + coordinateId + " first. ";
+
+        QueryBuilder<Room, Integer> qbRoom = a.roomDao.queryBuilder();
+        qbRoom.where().eq("coordinate_id", coordinateId);
+        if(qbRoom.query().size() > 0)
+            errorMessage += "Delete all rooms with coordinate_id=" + coordinateId + " first. ";
+
+        QueryBuilder<Building, Integer> qbBuilding = a.buildingDao.queryBuilder();
+        qbBuilding.where().eq("coordinate_id", coordinateId);
+        if(qbBuilding.query().size() > 0)
+            errorMessage += "Delete all buildings with coordinate_id=" + coordinateId + " first. ";
+
+        connectionSource.close();
+        return errorMessage;
     }
 }
