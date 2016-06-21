@@ -88,10 +88,15 @@ public class CoordinatesController {
             }
             else {
                 // Updating a coordinate
+                System.out.println("Received POST request: update coordinate with id=" + id);
+                CoordinateUpdateData updCoordinate = checkDataForUpdates(new CoordinateUpdateData(latitude, longitude, floor, type_id, name, description),
+                                                                            a.coordinateDao.queryForId(id));
+                a.coordinateDao.update(new Coordinate(id, updCoordinate.getLatitude(), updCoordinate.getLongitude(), updCoordinate.getFloor(),
+                                                        updCoordinate.getType_id(), updCoordinate.getName(), updCoordinate.getDescription()));
+                connectionSource.close();
+                return "0. Coordinate with id=" + id + " was successfully updated.\n";
             }
         }
-
-        return "УБРАТЬ КОГДА ДОДЕЛАЮ!";
     }
 
     private CoordinateCreateData checkCoordinateCreateData(CoordinateCreateData coordinateCreateData) {
@@ -110,6 +115,88 @@ public class CoordinatesController {
             coordinateCreateData.setDescription("");
 
         return coordinateCreateData;
+    }
+
+    private CoordinateUpdateData checkDataForUpdates(CoordinateUpdateData checkedCoordinateData, Coordinate coordinateInDatabase) {
+        if (checkedCoordinateData.getLatitude() == -2)
+            checkedCoordinateData.setLatitude(coordinateInDatabase.getLatitude());
+
+        if (checkedCoordinateData.getLongitude() == -3)
+            checkedCoordinateData.setLongitude(coordinateInDatabase.getLongitude());
+
+        if (checkedCoordinateData.getFloor() == -4)
+            checkedCoordinateData.setFloor(coordinateInDatabase.getFloor());
+
+        if (checkedCoordinateData.getType_id() == -5)
+            checkedCoordinateData.setType_id(coordinateInDatabase.getType_id());
+
+        if (checkedCoordinateData.getName().equals("!~NO_NAME"))
+            checkedCoordinateData.setName(coordinateInDatabase.getName());
+
+        if (checkedCoordinateData.getDescription().equals("!~NO_DESCRIPTION"))
+            checkedCoordinateData.setDescription(coordinateInDatabase.getDescription());
+
+        return checkedCoordinateData;
+    }
+
+    private class CoordinateUpdateData extends CoordinateCreateData {
+
+        private double latitude;
+        private double longitude;
+
+        public CoordinateUpdateData(double latitude, double longitude, int floor, int type_id, String name, String description) {
+            super(floor, type_id, name, description);
+            this.latitude = latitude;
+            this.longitude = longitude;
+        }
+
+        public double getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(double latitude) {
+            this.latitude = latitude;
+        }
+
+        public double getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(double longitude) {
+            this.longitude = longitude;
+        }
+
+        public int getFloor() {
+            return super.getFloor();
+        }
+
+        public void setFloor(int floor) {
+            super.setFloor(floor);
+        }
+
+        public int getType_id() {
+            return super.getType_id();
+        }
+
+        public void setType_id(int type_id) {
+            super.setType_id(type_id);
+        }
+
+        public String getName() {
+            return super.getName();
+        }
+
+        public void setName(String name) {
+            super.setName(name);
+        }
+
+        public String getDescription() {
+            return super.getDescription();
+        }
+
+        public void setDescription(String description) {
+            super.setDescription(description);
+        }
     }
 
     private class CoordinateCreateData {
