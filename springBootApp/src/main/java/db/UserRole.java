@@ -8,7 +8,13 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 @DatabaseTable(tableName = "User_roles")
 public class UserRole {
-    @DatabaseField(uniqueCombo = true)
+    // It is assumed that one user can only have one role
+    // If later it will be decided that one use can have
+    // multiple roles, then all that will be necessary to do
+    // is to remove unique annotation on user_id field
+    // and change userrole function in UserRolesController
+    // for it to return a list of roles
+    @DatabaseField(uniqueCombo = true, unique = true)
     private int user_id;
     @DatabaseField(uniqueCombo = true)
     private int role_id;
