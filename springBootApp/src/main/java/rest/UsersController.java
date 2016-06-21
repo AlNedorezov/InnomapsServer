@@ -65,7 +65,7 @@ public class UsersController {
         } else {
             if (!a.userDao.idExists(id)) {
                 // Creating a user
-                if (createdStr.equals("-3")) {
+                if (createdStr.equals("-3") || password.equals("")) {
                     connectionSource.close();
                     return "-1. Wrong parameters.\n";
                 } else {
