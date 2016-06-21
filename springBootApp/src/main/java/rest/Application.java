@@ -8,7 +8,6 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import db.*;
-import org.jgrapht.graph.SimpleWeightedGraph;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -16,9 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.xmlpull.v1.XmlPullParserException;
-import pathfinding.JGraphTWrapper;
 import pathfinding.LatLngGraphEdge;
-import pathfinding.LatLngGraphVertex;
 import xmlToDB.ExtendedJGraphTWrapper;
 import xmlToDB.LatLngExtendedGraphVertex;
 
@@ -122,36 +119,36 @@ public class Application {
             TableUtils.createTableIfNotExists(connectionSource, CoordinateType.class);
             TableUtils.createTableIfNotExists(connectionSource, EdgeType.class);
             TableUtils.createTableIfNotExists(connectionSource, RoomType.class);
-            if(!coordinateDao.isTableExists())
+            if (!coordinateDao.isTableExists())
                 alterCoordinatesTable = true;
             TableUtils.createTableIfNotExists(connectionSource, Coordinate.class);
-            if(alterCoordinatesTable)
+            if (alterCoordinatesTable)
                 coordinateDao.updateRaw("ALTER TABLE COORDINATES ALTER COLUMN DESCRIPTION VARCHAR(2500)");
             TableUtils.createTableIfNotExists(connectionSource, Edge.class);
             TableUtils.createTableIfNotExists(connectionSource, Street.class);
-            if(!buildingDao.isTableExists())
+            if (!buildingDao.isTableExists())
                 alterBuildingsTable = true;
             TableUtils.createTableIfNotExists(connectionSource, Building.class);
-            if(alterBuildingsTable)
+            if (alterBuildingsTable)
                 buildingDao.updateRaw("ALTER TABLE BUILDINGS ALTER COLUMN DESCRIPTION VARCHAR(2500)");
             TableUtils.createTableIfNotExists(connectionSource, Room.class);
-            if(!photoDao.isTableExists())
+            if (!photoDao.isTableExists())
                 alterPhotosTable = true;
             TableUtils.createTableIfNotExists(connectionSource, Photo.class);
-            if(alterPhotosTable)
+            if (alterPhotosTable)
                 photoDao.updateRaw("ALTER TABLE PHOTOS ALTER COLUMN URL VARCHAR(500)");
             TableUtils.createTableIfNotExists(connectionSource, BuildingPhoto.class);
             TableUtils.createTableIfNotExists(connectionSource, RoomPhoto.class);
             TableUtils.createTableIfNotExists(connectionSource, EventCreator.class);
-            if(!eventDao.isTableExists())
+            if (!eventDao.isTableExists())
                 alterEventsTable = true;
             TableUtils.createTableIfNotExists(connectionSource, Event.class);
-            if(alterEventsTable)
+            if (alterEventsTable)
                 eventDao.updateRaw("ALTER TABLE EVENTS ALTER COLUMN DESCRIPTION VARCHAR(2500)");
-            if(!eventScheduleDao.isTableExists())
+            if (!eventScheduleDao.isTableExists())
                 alterEventSchedulesTable = true;
             TableUtils.createTableIfNotExists(connectionSource, EventSchedule.class);
-            if(alterEventSchedulesTable)
+            if (alterEventSchedulesTable)
                 eventScheduleDao.updateRaw("ALTER TABLE EVENT_SCHEDULES ALTER COLUMN COMMENT VARCHAR(2500)");
         }
     }
@@ -172,7 +169,7 @@ public class Application {
         String name;
         String description;
 
-        id=0;
+        id = 0;
         latitude = 55.75310771911266;
         longitude = 48.743609078228474;
         floor = 1;
@@ -231,8 +228,8 @@ public class Application {
             roomTypeDao.create(new RoomType(6, "DOOR"));
             roomTypeDao.create(new RoomType(7, "LIBRARY"));
 
-            for(int i=0; i<coordinatesList.length; i++) {
-                if(coordinatesList[i] != null) {
+            for (int i = 0; i < coordinatesList.length; i++) {
+                if (coordinatesList[i] != null) {
 
                     int coordinate_type_id;
                     QueryBuilder<CoordinateType, Integer> qBuilder = coordinateTypeDao.queryBuilder();
@@ -242,10 +239,9 @@ public class Application {
                     preparedQuery = qBuilder.prepare();
                     qBuilder.reset();
 
-                    if(qBuilder.countOf() > 0 && coordinateTypeDao.query(preparedQuery).size() > 0) {
-                            coordinate_type_id = coordinateTypeDao.query(preparedQuery).get(0).getId();
-                    }
-                    else {
+                    if (qBuilder.countOf() > 0 && coordinateTypeDao.query(preparedQuery).size() > 0) {
+                        coordinate_type_id = coordinateTypeDao.query(preparedQuery).get(0).getId();
+                    } else {
                         coordinateTypeDao.create(new CoordinateType(0, coordinatesList[i].getGraphVertexType().toString()));
                         qBuilder.reset();
                         qBuilder.orderBy("id", false); // false for descending order
@@ -254,11 +250,11 @@ public class Application {
                     }
 
                     coordinateDao.create(new Coordinate(0, coordinatesList[i].getVertex().getLatitude(), coordinatesList[i].getVertex().getLongitude(),
-                                         (int) Math.floor(coordinatesList[i].getVertexId() / 1000), coordinate_type_id,
-                                            coordinatesList[i].getName(), coordinatesList[i].getDescription()));
+                            (int) Math.floor(coordinatesList[i].getVertexId() / 1000), coordinate_type_id,
+                            coordinatesList[i].getName(), coordinatesList[i].getDescription()));
 
                     // ROOM, FOOD, WC, CLINIC, READING, DOOR, LIBRARY and EASTER_EGG
-                    if(coordinatesList[i].getGraphVertexType().toString().equals("ROOM") || coordinatesList[i].getGraphVertexType().toString().equals("FOOD") ||
+                    if (coordinatesList[i].getGraphVertexType().toString().equals("ROOM") || coordinatesList[i].getGraphVertexType().toString().equals("FOOD") ||
                             coordinatesList[i].getGraphVertexType().toString().equals("WC") || coordinatesList[i].getGraphVertexType().toString().equals("CLINIC") ||
                             coordinatesList[i].getGraphVertexType().toString().equals("READING") || coordinatesList[i].getGraphVertexType().toString().equals("DOOR") ||
                             coordinatesList[i].getGraphVertexType().toString().equals("LIBRARY")) {
@@ -299,8 +295,8 @@ public class Application {
             edgeTypeDao.create(new EdgeType(1, "DEFAULT"));
             edgeTypeDao.create(new EdgeType(2, "STAIRS"));
 
-            for(int i=0; i<edgesList.length; i++) {
-                if(edgesList[i] != null) {
+            for (int i = 0; i < edgesList.length; i++) {
+                if (edgesList[i] != null) {
                     int source_id, target_id;
                     QueryBuilder<Coordinate, Integer> qBuilder = coordinateDao.queryBuilder();
                     qBuilder.where().eq("latitude", edgesList[i].getV1().getVertex().getLatitude()).and().eq("longitude", edgesList[i].getV1().getVertex().getLongitude());

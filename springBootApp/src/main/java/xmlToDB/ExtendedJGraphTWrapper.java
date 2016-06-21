@@ -7,7 +7,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import pathfinding.JGraphTWrapper;
 import pathfinding.LatLng;
 import pathfinding.LatLngGraphEdge;
-import pathfinding.LatLngGraphVertex;
 
 import java.io.*;
 import java.util.HashMap;
@@ -40,12 +39,12 @@ public class ExtendedJGraphTWrapper extends JGraphTWrapper {
         LatLngExtendedGraphVertex[] verticesList = getVertices();
         LatLngExtendedGraphVertex gv1 = null;
         LatLngExtendedGraphVertex gv2 = null;
-        for(int i=0; i<verticesList.length; i++) {
-            if(verticesList[i].getVertexId() == v1Index)
+        for (int i = 0; i < verticesList.length; i++) {
+            if (verticesList[i].getVertexId() == v1Index)
                 gv1 = verticesList[i];
-            if(verticesList[i].getVertexId() == v2Index)
+            if (verticesList[i].getVertexId() == v2Index)
                 gv2 = verticesList[i];
-            if(gv1 != null && gv2 != null)
+            if (gv1 != null && gv2 != null)
                 break;
         }
 
