@@ -20,7 +20,7 @@ public class CoordinatesController {
     Application a = new Application();
 
     @RequestMapping("/resources/coordinates")
-    public CoordinatesObject roles() throws SQLException {
+    public CoordinatesObject coordinates() throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(a.DATABASE_URL, "sa", "sa");
         a.setupDatabase(connectionSource, false);
         CoordinatesObject coordinates1 = new CoordinatesObject(a.coordinateDao.queryForAll());
