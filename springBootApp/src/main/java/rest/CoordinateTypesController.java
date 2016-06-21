@@ -55,13 +55,17 @@ public class CoordinateTypesController {
                 connectionSource.close();
                 return "-1. There is no such coordinate type.\n";
             } else {
-                a.coordinateTypeDao.deleteById(id);
-                DeleteBuilder<Coordinate, Integer> db = a.coordinateDao.deleteBuilder();
-                db.where().eq("type_id", id);
-                PreparedDelete<Coordinate> preparedDelete = db.prepare();
-                a.coordinateDao.delete(preparedDelete);
-                connectionSource.close();
-                return "0. Coordinate type with id=" + id + " was successfully deleted.\n";
+                QueryBuilder<Coordinate, Integer> qb = a.coordinateDao.queryBuilder();
+                qb.where().eq("type_id", id);
+                if(qb.query().size() > 0) {
+                    connectionSource.close();
+                    return "-1. Delete all coordinates with type " + a.coordinateTypeDao.queryForId(id).getName() + " first.\n";
+                }
+                else {
+                    a.coordinateTypeDao.deleteById(id);
+                    connectionSource.close();
+                    return "0. Coordinate type with id=" + id + " was successfully deleted.\n";
+                }
             }
         } else {
             if (id == -1) {
