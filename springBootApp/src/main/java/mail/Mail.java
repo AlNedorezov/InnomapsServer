@@ -1,4 +1,4 @@
-package rest;
+package mail;
 
 import org.springframework.security.crypto.codec.Base64;
 

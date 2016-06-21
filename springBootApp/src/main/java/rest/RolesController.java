@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import rest.clientServerCommunicationClasses.RolesObject;
 
 /**
  * Created by alnedorezov on 6/20/16.
@@ -63,7 +64,7 @@ public class RolesController {
         } else {
             name = "ROLE_" + name; // Apparently according to Spring Security convention role names should start with "ROLE_"
             if (id == -1) {
-                // Creating a topic
+                // Creating a role
                 System.out.println("Received POST request: create role with name=" + name);
                 a.roleDao.create(new Role(id, name));
                 QueryBuilder<Role, Integer> qBuilder = a.roleDao.queryBuilder();
@@ -74,7 +75,7 @@ public class RolesController {
                 connectionSource.close();
                 return "0. Role with id=" + createdRole.getId() + " was successfully created.\n";
             } else {
-                // Updating a topic
+                // Updating a role
                 System.out.println("Received POST request: update role with id=" + id);
                 if (!a.roleDao.idExists(id)) {
                     connectionSource.close();
