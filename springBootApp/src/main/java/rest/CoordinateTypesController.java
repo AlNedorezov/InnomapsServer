@@ -59,7 +59,7 @@ public class CoordinateTypesController {
                 PreparedDelete<Coordinate> preparedDelete = db.prepare();
                 a.coordinateDao.delete(preparedDelete);
                 connectionSource.close();
-                return "0. coordinate type with id=" + id + " was successfully deleted.\n";
+                return "0. Coordinate type with id=" + id + " was successfully deleted.\n";
             }
         } else {
             if (id == -1) {
