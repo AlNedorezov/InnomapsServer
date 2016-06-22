@@ -42,11 +42,11 @@ public class Application {
     protected Dao<User, Integer> userDao;
     protected Dao<Role, Integer> roleDao;
     protected Dao<UserRole, Integer> userRoleDao;
-    protected Dao<CoordinateType, Integer> coordinateTypeDao;
-    protected Dao<EdgeType, Integer> edgeTypeDao;
+    public Dao<CoordinateType, Integer> coordinateTypeDao;
+    public Dao<EdgeType, Integer> edgeTypeDao;
     protected Dao<RoomType, Integer> roomTypeDao;
-    protected Dao<Coordinate, Integer> coordinateDao;
-    protected Dao<Edge, Integer> edgeDao;
+    public Dao<Coordinate, Integer> coordinateDao;
+    public Dao<Edge, Integer> edgeDao;
     protected Dao<Street, Integer> streetDao;
     protected Dao<Building, Integer> buildingDao;
     protected Dao<Room, Integer> roomDao;

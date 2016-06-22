@@ -1,15 +1,21 @@
 package pathfinding;
 
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import db.Coordinate;
+import db.Edge;
 import org.jgrapht.Graph;
+import org.jgrapht.alg.ConnectivityInspector;
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.SimpleWeightedGraph;
 import org.jgrapht.graph.UndirectedWeightedSubgraph;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
+import rest.Application;
 import rest.clientServerCommunicationClasses.ClosestCoordinateWithDistance;
 
 import java.io.*;
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -64,6 +70,13 @@ public class JGraphTWrapper {
         double penaltyWeight = (graphElementType == GraphElementType.DEFAULT) ? 0.0 : 1.0;
         graph.setEdgeWeight(e, haversine(gv1.getVertex().getLatitude(), gv1.getVertex().getLongitude(),
                 gv2.getVertex().getLatitude(), gv2.getVertex().getLongitude()) + penaltyWeight);
+    }
+
+    /**
+     * Removes edge from the graph
+     */
+    public void removeEdge(LatLngGraphVertex sourceVertex, LatLngGraphVertex targetVertex) {
+        graph.removeEdge(sourceVertex, targetVertex);
     }
 
     /**
@@ -215,6 +228,92 @@ public class JGraphTWrapper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Imports graph from the database. Doesn't return anything but if import was
+     * successful internal graph object will be replaced by the imported one.
+     */
+    public void importGraphFromDB(String dbUrl, String dbUsername, String dbPassword) throws SQLException {
+        Application a = new Application();
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(dbUrl, dbUsername, dbPassword);
+        a.setupDatabase(connectionSource, false);
+
+        graph = new SimpleWeightedGraph<>(LatLngGraphEdge.class);
+        GraphElementType vertexType;
+        GraphElementType edgeType;
+
+        List<Edge> edges = a.edgeDao.queryForAll();
+        List<Coordinate> coordinates = a.coordinateDao.queryForAll();
+
+        for (int i = 0; i < coordinates.size(); i++) {
+            String coordinate_type = a.coordinateTypeDao.queryForId(a.coordinateDao.queryForId(coordinates.get(i).getId()).getType_id()).getName();
+            vertexType = determineVertexType(coordinate_type);
+            addVertexWithId(new LatLng(coordinates.get(i).getLatitude(), coordinates.get(i).getLongitude()),
+                    coordinates.get(i).getId(), vertexType);
+        }
+
+        for (int i = 0; i < edges.size(); i++) {
+            String edge_type = a.edgeTypeDao.queryForId(a.edgeDao.queryForId(edges.get(i).getId()).getType_id()).getName();
+            edgeType = determineEdgeType(edge_type);
+            addEdge(new LatLng(a.coordinateDao.queryForId(edges.get(i).getSource_id()).getLatitude(),
+                            a.coordinateDao.queryForId(edges.get(i).getSource_id()).getLongitude()),
+                    new LatLng(a.coordinateDao.queryForId(edges.get(i).getTarget_id()).getLatitude(),
+                            a.coordinateDao.queryForId(edges.get(i).getTarget_id()).getLongitude()),
+                    edges.get(i).getSource_id(), edges.get(i).getTarget_id(), edgeType);
+        }
+
+        connectionSource.close();
+    }
+
+    public GraphElementType determineVertexType(String typeStr) {
+        switch (typeStr) {
+            case "STAIRS":
+                return GraphElementType.STAIRS;
+            case "ELEVATOR":
+                return GraphElementType.ELEVATOR;
+            case "ROOM":
+                return GraphElementType.ROOM;
+            case "FOOD":
+                return GraphElementType.FOOD;
+            case "WC":
+                return GraphElementType.WC;
+            case "CLINIC":
+                return GraphElementType.CLINIC;
+            case "READING":
+                return GraphElementType.READING;
+            case "DOOR":
+                return GraphElementType.DOOR;
+            case "LIBRARY":
+                return GraphElementType.LIBRARY;
+            case "EASTER_EGG":
+                return GraphElementType.EASTER_EGG;
+            case "DEFAULT":
+                return GraphElementType.DEFAULT;
+            default:
+                return GraphElementType.DEFAULT;
+        }
+    }
+
+    protected GraphElementType determineEdgeType(String typeStr) {
+        switch (typeStr) {
+            case "STAIRS":
+                return GraphElementType.STAIRS;
+            case "ELEVATOR":
+                return GraphElementType.ELEVATOR;
+            case "DEFAULT":
+                return GraphElementType.DEFAULT;
+            default:
+                return GraphElementType.DEFAULT;
+        }
+    }
+
+    public boolean graphIsConnected() {
+        ConnectivityInspector<LatLngGraphVertex, LatLngGraphEdge> connectivityInspector = new ConnectivityInspector<LatLngGraphVertex, LatLngGraphEdge>(graph);
+        if (connectivityInspector.isGraphConnected())
+            return true;
+        else
+            return false;
     }
 
     /**

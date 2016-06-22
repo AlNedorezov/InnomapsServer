@@ -2,11 +2,15 @@ package rest;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.stmt.QueryBuilder;
+import db.Coordinate;
 import db.Edge;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pathfinding.JGraphTWrapper;
+import pathfinding.LatLng;
+import pathfinding.LatLngGraphVertex;
 import rest.clientServerCommunicationClasses.EdgesObject;
 
 import java.sql.SQLException;
@@ -22,7 +26,7 @@ public class EdgesController {
     @RequestMapping("/resources/edges")
     public EdgesObject edges() throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                                    Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
         EdgesObject edges1 = new EdgesObject(a.edgeDao.queryForAll());
         connectionSource.close();
@@ -40,11 +44,14 @@ public class EdgesController {
     }
 
 
-
     @RequestMapping(value = "/resources/edge", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id, @RequestParam(value = "typeid", defaultValue = "-2") int type_id,
                        @RequestParam(value = "sourceid", defaultValue = "-3") int source_id,
-                       @RequestParam(value = "targetid", defaultValue = "-4") int target_id) throws SQLException {
+                       @RequestParam(value = "targetid", defaultValue = "-4") int target_id,
+                       @RequestParam(value = "checkconnectivity", defaultValue = "false") String checkConnectivityStr) throws SQLException {
+        boolean checkConnectivity = false;
+        if (checkConnectivityStr.equals("true"))
+            checkConnectivity = true;
 
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
@@ -59,7 +66,9 @@ public class EdgesController {
                 connectionSource.close();
                 return "-1. There is no such edge.\n";
             } else {
-                String errorMessage = checkIfEdgeCanBeDeleted(source_id, target_id);
+                String errorMessage = "";
+                if(checkConnectivity)
+                    errorMessage = checkIfEdgeCanBeDeleted(id);
                 if (errorMessage.equals("")) {
                     a.edgeDao.deleteById(id);
                     connectionSource.close();
@@ -79,7 +88,7 @@ public class EdgesController {
                     System.out.println("Received POST request: create new edge");
                     type_id = checkTypeId(type_id);
                     String errorMessageOnCreate = checkIfEdgeCanBeCreated(source_id, target_id);
-                    if(errorMessageOnCreate.equals("")) {
+                    if (errorMessageOnCreate.equals("")) {
                         a.edgeDao.create(new Edge(id, type_id, source_id, target_id));
                         QueryBuilder<Edge, Integer> qBuilder = a.edgeDao.queryBuilder();
                         qBuilder.orderBy("id", false); // false for descending order
@@ -89,8 +98,7 @@ public class EdgesController {
                                 createdEdge.getSource_id() + " | " + createdEdge.getTarget_id());
                         connectionSource.close();
                         return "0. Edge with id=" + createdEdge.getId() + " was successfully created.\n";
-                    }
-                    else {
+                    } else {
                         connectionSource.close();
                         return "-1. " + errorMessageOnCreate;
                     }
@@ -99,12 +107,11 @@ public class EdgesController {
                 // Updating an edge
                 System.out.println("Received POST request: update edge with id=" + id);
                 EdgeUpdateData updEdge = checkDataForUpdates(new EdgeUpdateData(type_id, source_id, target_id), a.edgeDao.queryForId(id));
-                if(updEdge.getErrorMessage().equals("")) {
+                if (updEdge.getErrorMessage().equals("")) {
                     a.edgeDao.update(new Edge(id, updEdge.getType_id(), updEdge.getSource_id(), updEdge.getTarget_id()));
                     connectionSource.close();
                     return "0. Coordinate with id=" + id + " was successfully updated.\n";
-                }
-                else {
+                } else {
                     connectionSource.close();
                     return "-1. " + updEdge.getErrorMessage();
                 }
@@ -186,13 +193,27 @@ public class EdgesController {
         }
     }
 
-    private String checkIfEdgeCanBeDeleted(int source_id, int target_id) throws SQLException {
+    private String checkIfEdgeCanBeDeleted(int edge_id) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
+        int source_id = a.edgeDao.queryForId(edge_id).getSource_id();
+        int target_id = a.edgeDao.queryForId(edge_id).getTarget_id();
         String errorMessage = "";
 
-        // TODO: Implement connectivity check on edge deletion
+        JGraphTWrapper jGraphTWrapper = new JGraphTWrapper();
+        jGraphTWrapper.importGraphFromDB(Application.DATABASE_URL, Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        LatLngGraphVertex sourceVertex, targetVertex;
+        Coordinate sourceCoordinate = a.coordinateDao.queryForId(source_id);
+        Coordinate targetCoordinate = a.coordinateDao.queryForId(target_id);
+        sourceVertex = new LatLngGraphVertex(new LatLng(sourceCoordinate.getLatitude(), sourceCoordinate.getLongitude()),
+                        sourceCoordinate.getId(), jGraphTWrapper.determineVertexType(a.coordinateTypeDao.queryForId(sourceCoordinate.getType_id()).getName()));
+        targetVertex = new LatLngGraphVertex(new LatLng(targetCoordinate.getLatitude(), targetCoordinate.getLongitude()),
+                targetCoordinate.getId(), jGraphTWrapper.determineVertexType(a.coordinateTypeDao.queryForId(targetCoordinate.getType_id()).getName()));
+        jGraphTWrapper.removeEdge(sourceVertex, targetVertex);
+
+        if(!jGraphTWrapper.graphIsConnected())
+            errorMessage += "Deletion of the edge (" + source_id + ", " + target_id + ") will violate graphs connectivity. ";
 
         connectionSource.close();
         return errorMessage;
