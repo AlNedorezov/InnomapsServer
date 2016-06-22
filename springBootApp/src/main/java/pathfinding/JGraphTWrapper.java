@@ -252,7 +252,7 @@ public class JGraphTWrapper {
 
         for (int i = 0; i < coordinates.size(); i++) {
             currentCoordinateId = coordinates.get(i).getId();
-            String coordinate_type = a.coordinateTypeDao.queryForId(a.coordinateDao.queryForId(currentCoordinateId).getType_id()).getName();
+            String coordinate_type = a.coordinateTypeDao.queryForId(coordinates.get(i).getType_id()).getName();
             vertexType = determineVertexType(coordinate_type);
             currentCoordinateLatLng = new LatLng(coordinates.get(i).getLatitude(), coordinates.get(i).getLongitude());
             addVertexWithId(currentCoordinateLatLng, currentCoordinateId, vertexType);
@@ -260,7 +260,7 @@ public class JGraphTWrapper {
         }
 
         for (int i = 0; i < edges.size(); i++) {
-            String edge_type = a.edgeTypeDao.queryForId(a.edgeDao.queryForId(edges.get(i).getId()).getType_id()).getName();
+            String edge_type = a.edgeTypeDao.queryForId(edges.get(i).getType_id()).getName();
             edgeType = determineEdgeType(edge_type);
             source_id = edges.get(i).getSource_id();
             target_id = edges.get(i).getTarget_id();
