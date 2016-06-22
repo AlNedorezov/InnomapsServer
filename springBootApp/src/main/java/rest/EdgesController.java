@@ -225,6 +225,12 @@ public class EdgesController {
         errorMessage += checkIfCoordinateExist(source_id, "source one");
         errorMessage += checkIfCoordinateExist(target_id, "target one");
 
+        QueryBuilder<Edge, Integer> qbEdge = a.edgeDao.queryBuilder();
+        qbEdge.where().eq("source_id", target_id).and().eq("target_id", source_id);
+        if (qbEdge.query().size() > 0)
+            errorMessage += "Edge (" + source_id + ", " + target_id + ") cannot be created, as graph is undirected" +
+                    " and the edge with swapped coordinates already exists. It's id=" + qbEdge.query().get(0).getId() + ". ";
+
         return errorMessage;
     }
 
