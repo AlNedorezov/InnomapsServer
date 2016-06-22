@@ -50,10 +50,10 @@ public class EdgesController {
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id, @RequestParam(value = "typeid", defaultValue = "-2") int type_id,
                        @RequestParam(value = "sourceid", defaultValue = "-3") int source_id,
                        @RequestParam(value = "targetid", defaultValue = "-4") int target_id,
-                       @RequestParam(value = "checkconnectivity", defaultValue = "false") String checkConnectivityStr) throws SQLException {
-        boolean checkConnectivity = false;
-        if (checkConnectivityStr.equals("true"))
-            checkConnectivity = true;
+                       @RequestParam(value = "checkconnectivity", defaultValue = "true") String checkConnectivityStr) throws SQLException {
+        boolean checkConnectivity = true;
+        if (checkConnectivityStr.equals("false"))
+            checkConnectivity = false;
 
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
