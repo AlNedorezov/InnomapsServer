@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pathfinding.JGraphTWrapper;
 import pathfinding.LatLng;
+import pathfinding.LatLngFlr;
 import pathfinding.LatLngGraphVertex;
 import rest.clientServerCommunicationClasses.EdgesObject;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by alnedorezov on 6/21/16.
@@ -197,8 +199,9 @@ public class EdgesController {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
-        int source_id = a.edgeDao.queryForId(edge_id).getSource_id();
-        int target_id = a.edgeDao.queryForId(edge_id).getTarget_id();
+        Edge checkedEdge = a.edgeDao.queryForId(edge_id);
+        int source_id = checkedEdge.getSource_id();
+        int target_id = checkedEdge.getTarget_id();
         String errorMessage = "";
 
         JGraphTWrapper jGraphTWrapper = new JGraphTWrapper();
@@ -212,7 +215,40 @@ public class EdgesController {
                 targetCoordinate.getId(), jGraphTWrapper.determineVertexType(a.coordinateTypeDao.queryForId(targetCoordinate.getType_id()).getName()));
         jGraphTWrapper.removeEdge(sourceVertex, targetVertex);
 
-        if(!jGraphTWrapper.graphIsConnected())
+        //Check that edge can be removed
+        // (if the graph stay connected or maybe have isolated vertices, but no isolated subgraphs)
+
+        // graphIsConnected function from JGraphTWrapper is
+        // not used as it doesn't uphold isolated vertices
+        // and therefore implies constraint that there shouldn't be
+        // any isolated vertices.
+        // Moreover if any of the edges vertices is an end vertex
+        // implemented method will work faster than graphIsConnected()
+
+        boolean edgeCanBeRemoved = false;
+        QueryBuilder<Edge, Integer> qbEdge = a.edgeDao.queryBuilder();
+        qbEdge.where().eq("source_id", source_id).or().eq("target_id", source_id);
+        List<Edge> bufEdgesList = qbEdge.query();
+        if(bufEdgesList.size() == 1 && bufEdgesList.get(0).getId() == edge_id)
+            edgeCanBeRemoved = true;
+
+        if(!edgeCanBeRemoved) {
+            qbEdge.reset();
+            qbEdge = a.edgeDao.queryBuilder();
+            qbEdge.where().eq("source_id", target_id).or().eq("target_id", target_id);
+            bufEdgesList = qbEdge.query();
+            if(bufEdgesList.size() == 1 && bufEdgesList.get(0).getId() == edge_id)
+                edgeCanBeRemoved = true;
+        }
+
+        if(!edgeCanBeRemoved) {
+            List<LatLngGraphVertex> path = jGraphTWrapper.shortestPath(new LatLngFlr(sourceCoordinate.getLatitude(), sourceCoordinate.getLongitude(), sourceCoordinate.getFloor()),
+                                        new LatLng(targetCoordinate.getLatitude(), targetCoordinate.getLongitude()));
+            if(path != null)
+                edgeCanBeRemoved = true;
+        }
+
+        if(!edgeCanBeRemoved)
             errorMessage += "Deletion of the edge (" + source_id + ", " + target_id + ") will violate graphs connectivity. ";
 
         connectionSource.close();
