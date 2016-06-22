@@ -240,27 +240,31 @@ public class JGraphTWrapper {
         a.setupDatabase(connectionSource, false);
 
         graph = new SimpleWeightedGraph<>(LatLngGraphEdge.class);
+        HashMap<Integer, LatLng> verticesMap = new HashMap<>();
         GraphElementType vertexType;
         GraphElementType edgeType;
 
         List<Edge> edges = a.edgeDao.queryForAll();
         List<Coordinate> coordinates = a.coordinateDao.queryForAll();
+        int currentCoordinateId;
+        LatLng currentCoordinateLatLng;
+        int source_id, target_id;
 
         for (int i = 0; i < coordinates.size(); i++) {
-            String coordinate_type = a.coordinateTypeDao.queryForId(a.coordinateDao.queryForId(coordinates.get(i).getId()).getType_id()).getName();
+            currentCoordinateId = coordinates.get(i).getId();
+            String coordinate_type = a.coordinateTypeDao.queryForId(a.coordinateDao.queryForId(currentCoordinateId).getType_id()).getName();
             vertexType = determineVertexType(coordinate_type);
-            addVertexWithId(new LatLng(coordinates.get(i).getLatitude(), coordinates.get(i).getLongitude()),
-                    coordinates.get(i).getId(), vertexType);
+            currentCoordinateLatLng = new LatLng(coordinates.get(i).getLatitude(), coordinates.get(i).getLongitude());
+            addVertexWithId(currentCoordinateLatLng, currentCoordinateId, vertexType);
+            verticesMap.put(currentCoordinateId, currentCoordinateLatLng);
         }
 
         for (int i = 0; i < edges.size(); i++) {
             String edge_type = a.edgeTypeDao.queryForId(a.edgeDao.queryForId(edges.get(i).getId()).getType_id()).getName();
             edgeType = determineEdgeType(edge_type);
-            addEdge(new LatLng(a.coordinateDao.queryForId(edges.get(i).getSource_id()).getLatitude(),
-                            a.coordinateDao.queryForId(edges.get(i).getSource_id()).getLongitude()),
-                    new LatLng(a.coordinateDao.queryForId(edges.get(i).getTarget_id()).getLatitude(),
-                            a.coordinateDao.queryForId(edges.get(i).getTarget_id()).getLongitude()),
-                    edges.get(i).getSource_id(), edges.get(i).getTarget_id(), edgeType);
+            source_id = edges.get(i).getSource_id();
+            target_id = edges.get(i).getTarget_id();
+            addEdge(verticesMap.get(source_id), verticesMap.get(target_id), source_id, target_id, edgeType);
         }
 
         connectionSource.close();
