@@ -39,7 +39,7 @@ public class StreetsController {
         connectionSource.close();
         return street1;
     }
-    
+
     @RequestMapping(value = "/resources/street", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id,
                        @RequestParam(value = "name", defaultValue = "!~DELETE") String name) throws SQLException {

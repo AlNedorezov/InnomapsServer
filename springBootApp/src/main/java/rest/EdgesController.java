@@ -69,7 +69,7 @@ public class EdgesController {
                 return "-1. There is no such edge.\n";
             } else {
                 String errorMessage = "";
-                if(checkConnectivity)
+                if (checkConnectivity)
                     errorMessage = checkIfEdgeCanBeDeleted(id);
                 if (errorMessage.equals("")) {
                     a.edgeDao.deleteById(id);
@@ -210,7 +210,7 @@ public class EdgesController {
         Coordinate sourceCoordinate = a.coordinateDao.queryForId(source_id);
         Coordinate targetCoordinate = a.coordinateDao.queryForId(target_id);
         sourceVertex = new LatLngGraphVertex(new LatLng(sourceCoordinate.getLatitude(), sourceCoordinate.getLongitude()),
-                        sourceCoordinate.getId(), jGraphTWrapper.determineVertexType(a.coordinateTypeDao.queryForId(sourceCoordinate.getType_id()).getName()));
+                sourceCoordinate.getId(), jGraphTWrapper.determineVertexType(a.coordinateTypeDao.queryForId(sourceCoordinate.getType_id()).getName()));
         targetVertex = new LatLngGraphVertex(new LatLng(targetCoordinate.getLatitude(), targetCoordinate.getLongitude()),
                 targetCoordinate.getId(), jGraphTWrapper.determineVertexType(a.coordinateTypeDao.queryForId(targetCoordinate.getType_id()).getName()));
         jGraphTWrapper.removeEdge(sourceVertex, targetVertex);
@@ -229,26 +229,26 @@ public class EdgesController {
         QueryBuilder<Edge, Integer> qbEdge = a.edgeDao.queryBuilder();
         qbEdge.where().eq("source_id", source_id).or().eq("target_id", source_id);
         List<Edge> bufEdgesList = qbEdge.query();
-        if(bufEdgesList.size() == 1 && bufEdgesList.get(0).getId() == edge_id)
+        if (bufEdgesList.size() == 1 && bufEdgesList.get(0).getId() == edge_id)
             edgeCanBeRemoved = true;
 
-        if(!edgeCanBeRemoved) {
+        if (!edgeCanBeRemoved) {
             qbEdge.reset();
             qbEdge = a.edgeDao.queryBuilder();
             qbEdge.where().eq("source_id", target_id).or().eq("target_id", target_id);
             bufEdgesList = qbEdge.query();
-            if(bufEdgesList.size() == 1 && bufEdgesList.get(0).getId() == edge_id)
+            if (bufEdgesList.size() == 1 && bufEdgesList.get(0).getId() == edge_id)
                 edgeCanBeRemoved = true;
         }
 
-        if(!edgeCanBeRemoved) {
+        if (!edgeCanBeRemoved) {
             List<LatLngGraphVertex> path = jGraphTWrapper.shortestPath(new LatLngFlr(sourceCoordinate.getLatitude(), sourceCoordinate.getLongitude(), sourceCoordinate.getFloor()),
-                                        new LatLng(targetCoordinate.getLatitude(), targetCoordinate.getLongitude()));
-            if(path != null)
+                    new LatLng(targetCoordinate.getLatitude(), targetCoordinate.getLongitude()));
+            if (path != null)
                 edgeCanBeRemoved = true;
         }
 
-        if(!edgeCanBeRemoved)
+        if (!edgeCanBeRemoved)
             errorMessage += "Deletion of the edge (" + source_id + ", " + target_id + ") will violate graphs connectivity. ";
 
         connectionSource.close();
