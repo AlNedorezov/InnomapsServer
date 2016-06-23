@@ -111,7 +111,7 @@ public class BuildingsController {
                 BuildingUpdateData updBuilding = checkDataForUpdates(new BuildingUpdateData(number, blockStr, description, coordinate_id, street_id), a.buildingDao.queryForId(id));
                 if (updBuilding.getErrorMessage().equals("")) {
                     a.buildingDao.update(new Building(id, updBuilding.getNumber(), updBuilding.getBlock(), updBuilding.getDescription(),
-                                                            updBuilding.getCoordinate_id(), updBuilding.getStreet_id()));
+                            updBuilding.getCoordinate_id(), updBuilding.getStreet_id()));
                     connectionSource.close();
                     return "0. Building with id=" + id + " was successfully updated.\n";
                 } else {

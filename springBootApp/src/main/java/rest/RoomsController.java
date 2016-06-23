@@ -1,8 +1,6 @@
 package rest;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.stmt.DeleteBuilder;
-import com.j256.ormlite.stmt.PreparedDelete;
 import com.j256.ormlite.stmt.QueryBuilder;
 import db.Room;
 import org.springframework.web.bind.annotation.RequestMapping;
