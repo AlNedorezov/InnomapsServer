@@ -151,7 +151,7 @@ public class BuildingsController {
             checkedBuildingData.setCoordinate_id(buildingInDatabase.getCoordinate_id());
         else
             checkedBuildingData.setErrorMessage(checkedBuildingData.getErrorMessage() +
-                    checkIfCoordinateExist(checkedBuildingData.getCoordinate_id()));
+                    CommonFunctions.checkIfCoordinateExist(checkedBuildingData.getCoordinate_id()));
 
         if (checkedBuildingData.getStreet_id() == -4)
             checkedBuildingData.setStreet_id(buildingInDatabase.getStreet_id());
@@ -250,22 +250,9 @@ public class BuildingsController {
     private String checkIfBuildingCanBeCreated(int coordinate_id, int street_id) throws SQLException {
         String errorMessage = "";
 
-        errorMessage += checkIfCoordinateExist(coordinate_id);
+        errorMessage += CommonFunctions.checkIfCoordinateExist(coordinate_id);
         errorMessage += checkIfStreetExist(street_id);
 
-        return errorMessage;
-    }
-
-    private String checkIfCoordinateExist(int coordinate_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
-        a.setupDatabase(connectionSource, false);
-        String errorMessage = "";
-
-        if (coordinate_id < 0 || !a.coordinateDao.idExists(coordinate_id))
-            errorMessage += "Stated building coordinate does not exist. ";
-
-        connectionSource.close();
         return errorMessage;
     }
 
@@ -276,7 +263,7 @@ public class BuildingsController {
         String errorMessage = "";
 
         if (street_id < 0 || !a.streetDao.idExists(street_id))
-            errorMessage += "Stated street does not exist. ";
+            errorMessage += "Street with id=" + street_id + " does not exist. ";
 
         connectionSource.close();
         return errorMessage;

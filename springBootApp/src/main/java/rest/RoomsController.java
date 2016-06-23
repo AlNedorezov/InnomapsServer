@@ -92,7 +92,7 @@ public class RoomsController {
                     }
                 }
             } else {
-                // Updating a building
+                // Updating a room
                 System.out.println("Received POST request: update room with id=" + id);
                 RoomUpdateData updRoom = checkDataForUpdates(new RoomUpdateData(numberStr, building_id, coordinate_id, type_id), a.roomDao.queryForId(id));
                 if (updRoom.getErrorMessage().equals("")) {

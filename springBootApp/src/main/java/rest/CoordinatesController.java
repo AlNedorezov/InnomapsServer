@@ -78,33 +78,43 @@ public class CoordinatesController {
                 } else {
                     System.out.println("Received POST request: create new coordinate");
                     CoordinateCreateData createData = checkCoordinateCreateData(new CoordinateCreateData(floor, type_id, name, description));
-                    a.coordinateDao.create(new Coordinate(id, latitude, longitude, createData.getFloor(),
-                            createData.getType_id(), createData.getName(), createData.getDescription()));
-                    QueryBuilder<Coordinate, Integer> qBuilder = a.coordinateDao.queryBuilder();
-                    qBuilder.orderBy("id", false); // false for descending order
-                    qBuilder.limit(1);
-                    Coordinate createdCoordinate = a.coordinateDao.queryForId(qBuilder.query().get(0).getId());
-                    System.out.println(createdCoordinate.getId() + " | " + createdCoordinate.getLatitude() + " | " +
-                            createdCoordinate.getLongitude() + " | " + createdCoordinate.getFloor() + " | " +
-                            createdCoordinate.getType_id() + " | " + createdCoordinate.getName() + " | " +
-                            createdCoordinate.getDescription());
-                    connectionSource.close();
-                    return "0. Coordinate with id=" + createdCoordinate.getId() + " was successfully created.\n";
+                    if (createData.getErrorMessage().equals("")) {
+                        a.coordinateDao.create(new Coordinate(id, latitude, longitude, createData.getFloor(),
+                                createData.getType_id(), createData.getName(), createData.getDescription()));
+                        QueryBuilder<Coordinate, Integer> qBuilder = a.coordinateDao.queryBuilder();
+                        qBuilder.orderBy("id", false); // false for descending order
+                        qBuilder.limit(1);
+                        Coordinate createdCoordinate = a.coordinateDao.queryForId(qBuilder.query().get(0).getId());
+                        System.out.println(createdCoordinate.getId() + " | " + createdCoordinate.getLatitude() + " | " +
+                                createdCoordinate.getLongitude() + " | " + createdCoordinate.getFloor() + " | " +
+                                createdCoordinate.getType_id() + " | " + createdCoordinate.getName() + " | " +
+                                createdCoordinate.getDescription());
+                        connectionSource.close();
+                        return "0. Coordinate with id=" + createdCoordinate.getId() + " was successfully created.\n";
+                    } else {
+                        connectionSource.close();
+                        return "-1. " + createData.getErrorMessage();
+                    }
                 }
             } else {
                 // Updating a coordinate
                 System.out.println("Received POST request: update coordinate with id=" + id);
                 CoordinateUpdateData updCoordinate = checkDataForUpdates(new CoordinateUpdateData(latitude, longitude, floor, type_id, name, description),
                         a.coordinateDao.queryForId(id));
-                a.coordinateDao.update(new Coordinate(id, updCoordinate.getLatitude(), updCoordinate.getLongitude(), updCoordinate.getFloor(),
-                        updCoordinate.getType_id(), updCoordinate.getName(), updCoordinate.getDescription()));
-                connectionSource.close();
-                return "0. Coordinate with id=" + id + " was successfully updated.\n";
+                if (updCoordinate.getErrorMessage().equals("")) {
+                    a.coordinateDao.update(new Coordinate(id, updCoordinate.getLatitude(), updCoordinate.getLongitude(), updCoordinate.getFloor(),
+                            updCoordinate.getType_id(), updCoordinate.getName(), updCoordinate.getDescription()));
+                    connectionSource.close();
+                    return "0. Coordinate with id=" + id + " was successfully updated.\n";
+                } else {
+                    connectionSource.close();
+                    return "-1. " + updCoordinate.getErrorMessage();
+                }
             }
         }
     }
 
-    private CoordinateCreateData checkCoordinateCreateData(CoordinateCreateData coordinateCreateData) {
+    private CoordinateCreateData checkCoordinateCreateData(CoordinateCreateData coordinateCreateData) throws SQLException {
         // if floor was not specified on creation request then 1 floor assumed
         if (coordinateCreateData.getFloor() == -4)
             coordinateCreateData.setFloor(1);
@@ -112,6 +122,9 @@ public class CoordinatesController {
         // if type_id was not specified on creation request then DEFAULT type assumed
         if (coordinateCreateData.getType_id() == -5)
             coordinateCreateData.setType_id(2);
+        else
+            coordinateCreateData.setErrorMessage(coordinateCreateData.getErrorMessage() +
+                    checkIfTypeExist(coordinateCreateData.getType_id()));
 
         if (coordinateCreateData.getName().equals("!~NO_NAME"))
             coordinateCreateData.setName("");
@@ -122,7 +135,7 @@ public class CoordinatesController {
         return coordinateCreateData;
     }
 
-    private CoordinateUpdateData checkDataForUpdates(CoordinateUpdateData checkedCoordinateData, Coordinate coordinateInDatabase) {
+    private CoordinateUpdateData checkDataForUpdates(CoordinateUpdateData checkedCoordinateData, Coordinate coordinateInDatabase) throws SQLException {
         if (checkedCoordinateData.getLatitude() == -2)
             checkedCoordinateData.setLatitude(coordinateInDatabase.getLatitude());
 
@@ -134,6 +147,9 @@ public class CoordinatesController {
 
         if (checkedCoordinateData.getType_id() == -5)
             checkedCoordinateData.setType_id(coordinateInDatabase.getType_id());
+        else
+            checkedCoordinateData.setErrorMessage(checkedCoordinateData.getErrorMessage() +
+                    checkIfTypeExist(checkedCoordinateData.getType_id()));
 
         if (checkedCoordinateData.getName().equals("!~NO_NAME"))
             checkedCoordinateData.setName(coordinateInDatabase.getName());
@@ -202,6 +218,14 @@ public class CoordinatesController {
         public void setDescription(String description) {
             super.setDescription(description);
         }
+
+        public String getErrorMessage() {
+            return super.getErrorMessage();
+        }
+
+        public void setErrorMessage(String errorMessage) {
+            super.setErrorMessage(errorMessage);
+        }
     }
 
     private class CoordinateCreateData {
@@ -209,12 +233,14 @@ public class CoordinatesController {
         private int type_id;
         private String name;
         private String description;
+        private String errorMessage;
 
         public CoordinateCreateData(int floor, int type_id, String name, String description) {
             this.floor = floor;
             this.type_id = type_id;
             this.name = name;
             this.description = description;
+            this.errorMessage = "";
         }
 
         public int getFloor() {
@@ -248,6 +274,14 @@ public class CoordinatesController {
         public void setDescription(String description) {
             this.description = description;
         }
+
+        public String getErrorMessage() {
+            return errorMessage;
+        }
+
+        public void setErrorMessage(String errorMessage) {
+            this.errorMessage = errorMessage;
+        }
     }
 
     private String checkIfCoordinateCanBeDeleted(int coordinateId) throws SQLException {
@@ -275,6 +309,19 @@ public class CoordinatesController {
         qbBuilding.where().eq("coordinate_id", coordinateId);
         if (qbBuilding.query().size() > 0)
             errorMessage += "Delete all buildings with coordinate_id=" + coordinateId + " first. ";
+
+        connectionSource.close();
+        return errorMessage;
+    }
+
+    private String checkIfTypeExist(int type_id) throws SQLException {
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+        String errorMessage = "";
+
+        if (type_id < 0 || !a.coordinateTypeDao.idExists(type_id))
+            errorMessage += "Coordinate type with id=" + type_id + " does not exist. ";
 
         connectionSource.close();
         return errorMessage;

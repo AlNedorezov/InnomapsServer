@@ -89,7 +89,7 @@ public class EdgesController {
                 } else {
                     System.out.println("Received POST request: create new edge");
                     type_id = checkTypeId(type_id);
-                    String errorMessageOnCreate = checkIfEdgeCanBeCreated(source_id, target_id);
+                    String errorMessageOnCreate = checkIfEdgeCanBeCreated(type_id, source_id, target_id);
                     if (errorMessageOnCreate.equals("")) {
                         a.edgeDao.create(new Edge(id, type_id, source_id, target_id));
                         QueryBuilder<Edge, Integer> qBuilder = a.edgeDao.queryBuilder();
@@ -132,6 +132,9 @@ public class EdgesController {
     private EdgeUpdateData checkDataForUpdates(EdgeUpdateData checkedEdgeData, Edge edgeInDatabase) throws SQLException {
         if (checkedEdgeData.getType_id() == -2)
             checkedEdgeData.setType_id(edgeInDatabase.getType_id());
+        else
+            checkedEdgeData.setErrorMessage(checkedEdgeData.getErrorMessage() +
+                    checkIfTypeExist(checkedEdgeData.getType_id()));
 
         if (checkedEdgeData.getSource_id() == -3)
             checkedEdgeData.setSource_id(edgeInDatabase.getSource_id());
@@ -255,9 +258,10 @@ public class EdgesController {
         return errorMessage;
     }
 
-    private String checkIfEdgeCanBeCreated(int source_id, int target_id) throws SQLException {
+    private String checkIfEdgeCanBeCreated(int type_id, int source_id, int target_id) throws SQLException {
         String errorMessage = "";
 
+        errorMessage += checkIfTypeExist(type_id);
         errorMessage += checkIfCoordinateExist(source_id, "source one");
         errorMessage += checkIfCoordinateExist(target_id, "target one");
 
@@ -278,6 +282,19 @@ public class EdgesController {
 
         if (!a.coordinateDao.idExists(coordinate_id))
             errorMessage += "Coordinate stated as the " + coordinateName + " does not exist. ";
+
+        connectionSource.close();
+        return errorMessage;
+    }
+
+    private String checkIfTypeExist(int type_id) throws SQLException {
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+        String errorMessage = "";
+
+        if (type_id < 0 || !a.edgeTypeDao.idExists(type_id))
+            errorMessage += "Edge type with id=" + type_id + " does not exist. ";
 
         connectionSource.close();
         return errorMessage;
