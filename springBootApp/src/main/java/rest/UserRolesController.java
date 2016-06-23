@@ -65,7 +65,6 @@ public class UserRolesController {
             connectionSource.close();
             return "-1. Wrong parameters.";
         } else {
-            // Here may be implemented checks if there is such user & role
             if (!a.roleDao.idExists(roleid)) {
                 connectionSource.close();
                 return "-1. There is no such role.\n";
