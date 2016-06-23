@@ -108,14 +108,19 @@ public class EdgesController {
             } else {
                 // Updating an edge
                 System.out.println("Received POST request: update edge with id=" + id);
-                EdgeUpdateData updEdge = checkDataForUpdates(new EdgeUpdateData(type_id, source_id, target_id), a.edgeDao.queryForId(id));
-                if (updEdge.getErrorMessage().equals("")) {
-                    a.edgeDao.update(new Edge(id, updEdge.getType_id(), updEdge.getSource_id(), updEdge.getTarget_id()));
+                if (!a.edgeDao.idExists(id)) {
                     connectionSource.close();
-                    return "0. Coordinate with id=" + id + " was successfully updated.\n";
+                    return "-1. There is no such edge.\n";
                 } else {
-                    connectionSource.close();
-                    return "-1. " + updEdge.getErrorMessage();
+                    EdgeUpdateData updEdge = checkDataForUpdates(new EdgeUpdateData(type_id, source_id, target_id), a.edgeDao.queryForId(id));
+                    if (updEdge.getErrorMessage().equals("")) {
+                        a.edgeDao.update(new Edge(id, updEdge.getType_id(), updEdge.getSource_id(), updEdge.getTarget_id()));
+                        connectionSource.close();
+                        return "0. Coordinate with id=" + id + " was successfully updated.\n";
+                    } else {
+                        connectionSource.close();
+                        return "-1. " + updEdge.getErrorMessage();
+                    }
                 }
             }
         }

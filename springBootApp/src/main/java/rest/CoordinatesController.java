@@ -99,16 +99,21 @@ public class CoordinatesController {
             } else {
                 // Updating a coordinate
                 System.out.println("Received POST request: update coordinate with id=" + id);
-                CoordinateUpdateData updCoordinate = checkDataForUpdates(new CoordinateUpdateData(latitude, longitude, floor, type_id, name, description),
-                        a.coordinateDao.queryForId(id));
-                if (updCoordinate.getErrorMessage().equals("")) {
-                    a.coordinateDao.update(new Coordinate(id, updCoordinate.getLatitude(), updCoordinate.getLongitude(), updCoordinate.getFloor(),
-                            updCoordinate.getType_id(), updCoordinate.getName(), updCoordinate.getDescription()));
+                if (!a.coordinateDao.idExists(id)) {
                     connectionSource.close();
-                    return "0. Coordinate with id=" + id + " was successfully updated.\n";
+                    return "-1. There is no such coordinate.\n";
                 } else {
-                    connectionSource.close();
-                    return "-1. " + updCoordinate.getErrorMessage();
+                    CoordinateUpdateData updCoordinate = checkDataForUpdates(new CoordinateUpdateData(latitude, longitude, floor, type_id, name, description),
+                            a.coordinateDao.queryForId(id));
+                    if (updCoordinate.getErrorMessage().equals("")) {
+                        a.coordinateDao.update(new Coordinate(id, updCoordinate.getLatitude(), updCoordinate.getLongitude(), updCoordinate.getFloor(),
+                                updCoordinate.getType_id(), updCoordinate.getName(), updCoordinate.getDescription()));
+                        connectionSource.close();
+                        return "0. Coordinate with id=" + id + " was successfully updated.\n";
+                    } else {
+                        connectionSource.close();
+                        return "-1. " + updCoordinate.getErrorMessage();
+                    }
                 }
             }
         }

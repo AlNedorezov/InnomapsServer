@@ -108,15 +108,20 @@ public class BuildingsController {
             } else {
                 // Updating a building
                 System.out.println("Received POST request: update building with id=" + id);
-                BuildingUpdateData updBuilding = checkDataForUpdates(new BuildingUpdateData(number, blockStr, description, coordinate_id, street_id), a.buildingDao.queryForId(id));
-                if (updBuilding.getErrorMessage().equals("")) {
-                    a.buildingDao.update(new Building(id, updBuilding.getNumber(), updBuilding.getBlock(), updBuilding.getDescription(),
-                            updBuilding.getCoordinate_id(), updBuilding.getStreet_id()));
+                if (!a.buildingDao.idExists(id)) {
                     connectionSource.close();
-                    return "0. Building with id=" + id + " was successfully updated.\n";
+                    return "-1. There is no such building.\n";
                 } else {
-                    connectionSource.close();
-                    return "-1. " + updBuilding.getErrorMessage();
+                    BuildingUpdateData updBuilding = checkDataForUpdates(new BuildingUpdateData(number, blockStr, description, coordinate_id, street_id), a.buildingDao.queryForId(id));
+                    if (updBuilding.getErrorMessage().equals("")) {
+                        a.buildingDao.update(new Building(id, updBuilding.getNumber(), updBuilding.getBlock(), updBuilding.getDescription(),
+                                updBuilding.getCoordinate_id(), updBuilding.getStreet_id()));
+                        connectionSource.close();
+                        return "0. Building with id=" + id + " was successfully updated.\n";
+                    } else {
+                        connectionSource.close();
+                        return "-1. " + updBuilding.getErrorMessage();
+                    }
                 }
             }
         }

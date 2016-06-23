@@ -86,11 +86,16 @@ public class UsersController {
             } else {
                 // Updating a user
                 System.out.println("Received POST request: update user with id=" + id);
-                UserUpdate updUser = checkDataForUpdates(new UserUpdate(email, name, password, activated, activation_code, createdStr), a.userDao.queryForId(id));
-                boolean updDeleted = checkStrDeletedValue(strDeleted, a.userDao.queryForId(id));
-                a.userDao.update(new User(id, updUser.getEmail().toLowerCase(), updUser.getName(), updUser.getPassword(), updUser.getActivated(), updUser.getActivation_code(), updUser.getCreated(), updDeleted));
-                connectionSource.close();
-                return "0. User with id=" + id + " was successfully updated.\n";
+                if (!a.userDao.idExists(id)) {
+                    connectionSource.close();
+                    return "-1. There is no such user.\n";
+                } else {
+                    UserUpdate updUser = checkDataForUpdates(new UserUpdate(email, name, password, activated, activation_code, createdStr), a.userDao.queryForId(id));
+                    boolean updDeleted = checkStrDeletedValue(strDeleted, a.userDao.queryForId(id));
+                    a.userDao.update(new User(id, updUser.getEmail().toLowerCase(), updUser.getName(), updUser.getPassword(), updUser.getActivated(), updUser.getActivation_code(), updUser.getCreated(), updDeleted));
+                    connectionSource.close();
+                    return "0. User with id=" + id + " was successfully updated.\n";
+                }
             }
         }
     }

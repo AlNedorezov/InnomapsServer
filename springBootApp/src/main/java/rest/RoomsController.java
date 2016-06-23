@@ -92,14 +92,19 @@ public class RoomsController {
             } else {
                 // Updating a room
                 System.out.println("Received POST request: update room with id=" + id);
-                RoomUpdateData updRoom = checkDataForUpdates(new RoomUpdateData(numberStr, building_id, coordinate_id, type_id), a.roomDao.queryForId(id));
-                if (updRoom.getErrorMessage().equals("")) {
-                    a.roomDao.update(new Room(id, updRoom.getNumber(), updRoom.getBuilding_id(), updRoom.getCoordinate_id(), updRoom.getType_id()));
+                if (!a.roomDao.idExists(id)) {
                     connectionSource.close();
-                    return "0. Room with id=" + id + " was successfully updated.\n";
+                    return "-1. There is no such room.\n";
                 } else {
-                    connectionSource.close();
-                    return "-1. " + updRoom.getErrorMessage();
+                    RoomUpdateData updRoom = checkDataForUpdates(new RoomUpdateData(numberStr, building_id, coordinate_id, type_id), a.roomDao.queryForId(id));
+                    if (updRoom.getErrorMessage().equals("")) {
+                        a.roomDao.update(new Room(id, updRoom.getNumber(), updRoom.getBuilding_id(), updRoom.getCoordinate_id(), updRoom.getType_id()));
+                        connectionSource.close();
+                        return "0. Room with id=" + id + " was successfully updated.\n";
+                    } else {
+                        connectionSource.close();
+                        return "-1. " + updRoom.getErrorMessage();
+                    }
                 }
             }
         }
