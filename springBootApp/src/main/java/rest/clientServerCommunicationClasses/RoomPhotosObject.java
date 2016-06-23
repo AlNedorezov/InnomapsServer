@@ -30,7 +30,7 @@ public class RoomPhotosObject {
         this.roomPhotos.remove(index);
     }
 
-    public List<RoomPhoto> getUserroles() {
+    public List<RoomPhoto> getRoomphotos() {
         return roomPhotos;
     }
 }

@@ -126,7 +126,7 @@ public class RoomsController {
             checkedRoomData.setBuilding_id(roomInDatabase.getBuilding_id());
         else
             checkedRoomData.setErrorMessage(checkedRoomData.getErrorMessage() +
-                    checkIfBuildingExist(checkedRoomData.getBuilding_id()));
+                    CommonFunctions.checkIfBuildingExist(checkedRoomData.getBuilding_id()));
 
         if (checkedRoomData.getCoordinate_id() == -4)
             checkedRoomData.setCoordinate_id(roomInDatabase.getCoordinate_id());
@@ -206,23 +206,10 @@ public class RoomsController {
     private String checkIfRoomCanBeCreated(int building_id, int coordinate_id, int type_id) throws SQLException {
         String errorMessage = "";
 
-        errorMessage += checkIfBuildingExist(building_id);
+        errorMessage += CommonFunctions.checkIfBuildingExist(building_id);
         errorMessage += CommonFunctions.checkIfCoordinateExist(coordinate_id);
         errorMessage += checkIfTypeExist(type_id);
 
-        return errorMessage;
-    }
-
-    private String checkIfBuildingExist(int building_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
-        a.setupDatabase(connectionSource, false);
-        String errorMessage = "";
-
-        if (building_id < 0 || !a.buildingDao.idExists(building_id))
-            errorMessage += "Building with id=" + building_id + " does not exist. ";
-
-        connectionSource.close();
         return errorMessage;
     }
 

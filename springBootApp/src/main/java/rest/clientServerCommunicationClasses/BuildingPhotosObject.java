@@ -30,7 +30,7 @@ public class BuildingPhotosObject {
         this.buildingPhotos.remove(index);
     }
 
-    public List<BuildingPhoto> getUserroles() {
+    public List<BuildingPhoto> getBuildingphotos() {
         return buildingPhotos;
     }
 }
