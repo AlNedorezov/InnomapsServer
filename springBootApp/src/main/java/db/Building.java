@@ -10,15 +10,15 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Building {
     @DatabaseField(generatedId = true, unique = true)
     private int id;
-    @DatabaseField
+    @DatabaseField(uniqueCombo = true)
     private String number;
-    @DatabaseField
+    @DatabaseField(uniqueCombo = true)
     private Integer block;
     @DatabaseField
     private String description;
-    @DatabaseField
+    @DatabaseField(unique = true) // there can be no two buildings on the same spot
     private int coordinate_id;
-    @DatabaseField
+    @DatabaseField(uniqueCombo = true)
     private int street_id;
 
     public Building(int id, String number, Integer block, String description, int coordinate_id, int street_id) {
