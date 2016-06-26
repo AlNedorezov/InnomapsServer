@@ -1,8 +1,6 @@
 package rest;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.stmt.DeleteBuilder;
-import com.j256.ormlite.stmt.PreparedDelete;
 import com.j256.ormlite.stmt.QueryBuilder;
 import db.Event;
 import db.EventSchedule;
@@ -109,7 +107,7 @@ public class EventsController {
                     EventUpdateData updEvent = checkDataForUpdates(new EventUpdateData(name, description, creator_id, link), a.eventDao.queryForId(id));
                     if (updEvent.getErrorMessage().equals("")) {
                         a.eventDao.update(new Event(id, updEvent.getName(), updEvent.getDescription(),
-                                                    updEvent.getCreator_id(), updEvent.getLink()));
+                                updEvent.getCreator_id(), updEvent.getLink()));
                         connectionSource.close();
                         return "0. Event with id=" + id + " was successfully updated.\n";
                     } else {

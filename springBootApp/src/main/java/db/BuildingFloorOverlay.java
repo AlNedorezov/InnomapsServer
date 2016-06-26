@@ -32,6 +32,14 @@ public class BuildingFloorOverlay {
         this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
     }
 
+    public BuildingFloorOverlay(int id, int building_id, int photo_id, int floor, Date modified) {
+        this.id = id;
+        this.building_id = building_id;
+        this.photo_id = photo_id;
+        this.floor = floor;
+        this.modified = modified;
+    }
+
     // For deserialization with Jackson
     public BuildingFloorOverlay() {
         // all persisted classes must define a no-arg constructor with at least package visibility

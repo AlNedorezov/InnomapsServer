@@ -1,8 +1,6 @@
 package rest;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.stmt.DeleteBuilder;
-import com.j256.ormlite.stmt.PreparedDelete;
 import com.j256.ormlite.stmt.QueryBuilder;
 import db.EventSchedule;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -102,10 +100,10 @@ public class EventSchedulesController {
                     return "-1. There is no such event schedule.\n";
                 } else {
                     EventScheduleUpdateData updEventSchedule = checkDataForUpdates(new EventScheduleUpdateData(start_datetimeStr, end_datetimeStr,
-                                                                    location_id, comment, event_id), a.eventScheduleDao.queryForId(id));
+                            location_id, comment, event_id), a.eventScheduleDao.queryForId(id));
                     if (updEventSchedule.getErrorMessage().equals("")) {
                         a.eventScheduleDao.update(new EventSchedule(id, updEventSchedule.getStart_datetimeStr(), updEventSchedule.getEnd_datetimeStr(),
-                                                                    updEventSchedule.getLocation_id(), updEventSchedule.getComment(), updEventSchedule.getEvent_id()));
+                                updEventSchedule.getLocation_id(), updEventSchedule.getComment(), updEventSchedule.getEvent_id()));
                         connectionSource.close();
                         return "0. Event schedule with id=" + id + " was successfully updated.\n";
                     } else {

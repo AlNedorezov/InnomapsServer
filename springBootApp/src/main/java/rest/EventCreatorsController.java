@@ -1,8 +1,6 @@
 package rest;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.stmt.DeleteBuilder;
-import com.j256.ormlite.stmt.PreparedDelete;
 import com.j256.ormlite.stmt.QueryBuilder;
 import db.Event;
 import db.EventCreator;
@@ -98,9 +96,9 @@ public class EventCreatorsController {
                     return "-1. There is no such event creator.\n";
                 } else {
                     EventCreatorUpdateData updEventCreator = checkDataForUpdates(new EventCreatorUpdateData(name, email, telegram_username),
-                                                                                    a.eventCreatorDao.queryForId(id));
+                            a.eventCreatorDao.queryForId(id));
                     a.eventCreatorDao.update(new EventCreator(id, updEventCreator.getName(), updEventCreator.getEmail(),
-                                                                updEventCreator.getTelegram_username()));
+                            updEventCreator.getTelegram_username()));
                     connectionSource.close();
                     return "0. Event creator with id=" + id + " was successfully updated.\n";
                 }
