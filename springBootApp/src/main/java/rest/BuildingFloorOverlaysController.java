@@ -117,6 +117,10 @@ public class BuildingFloorOverlaysController {
             checkedBFOData.setErrorMessage(checkedBFOData.getErrorMessage() +
                     CommonFunctions.checkIfBuildingExist(checkedBFOData.getBuilding_id()));
 
+        boolean checkFloor = false;
+        if(checkedBFOData.getErrorMessage().equals(""))
+            checkFloor = true;
+
         if (checkedBFOData.getPhoto_id() == -3)
             checkedBFOData.setPhoto_id(BFOInDatabase.getPhoto_id());
         else
@@ -125,6 +129,10 @@ public class BuildingFloorOverlaysController {
 
         if (checkedBFOData.getFloor() == -4)
             checkedBFOData.setFloor(BFOInDatabase.getFloor());
+        else if(checkFloor)
+            checkedBFOData.setErrorMessage(checkedBFOData.getErrorMessage() +
+                    checkIfBuildingFloorOverlayExist(checkedBFOData.getBuilding_id(), checkedBFOData.getFloor()));
+
 
         return checkedBFOData;
     }
@@ -180,6 +188,16 @@ public class BuildingFloorOverlaysController {
 
         errorMessage += CommonFunctions.checkIfBuildingExist(building_id);
         errorMessage += CommonFunctions.checkIfPhotoExist(photo_id);
+        errorMessage += checkIfBuildingFloorOverlayExist(building_id, floor);
+
+        return errorMessage;
+    }
+
+    private String checkIfBuildingFloorOverlayExist(int building_id, int floor) throws SQLException {
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+        String errorMessage = "";
 
         QueryBuilder<BuildingFloorOverlay, Integer> qbBFO = a.buildingFloorOverlayDao.queryBuilder();
         qbBFO.where().eq("building_id", building_id).and().eq("floor", floor);
@@ -187,6 +205,7 @@ public class BuildingFloorOverlaysController {
             errorMessage += "Building floor overlay for " + floor + " floor of building with id=" + building_id +
                     " already exists. It's id=" + qbBFO.query().get(0).getId() + ". ";
 
+        connectionSource.close();
         return errorMessage;
     }
 }
