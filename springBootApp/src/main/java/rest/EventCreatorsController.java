@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.EventCreatorsObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/24/16.
@@ -78,13 +79,14 @@ public class EventCreatorsController {
                 } else {
                     System.out.println("Received POST request: create new event creator");
                     telegram_username = checkEventCreatorsTelegramUsername(telegram_username);
-                    a.eventCreatorDao.create(new EventCreator(id, name, email, telegram_username));
+                    a.eventCreatorDao.create(new EventCreator(id, name, email, telegram_username, new Date()));
                     QueryBuilder<EventCreator, Integer> qBuilder = a.eventCreatorDao.queryBuilder();
                     qBuilder.orderBy("id", false); // false for descending order
                     qBuilder.limit(1);
                     EventCreator createdEventCreator = a.eventCreatorDao.queryForId(qBuilder.query().get(0).getId());
                     System.out.println(createdEventCreator.getId() + " | " + createdEventCreator.getName() + " | " +
-                            createdEventCreator.getEmail() + " | " + createdEventCreator.getTelegram_username());
+                            createdEventCreator.getEmail() + " | " + createdEventCreator.getTelegram_username() + " | " +
+                            createdEventCreator.getModified());
                     connectionSource.close();
                     return "0. Event creator with id=" + createdEventCreator.getId() + " was successfully created.\n";
                 }
@@ -98,7 +100,7 @@ public class EventCreatorsController {
                     EventCreatorUpdateData updEventCreator = checkDataForUpdates(new EventCreatorUpdateData(name, email, telegram_username),
                             a.eventCreatorDao.queryForId(id));
                     a.eventCreatorDao.update(new EventCreator(id, updEventCreator.getName(), updEventCreator.getEmail(),
-                            updEventCreator.getTelegram_username()));
+                            updEventCreator.getTelegram_username(), new Date()));
                     connectionSource.close();
                     return "0. Event creator with id=" + id + " was successfully updated.\n";
                 }

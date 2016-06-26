@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.RoomsObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/23/16.
@@ -74,14 +75,14 @@ public class RoomsController {
                     Integer number = checkRoomNumber(numberStr);
                     String errorMessageOnCreate = checkIfRoomCanBeCreated(building_id, coordinate_id, type_id);
                     if (errorMessageOnCreate.equals("")) {
-                        a.roomDao.create(new Room(id, number, building_id, coordinate_id, type_id));
+                        a.roomDao.create(new Room(id, number, building_id, coordinate_id, type_id, new Date()));
                         QueryBuilder<Room, Integer> qBuilder = a.roomDao.queryBuilder();
                         qBuilder.orderBy("id", false); // false for descending order
                         qBuilder.limit(1);
                         Room createdRoom = a.roomDao.queryForId(qBuilder.query().get(0).getId());
                         System.out.println(createdRoom.getId() + " | " + createdRoom.getNumber() + " | " +
                                 createdRoom.getBuilding_id() + " | " + createdRoom.getCoordinate_id() + " | " +
-                                createdRoom.getType_id());
+                                createdRoom.getType_id() + " | " + createdRoom.getModified());
                         connectionSource.close();
                         return "0. Room with id=" + createdRoom.getId() + " was successfully created.\n";
                     } else {
@@ -98,7 +99,7 @@ public class RoomsController {
                 } else {
                     RoomUpdateData updRoom = checkDataForUpdates(new RoomUpdateData(numberStr, building_id, coordinate_id, type_id), a.roomDao.queryForId(id));
                     if (updRoom.getErrorMessage().equals("")) {
-                        a.roomDao.update(new Room(id, updRoom.getNumber(), updRoom.getBuilding_id(), updRoom.getCoordinate_id(), updRoom.getType_id()));
+                        a.roomDao.update(new Room(id, updRoom.getNumber(), updRoom.getBuilding_id(), updRoom.getCoordinate_id(), updRoom.getType_id(), new Date()));
                         connectionSource.close();
                         return "0. Room with id=" + id + " was successfully updated.\n";
                     } else {

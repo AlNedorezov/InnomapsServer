@@ -71,7 +71,7 @@ public class BuildingFloorOverlaysController {
                     return "-1. Wrong parameters.\n";
                 } else {
                     System.out.println("Received POST request: create new building floor overlay");
-                    String errorMessageOnCreate = checkIfBuildingFloorOverlayCanBeCreated(building_id, photo_id);
+                    String errorMessageOnCreate = checkIfBuildingFloorOverlayCanBeCreated(building_id, photo_id, floor);
                     if (errorMessageOnCreate.equals("")) {
                         a.buildingFloorOverlayDao.create(new BuildingFloorOverlay(id, building_id, photo_id, floor, new Date()));
                         QueryBuilder<BuildingFloorOverlay, Integer> qBuilder = a.buildingFloorOverlayDao.queryBuilder();
@@ -175,11 +175,17 @@ public class BuildingFloorOverlaysController {
         }
     }
 
-    private String checkIfBuildingFloorOverlayCanBeCreated(int building_id, int photo_id) throws SQLException {
+    private String checkIfBuildingFloorOverlayCanBeCreated(int building_id, int photo_id, int floor) throws SQLException {
         String errorMessage = "";
 
         errorMessage += CommonFunctions.checkIfBuildingExist(building_id);
         errorMessage += CommonFunctions.checkIfPhotoExist(photo_id);
+
+        QueryBuilder<BuildingFloorOverlay, Integer> qbBFO = a.buildingFloorOverlayDao.queryBuilder();
+        qbBFO.where().eq("building_id", building_id).and().eq("floor", floor);
+        if (qbBFO.query().size() > 0)
+            errorMessage += "Building floor overlay for " + floor + " floor of building with id=" + building_id +
+                            " already exists. It's id=" + qbBFO.query().get(0).getId() + ". ";
 
         return errorMessage;
     }

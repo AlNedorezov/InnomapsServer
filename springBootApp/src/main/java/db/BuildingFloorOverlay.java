@@ -17,7 +17,7 @@ public class BuildingFloorOverlay {
     private int id;
     @DatabaseField(uniqueCombo = true)
     private int building_id;
-    @DatabaseField(uniqueCombo = true)
+    @DatabaseField
     private int photo_id;
     @DatabaseField(uniqueCombo = true)
     private int floor;

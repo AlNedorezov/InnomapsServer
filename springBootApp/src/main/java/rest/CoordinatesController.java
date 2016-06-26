@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.CoordinatesObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/21/16.
@@ -80,7 +81,7 @@ public class CoordinatesController {
                     CoordinateCreateData createData = checkCoordinateCreateData(new CoordinateCreateData(floor, type_id, name, description));
                     if (createData.getErrorMessage().equals("")) {
                         a.coordinateDao.create(new Coordinate(id, latitude, longitude, createData.getFloor(),
-                                createData.getType_id(), createData.getName(), createData.getDescription()));
+                                createData.getType_id(), createData.getName(), createData.getDescription(), new Date()));
                         QueryBuilder<Coordinate, Integer> qBuilder = a.coordinateDao.queryBuilder();
                         qBuilder.orderBy("id", false); // false for descending order
                         qBuilder.limit(1);
@@ -88,7 +89,7 @@ public class CoordinatesController {
                         System.out.println(createdCoordinate.getId() + " | " + createdCoordinate.getLatitude() + " | " +
                                 createdCoordinate.getLongitude() + " | " + createdCoordinate.getFloor() + " | " +
                                 createdCoordinate.getType_id() + " | " + createdCoordinate.getName() + " | " +
-                                createdCoordinate.getDescription());
+                                createdCoordinate.getDescription() + " | " + createdCoordinate.getModified());
                         connectionSource.close();
                         return "0. Coordinate with id=" + createdCoordinate.getId() + " was successfully created.\n";
                     } else {
@@ -107,7 +108,7 @@ public class CoordinatesController {
                             a.coordinateDao.queryForId(id));
                     if (updCoordinate.getErrorMessage().equals("")) {
                         a.coordinateDao.update(new Coordinate(id, updCoordinate.getLatitude(), updCoordinate.getLongitude(), updCoordinate.getFloor(),
-                                updCoordinate.getType_id(), updCoordinate.getName(), updCoordinate.getDescription()));
+                                updCoordinate.getType_id(), updCoordinate.getName(), updCoordinate.getDescription(), new Date()));
                         connectionSource.close();
                         return "0. Coordinate with id=" + id + " was successfully updated.\n";
                     } else {

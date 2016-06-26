@@ -15,6 +15,7 @@ import pathfinding.LatLngGraphVertex;
 import rest.clientServerCommunicationClasses.EdgesObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -91,13 +92,14 @@ public class EdgesController {
                     type_id = checkTypeId(type_id);
                     String errorMessageOnCreate = checkIfEdgeCanBeCreated(type_id, source_id, target_id);
                     if (errorMessageOnCreate.equals("")) {
-                        a.edgeDao.create(new Edge(id, type_id, source_id, target_id));
+                        a.edgeDao.create(new Edge(id, type_id, source_id, target_id, new Date()));
                         QueryBuilder<Edge, Integer> qBuilder = a.edgeDao.queryBuilder();
                         qBuilder.orderBy("id", false); // false for descending order
                         qBuilder.limit(1);
                         Edge createdEdge = a.edgeDao.queryForId(qBuilder.query().get(0).getId());
                         System.out.println(createdEdge.getId() + " | " + createdEdge.getType_id() + " | " +
-                                createdEdge.getSource_id() + " | " + createdEdge.getTarget_id());
+                                createdEdge.getSource_id() + " | " + createdEdge.getTarget_id() + " | " +
+                                createdEdge.getModified());
                         connectionSource.close();
                         return "0. Edge with id=" + createdEdge.getId() + " was successfully created.\n";
                     } else {
@@ -114,7 +116,7 @@ public class EdgesController {
                 } else {
                     EdgeUpdateData updEdge = checkDataForUpdates(new EdgeUpdateData(type_id, source_id, target_id), a.edgeDao.queryForId(id));
                     if (updEdge.getErrorMessage().equals("")) {
-                        a.edgeDao.update(new Edge(id, updEdge.getType_id(), updEdge.getSource_id(), updEdge.getTarget_id()));
+                        a.edgeDao.update(new Edge(id, updEdge.getType_id(), updEdge.getSource_id(), updEdge.getTarget_id(), new Date()));
                         connectionSource.close();
                         return "0. Coordinate with id=" + id + " was successfully updated.\n";
                     } else {

@@ -24,15 +24,29 @@ public class EventSchedule {
     private String comment;
     @DatabaseField
     private int event_id;
+    @DatabaseField
+    private Date modified = null;
 
     public EventSchedule(int id, String start_datetime_Str, String end_datetime_Str,
-                         int location_id, String comment, int event_id) throws ParseException {
+                         int location_id, String comment, int event_id, String modifiedStr) throws ParseException {
         this.id = id;
         this.start_datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(start_datetime_Str);
         this.end_datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(end_datetime_Str);
         this.location_id = location_id;
         this.comment = comment;
         this.event_id = event_id;
+        this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
+    }
+
+    public EventSchedule(int id, String start_datetime_Str, String end_datetime_Str,
+                         int location_id, String comment, int event_id, Date modified) throws ParseException {
+        this.id = id;
+        this.start_datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(start_datetime_Str);
+        this.end_datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(end_datetime_Str);
+        this.location_id = location_id;
+        this.comment = comment;
+        this.event_id = event_id;
+        this.modified = modified;
     }
 
     // For deserialization with Jackson
@@ -62,5 +76,9 @@ public class EventSchedule {
 
     public int getEvent_id() {
         return event_id;
+    }
+
+    public String getModified() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").format(modified);
     }
 }

@@ -22,6 +22,7 @@ import xmlToDB.LatLngExtendedGraphVertex;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 /**
  * Created by alnedorezov on 6/7/16.
@@ -70,7 +71,13 @@ public class Application {
         // new Application().insertDemoDataInTheDatabase();
 
         // Inserting coordinates and edges from xml to the database
-        // new Application().writeCoordinatesAndEdgesFromXmlToDB();
+        /*
+        try {
+            new Application().writeCoordinatesAndEdgesFromXmlToDB();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        */
 
         // Run Spring application
         SpringApplication.run(Application.class, args);
@@ -161,7 +168,7 @@ public class Application {
     /**
      * Inserting demo data to the database
      */
-    private void insertDemoDataInTheDatabase() throws SQLException {
+    private void insertDemoDataInTheDatabase() throws SQLException, ParseException {
         // create our data source
         ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         setupDatabase(connectionSource, false);
@@ -182,14 +189,14 @@ public class Application {
         name = "Classroom 1";
         description = "";
 
-        coordinateDao.create(new Coordinate(id, latitude, longitude, floor, type_id, name, description));
+        coordinateDao.create(new Coordinate(id, latitude, longitude, floor, type_id, name, description, "2016-02-03 04:05:06.7"));
         connectionSource.close();
     }
 
     /**
      * Inserting coordinates from xml to the database
      */
-    private void writeCoordinatesAndEdgesFromXmlToDB() throws SQLException {
+    private void writeCoordinatesAndEdgesFromXmlToDB() throws SQLException, ParseException {
         LatLngExtendedGraphVertex[] coordinatesList;
         LatLngGraphEdge[] edgesList;
         ExtendedJGraphTWrapper jGraphTWrapper = null;
@@ -213,6 +220,8 @@ public class Application {
 
             coordinatesList = jGraphTWrapper.getVertices();
 
+            String modifiedDateTime = "2016-02-03 04:05:06.7";
+
             String IU_description = "Specializing in the field " +
                     "of modern information technologies, Innopolis University is not only one of Russia’s youngest universities," +
                     " but also the new city’s intellectual center.\n" +
@@ -221,9 +230,9 @@ public class Application {
                     " a high-quality stream of professionals for companies located in Innopolis.";
             // Coordinate for Innopolis University are taken from Google Maps
             // Coordinate_type=2 (DAFAULT)
-            coordinateDao.create(new Coordinate(0, 55.7541793, 48.744085, 1, 2, "Innopolis University", IU_description));
+            coordinateDao.create(new Coordinate(0, 55.7541793, 48.744085, 1, 2, "Innopolis University", IU_description, modifiedDateTime));
             streetDao.create(new Street(1, "Universitetskaya"));
-            buildingDao.create(new Building(1, String.valueOf(1), null, IU_description, 1, 1));
+            buildingDao.create(new Building(1, String.valueOf(1), null, IU_description, 1, 1, modifiedDateTime));
 
             roomTypeDao.create(new RoomType(1, "ROOM"));
             roomTypeDao.create(new RoomType(2, "FOOD"));
@@ -256,7 +265,7 @@ public class Application {
 
                     coordinateDao.create(new Coordinate(0, coordinatesList[i].getVertex().getLatitude(), coordinatesList[i].getVertex().getLongitude(),
                             (int) Math.floor(coordinatesList[i].getVertexId() / 1000), coordinate_type_id,
-                            coordinatesList[i].getName(), coordinatesList[i].getDescription()));
+                            coordinatesList[i].getName(), coordinatesList[i].getDescription(), modifiedDateTime));
 
                     // ROOM, FOOD, WC, CLINIC, READING, DOOR, LIBRARY and EASTER_EGG
                     if (coordinatesList[i].getGraphVertexType().toString().equals("ROOM") || coordinatesList[i].getGraphVertexType().toString().equals("FOOD") ||
@@ -270,25 +279,25 @@ public class Application {
                         coordinate_id = coordinateQBuilder.query().get(0).getId();
                         switch (coordinatesList[i].getGraphVertexType().toString()) {
                             case "ROOM":
-                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 1));
+                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 1, modifiedDateTime));
                                 break;
                             case "FOOD":
-                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 2));
+                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 2, modifiedDateTime));
                                 break;
                             case "WC":
-                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 3));
+                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 3, modifiedDateTime));
                                 break;
                             case "CLINIC":
-                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 4));
+                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 4, modifiedDateTime));
                                 break;
                             case "READING":
-                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 5));
+                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 5, modifiedDateTime));
                                 break;
                             case "DOOR":
-                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 6));
+                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 6, modifiedDateTime));
                                 break;
                             case "LIBRARY":
-                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 7));
+                                roomDao.create(new Room(0, coordinatesList[i].getNumber(), 1, coordinate_id, 7, modifiedDateTime));
                                 break;
                         }
                     }
@@ -312,10 +321,10 @@ public class Application {
 
                     switch (edgesList[i].getGraphEdgeType().toString()) {
                         case "DEFAULT":
-                            edgeDao.create(new Edge(0, 1, source_id, target_id));
+                            edgeDao.create(new Edge(0, 1, source_id, target_id, modifiedDateTime));
                             break;
                         case "STAIRS":
-                            edgeDao.create(new Edge(0, 2, source_id, target_id));
+                            edgeDao.create(new Edge(0, 2, source_id, target_id, modifiedDateTime));
                     }
                 }
             }

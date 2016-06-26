@@ -3,6 +3,10 @@ package db;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by alnedorezov on 6/16/16.
  */
@@ -16,12 +20,23 @@ public class Edge {
     private int source_id;
     @DatabaseField(uniqueCombo = true)
     private int target_id;
+    @DatabaseField
+    private Date modified = null;
 
-    public Edge(int id, int type_id, int source_id, int target_id) {
+    public Edge(int id, int type_id, int source_id, int target_id, String modifiedStr) throws ParseException {
         this.id = id;
         this.type_id = type_id;
         this.source_id = source_id;
         this.target_id = target_id;
+        this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
+    }
+
+    public Edge(int id, int type_id, int source_id, int target_id, Date modified) {
+        this.id = id;
+        this.type_id = type_id;
+        this.source_id = source_id;
+        this.target_id = target_id;
+        this.modified = modified;
     }
 
     // For deserialization with Jackson
@@ -43,5 +58,9 @@ public class Edge {
 
     public int getTarget_id() {
         return target_id;
+    }
+
+    public String getModified() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").format(modified);
     }
 }

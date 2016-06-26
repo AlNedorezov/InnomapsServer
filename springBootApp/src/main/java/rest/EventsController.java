@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.EventsObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/24/16.
@@ -82,14 +83,14 @@ public class EventsController {
                     link = checkEventsLink(link);
                     String errorMessageOnCreate = checkIfEventCreatorExist(creator_id);
                     if (errorMessageOnCreate.equals("")) {
-                        a.eventDao.create(new Event(id, name, description, creator_id, link));
+                        a.eventDao.create(new Event(id, name, description, creator_id, link, new Date()));
                         QueryBuilder<Event, Integer> qBuilder = a.eventDao.queryBuilder();
                         qBuilder.orderBy("id", false); // false for descending order
                         qBuilder.limit(1);
                         Event createdEvent = a.eventDao.queryForId(qBuilder.query().get(0).getId());
                         System.out.println(createdEvent.getId() + " | " + createdEvent.getName() + " | " +
                                 createdEvent.getDescription() + " | " + createdEvent.getCreator_id() + " | " +
-                                createdEvent.getLink());
+                                createdEvent.getLink() + " | " + createdEvent.getModified());
                         connectionSource.close();
                         return "0. Event with id=" + createdEvent.getId() + " was successfully created.\n";
                     } else {
@@ -107,7 +108,7 @@ public class EventsController {
                     EventUpdateData updEvent = checkDataForUpdates(new EventUpdateData(name, description, creator_id, link), a.eventDao.queryForId(id));
                     if (updEvent.getErrorMessage().equals("")) {
                         a.eventDao.update(new Event(id, updEvent.getName(), updEvent.getDescription(),
-                                updEvent.getCreator_id(), updEvent.getLink()));
+                                updEvent.getCreator_id(), updEvent.getLink(), new Date()));
                         connectionSource.close();
                         return "0. Event with id=" + id + " was successfully updated.\n";
                     } else {

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.EventSchedulesObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 
 /**
@@ -77,14 +78,15 @@ public class EventSchedulesController {
                     comment = checkEventScheduleComment(comment);
                     String errorMessageOnCreate = checkIfEventScheduleCanBeCreated(location_id, event_id);
                     if (errorMessageOnCreate.equals("")) {
-                        a.eventScheduleDao.create(new EventSchedule(id, start_datetimeStr, end_datetimeStr, location_id, comment, event_id));
+                        a.eventScheduleDao.create(new EventSchedule(id, start_datetimeStr, end_datetimeStr, location_id, comment, event_id, new Date()));
                         QueryBuilder<EventSchedule, Integer> qBuilder = a.eventScheduleDao.queryBuilder();
                         qBuilder.orderBy("id", false); // false for descending order
                         qBuilder.limit(1);
                         EventSchedule createdEventSchedule = a.eventScheduleDao.queryForId(qBuilder.query().get(0).getId());
                         System.out.println(createdEventSchedule.getId() + " | " + createdEventSchedule.getStart_datetime() + " | " +
                                 createdEventSchedule.getEnd_datetime() + " | " + createdEventSchedule.getLocation_id() + " | " +
-                                createdEventSchedule.getComment() + " | " + createdEventSchedule.getEvent_id());
+                                createdEventSchedule.getComment() + " | " + createdEventSchedule.getEvent_id() + " | " +
+                                createdEventSchedule.getModified());
                         connectionSource.close();
                         return "0. Event schedule with id=" + createdEventSchedule.getId() + " was successfully created.\n";
                     } else {
@@ -103,7 +105,7 @@ public class EventSchedulesController {
                             location_id, comment, event_id), a.eventScheduleDao.queryForId(id));
                     if (updEventSchedule.getErrorMessage().equals("")) {
                         a.eventScheduleDao.update(new EventSchedule(id, updEventSchedule.getStart_datetimeStr(), updEventSchedule.getEnd_datetimeStr(),
-                                updEventSchedule.getLocation_id(), updEventSchedule.getComment(), updEventSchedule.getEvent_id()));
+                                updEventSchedule.getLocation_id(), updEventSchedule.getComment(), updEventSchedule.getEvent_id(), new Date()));
                         connectionSource.close();
                         return "0. Event schedule with id=" + id + " was successfully updated.\n";
                     } else {

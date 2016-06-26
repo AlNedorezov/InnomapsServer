@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.BuildingsObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/23/16.
@@ -90,14 +91,15 @@ public class BuildingsController {
                     description = checkBuildingDescription(description);
                     String errorMessageOnCreate = checkIfBuildingCanBeCreated(coordinate_id, street_id);
                     if (errorMessageOnCreate.equals("")) {
-                        a.buildingDao.create(new Building(id, number, block, description, coordinate_id, street_id));
+                        a.buildingDao.create(new Building(id, number, block, description, coordinate_id, street_id, new Date()));
                         QueryBuilder<Building, Integer> qBuilder = a.buildingDao.queryBuilder();
                         qBuilder.orderBy("id", false); // false for descending order
                         qBuilder.limit(1);
                         Building createdBuilding = a.buildingDao.queryForId(qBuilder.query().get(0).getId());
                         System.out.println(createdBuilding.getId() + " | " + createdBuilding.getNumber() + " | " +
                                 createdBuilding.getBlock() + " | " + createdBuilding.getDescription() + " | " +
-                                createdBuilding.getCoordinate_id() + " | " + createdBuilding.getStreet_id());
+                                createdBuilding.getCoordinate_id() + " | " + createdBuilding.getStreet_id() + " | " +
+                                createdBuilding.getModified());
                         connectionSource.close();
                         return "0. Building with id=" + createdBuilding.getId() + " was successfully created.\n";
                     } else {
@@ -115,7 +117,7 @@ public class BuildingsController {
                     BuildingUpdateData updBuilding = checkDataForUpdates(new BuildingUpdateData(number, blockStr, description, coordinate_id, street_id), a.buildingDao.queryForId(id));
                     if (updBuilding.getErrorMessage().equals("")) {
                         a.buildingDao.update(new Building(id, updBuilding.getNumber(), updBuilding.getBlock(), updBuilding.getDescription(),
-                                updBuilding.getCoordinate_id(), updBuilding.getStreet_id()));
+                                updBuilding.getCoordinate_id(), updBuilding.getStreet_id(), new Date()));
                         connectionSource.close();
                         return "0. Building with id=" + id + " was successfully updated.\n";
                     } else {

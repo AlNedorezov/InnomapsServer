@@ -3,6 +3,10 @@ package db;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by alnedorezov on 6/9/16.
  */
@@ -22,8 +26,10 @@ public class Coordinate {
     private String name;
     @DatabaseField
     private String description;
+    @DatabaseField
+    private Date modified = null;
 
-    public Coordinate(int id, double latitude, double longitude, int floor, int type_id, String name, String description) {
+    public Coordinate(int id, double latitude, double longitude, int floor, int type_id, String name, String description, String modifiedStr) throws ParseException {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -31,6 +37,18 @@ public class Coordinate {
         this.type_id = type_id;
         this.name = name;
         this.description = description;
+        this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
+    }
+
+    public Coordinate(int id, double latitude, double longitude, int floor, int type_id, String name, String description, Date modified) {
+        this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.floor = floor;
+        this.type_id = type_id;
+        this.name = name;
+        this.description = description;
+        this.modified = modified;
     }
 
     // For deserialization with Jackson
@@ -64,5 +82,9 @@ public class Coordinate {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getModified() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").format(modified);
     }
 }
