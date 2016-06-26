@@ -185,7 +185,7 @@ public class BuildingFloorOverlaysController {
         qbBFO.where().eq("building_id", building_id).and().eq("floor", floor);
         if (qbBFO.query().size() > 0)
             errorMessage += "Building floor overlay for " + floor + " floor of building with id=" + building_id +
-                            " already exists. It's id=" + qbBFO.query().get(0).getId() + ". ";
+                    " already exists. It's id=" + qbBFO.query().get(0).getId() + ". ";
 
         return errorMessage;
     }
