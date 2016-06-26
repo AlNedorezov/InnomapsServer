@@ -3,6 +3,10 @@ package db;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by alnedorezov on 6/24/16.
  */
@@ -17,12 +21,15 @@ public class BuildingFloorOverlay {
     private int photo_id;
     @DatabaseField(uniqueCombo = true)
     private int floor;
+    @DatabaseField
+    private Date modified = null;
 
-    public BuildingFloorOverlay(int id, int building_id, int photo_id, int floor) {
+    public BuildingFloorOverlay(int id, int building_id, int photo_id, int floor, String modifiedStr) throws ParseException {
         this.id = id;
         this.building_id = building_id;
         this.photo_id = photo_id;
         this.floor = floor;
+        this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
     }
 
     // For deserialization with Jackson
@@ -44,5 +51,9 @@ public class BuildingFloorOverlay {
 
     public int getFloor() {
         return floor;
+    }
+
+    public String getModified() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").format(modified);
     }
 }
