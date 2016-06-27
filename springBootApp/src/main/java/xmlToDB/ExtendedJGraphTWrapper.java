@@ -4,22 +4,23 @@ import org.jgrapht.graph.SimpleWeightedGraph;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
-import pathfinding.JGraphTWrapper;
-import pathfinding.LatLng;
-import pathfinding.LatLngGraphEdge;
+import pathfinding.*;
+import rest.clientServerCommunicationClasses.ClosestCoordinateWithDistance;
 
 import java.io.*;
 import java.util.HashMap;
 
 /**
  * Created by alnedorezov on 6/10/16.
+ *
+ * This class is intended to help transfer data from xml file to the database.
  */
 public class ExtendedJGraphTWrapper extends JGraphTWrapper {
 
     // Graph with extra data from xml
     private SimpleWeightedGraph<LatLngExtendedGraphVertex, LatLngGraphEdge> graph;
 
-    private void addExtendedVertex(LatLng v, int id, JGraphTWrapper.GraphElementType graphVertexType,
+    private void addExtendedVertex(LatLngFlr v, int id, JGraphTWrapper.GraphElementType graphVertexType,
                                    String name, String description, Integer number) {
         LatLngExtendedGraphVertex vTemp = new LatLngExtendedGraphVertex(v, id, graphVertexType, name, description, number);
         graph.addVertex(vTemp);
@@ -34,7 +35,7 @@ public class ExtendedJGraphTWrapper extends JGraphTWrapper {
      * @param v2Index          - v2 vertex index
      * @param graphElementType - edge type (see LatLngGraphEdge.GraphElementType)
      */
-    @Override
+
     public void addEdge(LatLng v1, LatLng v2, int v1Index, int v2Index, GraphElementType graphElementType) {
         LatLngExtendedGraphVertex[] verticesList = getVertices();
         LatLngExtendedGraphVertex gv1 = null;
@@ -137,7 +138,7 @@ public class ExtendedJGraphTWrapper extends JGraphTWrapper {
             } else if (eventType == XmlPullParser.TEXT) {
                 if (id != -1 && nodeDataFound) {
                     String[] coords = xpp.getText().split(" ");
-                    LatLng latLng = new LatLng(Double.valueOf(coords[0]), Double.valueOf(coords[1]));
+                    LatLngFlr latLng = new LatLngFlr(Double.valueOf(coords[0]), Double.valueOf(coords[1]), (int) Math.floor(id / 1000));
                     addExtendedVertex(latLng, id, vertexType, name, description, number);
                     verticesMap.put(id, latLng);
                     id = -1;
@@ -177,4 +178,23 @@ public class ExtendedJGraphTWrapper extends JGraphTWrapper {
         v = graph.edgeSet().toArray(v);
         return v;
     }
+
+    @Override
+    public ClosestCoordinateWithDistance findClosestCoordinateToGiven(LatLngFlr v) {
+        LatLngGraphVertex[] verticesList = new LatLngGraphVertex[graph.vertexSet().size()];
+        verticesList = graph.vertexSet().toArray(verticesList);
+        LatLngFlr closestCoordinate = null;
+        double shortestDistance = Double.MAX_VALUE;
+        for (int i = 0; i < verticesList.length; i++) {
+            LatLng candidateCoordinate = verticesList[i].getVertex();
+            double candidateDistance = haversine(v.getLatitude(), v.getLongitude(), candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude());
+            if (candidateDistance < shortestDistance && v.getFloor() == (int) Math.floor(verticesList[i].getVertexId() / 1000)) {
+                closestCoordinate = new LatLngFlr(candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude(), v.getFloor());
+                shortestDistance = candidateDistance;
+            }
+        }
+
+        return new ClosestCoordinateWithDistance(closestCoordinate, shortestDistance);
+    }
+
 }

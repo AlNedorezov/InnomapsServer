@@ -7,10 +7,10 @@ package pathfinding;
  */
 public class LatLngGraphVertex {
     private JGraphTWrapper.GraphElementType graphVertexType;
-    private LatLng vertex;
+    private LatLngFlr vertex;
     private int vertexId;
 
-    public LatLngGraphVertex(LatLng vertex, int vertexId, JGraphTWrapper.GraphElementType graphVertexType) {
+    public LatLngGraphVertex(LatLngFlr vertex, int vertexId, JGraphTWrapper.GraphElementType graphVertexType) {
         this.vertex = vertex;
         this.vertexId = vertexId;
         this.graphVertexType = graphVertexType;
@@ -21,7 +21,7 @@ public class LatLngGraphVertex {
         this.vertexId = vertex.getVertexId();
     }
 
-    public LatLng getVertex() {
+    public LatLngFlr getVertex() {
         return vertex;
     }
 

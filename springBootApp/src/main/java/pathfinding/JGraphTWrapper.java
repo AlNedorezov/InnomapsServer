@@ -2,7 +2,9 @@ package pathfinding;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import db.Coordinate;
+import db.CoordinateType;
 import db.Edge;
+import db.EdgeType;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.ConnectivityInspector;
 import org.jgrapht.alg.DijkstraShortestPath;
@@ -42,12 +44,12 @@ public class JGraphTWrapper {
      * @param v - vertex to add
      * @return id of vertex added
      */
-    public int addVertex(LatLng v, GraphElementType graphVertexType) {
+    public int addVertex(LatLngFlr v, GraphElementType graphVertexType) {
         addVertexWithId(v, currentVertexId, graphVertexType);
         return currentVertexId++;
     }
 
-    private void addVertexWithId(LatLng v, int id, GraphElementType graphVertexType) {
+    private void addVertexWithId(LatLngFlr v, int id, GraphElementType graphVertexType) {
         LatLngGraphVertex vTemp = new LatLngGraphVertex(v, id, graphVertexType);
         graph.addVertex(vTemp);
     }
@@ -61,7 +63,7 @@ public class JGraphTWrapper {
      * @param v2Index          - v2 vertex index
      * @param graphElementType - edge type (see LatLngGraphEdge.GraphElementType)
      */
-    public void addEdge(LatLng v1, LatLng v2, int v1Index, int v2Index, GraphElementType graphElementType) {
+    public void addEdge(LatLngFlr v1, LatLngFlr v2, int v1Index, int v2Index, GraphElementType graphElementType) {
         LatLngGraphVertex gv1 = new LatLngGraphVertex(v1, v1Index, graphElementType);
         LatLngGraphVertex gv2 = new LatLngGraphVertex(v2, v2Index, graphElementType);
 
@@ -82,22 +84,22 @@ public class JGraphTWrapper {
     /**
      * Shortest path using all edges.
      *
-     * @param v1 - start LatLng
-     * @param v2 - end LatLng
-     * @return sequential list of LatLng objects
+     * @param v1 - start LatLngFlr
+     * @param v2 - end LatLngFlr
+     * @return sequential list of LatLngFlr objects
      */
-    public ArrayList<LatLngGraphVertex> shortestPath(LatLngFlr v1, LatLng v2) {
+    public ArrayList<LatLngGraphVertex> shortestPath(LatLngFlr v1, LatLngFlr v2) {
         return shortestPathForGraph(v1, v2, graph);
     }
 
-    private ArrayList<LatLngGraphVertex> shortestPathForGraph(LatLngFlr v1, LatLng v2, Graph<LatLngGraphVertex, LatLngGraphEdge> g) {
+    private ArrayList<LatLngGraphVertex> shortestPathForGraph(LatLngFlr v1, LatLngFlr v2, Graph<LatLngGraphVertex, LatLngGraphEdge> g) {
         ArrayList<LatLngGraphVertex> pointsList = new ArrayList<>();
 
-        LatLngGraphVertex vTemp1 = new LatLngGraphVertex(v1.getLatLng(), 0, GraphElementType.DEFAULT);
+        LatLngGraphVertex vTemp1 = new LatLngGraphVertex(v1, 0, GraphElementType.DEFAULT);
         LatLngGraphVertex vTemp2 = new LatLngGraphVertex(v2, 0, GraphElementType.DEFAULT);
         if (!g.containsVertex(vTemp1)) {
             pointsList.add(vTemp1);
-            vTemp1 = new LatLngGraphVertex(findClosestCoordinateToGiven(v1).getCoordinate().getLatLng(), 0, GraphElementType.DEFAULT);
+            vTemp1 = new LatLngGraphVertex(findClosestCoordinateToGiven(v1).getCoordinate(), 0, GraphElementType.DEFAULT);
         }
 
         DijkstraShortestPath<LatLngGraphVertex, LatLngGraphEdge> dijkstraPathFinder = new DijkstraShortestPath<>(g, vTemp1, vTemp2);
@@ -120,11 +122,11 @@ public class JGraphTWrapper {
     /**
      * Shortest path with only default edges.
      *
-     * @param v1 - start LatLng
-     * @param v2 - end LatLng
-     * @return sequential list of LatLng objects
+     * @param v1 - start LatLngFlr
+     * @param v2 - end LatLngFlr
+     * @return sequential list of LatLngFlr objects
      */
-    public ArrayList<LatLngGraphVertex> defaultShortestPath(LatLngFlr v1, LatLng v2) {
+    public ArrayList<LatLngGraphVertex> defaultShortestPath(LatLngFlr v1, LatLngFlr v2) {
         Set<LatLngGraphEdge> oldEdges = graph.edgeSet();
         Set<LatLngGraphEdge> defaultEdges = new HashSet<>();
         for (LatLngGraphEdge edge : oldEdges) {
@@ -147,8 +149,12 @@ public class JGraphTWrapper {
     }
 
     /**
+     * TO BE REMOVED.
+     *
      * Imports graph from the file of GraphML format. Doesn't return anything but if import was
      * successful internal graph object will be replaced by the imported one.
+     *
+     * DOES NOT WORK WITH FLOORS! Automatically assigns first floor to every point.
      *
      * @param inputStream - stream to read.
      */
@@ -163,7 +169,7 @@ public class JGraphTWrapper {
 
         graph = new SimpleWeightedGraph<>(LatLngGraphEdge.class);
         currentVertexId = 0;
-        HashMap<Integer, LatLng> verticesMap = new HashMap<>();
+        HashMap<Integer, LatLngFlr> verticesMap = new HashMap<>();
         int id = -1;
         GraphElementType vertexType = GraphElementType.DEFAULT;
         boolean nodeDataFound = false;
@@ -207,9 +213,9 @@ public class JGraphTWrapper {
             } else if (eventType == XmlPullParser.TEXT) {
                 if (id != -1 && nodeDataFound) {
                     String[] coords = xpp.getText().split(" ");
-                    LatLng latLng = new LatLng(Double.valueOf(coords[0]), Double.valueOf(coords[1]));
-                    addVertexWithId(latLng, id, vertexType);
-                    verticesMap.put(id, latLng);
+                    LatLngFlr latLngFlr = new LatLngFlr(Double.valueOf(coords[0]), Double.valueOf(coords[1]), 1);
+                    addVertexWithId(latLngFlr, id, vertexType);
+                    verticesMap.put(id, latLngFlr);
                     id = -1;
                     vertexType = GraphElementType.DEFAULT;
                     nodeDataFound = false;
@@ -240,27 +246,39 @@ public class JGraphTWrapper {
         a.setupDatabase(connectionSource, false);
 
         graph = new SimpleWeightedGraph<>(LatLngGraphEdge.class);
-        HashMap<Integer, LatLng> verticesMap = new HashMap<>();
+        HashMap<Integer, LatLngFlr> verticesMap = new HashMap<>();
+        HashMap<Integer, String> coordinateTypesMap = new HashMap<>();
+        HashMap<Integer, String> edgeTypesMap = new HashMap<>();
         GraphElementType vertexType;
         GraphElementType edgeType;
 
         List<Edge> edges = a.edgeDao.queryForAll();
         List<Coordinate> coordinates = a.coordinateDao.queryForAll();
+        List<CoordinateType> coordinateTypes = a.coordinateTypeDao.queryForAll();
+        List<EdgeType> edgeTypes = a.edgeTypeDao.queryForAll();
         int currentCoordinateId;
-        LatLng currentCoordinateLatLng;
+        LatLngFlr currentCoordinate;
         int source_id, target_id;
+
+        for(int i = 0; i < coordinateTypes.size(); i++) {
+            coordinateTypesMap.put(coordinateTypes.get(i).getId(), coordinateTypes.get(i).getName());
+        }
+
+        for(int i = 0; i < edgeTypes.size(); i++) {
+            edgeTypesMap.put(edgeTypes.get(i).getId(), edgeTypes.get(i).getName());
+        }
 
         for (int i = 0; i < coordinates.size(); i++) {
             currentCoordinateId = coordinates.get(i).getId();
-            String coordinate_type = a.coordinateTypeDao.queryForId(coordinates.get(i).getType_id()).getName();
+            String coordinate_type = coordinateTypesMap.get(coordinates.get(i).getType_id());
             vertexType = determineVertexType(coordinate_type);
-            currentCoordinateLatLng = new LatLng(coordinates.get(i).getLatitude(), coordinates.get(i).getLongitude());
-            addVertexWithId(currentCoordinateLatLng, currentCoordinateId, vertexType);
-            verticesMap.put(currentCoordinateId, currentCoordinateLatLng);
+            currentCoordinate = new LatLngFlr(coordinates.get(i).getLatitude(), coordinates.get(i).getLongitude(), coordinates.get(i).getFloor());
+            addVertexWithId(currentCoordinate, currentCoordinateId, vertexType);
+            verticesMap.put(currentCoordinateId, currentCoordinate);
         }
 
         for (int i = 0; i < edges.size(); i++) {
-            String edge_type = a.edgeTypeDao.queryForId(edges.get(i).getType_id()).getName();
+            String edge_type = edgeTypesMap.get(edges.get(i).getType_id());
             edgeType = determineEdgeType(edge_type);
             source_id = edges.get(i).getSource_id();
             target_id = edges.get(i).getTarget_id();
@@ -347,10 +365,10 @@ public class JGraphTWrapper {
         LatLngFlr closestCoordinate = null;
         double shortestDistance = Double.MAX_VALUE;
         for (int i = 0; i < verticesList.length; i++) {
-            LatLng candidateCoordinate = verticesList[i].getVertex();
+            LatLngFlr candidateCoordinate = verticesList[i].getVertex();
             double candidateDistance = haversine(v.getLatitude(), v.getLongitude(), candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude());
-            if (candidateDistance < shortestDistance && v.getFloor() == (int) Math.floor(verticesList[i].getVertexId() / 1000)) {
-                closestCoordinate = new LatLngFlr(candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude(), v.getFloor());
+            if (candidateDistance < shortestDistance && v.getFloor() == candidateCoordinate.getFloor()) {
+                closestCoordinate = new LatLngFlr(candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude(), candidateCoordinate.getFloor());
                 shortestDistance = candidateDistance;
             }
         }
@@ -358,12 +376,12 @@ public class JGraphTWrapper {
         return new ClosestCoordinateWithDistance(closestCoordinate, shortestDistance);
     }
 
-    private double calculateDistance(LatLng v1, LatLng v2) {
+    private double calculateDistance(LatLngFlr v1, LatLngFlr v2) {
         return Math.sqrt(Math.pow(v1.getLatitude() - v2.getLatitude(), 2) + Math.pow(v1.getLongitude() - v2.getLongitude(), 2));
     }
 
     public boolean graphContainsVertexWithCoordinates(LatLngFlr c) {
-        LatLngGraphVertex vTemp = new LatLngGraphVertex(c.getLatLng(), 0, GraphElementType.DEFAULT);
+        LatLngGraphVertex vTemp = new LatLngGraphVertex(c, 0, GraphElementType.DEFAULT);
         if (graph.containsVertex(vTemp))
             return true;
         else

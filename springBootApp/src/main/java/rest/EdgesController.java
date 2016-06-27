@@ -219,9 +219,9 @@ public class EdgesController {
         LatLngGraphVertex sourceVertex, targetVertex;
         Coordinate sourceCoordinate = a.coordinateDao.queryForId(source_id);
         Coordinate targetCoordinate = a.coordinateDao.queryForId(target_id);
-        sourceVertex = new LatLngGraphVertex(new LatLng(sourceCoordinate.getLatitude(), sourceCoordinate.getLongitude()),
+        sourceVertex = new LatLngGraphVertex(new LatLngFlr(sourceCoordinate.getLatitude(), sourceCoordinate.getLongitude(), sourceCoordinate.getFloor()),
                 sourceCoordinate.getId(), jGraphTWrapper.determineVertexType(a.coordinateTypeDao.queryForId(sourceCoordinate.getType_id()).getName()));
-        targetVertex = new LatLngGraphVertex(new LatLng(targetCoordinate.getLatitude(), targetCoordinate.getLongitude()),
+        targetVertex = new LatLngGraphVertex(new LatLngFlr(targetCoordinate.getLatitude(), targetCoordinate.getLongitude(), targetCoordinate.getFloor()),
                 targetCoordinate.getId(), jGraphTWrapper.determineVertexType(a.coordinateTypeDao.queryForId(targetCoordinate.getType_id()).getName()));
         jGraphTWrapper.removeEdge(sourceVertex, targetVertex);
 
@@ -253,7 +253,7 @@ public class EdgesController {
 
         if (!edgeCanBeRemoved) {
             List<LatLngGraphVertex> path = jGraphTWrapper.shortestPath(new LatLngFlr(sourceCoordinate.getLatitude(), sourceCoordinate.getLongitude(), sourceCoordinate.getFloor()),
-                    new LatLng(targetCoordinate.getLatitude(), targetCoordinate.getLongitude()));
+                    new LatLngFlr(targetCoordinate.getLatitude(), targetCoordinate.getLongitude(), targetCoordinate.getFloor()));
             if (path != null)
                 edgeCanBeRemoved = true;
         }

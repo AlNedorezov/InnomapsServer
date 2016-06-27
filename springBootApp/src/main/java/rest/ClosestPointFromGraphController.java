@@ -10,6 +10,7 @@ import rest.clientServerCommunicationClasses.ClosestCoordinateWithDistance;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -22,7 +23,7 @@ public class ClosestPointFromGraphController {
     @RequestMapping("/resources/closestPointFromGraph")
     public ClosestCoordinateWithDistance findClosestPointFromGraph(@RequestParam(value = "latitude", defaultValue = "0") double latitude,
                                                                    @RequestParam(value = "longitude", defaultValue = "0") double longitude,
-                                                                   @RequestParam(value = "floor", defaultValue = "1") int floor) {
+                                                                   @RequestParam(value = "floor", defaultValue = "1") int floor) throws SQLException {
 
         // This data will be written in the log on the server
         Date currentDate = new Date();
@@ -32,24 +33,9 @@ public class ClosestPointFromGraphController {
         System.out.println("longitude:  " + longitude);
         System.out.println("floor:  " + floor);
         LatLngFlr receivedCoordinates = new LatLngFlr(latitude, longitude, floor);
-        JGraphTWrapper jGraphTWrapper;
 
-        FileInputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream("9.xml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (inputStream == null) {
-            return null;
-        }
-        try {
-            jGraphTWrapper = new JGraphTWrapper();
-            jGraphTWrapper.importGraphML(inputStream);
-        } catch (XmlPullParserException | IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        JGraphTWrapper jGraphTWrapper = new JGraphTWrapper();
+        jGraphTWrapper.importGraphFromDB(Application.DATABASE_URL, Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
 
         if (jGraphTWrapper.graphContainsVertexWithCoordinates(receivedCoordinates))
             return new ClosestCoordinateWithDistance(receivedCoordinates, 0);

@@ -12,6 +12,7 @@ import rest.clientServerCommunicationClasses.VerticesListObject;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -26,7 +27,8 @@ public class ShortestPathController {
                                                @RequestParam(value = "vertexOneLongitude", defaultValue = "0") double vertexOneLongitude,
                                                @RequestParam(value = "vertexOneFloor", defaultValue = "1") int vertexOneFloor,
                                                @RequestParam(value = "vertexTwoLatitude", defaultValue = "0") double vertexTwoLatitude,
-                                               @RequestParam(value = "vertexTwoLongitude", defaultValue = "0") double vertexTwoLongitude) {
+                                               @RequestParam(value = "vertexTwoLongitude", defaultValue = "0") double vertexTwoLongitude,
+                                               @RequestParam(value = "vertexTwoFloor", defaultValue = "1") int vertexTwoFloor) throws SQLException {
         // This data will be written in the log on the server
         Date currentDate = new Date();
         System.out.println("Received POST request for building a shortest path on " + currentDate);
@@ -36,26 +38,12 @@ public class ShortestPathController {
         System.out.println("start point floor:  " + vertexOneFloor);
         System.out.println("finish point latitude:  " + vertexTwoLatitude);
         System.out.println("finish point longitude: " + vertexTwoLongitude);
+        System.out.println("finish point floor:  " + vertexTwoFloor);
         LatLngFlr vertexOne = new LatLngFlr(vertexOneLatitude, vertexOneLongitude, vertexOneFloor);
-        LatLng vertexTwo = new LatLng(vertexTwoLatitude, vertexTwoLongitude);
-        JGraphTWrapper jGraphTWrapper;
+        LatLngFlr vertexTwo = new LatLngFlr(vertexTwoLatitude, vertexTwoLongitude, vertexTwoFloor);
 
-        FileInputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream("9.xml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (inputStream == null) {
-            return null;
-        }
-        try {
-            jGraphTWrapper = new JGraphTWrapper();
-            jGraphTWrapper.importGraphML(inputStream);
-        } catch (XmlPullParserException | IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        JGraphTWrapper jGraphTWrapper = new JGraphTWrapper();
+        jGraphTWrapper.importGraphFromDB(Application.DATABASE_URL, Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
 
         return new VerticesListObject(jGraphTWrapper.shortestPath(vertexOne, vertexTwo));
     }

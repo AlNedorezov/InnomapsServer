@@ -3,6 +3,7 @@ package xmlToDB;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import pathfinding.JGraphTWrapper;
 import pathfinding.LatLng;
+import pathfinding.LatLngFlr;
 import pathfinding.LatLngGraphVertex;
 
 /**
@@ -15,7 +16,7 @@ public class LatLngExtendedGraphVertex extends LatLngGraphVertex {
     private String description;
     private Integer number;
 
-    public LatLngExtendedGraphVertex(LatLng vertex, int vertexId, JGraphTWrapper.GraphElementType graphVertexType,
+    public LatLngExtendedGraphVertex(LatLngFlr vertex, int vertexId, JGraphTWrapper.GraphElementType graphVertexType,
                                      String name, String description, Integer number) {
         super(vertex, vertexId, graphVertexType);
         this.name = name;
@@ -28,7 +29,7 @@ public class LatLngExtendedGraphVertex extends LatLngGraphVertex {
         return new LatLngGraphVertex(getVertex(), getVertexId(), getGraphVertexType());
     }
 
-    public LatLng getVertex() {
+    public LatLngFlr getVertex() {
         return super.getVertex();
     }
 
