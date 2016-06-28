@@ -106,7 +106,7 @@ public class EventsController {
                     connectionSource.close();
                     return "-1. There is no such event.\n";
                 } else {
-                    EventUpdateData updEvent = checkDataForUpdates(new EventUpdateData(name, description, creator_id, link), a.eventDao.queryForId(id));
+                    CommonFunctions.EventUpdateData updEvent = checkDataForUpdates(new CommonFunctions.EventUpdateData(name, description, creator_id, link), a.eventDao.queryForId(id));
                     if (updEvent.getErrorMessage().equals("")) {
                         a.eventDao.update(new Event(id, updEvent.getName(), updEvent.getDescription(),
                                 updEvent.getCreator_id(), updEvent.getLink(), null, new Date()));
@@ -128,7 +128,7 @@ public class EventsController {
         return link;
     }
 
-    private EventUpdateData checkDataForUpdates(EventUpdateData checkedEventData, Event eventInDatabase) throws SQLException {
+    private CommonFunctions.EventUpdateData checkDataForUpdates(CommonFunctions.EventUpdateData checkedEventData, Event eventInDatabase) throws SQLException {
         if (checkedEventData.getName().equals("!~NO_NAME"))
             checkedEventData.setName(eventInDatabase.getName());
 
@@ -145,62 +145,6 @@ public class EventsController {
             checkedEventData.setLink(eventInDatabase.getLink());
 
         return checkedEventData;
-    }
-
-    private class EventUpdateData {
-        private String name;
-        private String description;
-        private Integer creator_id;
-        private String link;
-        private String errorMessage;
-
-        public EventUpdateData(String name, String description, Integer creator_id, String link) {
-            this.name = name;
-            this.description = description;
-            this.creator_id = creator_id;
-            this.link = link;
-            this.errorMessage = "";
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public Integer getCreator_id() {
-            return creator_id;
-        }
-
-        public void setCreator_id(Integer creator_id) {
-            this.creator_id = creator_id;
-        }
-
-        public String getLink() {
-            return link;
-        }
-
-        public void setLink(String link) {
-            this.link = link;
-        }
-
-        public String getErrorMessage() {
-            return errorMessage;
-        }
-
-        public void setErrorMessage(String errorMessage) {
-            this.errorMessage = errorMessage;
-        }
     }
 
     private String checkIfEventCanBeDeleted(int eventId) throws SQLException {
