@@ -22,24 +22,28 @@ public class Event {
     private int creator_id;
     @DatabaseField
     private String link;
+    @DatabaseField(unique = true)
+    private String gcals_event_id; // Google calendar's event id or null
     @DatabaseField
     private Date modified = null;
 
-    public Event(int id, String name, String description, int creator_id, String link, String modifiedStr) throws ParseException {
+    public Event(int id, String name, String description, int creator_id, String link, String gcals_event_id, String modifiedStr) throws ParseException {
         this.id = id;
         this.name = name;
         this.description = description;
         this.creator_id = creator_id;
         this.link = link;
+        this.gcals_event_id = gcals_event_id;
         this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
     }
 
-    public Event(int id, String name, String description, int creator_id, String link, Date modified) {
+    public Event(int id, String name, String description, int creator_id, String link, String gcals_event_id, Date modified) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.creator_id = creator_id;
         this.link = link;
+        this.gcals_event_id = gcals_event_id;
         this.modified = modified;
     }
 
@@ -66,6 +70,10 @@ public class Event {
 
     public String getLink() {
         return link;
+    }
+
+    public String getGcals_event_id() {
+        return gcals_event_id;
     }
 
     public String getModified() {

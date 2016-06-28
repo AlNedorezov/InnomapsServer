@@ -83,14 +83,15 @@ public class EventsController {
                     link = checkEventsLink(link);
                     String errorMessageOnCreate = checkIfEventCreatorExist(creator_id);
                     if (errorMessageOnCreate.equals("")) {
-                        a.eventDao.create(new Event(id, name, description, creator_id, link, new Date()));
+                        a.eventDao.create(new Event(id, name, description, creator_id, link, null, new Date()));
                         QueryBuilder<Event, Integer> qBuilder = a.eventDao.queryBuilder();
                         qBuilder.orderBy("id", false); // false for descending order
                         qBuilder.limit(1);
                         Event createdEvent = a.eventDao.queryForId(qBuilder.query().get(0).getId());
                         System.out.println(createdEvent.getId() + " | " + createdEvent.getName() + " | " +
                                 createdEvent.getDescription() + " | " + createdEvent.getCreator_id() + " | " +
-                                createdEvent.getLink() + " | " + createdEvent.getModified());
+                                createdEvent.getLink() + " | " + createdEvent.getGcals_event_id() + " | " +
+                                createdEvent.getModified());
                         connectionSource.close();
                         return "0. Event with id=" + createdEvent.getId() + " was successfully created.\n";
                     } else {
@@ -108,7 +109,7 @@ public class EventsController {
                     EventUpdateData updEvent = checkDataForUpdates(new EventUpdateData(name, description, creator_id, link), a.eventDao.queryForId(id));
                     if (updEvent.getErrorMessage().equals("")) {
                         a.eventDao.update(new Event(id, updEvent.getName(), updEvent.getDescription(),
-                                updEvent.getCreator_id(), updEvent.getLink(), new Date()));
+                                updEvent.getCreator_id(), updEvent.getLink(), null, new Date()));
                         connectionSource.close();
                         return "0. Event with id=" + id + " was successfully updated.\n";
                     } else {
