@@ -8,6 +8,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import db.*;
+import events.JsonParseTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -78,6 +79,9 @@ public class Application {
             e.printStackTrace();
         }
         */
+
+        // Add updated events from google calendar to the database
+        // new JsonParseTask().updateDbIfNeeded();
 
         // Run Spring application
         SpringApplication.run(Application.class, args);

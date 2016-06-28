@@ -104,7 +104,7 @@ public class JsonParseTask {
      * @return true in case the JSON was updated
      */
     private boolean jsonUpdated(String hashKey) {
-        return jsonHash.equals(hashKey);
+        return (jsonHash == null || jsonHash.equals(hashKey));
     }
 
     private boolean weekUpdated() {
@@ -123,7 +123,7 @@ public class JsonParseTask {
         }
     }
 
-    protected void updateDbIfNeeded() {
+    public void updateDbIfNeeded() {
         String strJson = getGoogleApi();
         JSONObject dataJsonObj;
         String md5 = new String(Hex.encodeHex(DigestUtils.md5(strJson)));
@@ -155,6 +155,15 @@ public class JsonParseTask {
         return description;
     }
 
+    public boolean isStringAnInteger(String string) {
+        try {
+            Integer.parseInt(string);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
     private int updateDB(JSONObject dataJsonObj) throws JSONException, SQLException, ParseException {
         int eventsInserted = 0;
         JSONArray events = dataJsonObj.getJSONArray("items");
@@ -168,10 +177,9 @@ public class JsonParseTask {
             JSONObject jsonEvent = events.getJSONObject(i);
             String event_name = "", link = "", start = "", end = "",
                     location = "", gcals_event_id = "", description = "",
-                    creator_name = "", creator_email = "", checked = "0",
                     recurrence = "", telegram_username = "";
             Integer event_creator_id = null;
-            int event_id;
+            int event_id = Integer.MIN_VALUE;
             Iterator<String> iter = jsonEvent.keys();
             while (iter.hasNext()) {
                 String key = iter.next();
@@ -194,10 +202,6 @@ public class JsonParseTask {
                     case "description":
                         description = jsonEvent.getString("description");
                         break;
-                    case "creator":
-                        creator_name = jsonEvent.getJSONObject("creator").getString("displayName");
-                        creator_email = jsonEvent.getJSONObject("creator").getString("email");
-                        break;
                     case "recurrence":
                         recurrence = jsonEvent.getJSONArray("recurrence").getString(0).replace("RRULE:", "");
                         break;
@@ -208,25 +212,25 @@ public class JsonParseTask {
 
             for (int j = 0; j < descriptionArray.length; j++) {
                 if (telegram_username.equals("") && descriptionArray[j].startsWith("Contact: @")) {
-                    telegram_username = descriptionArray[j].substring(descriptionArray[j].lastIndexOf("Contact: @"));
+                    telegram_username = descriptionArray[j].substring("Contact: @".length());
                     telegram_username = cutStringUntilTheFirstSpaceIfItExists(telegram_username);
-                    description = description.replaceFirst(descriptionArray[j], "");
+                    description = removeSubstringWithNewlineCharacterFromDescription(description, descriptionArray[j], descriptionArray.length, j);
                 }
                 if (link.equals("") && descriptionArray[j].startsWith("Group link: ")) {
-                    link = descriptionArray[j].substring(descriptionArray[j].lastIndexOf("Group link: "));
-                    link = link.substring(0, link.indexOf(" "));
+                    link = descriptionArray[j].substring("Group link: ".length());
+                    link = cutStringUntilTheFirstSpaceIfItExists(link);
                     description = removeSubstringWithNewlineCharacterFromDescription(description, descriptionArray[j], descriptionArray.length, j);
                 }
             }
 
-            if (!telegram_username.equals("") || !creator_name.equals("") || !creator_email.equals("")) {
+            if (!telegram_username.equals("")) {
 
                 QueryBuilder<EventCreator, Integer> qbEventCreator = a.eventCreatorDao.queryBuilder();
                 qbEventCreator.where().eq("telegram_username", telegram_username);
                 if (qbEventCreator.query().size() > 0)
                     event_creator_id = qbEventCreator.query().get(0).getId();
                 else {
-                    a.eventCreatorDao.create(new EventCreator(0, creator_name, creator_email, telegram_username, new Date()));
+                    a.eventCreatorDao.create(new EventCreator(0, "", null, telegram_username, new Date()));
                     qbEventCreator.reset();
                     qbEventCreator.orderBy("id", false); // false for descending order
                     qbEventCreator.limit(1);
@@ -240,6 +244,16 @@ public class JsonParseTask {
             qbEvent.where().eq("gcals_event_id", gcals_event_id);
             if (qbEvent.query().size() > 0) {
                 event_id = qbEvent.query().get(0).getId();
+            } else {
+                if (event_name != null && event_creator_id != null) {
+                    qbEvent.reset();
+                    qbEvent.where().eq("name", event_name).and().eq("creator_id", event_creator_id);
+                    if (qbEvent.query().size() > 0) {
+                        event_id = qbEvent.query().get(0).getId();
+                    }
+                }
+            }
+            if (event_id != Integer.MIN_VALUE) {
                 a.eventDao.update(new Event(event_id, event_name, description,
                         event_creator_id, link, gcals_event_id, new Date()));
             } else {
@@ -249,15 +263,6 @@ public class JsonParseTask {
                 qbEvent.limit(1);
                 Event createdEvent = a.eventDao.queryForId(qbEvent.query().get(0).getId());
                 event_id = createdEvent.getId();
-            }
-
-            DateTime currentDate = new DateTime(new Date().getTime());
-            RecurrenceRule rule;
-            try {
-                rule = new RecurrenceRule(recurrence);
-            } catch (InvalidRecurrenceRuleException e) {
-                e.printStackTrace();
-                continue;
             }
 
             DateTime startDate;
@@ -273,73 +278,108 @@ public class JsonParseTask {
                 continue;
             }
 
+            if(recurrence != null && !recurrence.equals("")) {
+                DateTime currentDate = new DateTime(new Date().getTime());
+                RecurrenceRule rule;
+                try {
+                    rule = new RecurrenceRule(recurrence);
+                } catch (InvalidRecurrenceRuleException e) {
+                    e.printStackTrace();
+                    continue;
+                }
 
-            RecurrenceRuleIterator it = rule.iterator(startDate);
-            it.fastForward(currentDate);
-            int maxInstances = 3; // limit instances for 3 times
+                RecurrenceRuleIterator it = rule.iterator(startDate);
+                it.fastForward(currentDate);
+                int maxInstances = 3; // limit instances for 3 times
 
-            while (it.hasNext() && (maxInstances-- > 0)) {
-                DateTime nextInstance = it.nextDateTime();
-                if (nextInstance.after(currentDate)) {
-                    String finalStartDate = serverAPITimeFormat.format(new Date(nextInstance.getTimestamp()));
-                    String finalEndDate = serverAPITimeFormat.format(new Date(nextInstance.addDuration(new Duration(1, 0, 0, durationTime.intValue(), 0)).getTimestamp()));
-                    String locationArray[] = location.split("/");
-
-                    Integer locationId = null;
-                    int buildingId = Integer.MIN_VALUE;
-                    QueryBuilder<Coordinate, Integer> qbCoordinate = a.coordinateDao.queryBuilder();
-                    qbCoordinate.where().eq("name", locationArray[0]);
-                    if (qbCoordinate.query().size() > 0)
-                        locationId = qbCoordinate.query().get(0).getId();
-
-                    if (locationId != null) {
-                        QueryBuilder<Building, Integer> qbBuilding = a.buildingDao.queryBuilder();
-                        qbBuilding.where().eq("coordinate_id", locationId);
-                        if (qbBuilding.query().size() > 0)
-                            buildingId = qbBuilding.query().get(0).getId();
-                        else
-                            locationId = null;
-
-                        if (buildingId != Integer.MIN_VALUE && locationArray.length == 3) {
-                            QueryBuilder<Room, Integer> qbRoom = a.roomDao.queryBuilder();
-                            qbBuilding.where().eq("building_id", buildingId).and().eq("number", locationArray[2]);
-                            if (qbRoom.query().size() > 0)
-                                locationId = qbRoom.query().get(0).getCoordinate_id();
-                        }
-                    }
-
-                    QueryBuilder<EventSchedule, Integer> qbEventSchedule = a.eventScheduleDao.queryBuilder();
-                    qbEventSchedule.where().eq("start_datetime", finalStartDate).and().eq("end_datetime", finalEndDate).and().eq("location_id", locationId);
-
-                    int event_schedule_id = Integer.MIN_VALUE;
-                    if (locationId != null) {
-                        if (qbEventSchedule.query().size() > 0) {
-                            event_schedule_id = qbEventSchedule.query().get(0).getId();
-                            String eSchComment = a.eventScheduleDao.queryForId(event_schedule_id).getComment();
-                            a.eventScheduleDao.update(new EventSchedule(event_schedule_id, finalStartDate, finalEndDate, locationId, eSchComment, event_id, new Date()));
-                        }
-                    } else {
-                        if (qbEventSchedule.query().size() > 0) {
-                            List<EventSchedule> concurrentEvents = qbEventSchedule.query();
-                            for (int k = 0; k < concurrentEvents.size(); k++) {
-                                if (concurrentEvents.get(i).getComment().endsWith(location)) {
-                                    event_schedule_id = concurrentEvents.get(i).getId();
-                                    break;
-                                }
-                            }
-                        }
-                        if (event_schedule_id != Integer.MIN_VALUE) {
-                            String eSchComment = a.eventScheduleDao.queryForId(event_schedule_id).getComment();
-                            a.eventScheduleDao.update(new EventSchedule(event_schedule_id, finalStartDate, finalEndDate, locationId, eSchComment, event_id, new Date()));
-                        } else {
-                            a.eventScheduleDao.create(new EventSchedule(0, finalStartDate, finalEndDate, null, location, event_id, new Date()));
-                            ++eventsInserted;
-                        }
+                while (it.hasNext() && (maxInstances-- > 0)) {
+                    DateTime nextInstance = it.nextDateTime();
+                    if (nextInstance.after(currentDate)) {
+                        String finalStartDate = serverAPITimeFormat.format(new Date(nextInstance.getTimestamp()));
+                        String finalEndDate = serverAPITimeFormat.format(new Date(nextInstance.addDuration(new Duration(1, 0, 0, durationTime.intValue(), 0)).getTimestamp()));
+                        eventsInserted += addEventSchedule(finalStartDate, finalEndDate, location, event_id);
                     }
                 }
+            } else {
+                String finalStartDate = serverAPITimeFormat.format(new Date(startDate.getTimestamp()));
+                String finalEndDate = serverAPITimeFormat.format(new Date(endDate.getTimestamp()));
+                eventsInserted += addEventSchedule(finalStartDate, finalEndDate, location, event_id);
             }
         }
         connectionSource.close();
         return eventsInserted;
+    }
+
+    private int addEventSchedule(String finalStartDate, String finalEndDate, String location, int event_id) throws SQLException, ParseException {
+        Application a = new Application();
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+
+        int eventsSchedulesInserted = 0;
+
+        Date start_datetime = serverAPITimeFormat.parse(finalStartDate);
+        Date end_datetime = serverAPITimeFormat.parse(finalEndDate);
+        String locationArray[] = location.split("/");
+
+        if (locationArray[0].equals("university"))
+            locationArray[0] = a.coordinateDao.queryForId(1).getName();
+
+        Integer locationId = null;
+        int buildingId = Integer.MIN_VALUE;
+        QueryBuilder<Coordinate, Integer> qbCoordinate = a.coordinateDao.queryBuilder();
+        qbCoordinate.where().eq("name", locationArray[0]);
+        if (qbCoordinate.query().size() > 0)
+            locationId = qbCoordinate.query().get(0).getId();
+
+        if (locationId != null) {
+            QueryBuilder<Building, Integer> qbBuilding = a.buildingDao.queryBuilder();
+            qbBuilding.where().eq("coordinate_id", locationId);
+            if (qbBuilding.query().size() > 0)
+                buildingId = qbBuilding.query().get(0).getId();
+            else
+                locationId = null;
+
+            if (buildingId != Integer.MIN_VALUE && locationArray.length == 3 && isStringAnInteger(locationArray[2])) {
+                QueryBuilder<Room, Integer> qbRoom = a.roomDao.queryBuilder();
+                qbRoom.where().eq("building_id", buildingId).and().eq("number", locationArray[2]);
+                if (qbRoom.query().size() > 0)
+                    locationId = qbRoom.query().get(0).getCoordinate_id();
+            }
+        }
+
+        QueryBuilder<EventSchedule, Integer> qbEventSchedule = a.eventScheduleDao.queryBuilder();
+
+        int event_schedule_id = Integer.MIN_VALUE;
+        if (locationId != null) {
+            qbEventSchedule.where().eq("start_datetime", start_datetime).and().eq("end_datetime", end_datetime).and().eq("location_id", locationId);
+            if (qbEventSchedule.query().size() > 0) {
+                event_schedule_id = qbEventSchedule.query().get(0).getId();
+                String eSchComment = a.eventScheduleDao.queryForId(event_schedule_id).getComment();
+                a.eventScheduleDao.update(new EventSchedule(event_schedule_id, finalStartDate, finalEndDate, locationId, eSchComment, event_id, new Date()));
+            }
+        } else {
+            qbEventSchedule.where().eq("start_datetime", start_datetime).and().eq("end_datetime", end_datetime);
+            if (qbEventSchedule.query().size() > 0) {
+                List<EventSchedule> concurrentEvents = qbEventSchedule.query();
+                for (int k = 0; k < concurrentEvents.size(); k++) {
+                    if (concurrentEvents.get(k).getComment().endsWith(location)) {
+                        event_schedule_id = concurrentEvents.get(k).getId();
+                        break;
+                    }
+                }
+            }
+            if (event_schedule_id != Integer.MIN_VALUE) {
+                String eSchComment = a.eventScheduleDao.queryForId(event_schedule_id).getComment();
+                a.eventScheduleDao.update(new EventSchedule(event_schedule_id, finalStartDate, finalEndDate, locationId, eSchComment, event_id, new Date()));
+            } else {
+                a.eventScheduleDao.create(new EventSchedule(0, finalStartDate, finalEndDate, null, location, event_id, new Date()));
+                ++eventsSchedulesInserted;
+            }
+        }
+
+        connectionSource.close();
+
+        return eventsSchedulesInserted;
     }
 }
