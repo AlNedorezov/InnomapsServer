@@ -278,7 +278,7 @@ public class JsonParseTask {
                 continue;
             }
 
-            if(recurrence != null && !recurrence.equals("")) {
+            if (recurrence != null && !recurrence.equals("")) {
                 DateTime currentDate = new DateTime(new Date().getTime());
                 RecurrenceRule rule;
                 try {
