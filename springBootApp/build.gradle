@@ -38,6 +38,10 @@ dependencies {
     compile 'org.jgrapht:jgrapht-core:0.9.2'
     compile 'org.jgrapht:jgrapht-ext:0.9.2'
     compile group: 'net.sf.kxml', name: 'kxml2', version: '2.3.0'
+    compile 'org.apache.directory.studio:org.apache.commons.codec:1.8'
+    compile group: 'org.json', name: 'json', version: '20160212'
+    compile 'org.dmfs:rfc5545-datetime:0.2.4'
+    compile group: 'org.dmfs', name: 'lib-recur', version: '0.9.4'
 }
 
 task wrapper(type: Wrapper) {

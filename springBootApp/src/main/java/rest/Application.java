@@ -34,9 +34,9 @@ import java.text.ParseException;
 @SpringBootApplication
 public class Application {
 
-    protected final static String DATABASE_URL = "jdbc:h2:tcp://10.90.104.144:9092/test;IFEXISTS=TRUE";
-    protected final static String DATABASE_USERNAME = "sa";
-    protected final static String DATABASE_PASSWORD = "sa";
+    public final static String DATABASE_URL = "jdbc:h2:tcp://10.90.104.144:9092/test;IFEXISTS=TRUE";
+    public final static String DATABASE_USERNAME = "sa";
+    public final static String DATABASE_PASSWORD = "sa";
     // change 'localhost' to 10.90.104.144 for debug and vice versa for deploy
     // 10.90.104.144 works only for devices connected to the IU network
 
@@ -49,14 +49,14 @@ public class Application {
     public Dao<Coordinate, Integer> coordinateDao;
     public Dao<Edge, Integer> edgeDao;
     protected Dao<Street, Integer> streetDao;
-    protected Dao<Building, Integer> buildingDao;
-    protected Dao<Room, Integer> roomDao;
+    public Dao<Building, Integer> buildingDao;
+    public Dao<Room, Integer> roomDao;
     protected Dao<Photo, Integer> photoDao;
     protected Dao<BuildingPhoto, Integer> buildingPhotoDao;
     protected Dao<RoomPhoto, Integer> roomPhotoDao;
-    protected Dao<EventCreator, Integer> eventCreatorDao;
-    protected Dao<Event, Integer> eventDao;
-    protected Dao<EventSchedule, Integer> eventScheduleDao;
+    public Dao<EventCreator, Integer> eventCreatorDao;
+    public Dao<Event, Integer> eventDao;
+    public Dao<EventSchedule, Integer> eventScheduleDao;
     protected Dao<BuildingFloorOverlay, Integer> buildingFloorOverlayDao;
 
     @Autowired
