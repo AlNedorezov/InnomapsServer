@@ -19,7 +19,7 @@ public class Event {
     @DatabaseField
     private String description;
     @DatabaseField(uniqueCombo = true)
-    private int creator_id;
+    private Integer creator_id;
     @DatabaseField
     private String link;
     @DatabaseField(unique = true)
@@ -27,7 +27,7 @@ public class Event {
     @DatabaseField
     private Date modified = null;
 
-    public Event(int id, String name, String description, int creator_id, String link, String gcals_event_id, String modifiedStr) throws ParseException {
+    public Event(int id, String name, String description, Integer creator_id, String link, String gcals_event_id, String modifiedStr) throws ParseException {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -37,7 +37,7 @@ public class Event {
         this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
     }
 
-    public Event(int id, String name, String description, int creator_id, String link, String gcals_event_id, Date modified) {
+    public Event(int id, String name, String description, Integer creator_id, String link, String gcals_event_id, Date modified) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -64,7 +64,7 @@ public class Event {
         return description;
     }
 
-    public int getCreator_id() {
+    public Integer getCreator_id() {
         return creator_id;
     }
 
