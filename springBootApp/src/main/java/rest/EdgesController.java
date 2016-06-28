@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pathfinding.JGraphTWrapper;
-import pathfinding.LatLng;
 import pathfinding.LatLngFlr;
 import pathfinding.LatLngGraphVertex;
 import rest.clientServerCommunicationClasses.EdgesObject;

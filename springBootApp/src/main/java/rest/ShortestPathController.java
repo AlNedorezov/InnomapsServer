@@ -4,14 +4,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.xmlpull.v1.XmlPullParserException;
 import pathfinding.JGraphTWrapper;
-import pathfinding.LatLng;
 import pathfinding.LatLngFlr;
 import rest.clientServerCommunicationClasses.VerticesListObject;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
 

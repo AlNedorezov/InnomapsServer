@@ -118,7 +118,7 @@ public class BuildingFloorOverlaysController {
                     CommonFunctions.checkIfBuildingExist(checkedBFOData.getBuilding_id()));
 
         boolean checkFloor = false;
-        if(checkedBFOData.getErrorMessage().equals(""))
+        if (checkedBFOData.getErrorMessage().equals(""))
             checkFloor = true;
 
         if (checkedBFOData.getPhoto_id() == -3)
@@ -129,7 +129,7 @@ public class BuildingFloorOverlaysController {
 
         if (checkedBFOData.getFloor() == -4)
             checkedBFOData.setFloor(BFOInDatabase.getFloor());
-        else if(checkFloor)
+        else if (checkFloor)
             checkedBFOData.setErrorMessage(checkedBFOData.getErrorMessage() +
                     checkIfBuildingFloorOverlayExist(checkedBFOData.getBuilding_id(), checkedBFOData.getFloor()));
 
