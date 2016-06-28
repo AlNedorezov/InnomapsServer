@@ -152,12 +152,12 @@ public class EventSchedulesController {
     private class EventScheduleUpdateData {
         private String start_datetimeStr = null;
         private String end_datetimeStr = null;
-        private int location_id;
+        private Integer location_id;
         private String comment;
         private int event_id;
         private String errorMessage;
 
-        public EventScheduleUpdateData(String start_datetimeStr, String end_datetimeStr, int location_id, String comment, int event_id) {
+        public EventScheduleUpdateData(String start_datetimeStr, String end_datetimeStr, Integer location_id, String comment, int event_id) {
             this.start_datetimeStr = start_datetimeStr;
             this.end_datetimeStr = end_datetimeStr;
             this.location_id = location_id;
@@ -182,11 +182,11 @@ public class EventSchedulesController {
             this.end_datetimeStr = end_datetimeStr;
         }
 
-        public int getLocation_id() {
+        public Integer getLocation_id() {
             return location_id;
         }
 
-        public void setLocation_id(int location_id) {
+        public void setLocation_id(Integer location_id) {
             this.location_id = location_id;
         }
 
