@@ -150,11 +150,11 @@ public class EventsController {
     private class EventUpdateData {
         private String name;
         private String description;
-        private int creator_id;
+        private Integer creator_id;
         private String link;
         private String errorMessage;
 
-        public EventUpdateData(String name, String description, int creator_id, String link) {
+        public EventUpdateData(String name, String description, Integer creator_id, String link) {
             this.name = name;
             this.description = description;
             this.creator_id = creator_id;
@@ -178,11 +178,11 @@ public class EventsController {
             this.description = description;
         }
 
-        public int getCreator_id() {
+        public Integer getCreator_id() {
             return creator_id;
         }
 
-        public void setCreator_id(int creator_id) {
+        public void setCreator_id(Integer creator_id) {
             this.creator_id = creator_id;
         }
 
