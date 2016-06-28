@@ -19,7 +19,7 @@ public class EventSchedule {
     @DatabaseField(uniqueCombo = true)
     private Date end_datetime = null;
     @DatabaseField(uniqueCombo = true)
-    private int location_id;
+    private Integer location_id;
     @DatabaseField
     private String comment;
     @DatabaseField
@@ -28,7 +28,7 @@ public class EventSchedule {
     private Date modified = null;
 
     public EventSchedule(int id, String start_datetime_Str, String end_datetime_Str,
-                         int location_id, String comment, int event_id, String modifiedStr) throws ParseException {
+                         Integer location_id, String comment, int event_id, String modifiedStr) throws ParseException {
         this.id = id;
         this.start_datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(start_datetime_Str);
         this.end_datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(end_datetime_Str);
@@ -39,7 +39,7 @@ public class EventSchedule {
     }
 
     public EventSchedule(int id, String start_datetime_Str, String end_datetime_Str,
-                         int location_id, String comment, int event_id, Date modified) throws ParseException {
+                         Integer location_id, String comment, int event_id, Date modified) throws ParseException {
         this.id = id;
         this.start_datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(start_datetime_Str);
         this.end_datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(end_datetime_Str);
@@ -66,7 +66,7 @@ public class EventSchedule {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").format(end_datetime);
     }
 
-    public int getLocation_id() {
+    public Integer getLocation_id() {
         return location_id;
     }
 
