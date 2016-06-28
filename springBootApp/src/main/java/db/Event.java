@@ -14,11 +14,11 @@ import java.util.Date;
 public class Event {
     @DatabaseField(generatedId = true, unique = true)
     private int id;
-    @DatabaseField
+    @DatabaseField(uniqueCombo = true)
     private String name;
     @DatabaseField
     private String description;
-    @DatabaseField
+    @DatabaseField(uniqueCombo = true)
     private int creator_id;
     @DatabaseField
     private String link;
