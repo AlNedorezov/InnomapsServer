@@ -80,7 +80,7 @@ public class BuildingFloorOverlaysController {
                     String errorMessageOnCreate = checkIfBuildingFloorOverlayCanBeCreated(building_id, photo_id, floor, id);
                     if (errorMessageOnCreate.equals("")) {
                         a.buildingFloorOverlayDao.create(new BuildingFloorOverlay(id, building_id, photo_id, floor, southWestLatitude,
-                                                                    southWestLongitude, northEastLatitude, northEastLongitude, new Date()));
+                                southWestLongitude, northEastLatitude, northEastLongitude, new Date()));
                         QueryBuilder<BuildingFloorOverlay, Integer> qBuilder = a.buildingFloorOverlayDao.queryBuilder();
                         qBuilder.orderBy("id", false); // false for descending order
                         qBuilder.limit(1);
