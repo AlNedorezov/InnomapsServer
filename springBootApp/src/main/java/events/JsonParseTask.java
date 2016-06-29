@@ -357,6 +357,8 @@ public class JsonParseTask {
                 event_schedule_id = qbEventSchedule.query().get(0).getId();
                 String eSchComment = a.eventScheduleDao.queryForId(event_schedule_id).getComment();
                 a.eventScheduleDao.update(new EventSchedule(event_schedule_id, finalStartDate, finalEndDate, locationId, eSchComment, event_id, new Date()));
+            } else {
+                a.eventScheduleDao.create(new EventSchedule(event_schedule_id, finalStartDate, finalEndDate, locationId, "", event_id, new Date()));
             }
         } else {
             qbEventSchedule.where().eq("start_datetime", start_datetime).and().eq("end_datetime", end_datetime);
