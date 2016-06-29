@@ -22,21 +22,39 @@ public class BuildingFloorOverlay {
     @DatabaseField(uniqueCombo = true)
     private int floor;
     @DatabaseField
+    private double southWestLatitude;
+    @DatabaseField
+    private double southWestLongitude;
+    @DatabaseField
+    private double northEastLatitude;
+    @DatabaseField
+    private double northEastLongitude;
+    @DatabaseField
     private Date modified = null;
 
-    public BuildingFloorOverlay(int id, int building_id, int photo_id, int floor, String modifiedStr) throws ParseException {
+    public BuildingFloorOverlay(int id, int building_id, int photo_id, int floor, double southWestLatitude, double southWestLongitude,
+                                double northEastLatitude, double northEastLongitude, String modifiedStr) throws ParseException {
         this.id = id;
         this.building_id = building_id;
         this.photo_id = photo_id;
         this.floor = floor;
+        this.southWestLatitude = southWestLatitude;
+        this.southWestLongitude = southWestLongitude;
+        this.northEastLatitude = northEastLatitude;
+        this.northEastLongitude = northEastLongitude;
         this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
     }
 
-    public BuildingFloorOverlay(int id, int building_id, int photo_id, int floor, Date modified) {
+    public BuildingFloorOverlay(int id, int building_id, int photo_id, int floor, double southWestLatitude, double southWestLongitude,
+                                double northEastLatitude, double northEastLongitude, Date modified) {
         this.id = id;
         this.building_id = building_id;
         this.photo_id = photo_id;
         this.floor = floor;
+        this.southWestLatitude = southWestLatitude;
+        this.southWestLongitude = southWestLongitude;
+        this.northEastLatitude = northEastLatitude;
+        this.northEastLongitude = northEastLongitude;
         this.modified = modified;
     }
 
@@ -59,6 +77,22 @@ public class BuildingFloorOverlay {
 
     public int getFloor() {
         return floor;
+    }
+
+    public double getSouthWestLatitude() {
+        return southWestLatitude;
+    }
+
+    public double getSouthWestLongitude() {
+        return southWestLongitude;
+    }
+
+    public double getNorthEastLatitude() {
+        return northEastLatitude;
+    }
+
+    public double getNorthEastLongitude() {
+        return northEastLongitude;
     }
 
     public String getModified() {
