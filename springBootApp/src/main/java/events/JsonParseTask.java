@@ -36,7 +36,6 @@ import java.util.concurrent.TimeUnit;
 public class JsonParseTask {
 
     private String jsonHash = null;
-    private Date updatedDate = null;
     private SimpleDateFormat googleTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
     private SimpleDateFormat serverAPITimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 
@@ -107,29 +106,13 @@ public class JsonParseTask {
         return (jsonHash == null || jsonHash.equals(hashKey));
     }
 
-    private boolean weekUpdated() {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.clear(Calendar.MINUTE);
-        cal.clear(Calendar.SECOND);
-        cal.clear(Calendar.MILLISECOND);
-        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek()); //the starting date of current week
-            /*If it's null or old - update the database*/
-        if (updatedDate == null || !updatedDate.equals(cal.getTime())) {
-            updatedDate = cal.getTime();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public void updateDbIfNeeded() {
         String strJson = getGoogleApi();
         JSONObject dataJsonObj;
         String md5 = new String(Hex.encodeHex(DigestUtils.md5(strJson)));
         try {
             dataJsonObj = new JSONObject(strJson);
-            if (jsonUpdated(md5) || weekUpdated()) {
+            if (jsonUpdated(md5)) {
                 updateDB(dataJsonObj);
                 jsonHash = md5;
             }

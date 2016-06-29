@@ -8,6 +8,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import db.*;
+import events.CalendarSyncThread;
 import events.JsonParseTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -80,8 +81,9 @@ public class Application {
         }
         */
 
-        // Add updated events from google calendar to the database
-        // new JsonParseTask().updateDbIfNeeded();
+        // Synchronize events from google calendar with the database every hour
+        CalendarSyncThread calendarSyncThread = new CalendarSyncThread();
+        calendarSyncThread.start();
 
         // Run Spring application
         SpringApplication.run(Application.class, args);
