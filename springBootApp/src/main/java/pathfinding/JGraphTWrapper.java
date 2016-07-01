@@ -10,13 +10,9 @@ import org.jgrapht.alg.ConnectivityInspector;
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.SimpleWeightedGraph;
 import org.jgrapht.graph.UndirectedWeightedSubgraph;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 import rest.Application;
 import rest.clientServerCommunicationClasses.ClosestCoordinateWithDistance;
 
-import java.io.*;
 import java.sql.SQLException;
 import java.util.*;
 
