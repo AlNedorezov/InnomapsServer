@@ -80,6 +80,9 @@ public class CommonFunctions {
         return errorMessage;
     }
 
+    // At the moment
+    // event creators can be assigned to multiple events with the same name, as, for example,
+    // creator 1 can organize one of such events on his own and other with co-organizers
     static String checkIfEventCreatorAlreadyHasTheEventWithTheSameName(int event_id, int event_creator_id) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);

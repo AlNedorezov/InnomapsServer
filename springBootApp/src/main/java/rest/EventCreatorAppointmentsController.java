@@ -68,16 +68,10 @@ public class EventCreatorAppointmentsController {
                 connectionSource.close();
                 return "-1. " + errorMessageOnAddorDelete;
             } else if (action.equals("add")) {
-                String errorMessageOnAdd = CommonFunctions.checkIfEventCreatorAlreadyHasTheEventWithTheSameName(event_id, event_creator_id);
-                if (errorMessageOnAdd.equals("")) {
-                    System.out.println("Received POST request: event creator with id=" + event_creator_id + " was assigned to event with id=" + event_id);
-                    a.eventCreatorAppointmentDao.create(new EventCreatorAppointment(event_id, event_creator_id));
-                    connectionSource.close();
-                    return "0. Event creator with id=" + event_creator_id + " was assigned to event with id=" + event_id + "\n";
-                } else {
-                    connectionSource.close();
-                    return "-1. " + errorMessageOnAdd;
-                }
+                System.out.println("Received POST request: event creator with id=" + event_creator_id + " was assigned to event with id=" + event_id);
+                a.eventCreatorAppointmentDao.create(new EventCreatorAppointment(event_id, event_creator_id));
+                connectionSource.close();
+                return "0. Event creator with id=" + event_creator_id + " was assigned to event with id=" + event_id + "\n";
             } else { // if action = delete
                 System.out.println("Received POST request: event creator with id=" + event_creator_id + " was unassigned from event with id=" + event_id);
                 DeleteBuilder<EventCreatorAppointment, Integer> db = a.eventCreatorAppointmentDao.deleteBuilder();
