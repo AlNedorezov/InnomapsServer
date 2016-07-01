@@ -48,4 +48,17 @@ public class CommonFunctions {
         connectionSource.close();
         return errorMessage;
     }
+
+    static String checkIfEventCreatorExist(int creator_id) throws SQLException {
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+        String errorMessage = "";
+
+        if (creator_id < 0 || !a.eventCreatorDao.idExists(creator_id))
+            errorMessage += "Event creator with id=" + creator_id + " does not exist. ";
+
+        connectionSource.close();
+        return errorMessage;
+    }
 }

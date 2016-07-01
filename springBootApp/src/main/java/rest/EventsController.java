@@ -45,15 +45,13 @@ public class EventsController {
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id,
                        @RequestParam(value = "name", defaultValue = "!~NO_NAME") String name,
                        @RequestParam(value = "description", defaultValue = "!~NO_DESCRIPTION") String description,
-                       @RequestParam(value = "creatorid", defaultValue = "-2") int creator_id,
                        @RequestParam(value = "link", defaultValue = "!~NO_LINK") String link) throws SQLException {
 
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
 
-        if (name.equals("!~NO_NAME") && description.equals("!~NO_DESCRIPTION") &&
-                creator_id == -2 && link.equals("!~NO_LINK")) {
+        if (name.equals("!~NO_NAME") && description.equals("!~NO_DESCRIPTION") && link.equals("!~NO_LINK")) {
             // Deleting an event
             System.out.println("Received POST request: delete event with id=" + id);
             if (id == -1)
@@ -75,29 +73,22 @@ public class EventsController {
         } else {
             if (id == -1) {
                 // Creating an event
-                if (name.equals("!~NO_NAME") || description.equals("!~NO_DESCRIPTION") || creator_id == -2) {
+                if (name.equals("!~NO_NAME") || description.equals("!~NO_DESCRIPTION")) {
                     connectionSource.close();
                     return "-1. Wrong parameters.\n";
                 } else {
                     System.out.println("Received POST request: create new event");
                     link = checkEventsLink(link);
-                    String errorMessageOnCreate = checkIfEventCreatorExist(creator_id);
-                    if (errorMessageOnCreate.equals("")) {
-                        a.eventDao.create(new Event(id, name, description, creator_id, link, null, new Date()));
-                        QueryBuilder<Event, Integer> qBuilder = a.eventDao.queryBuilder();
-                        qBuilder.orderBy("id", false); // false for descending order
-                        qBuilder.limit(1);
-                        Event createdEvent = a.eventDao.queryForId(qBuilder.query().get(0).getId());
-                        System.out.println(createdEvent.getId() + " | " + createdEvent.getName() + " | " +
-                                createdEvent.getDescription() + " | " + createdEvent.getCreator_id() + " | " +
-                                createdEvent.getLink() + " | " + createdEvent.getGcals_event_id() + " | " +
-                                createdEvent.getModified());
-                        connectionSource.close();
-                        return "0. Event with id=" + createdEvent.getId() + " was successfully created.\n";
-                    } else {
-                        connectionSource.close();
-                        return "-1. " + errorMessageOnCreate;
-                    }
+                    a.eventDao.create(new Event(id, name, description, link, null, new Date()));
+                    QueryBuilder<Event, Integer> qBuilder = a.eventDao.queryBuilder();
+                    qBuilder.orderBy("id", false); // false for descending order
+                    qBuilder.limit(1);
+                    Event createdEvent = a.eventDao.queryForId(qBuilder.query().get(0).getId());
+                    System.out.println(createdEvent.getId() + " | " + createdEvent.getName() + " | " +
+                                createdEvent.getDescription() + " | " + createdEvent.getLink() + " | " +
+                                createdEvent.getGcals_event_id() + " | " + createdEvent.getModified());
+                    connectionSource.close();
+                    return "0. Event with id=" + createdEvent.getId() + " was successfully created.\n";
                 }
             } else {
                 // Updating an event
@@ -106,10 +97,9 @@ public class EventsController {
                     connectionSource.close();
                     return "-1. There is no such event.\n";
                 } else {
-                    EventUpdateData updEvent = checkDataForUpdates(new EventUpdateData(name, description, creator_id, link), a.eventDao.queryForId(id));
+                    EventUpdateData updEvent = checkDataForUpdates(new EventUpdateData(name, description, link), a.eventDao.queryForId(id));
                     if (updEvent.getErrorMessage().equals("")) {
-                        a.eventDao.update(new Event(id, updEvent.getName(), updEvent.getDescription(),
-                                updEvent.getCreator_id(), updEvent.getLink(), null, new Date()));
+                        a.eventDao.update(new Event(id, updEvent.getName(), updEvent.getDescription(), updEvent.getLink(), null, new Date()));
                         connectionSource.close();
                         return "0. Event with id=" + id + " was successfully updated.\n";
                     } else {
@@ -135,12 +125,6 @@ public class EventsController {
         if (checkedEventData.getDescription().equals("!~NO_DESCRIPTION"))
             checkedEventData.setDescription(eventInDatabase.getDescription());
 
-        if (checkedEventData.getCreator_id() == -2)
-            checkedEventData.setCreator_id(eventInDatabase.getCreator_id());
-        else
-            checkedEventData.setErrorMessage(checkedEventData.getErrorMessage() +
-                    checkIfEventCreatorExist(checkedEventData.getCreator_id()));
-
         if (checkedEventData.getLink().equals("!~NO_LINK"))
             checkedEventData.setLink(eventInDatabase.getLink());
 
@@ -150,14 +134,12 @@ public class EventsController {
     private class EventUpdateData {
         private String name;
         private String description;
-        private Integer creator_id;
         private String link;
         private String errorMessage;
 
-        public EventUpdateData(String name, String description, Integer creator_id, String link) {
+        public EventUpdateData(String name, String description, String link) {
             this.name = name;
             this.description = description;
-            this.creator_id = creator_id;
             this.link = link;
             this.errorMessage = "";
         }
@@ -176,14 +158,6 @@ public class EventsController {
 
         public void setDescription(String description) {
             this.description = description;
-        }
-
-        public Integer getCreator_id() {
-            return creator_id;
-        }
-
-        public void setCreator_id(Integer creator_id) {
-            this.creator_id = creator_id;
         }
 
         public String getLink() {
@@ -213,19 +187,6 @@ public class EventsController {
         qbEvent.where().eq("event_id", eventId);
         if (qbEvent.query().size() > 0)
             errorMessage += "Delete all schedules of event with id=" + eventId + " first. ";
-
-        connectionSource.close();
-        return errorMessage;
-    }
-
-    private String checkIfEventCreatorExist(int creator_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
-        a.setupDatabase(connectionSource, false);
-        String errorMessage = "";
-
-        if (creator_id < 0 || !a.eventCreatorDao.idExists(creator_id))
-            errorMessage += "Event creator with id=" + creator_id + " does not exist. ";
 
         connectionSource.close();
         return errorMessage;
