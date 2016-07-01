@@ -49,6 +49,19 @@ public class CommonFunctions {
         return errorMessage;
     }
 
+    static String checkIfEventExist(int event_id) throws SQLException {
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+        String errorMessage = "";
+
+        if (event_id < 0 || !a.eventDao.idExists(event_id))
+            errorMessage += "Event with id=" + event_id + " does not exist. ";
+
+        connectionSource.close();
+        return errorMessage;
+    }
+
     static String checkIfEventCreatorExist(int creator_id) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);

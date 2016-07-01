@@ -144,7 +144,7 @@ public class EventSchedulesController {
             checkedEventScheduleData.setEvent_id(eventScheduleInDatabase.getEvent_id());
         else
             checkedEventScheduleData.setErrorMessage(checkedEventScheduleData.getErrorMessage() +
-                    checkIfEventExist(checkedEventScheduleData.getEvent_id()));
+                    CommonFunctions.checkIfEventExist(checkedEventScheduleData.getEvent_id()));
 
         return checkedEventScheduleData;
     }
@@ -219,21 +219,8 @@ public class EventSchedulesController {
         String errorMessage = "";
 
         errorMessage += CommonFunctions.checkIfCoordinateExist(location_id);
-        errorMessage += checkIfEventExist(event_id);
+        errorMessage += CommonFunctions.checkIfEventExist(event_id);
 
-        return errorMessage;
-    }
-
-    private String checkIfEventExist(int event_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
-        a.setupDatabase(connectionSource, false);
-        String errorMessage = "";
-
-        if (event_id < 0 || !a.eventDao.idExists(event_id))
-            errorMessage += "Event with id=" + event_id + " does not exist. ";
-
-        connectionSource.close();
         return errorMessage;
     }
 }
