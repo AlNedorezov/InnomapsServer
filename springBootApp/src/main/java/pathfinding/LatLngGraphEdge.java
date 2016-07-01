@@ -33,4 +33,9 @@ public class LatLngGraphEdge extends DefaultWeightedEdge {
                 ((LatLngGraphEdge) o).getSource() == getSource() &&
                 ((LatLngGraphEdge) o).getTarget() == getTarget();
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
