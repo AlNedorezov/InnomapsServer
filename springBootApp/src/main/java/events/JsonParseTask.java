@@ -45,9 +45,9 @@ public class JsonParseTask {
 
     //shift the given Date by exactly 8 days.
     private void shiftDate(Date d) {
-        long MILLISECONDS_PER_8DAY = 1000L * 60 * 60 * 24 * 8;
+        long millisecondsPerDay = 1000L * 60 * 60 * 24 * 8;
         long time = d.getTime();
-        time -= MILLISECONDS_PER_8DAY;
+        time -= millisecondsPerDay;
         d.setTime(time);
     }
 
@@ -89,13 +89,13 @@ public class JsonParseTask {
     }
 
     private String getGoogleApi() {
-        String GOOGLE_MAP_API_FIRST_PART = "https://www.googleapis.com/calendar/v3/calendars/hvtusnfmqbg9u2p5rnc1rvhdfg@group.calendar.google.com/events?timeMin=";
-        String GOOGLE_MAP_API_SECOND_PART = "T10%3A00%3A00-07%3A00&orderby=updated&sortorder=descending&futureevents=true&alt=json&key=AIzaSyDli8qeotu4TGaEs5VKSWy15CDyl4cgZ-o";
+        String googleMapApiFirstPart = "https://www.googleapis.com/calendar/v3/calendars/hvtusnfmqbg9u2p5rnc1rvhdfg@group.calendar.google.com/events?timeMin=";
+        String googleMapApiSecondPart = "T10%3A00%3A00-07%3A00&orderby=updated&sortorder=descending&futureevents=true&alt=json&key=AIzaSyDli8qeotu4TGaEs5VKSWy15CDyl4cgZ-o";
         Date currentDate = new Date();
         shiftDate(currentDate);
-        return doGetRequest(GOOGLE_MAP_API_FIRST_PART
+        return doGetRequest(googleMapApiFirstPart
                 + dateFormat.format(currentDate)
-                + GOOGLE_MAP_API_SECOND_PART);
+                + googleMapApiSecondPart);
     }
 
     /**
@@ -105,7 +105,7 @@ public class JsonParseTask {
      * @return true in case the JSON was updated
      */
     private boolean jsonUpdated(String hashKey) {
-        return (jsonHash == null || jsonHash.equals(hashKey));
+        return jsonHash == null || jsonHash.equals(hashKey);
     }
 
     public void updateDbIfNeeded() {
@@ -125,8 +125,9 @@ public class JsonParseTask {
 
     private String cutStringUntilTheFirstSpaceIfItExists(String s) {
         if (s.contains(" "))
-            s = s.substring(0, s.indexOf(" "));
-        return s;
+            return s.substring(0, s.indexOf(" "));
+        else
+            return s;
     }
 
     private String removeSubstringWithNewlineCharacterFromDescription(String description, String substringToRemove, int arrayLength, int substringsOrderInArray) {
