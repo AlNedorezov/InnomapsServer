@@ -50,8 +50,8 @@ public class CoordinatesController {
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
 
-        boolean latitudeAndLongitudeAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision17(latitude, -2) &&
-                                                        CommonFunctions.doubleValuesAreSimilarWithPrecision17(longitude, -3);
+        boolean latitudeAndLongitudeAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision16(latitude, -2) &&
+                CommonFunctions.doubleValuesAreSimilarWithPrecision16(longitude, -3);
         if (latitudeAndLongitudeAreDefault && floor == -4 && type_id == -5 &&
                 name.equals("!~NO_NAME") && description.equals("!~NO_DESCRIPTION")) {
             // Deleting a coordinate
@@ -75,8 +75,8 @@ public class CoordinatesController {
         } else {
             if (id == -1) {
                 // Creating a coordinate
-                boolean latitudeOrLongitudeAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision17(latitude, -2) ||
-                                                            CommonFunctions.doubleValuesAreSimilarWithPrecision17(longitude, -3);
+                boolean latitudeOrLongitudeAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision16(latitude, -2) ||
+                        CommonFunctions.doubleValuesAreSimilarWithPrecision16(longitude, -3);
                 if (latitudeOrLongitudeAreDefault || !CommonFunctions.latiduteAndLongitudeAreInBounds(latitude, longitude)) {
                     connectionSource.close();
                     return "-1. Wrong parameters.\n";
@@ -146,10 +146,10 @@ public class CoordinatesController {
     }
 
     private CoordinateUpdateData checkDataForUpdates(CoordinateUpdateData checkedCoordinateData, Coordinate coordinateInDatabase) throws SQLException {
-        if (checkedCoordinateData.getLatitude() == -2)
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedCoordinateData.getLatitude(), -2))
             checkedCoordinateData.setLatitude(coordinateInDatabase.getLatitude());
 
-        if (checkedCoordinateData.getLongitude() == -3)
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedCoordinateData.getLongitude(), -3))
             checkedCoordinateData.setLongitude(coordinateInDatabase.getLongitude());
 
         if (checkedCoordinateData.getFloor() == -4)
