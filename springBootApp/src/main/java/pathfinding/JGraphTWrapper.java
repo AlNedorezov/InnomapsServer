@@ -140,15 +140,6 @@ public class JGraphTWrapper {
     }
 
     /**
-     * Stores graph into the file using GraphML format.
-     *
-     * @param filename - exported file name
-     */
-    public void exportGraphML(String filename) {
-        //TODO: implement (since JGraphT export sucks)
-    }
-
-    /**
      * TO BE REMOVED.
      * <p>
      * Imports graph from the file of GraphML format. Doesn't return anything but if import was
