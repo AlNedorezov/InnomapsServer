@@ -55,9 +55,9 @@ public class Mail {
             //--[ Ask the Transport class to send our mail message
             Transport.send(msg);
 
-        } catch (Exception E) {
+        } catch (Exception e) {
             System.out.println("Oops something has gone pearshaped!");
-            System.out.println(E);
+            e.printStackTrace();
         }
     }
 }
