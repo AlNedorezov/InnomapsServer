@@ -60,6 +60,7 @@ public class Application {
     public Dao<Event, Integer> eventDao;
     public Dao<EventSchedule, Integer> eventScheduleDao;
     protected Dao<BuildingFloorOverlay, Integer> buildingFloorOverlayDao;
+    protected Dao<EventCreatorAppointment, Integer> eventCreatorAppointmentDao;
 
     @Autowired
     private MyBean myBean;
@@ -120,6 +121,7 @@ public class Application {
         eventDao = DaoManager.createDao(connectionSource, Event.class);
         eventScheduleDao = DaoManager.createDao(connectionSource, EventSchedule.class);
         buildingFloorOverlayDao = DaoManager.createDao(connectionSource, BuildingFloorOverlay.class);
+        eventCreatorAppointmentDao = DaoManager.createDao(connectionSource, EventCreatorAppointment.class);
 
         // if you need to create tables
         if (createTables) {
@@ -168,6 +170,7 @@ public class Application {
             if (alterEventSchedulesTable)
                 eventScheduleDao.updateRaw("ALTER TABLE EVENT_SCHEDULES ALTER COLUMN COMMENT VARCHAR(2500)");
             TableUtils.createTableIfNotExists(connectionSource, BuildingFloorOverlay.class);
+            TableUtils.createTableIfNotExists(connectionSource, EventCreatorAppointment.class);
         }
     }
 
