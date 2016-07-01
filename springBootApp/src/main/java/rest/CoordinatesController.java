@@ -50,7 +50,9 @@ public class CoordinatesController {
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
 
-        if (latitude == -2 && longitude == -3 && floor == -4 && type_id == -5 &&
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(latitude, -2) &&
+                CommonFunctions.doubleValuesAreSimilarWithPrecision16(longitude, -3) &&
+                floor == -4 && type_id == -5 &&
                 name.equals("!~NO_NAME") && description.equals("!~NO_DESCRIPTION")) {
             // Deleting a coordinate
             System.out.println("Received POST request: delete coordinate with id=" + id);
@@ -73,7 +75,9 @@ public class CoordinatesController {
         } else {
             if (id == -1) {
                 // Creating a coordinate
-                if (latitude == -2 || longitude == -3 || latitude > 90 || latitude < -90 || longitude > 180 || longitude < -180) {
+                if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(latitude, -2) ||
+                        CommonFunctions.doubleValuesAreSimilarWithPrecision16(longitude, -3) ||
+                        CommonFunctions.latiduteAndLongitudeAreInBounds(latitude, longitude)) {
                     connectionSource.close();
                     return "-1. Wrong parameters.\n";
                 } else {

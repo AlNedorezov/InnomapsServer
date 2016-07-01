@@ -114,4 +114,15 @@ public class CommonFunctions {
         connectionSource.close();
         return errorMessage;
     }
+
+    static boolean doubleValuesAreSimilarWithPrecision16(double doubleValueOne, double doubleValueTwo) {
+        double precision = 0.0000000000000001;
+        return Math.abs(doubleValueOne - doubleValueTwo) < precision;
+    }
+
+    static boolean latiduteAndLongitudeAreInBounds(double latitude, double longitude) {
+        boolean latitudeInBounds = latitude < 90 || latitude > -90;
+        boolean longitudeInBounds = longitude < 180 || longitude > -180;
+        return latitudeInBounds && longitudeInBounds;
+    }
 }
