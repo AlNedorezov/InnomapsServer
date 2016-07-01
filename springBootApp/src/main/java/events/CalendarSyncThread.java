@@ -12,7 +12,8 @@ public class CalendarSyncThread extends Thread {
             new JsonParseTask().updateDbIfNeeded();
 
             try {
-                sleep(1000 * 60 * 60); // sleep for 1 hour
+                long sleepTime = 1000 * 60 * 60;
+                sleep(sleepTime); // sleep for 1 hour
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
