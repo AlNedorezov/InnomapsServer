@@ -28,18 +28,6 @@ public class LatLngExtendedGraphVertex extends LatLngGraphVertex {
         return new LatLngGraphVertex(getVertex(), getVertexId(), getGraphVertexType());
     }
 
-    public LatLngFlr getVertex() {
-        return super.getVertex();
-    }
-
-    public int getVertexId() {
-        return super.getVertexId();
-    }
-
-    public JGraphTWrapper.GraphElementType getGraphVertexType() {
-        return super.getGraphVertexType();
-    }
-
     public String getName() {
         return name;
     }
