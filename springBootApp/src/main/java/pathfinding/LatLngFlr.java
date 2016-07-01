@@ -19,14 +19,6 @@ public class LatLngFlr extends LatLng {
         // all persisted classes must define a no-arg constructor with at least package visibility
     }
 
-    public double getLatitude() {
-        return super.getLatitude();
-    }
-
-    public double getLongitude() {
-        return super.getLongitude();
-    }
-
     public int getFloor() {
         return floor;
     }

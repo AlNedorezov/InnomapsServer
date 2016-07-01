@@ -26,6 +26,7 @@ public class LatLng {
         return longitude;
     }
 
+    @Override
     public int hashCode() {
         byte var2 = 1;
         long var3 = Double.doubleToLongBits(getLatitude());
@@ -35,6 +36,7 @@ public class LatLng {
         return var5;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -47,6 +49,7 @@ public class LatLng {
         }
     }
 
+    @Override
     public String toString() {
         return "coordinates: (" + getLatitude() + "," + getLongitude() + ")";
     }
