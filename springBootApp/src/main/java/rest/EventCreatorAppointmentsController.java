@@ -89,6 +89,7 @@ public class EventCreatorAppointmentsController {
 
         errorMessage += CommonFunctions.checkIfEventExist(event_id);
         errorMessage += CommonFunctions.checkIfEventCreatorExist(event_creator_id);
+        errorMessage += CommonFunctions.checkIfEventCreatorAlreadyHasTheEventWithTheSameName(event_id, event_creator_id);
 
         return errorMessage;
     }
