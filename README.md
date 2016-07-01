@@ -21,3 +21,4 @@ Innomaps application server component
                                             to the database
 
 [![codebeat badge](https://codebeat.co/badges/2f03a392-dfef-4696-918f-73fca4375272)](https://codebeat.co/projects/github-com-alnedorezov-innomapsserver)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cf013c6f8cf8469d888995cb75a2a16f)](https://www.codacy.com/app/al73rus/InnomapsServer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AlNedorezov/InnomapsServer&amp;utm_campaign=Badge_Grade)
