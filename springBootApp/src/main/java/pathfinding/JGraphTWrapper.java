@@ -111,9 +111,9 @@ public class JGraphTWrapper {
         LatLngGraphVertex testVertexFrom = foundPath.get(0).getV1();
         LatLngGraphVertex testVertexTo = foundPath.get(0).getV2();
         pointsList.add(testVertexFrom.equals(vTemp1) ? testVertexFrom : testVertexTo);
-        for (int i = 0; i < foundPath.size(); ++i) {
-            testVertexFrom = foundPath.get(i).getV1();
-            testVertexTo = foundPath.get(i).getV2();
+        for (LatLngGraphEdge aFoundPath : foundPath) {
+            testVertexFrom = aFoundPath.getV1();
+            testVertexTo = aFoundPath.getV2();
             pointsList.add(pointsList.get(pointsList.size() - 1).equals(testVertexFrom) ? testVertexTo : testVertexFrom);
         }
         return pointsList;
@@ -140,94 +140,6 @@ public class JGraphTWrapper {
     }
 
     /**
-     * TO BE REMOVED.
-     * <p>
-     * Imports graph from the file of GraphML format. Doesn't return anything but if import was
-     * successful internal graph object will be replaced by the imported one.
-     * <p>
-     * DOES NOT WORK WITH FLOORS! Automatically assigns first floor to every point.
-     *
-     * @param inputStream - stream to read.
-     */
-    public void importGraphML(InputStream inputStream) throws XmlPullParserException, FileNotFoundException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-
-        XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-        factory.setNamespaceAware(true);
-        XmlPullParser xpp = factory.newPullParser();
-        xpp.setInput(br);
-        int eventType = xpp.getEventType();
-
-        graph = new SimpleWeightedGraph<>(LatLngGraphEdge.class);
-        currentVertexId = 0;
-        HashMap<Integer, LatLngFlr> verticesMap = new HashMap<>();
-        int id = -1;
-        GraphElementType vertexType = GraphElementType.DEFAULT;
-        boolean nodeDataFound = false;
-
-        while (eventType != XmlPullParser.END_DOCUMENT) {
-            if (eventType == XmlPullParser.START_TAG) {
-                String tagName = xpp.getName();
-                switch (tagName) {
-                    case "node":
-                        id = Integer.valueOf(xpp.getAttributeValue(null, "id"));
-                        String vType = xpp.getAttributeValue(null, "type");
-                        if (vType == null) vertexType = GraphElementType.DEFAULT;
-                        else if (vType.equals("stairs")) vertexType = GraphElementType.STAIRS;
-                        else if (vType.equals("elevator")) vertexType = GraphElementType.ELEVATOR;
-                        else vertexType = GraphElementType.DEFAULT;
-                        break;
-                    case "edge":
-                        int from = Integer.valueOf(xpp.getAttributeValue(null, "source"));
-                        int to = Integer.valueOf(xpp.getAttributeValue(null, "target"));
-                        String eType = xpp.getAttributeValue(null, "id");
-                        GraphElementType graphEdgeType = GraphElementType.DEFAULT;
-                        switch (eType) {
-                            case "ELEVATOR":
-                                graphEdgeType = GraphElementType.ELEVATOR;
-                                break;
-                            case "STAIRS":
-                                graphEdgeType = GraphElementType.STAIRS;
-                                break;
-                            case "DEFAULT":
-                                graphEdgeType = GraphElementType.DEFAULT;
-                                break;
-                        }
-                        addEdge(verticesMap.get(from), verticesMap.get(to), from, to, graphEdgeType);
-                        break;
-                    case "data":
-                        if (id != -1) {
-                            nodeDataFound = true;
-                        }
-                        break;
-                }
-            } else if (eventType == XmlPullParser.TEXT) {
-                if (id != -1 && nodeDataFound) {
-                    String[] coords = xpp.getText().split(" ");
-                    LatLngFlr latLngFlr = new LatLngFlr(Double.valueOf(coords[0]), Double.valueOf(coords[1]), 1);
-                    addVertexWithId(latLngFlr, id, vertexType);
-                    verticesMap.put(id, latLngFlr);
-                    id = -1;
-                    vertexType = GraphElementType.DEFAULT;
-                    nodeDataFound = false;
-                }
-            }
-
-            try {
-                eventType = xpp.next();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        try {
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Imports graph from the database. Doesn't return anything but if import was
      * successful internal graph object will be replaced by the imported one.
      */
@@ -251,28 +163,28 @@ public class JGraphTWrapper {
         LatLngFlr currentCoordinate;
         int source_id, target_id;
 
-        for (int i = 0; i < coordinateTypes.size(); i++) {
-            coordinateTypesMap.put(coordinateTypes.get(i).getId(), coordinateTypes.get(i).getName());
+        for (CoordinateType coordinateType : coordinateTypes) {
+            coordinateTypesMap.put(coordinateType.getId(), coordinateType.getName());
         }
 
-        for (int i = 0; i < edgeTypes.size(); i++) {
-            edgeTypesMap.put(edgeTypes.get(i).getId(), edgeTypes.get(i).getName());
+        for (EdgeType edgeType1 : edgeTypes) {
+            edgeTypesMap.put(edgeType1.getId(), edgeType1.getName());
         }
 
-        for (int i = 0; i < coordinates.size(); i++) {
-            currentCoordinateId = coordinates.get(i).getId();
-            String coordinate_type = coordinateTypesMap.get(coordinates.get(i).getType_id());
+        for (Coordinate coordinate : coordinates) {
+            currentCoordinateId = coordinate.getId();
+            String coordinate_type = coordinateTypesMap.get(coordinate.getType_id());
             vertexType = determineVertexType(coordinate_type);
-            currentCoordinate = new LatLngFlr(coordinates.get(i).getLatitude(), coordinates.get(i).getLongitude(), coordinates.get(i).getFloor());
+            currentCoordinate = new LatLngFlr(coordinate.getLatitude(), coordinate.getLongitude(), coordinate.getFloor());
             addVertexWithId(currentCoordinate, currentCoordinateId, vertexType);
             verticesMap.put(currentCoordinateId, currentCoordinate);
         }
 
-        for (int i = 0; i < edges.size(); i++) {
-            String edge_type = edgeTypesMap.get(edges.get(i).getType_id());
+        for (Edge edge : edges) {
+            String edge_type = edgeTypesMap.get(edge.getType_id());
             edgeType = determineEdgeType(edge_type);
-            source_id = edges.get(i).getSource_id();
-            target_id = edges.get(i).getTarget_id();
+            source_id = edge.getSource_id();
+            target_id = edge.getTarget_id();
             addEdge(verticesMap.get(source_id), verticesMap.get(target_id), source_id, target_id, edgeType);
         }
 
@@ -323,10 +235,7 @@ public class JGraphTWrapper {
 
     public boolean graphIsConnected() {
         ConnectivityInspector<LatLngGraphVertex, LatLngGraphEdge> connectivityInspector = new ConnectivityInspector<LatLngGraphVertex, LatLngGraphEdge>(graph);
-        if (connectivityInspector.isGraphConnected())
-            return true;
-        else
-            return false;
+        return connectivityInspector.isGraphConnected();
     }
 
     /**
@@ -355,8 +264,8 @@ public class JGraphTWrapper {
         verticesList = graph.vertexSet().toArray(verticesList);
         LatLngFlr closestCoordinate = null;
         double shortestDistance = Double.MAX_VALUE;
-        for (int i = 0; i < verticesList.length; i++) {
-            LatLngFlr candidateCoordinate = verticesList[i].getVertex();
+        for (LatLngGraphVertex aVerticesList : verticesList) {
+            LatLngFlr candidateCoordinate = aVerticesList.getVertex();
             double candidateDistance = haversine(v.getLatitude(), v.getLongitude(), candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude());
             if (candidateDistance < shortestDistance && v.getFloor() == candidateCoordinate.getFloor()) {
                 closestCoordinate = new LatLngFlr(candidateCoordinate.getLatitude(), candidateCoordinate.getLongitude(), candidateCoordinate.getFloor());
@@ -373,9 +282,6 @@ public class JGraphTWrapper {
 
     public boolean graphContainsVertexWithCoordinates(LatLngFlr c) {
         LatLngGraphVertex vTemp = new LatLngGraphVertex(c, 0, GraphElementType.DEFAULT);
-        if (graph.containsVertex(vTemp))
-            return true;
-        else
-            return false;
+        return graph.containsVertex(vTemp);
     }
 }

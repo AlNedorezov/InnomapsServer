@@ -62,7 +62,6 @@ public class ExtendedJGraphTWrapper extends JGraphTWrapper {
      *
      * @param inputStream - stream to read.
      */
-    @Override
     public void importGraphML(InputStream inputStream) throws XmlPullParserException, FileNotFoundException {
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
