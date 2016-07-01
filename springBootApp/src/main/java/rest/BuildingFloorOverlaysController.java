@@ -54,8 +54,11 @@ public class BuildingFloorOverlaysController {
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
 
-        if (building_id == -2 && photo_id == -3 && floor == -4 && southWestLatitude == -5 &&
-                southWestLongitude == -6 && northEastLatitude == -7 && northEastLongitude == -8) {
+        boolean coordinatesAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision16(southWestLatitude, -5) &&
+                CommonFunctions.doubleValuesAreSimilarWithPrecision16(southWestLongitude, -6) &&
+                CommonFunctions.doubleValuesAreSimilarWithPrecision16(northEastLatitude, -7) &&
+                CommonFunctions.doubleValuesAreSimilarWithPrecision16(northEastLongitude, -8);
+        if (building_id == -2 && photo_id == -3 && floor == -4 && coordinatesAreDefault) {
             // Deleting a building floor overlay
             System.out.println("Received POST request: delete building floor overlay with id=" + id);
             if (id == -1)
@@ -71,8 +74,11 @@ public class BuildingFloorOverlaysController {
         } else {
             if (id == -1) {
                 // Creating a building floor overlay
-                if (building_id == -2 || photo_id == -3 || floor == -4 || southWestLatitude == -5 ||
-                        southWestLongitude == -6 || northEastLatitude == -7 || northEastLongitude == -8) {
+                boolean someCoordinatesAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision16(southWestLatitude, -5) ||
+                        CommonFunctions.doubleValuesAreSimilarWithPrecision16(southWestLongitude, -6) ||
+                        CommonFunctions.doubleValuesAreSimilarWithPrecision16(northEastLatitude, -7) ||
+                        CommonFunctions.doubleValuesAreSimilarWithPrecision16(northEastLongitude, -8);
+                if (building_id == -2 || photo_id == -3 || floor == -4 || someCoordinatesAreDefault) {
                     connectionSource.close();
                     return "-1. Wrong parameters.\n";
                 } else {
@@ -144,16 +150,16 @@ public class BuildingFloorOverlaysController {
             checkedBFOData.setErrorMessage(checkedBFOData.getErrorMessage() +
                     checkIfBuildingFloorOverlayExist(checkedBFOData.getBuilding_id(), checkedBFOData.getFloor(), checkedBFOData.getBFOid()));
 
-        if (checkedBFOData.getSouthWestLatitude() == -5)
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedBFOData.getSouthWestLatitude(), -5))
             checkedBFOData.setSouthWestLatitude(BFOInDatabase.getSouthWestLatitude());
 
-        if (checkedBFOData.getSouthWestLongitude() == -6)
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedBFOData.getSouthWestLongitude(), -6))
             checkedBFOData.setSouthWestLongitude(BFOInDatabase.getSouthWestLongitude());
 
-        if (checkedBFOData.getNorthEastLatitude() == -7)
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedBFOData.getNorthEastLatitude(), -7))
             checkedBFOData.setNorthEastLatitude(BFOInDatabase.getNorthEastLatitude());
 
-        if (checkedBFOData.getNorthEastLongitude() == -8)
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedBFOData.getNorthEastLongitude(), -8))
             checkedBFOData.setNorthEastLongitude(BFOInDatabase.getNorthEastLongitude());
 
         return checkedBFOData;
