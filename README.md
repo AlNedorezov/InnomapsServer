@@ -19,3 +19,5 @@ Innomaps application server component
 
 - /springBootApp/src/main/java/xmlToDB/     - classes that are used for transffering coorinates and graph data from xml file
                                             to the database
+
+[![codebeat badge](https://codebeat.co/badges/2f03a392-dfef-4696-918f-73fca4375272)](https://codebeat.co/projects/github-com-alnedorezov-innomapsserver)
