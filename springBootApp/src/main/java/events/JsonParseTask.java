@@ -131,14 +131,18 @@ public class JsonParseTask {
     }
 
     private String removeSubstringWithNewlineCharacterFromDescription(String description, String substringToRemove, int arrayLength, int substringsOrderInArray) {
-        if (substringsOrderInArray == 0 && substringsOrderInArray == arrayLength - 1)
-            description = description.replaceFirst(substringToRemove, "");
-        else if (substringsOrderInArray > 0 && substringsOrderInArray == arrayLength - 1)
-            description = description.replaceFirst("\n" + substringToRemove, "");
-        else if ((substringsOrderInArray == 0 && substringsOrderInArray < arrayLength - 1) || (substringsOrderInArray > 0 && substringsOrderInArray < arrayLength - 1))
-            description = description.replaceFirst(substringToRemove + "\n", "");
+        String result;
 
-        return description;
+        if (substringsOrderInArray == 0 && substringsOrderInArray == arrayLength - 1)
+            result = description.replaceFirst(substringToRemove, "");
+        else if (substringsOrderInArray > 0 && substringsOrderInArray == arrayLength - 1)
+            result = description.replaceFirst("\n" + substringToRemove, "");
+        else if ((substringsOrderInArray == 0 && substringsOrderInArray < arrayLength - 1) || (substringsOrderInArray > 0 && substringsOrderInArray < arrayLength - 1))
+            result = description.replaceFirst(substringToRemove + "\n", "");
+        else
+            result = description;
+
+        return result;
     }
 
     public boolean isStringAnInteger(String string) {
@@ -289,6 +293,8 @@ public class JsonParseTask {
                     case "recurrence":
                         recurrence = jsonEvent.getJSONArray("recurrence").getString(0).replace("RRULE:", "");
                         break;
+                    default:
+                        break;
                 }
             }
 
@@ -307,7 +313,7 @@ public class JsonParseTask {
                         telegram_usernames.add(cutStringUntilTheFirstSpaceIfItExists(telegramUsernamesString));
                     description = removeSubstringWithNewlineCharacterFromDescription(description, descriptionArray[j], descriptionArray.length, j);
                 }
-                if (link.equals("") && descriptionArray[j].startsWith("Group link: ")) {
+                if ("".equals(link) && descriptionArray[j].startsWith("Group link: ")) {
                     link = descriptionArray[j].substring("Group link: ".length());
                     link = cutStringUntilTheFirstSpaceIfItExists(link);
                     description = removeSubstringWithNewlineCharacterFromDescription(description, descriptionArray[j], descriptionArray.length, j);
@@ -333,7 +339,7 @@ public class JsonParseTask {
                 continue;
             }
 
-            if (recurrence != null && !recurrence.equals("")) {
+            if (recurrence != null && !"".equals(recurrence)) {
                 DateTime currentDate = new DateTime(new Date().getTime());
                 RecurrenceRule rule;
                 try {
@@ -377,7 +383,7 @@ public class JsonParseTask {
         Date end_datetime = serverAPITimeFormat.parse(finalEndDate);
         String locationArray[] = location.split("/");
 
-        if (locationArray[0].equals("university"))
+        if ("university".equals(locationArray[0]))
             locationArray[0] = a.coordinateDao.queryForId(1).getName();
 
         Integer locationId = null;
