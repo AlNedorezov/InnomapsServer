@@ -60,7 +60,7 @@ public class Application {
     public Dao<Event, Integer> eventDao;
     public Dao<EventSchedule, Integer> eventScheduleDao;
     protected Dao<BuildingFloorOverlay, Integer> buildingFloorOverlayDao;
-    protected Dao<EventCreatorAppointment, Integer> eventCreatorAppointmentDao;
+    public Dao<EventCreatorAppointment, Integer> eventCreatorAppointmentDao;
 
     @Autowired
     private MyBean myBean;

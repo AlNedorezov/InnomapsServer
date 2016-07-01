@@ -1,6 +1,8 @@
 package events;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.DeleteBuilder;
+import com.j256.ormlite.stmt.PreparedDelete;
 import com.j256.ormlite.stmt.QueryBuilder;
 import db.*;
 import org.apache.commons.codec.binary.Hex;
@@ -147,6 +149,103 @@ public class JsonParseTask {
         return true;
     }
 
+    private List<Integer> createEventCreatorsIfNeeded(List<String> telegram_usernames) throws SQLException {
+        Application a = new Application();
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+
+        List<Integer> event_creators_ids = new ArrayList<>();
+
+        if (!telegram_usernames.isEmpty()) {
+
+            for(String telegram_username: telegram_usernames) {
+                QueryBuilder<EventCreator, Integer> qbEventCreator = a.eventCreatorDao.queryBuilder();
+                qbEventCreator.where().eq("telegram_username", telegram_username);
+                if (qbEventCreator.query().size() > 0)
+                    event_creators_ids.add(qbEventCreator.query().get(0).getId());
+                else {
+                    a.eventCreatorDao.create(new EventCreator(0, "", null, telegram_username, new Date()));
+                    qbEventCreator.reset();
+                    qbEventCreator.orderBy("id", false); // false for descending order
+                    qbEventCreator.limit(1);
+                    EventCreator createdEventCreator = a.eventCreatorDao.queryForId(qbEventCreator.query().get(0).getId());
+                    event_creators_ids.add(createdEventCreator.getId());
+                }
+            }
+
+        }
+
+        connectionSource.close();
+
+        return event_creators_ids;
+    }
+
+    private int addEvent(String gcals_event_id, String event_name, String description, String link) throws SQLException {
+        Application a = new Application();
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+
+        int event_id;
+
+        QueryBuilder<Event, Integer> qbEvent = a.eventDao.queryBuilder();
+        qbEvent.where().eq("gcals_event_id", gcals_event_id);
+        if (qbEvent.query().size() > 0) {
+            event_id = qbEvent.query().get(0).getId();
+            a.eventDao.update(new Event(event_id, event_name, description, link, gcals_event_id, new Date()));
+        } else {
+            a.eventDao.create(new Event(0, event_name, description, link, gcals_event_id, new Date()));
+            qbEvent.reset();
+            qbEvent.orderBy("id", false); // false for descending order
+            qbEvent.limit(1);
+            Event createdEvent = a.eventDao.queryForId(qbEvent.query().get(0).getId());
+            event_id = createdEvent.getId();
+        }
+
+        connectionSource.close();
+
+        return event_id;
+    }
+
+    private void assignCreatorsForTheEvent(int event_id, List<Integer> event_creators_ids) throws SQLException {
+        Application a = new Application();
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+
+        // find ids of previously assigned event creators
+        QueryBuilder<EventCreatorAppointment, Integer> qbECA = a.eventCreatorAppointmentDao.queryBuilder();
+        qbECA.where().eq("event_id", event_id);
+        List<EventCreatorAppointment> previous_assignments_for_the_event = qbECA.query();
+        List<Integer> previously_assigned_event_creators = new ArrayList<>();
+        for(EventCreatorAppointment previous_assignment_for_event: previous_assignments_for_the_event)
+            previously_assigned_event_creators.add(previous_assignment_for_event.getEvent_creator_id());
+
+        for(int event_creator_id: event_creators_ids) {
+            // if creator is still assigned for the event, remove it from previously_assigned_event_creators list
+            if(previously_assigned_event_creators.contains(event_creator_id))
+                previously_assigned_event_creators.remove(Integer.valueOf(event_creator_id));
+
+            // assign current creators for the event
+            qbECA.reset();
+            qbECA = a.eventCreatorAppointmentDao.queryBuilder();
+            qbECA.where().eq("event_creator_id", event_creator_id).and().eq("event_id", event_id);
+            if (qbECA.query().size() == 0)
+                a.eventCreatorAppointmentDao.create(new EventCreatorAppointment(event_id, event_creator_id));
+        }
+
+        // unassign creators that were previously assigned for event but no longer assigned for it
+        for(int id_of_event_creator_that_is_no_longer_assigned_for_event: previously_assigned_event_creators) {
+            DeleteBuilder<EventCreatorAppointment, Integer> db = a.eventCreatorAppointmentDao.deleteBuilder();
+            db.where().eq("event_id", event_id).and().eq("event_creator_id", id_of_event_creator_that_is_no_longer_assigned_for_event);
+            PreparedDelete<EventCreatorAppointment> preparedDelete = db.prepare();
+            a.eventCreatorAppointmentDao.delete(preparedDelete);
+        }
+
+        connectionSource.close();
+    }
+
     private int updateDB(JSONObject dataJsonObj) throws JSONException, SQLException, ParseException {
         int eventsInserted = 0;
         JSONArray events = dataJsonObj.getJSONArray("items");
@@ -160,9 +259,10 @@ public class JsonParseTask {
             JSONObject jsonEvent = events.getJSONObject(i);
             String event_name = "", link = "", start = "", end = "",
                     location = "", gcals_event_id = "", description = "",
-                    recurrence = "", telegram_username = "";
-            Integer event_creator_id = null;
-            int event_id = Integer.MIN_VALUE;
+                    recurrence = "";
+            List<String> telegram_usernames = new ArrayList<>();
+            List<Integer> event_creators_ids;
+            int event_id;
             Iterator<String> iter = jsonEvent.keys();
             while (iter.hasNext()) {
                 String key = iter.next();
@@ -194,9 +294,17 @@ public class JsonParseTask {
             String descriptionArray[] = description.split("\n");
 
             for (int j = 0; j < descriptionArray.length; j++) {
-                if (telegram_username.equals("") && descriptionArray[j].startsWith("Contact: @")) {
-                    telegram_username = descriptionArray[j].substring("Contact: @".length());
-                    telegram_username = cutStringUntilTheFirstSpaceIfItExists(telegram_username);
+                if (telegram_usernames.isEmpty() && descriptionArray[j].startsWith("Contact: @")) {
+                    String telegramUsernamesString = descriptionArray[j].substring("Contact: @".length());
+                    String[] tegegramUsernamesList;
+                    if(telegramUsernamesString.contains(" @")) {
+                        tegegramUsernamesList = telegramUsernamesString.split(" @");
+                        for (String s: tegegramUsernamesList) {
+                            telegram_usernames.add(cutStringUntilTheFirstSpaceIfItExists(s));
+                        }
+                    }
+                    else
+                        telegram_usernames.add(cutStringUntilTheFirstSpaceIfItExists(telegramUsernamesString));
                     description = removeSubstringWithNewlineCharacterFromDescription(description, descriptionArray[j], descriptionArray.length, j);
                 }
                 if (link.equals("") && descriptionArray[j].startsWith("Group link: ")) {
@@ -206,46 +314,11 @@ public class JsonParseTask {
                 }
             }
 
-            if (!telegram_username.equals("")) {
+            event_creators_ids = createEventCreatorsIfNeeded(telegram_usernames);
 
-                QueryBuilder<EventCreator, Integer> qbEventCreator = a.eventCreatorDao.queryBuilder();
-                qbEventCreator.where().eq("telegram_username", telegram_username);
-                if (qbEventCreator.query().size() > 0)
-                    event_creator_id = qbEventCreator.query().get(0).getId();
-                else {
-                    a.eventCreatorDao.create(new EventCreator(0, "", null, telegram_username, new Date()));
-                    qbEventCreator.reset();
-                    qbEventCreator.orderBy("id", false); // false for descending order
-                    qbEventCreator.limit(1);
-                    EventCreator createdEventCreator = a.eventCreatorDao.queryForId(qbEventCreator.query().get(0).getId());
-                    event_creator_id = createdEventCreator.getId();
-                }
+            event_id = addEvent(gcals_event_id, event_name, description, link);
 
-            }
-
-            QueryBuilder<Event, Integer> qbEvent = a.eventDao.queryBuilder();
-            qbEvent.where().eq("gcals_event_id", gcals_event_id);
-            if (qbEvent.query().size() > 0) {
-                event_id = qbEvent.query().get(0).getId();
-            } else {
-                if (event_name != null && event_creator_id != null) {
-                    qbEvent.reset();
-                    qbEvent.where().eq("name", event_name).and().eq("creator_id", event_creator_id);
-                    if (qbEvent.query().size() > 0) {
-                        event_id = qbEvent.query().get(0).getId();
-                    }
-                }
-            }
-            if (event_id != Integer.MIN_VALUE) {
-                a.eventDao.update(new Event(event_id, event_name, description, link, gcals_event_id, new Date()));
-            } else {
-                a.eventDao.create(new Event(0, event_name, description, link, gcals_event_id, new Date()));
-                qbEvent.reset();
-                qbEvent.orderBy("id", false); // false for descending order
-                qbEvent.limit(1);
-                Event createdEvent = a.eventDao.queryForId(qbEvent.query().get(0).getId());
-                event_id = createdEvent.getId();
-            }
+            assignCreatorsForTheEvent(event_id, event_creators_ids);
 
             DateTime startDate;
             DateTime endDate;
