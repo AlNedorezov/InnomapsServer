@@ -237,10 +237,9 @@ public class JsonParseTask {
                 }
             }
             if (event_id != Integer.MIN_VALUE) {
-                a.eventDao.update(new Event(event_id, event_name, description,
-                        event_creator_id, link, gcals_event_id, new Date()));
+                a.eventDao.update(new Event(event_id, event_name, description, link, gcals_event_id, new Date()));
             } else {
-                a.eventDao.create(new Event(0, event_name, description, event_creator_id, link, gcals_event_id, new Date()));
+                a.eventDao.create(new Event(0, event_name, description, link, gcals_event_id, new Date()));
                 qbEvent.reset();
                 qbEvent.orderBy("id", false); // false for descending order
                 qbEvent.limit(1);
