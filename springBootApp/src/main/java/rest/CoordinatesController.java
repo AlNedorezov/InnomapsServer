@@ -50,9 +50,9 @@ public class CoordinatesController {
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
 
-        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(latitude, -2) &&
-                CommonFunctions.doubleValuesAreSimilarWithPrecision16(longitude, -3) &&
-                floor == -4 && type_id == -5 &&
+        boolean latitudeAndLongitudeAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision17(latitude, -2) &&
+                                                        CommonFunctions.doubleValuesAreSimilarWithPrecision17(longitude, -3);
+        if (latitudeAndLongitudeAreDefault && floor == -4 && type_id == -5 &&
                 name.equals("!~NO_NAME") && description.equals("!~NO_DESCRIPTION")) {
             // Deleting a coordinate
             System.out.println("Received POST request: delete coordinate with id=" + id);
@@ -75,9 +75,9 @@ public class CoordinatesController {
         } else {
             if (id == -1) {
                 // Creating a coordinate
-                if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(latitude, -2) ||
-                        CommonFunctions.doubleValuesAreSimilarWithPrecision16(longitude, -3) ||
-                        CommonFunctions.latiduteAndLongitudeAreInBounds(latitude, longitude)) {
+                boolean latitudeOrLongitudeAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision17(latitude, -2) ||
+                                                            CommonFunctions.doubleValuesAreSimilarWithPrecision17(longitude, -3);
+                if (latitudeOrLongitudeAreDefault || !CommonFunctions.latiduteAndLongitudeAreInBounds(latitude, longitude)) {
                     connectionSource.close();
                     return "-1. Wrong parameters.\n";
                 } else {

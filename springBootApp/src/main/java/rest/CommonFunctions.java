@@ -115,8 +115,8 @@ public class CommonFunctions {
         return errorMessage;
     }
 
-    static boolean doubleValuesAreSimilarWithPrecision16(double doubleValueOne, double doubleValueTwo) {
-        double precision = 0.0000000000000001;
+    static boolean doubleValuesAreSimilarWithPrecision17(double doubleValueOne, double doubleValueTwo) {
+        double precision = 0.00000000000000001;
         return Math.abs(doubleValueOne - doubleValueTwo) < precision;
     }
 
