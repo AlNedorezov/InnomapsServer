@@ -14,12 +14,10 @@ import java.util.Date;
 public class Event {
     @DatabaseField(generatedId = true, unique = true)
     private int id;
-    @DatabaseField(uniqueCombo = true)
+    @DatabaseField
     private String name;
     @DatabaseField
     private String description;
-    @DatabaseField(uniqueCombo = true)
-    private Integer creator_id;
     @DatabaseField
     private String link;
     @DatabaseField(unique = true)
@@ -27,21 +25,19 @@ public class Event {
     @DatabaseField
     private Date modified = null;
 
-    public Event(int id, String name, String description, Integer creator_id, String link, String gcals_event_id, String modifiedStr) throws ParseException {
+    public Event(int id, String name, String description, String link, String gcals_event_id, String modifiedStr) throws ParseException {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.creator_id = creator_id;
         this.link = link;
         this.gcals_event_id = gcals_event_id;
         this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
     }
 
-    public Event(int id, String name, String description, Integer creator_id, String link, String gcals_event_id, Date modified) {
+    public Event(int id, String name, String description, String link, String gcals_event_id, Date modified) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.creator_id = creator_id;
         this.link = link;
         this.gcals_event_id = gcals_event_id;
         this.modified = modified;
@@ -62,10 +58,6 @@ public class Event {
 
     public String getDescription() {
         return description;
-    }
-
-    public Integer getCreator_id() {
-        return creator_id;
     }
 
     public String getLink() {
