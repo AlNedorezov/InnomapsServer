@@ -5,16 +5,15 @@ package events;
  */
 public class CalendarSyncThread extends Thread {
     @Override
-    public void run()
-    {
-        while(true) {
+    public void run() {
+        while (true) {
 
             // Add updated events from google calendar to the database
             new JsonParseTask().updateDbIfNeeded();
 
-            try{
+            try {
                 sleep(1000 * 60 * 60); // sleep for 1 hour
-            } catch(InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }

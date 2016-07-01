@@ -150,10 +150,10 @@ public class JGraphTWrapper {
 
     /**
      * TO BE REMOVED.
-     *
+     * <p>
      * Imports graph from the file of GraphML format. Doesn't return anything but if import was
      * successful internal graph object will be replaced by the imported one.
-     *
+     * <p>
      * DOES NOT WORK WITH FLOORS! Automatically assigns first floor to every point.
      *
      * @param inputStream - stream to read.
@@ -260,11 +260,11 @@ public class JGraphTWrapper {
         LatLngFlr currentCoordinate;
         int source_id, target_id;
 
-        for(int i = 0; i < coordinateTypes.size(); i++) {
+        for (int i = 0; i < coordinateTypes.size(); i++) {
             coordinateTypesMap.put(coordinateTypes.get(i).getId(), coordinateTypes.get(i).getName());
         }
 
-        for(int i = 0; i < edgeTypes.size(); i++) {
+        for (int i = 0; i < edgeTypes.size(); i++) {
             edgeTypesMap.put(edgeTypes.get(i).getId(), edgeTypes.get(i).getName());
         }
 

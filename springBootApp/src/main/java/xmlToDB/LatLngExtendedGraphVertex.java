@@ -2,7 +2,6 @@ package xmlToDB;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import pathfinding.JGraphTWrapper;
-import pathfinding.LatLng;
 import pathfinding.LatLngFlr;
 import pathfinding.LatLngGraphVertex;
 

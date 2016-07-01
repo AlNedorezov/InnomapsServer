@@ -85,8 +85,8 @@ public class EventsController {
                     qBuilder.limit(1);
                     Event createdEvent = a.eventDao.queryForId(qBuilder.query().get(0).getId());
                     System.out.println(createdEvent.getId() + " | " + createdEvent.getName() + " | " +
-                                createdEvent.getDescription() + " | " + createdEvent.getLink() + " | " +
-                                createdEvent.getGcals_event_id() + " | " + createdEvent.getModified());
+                            createdEvent.getDescription() + " | " + createdEvent.getLink() + " | " +
+                            createdEvent.getGcals_event_id() + " | " + createdEvent.getModified());
                     connectionSource.close();
                     return "0. Event with id=" + createdEvent.getId() + " was successfully created.\n";
                 }

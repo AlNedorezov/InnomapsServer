@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 /**
  * Created by alnedorezov on 6/10/16.
- *
+ * <p>
  * This class is intended to help transfer data from xml file to the database.
  */
 public class ExtendedJGraphTWrapper extends JGraphTWrapper {

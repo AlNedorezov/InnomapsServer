@@ -159,7 +159,7 @@ public class JsonParseTask {
 
         if (!telegram_usernames.isEmpty()) {
 
-            for(String telegram_username: telegram_usernames) {
+            for (String telegram_username : telegram_usernames) {
                 QueryBuilder<EventCreator, Integer> qbEventCreator = a.eventCreatorDao.queryBuilder();
                 qbEventCreator.where().eq("telegram_username", telegram_username);
                 if (qbEventCreator.query().size() > 0)
@@ -219,12 +219,12 @@ public class JsonParseTask {
         qbECA.where().eq("event_id", event_id);
         List<EventCreatorAppointment> previous_assignments_for_the_event = qbECA.query();
         List<Integer> previously_assigned_event_creators = new ArrayList<>();
-        for(EventCreatorAppointment previous_assignment_for_event: previous_assignments_for_the_event)
+        for (EventCreatorAppointment previous_assignment_for_event : previous_assignments_for_the_event)
             previously_assigned_event_creators.add(previous_assignment_for_event.getEvent_creator_id());
 
-        for(int event_creator_id: event_creators_ids) {
+        for (int event_creator_id : event_creators_ids) {
             // if creator is still assigned for the event, remove it from previously_assigned_event_creators list
-            if(previously_assigned_event_creators.contains(event_creator_id))
+            if (previously_assigned_event_creators.contains(event_creator_id))
                 previously_assigned_event_creators.remove(Integer.valueOf(event_creator_id));
 
             // assign current creators for the event
@@ -236,7 +236,7 @@ public class JsonParseTask {
         }
 
         // unassign creators that were previously assigned for event but no longer assigned for it
-        for(int id_of_event_creator_that_is_no_longer_assigned_for_event: previously_assigned_event_creators) {
+        for (int id_of_event_creator_that_is_no_longer_assigned_for_event : previously_assigned_event_creators) {
             DeleteBuilder<EventCreatorAppointment, Integer> db = a.eventCreatorAppointmentDao.deleteBuilder();
             db.where().eq("event_id", event_id).and().eq("event_creator_id", id_of_event_creator_that_is_no_longer_assigned_for_event);
             PreparedDelete<EventCreatorAppointment> preparedDelete = db.prepare();
@@ -297,13 +297,12 @@ public class JsonParseTask {
                 if (telegram_usernames.isEmpty() && descriptionArray[j].startsWith("Contact: @")) {
                     String telegramUsernamesString = descriptionArray[j].substring("Contact: @".length());
                     String[] tegegramUsernamesList;
-                    if(telegramUsernamesString.contains(" @")) {
+                    if (telegramUsernamesString.contains(" @")) {
                         tegegramUsernamesList = telegramUsernamesString.split(" @");
-                        for (String s: tegegramUsernamesList) {
+                        for (String s : tegegramUsernamesList) {
                             telegram_usernames.add(cutStringUntilTheFirstSpaceIfItExists(s));
                         }
-                    }
-                    else
+                    } else
                         telegram_usernames.add(cutStringUntilTheFirstSpaceIfItExists(telegramUsernamesString));
                     description = removeSubstringWithNewlineCharacterFromDescription(description, descriptionArray[j], descriptionArray.length, j);
                 }
