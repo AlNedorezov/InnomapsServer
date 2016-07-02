@@ -76,7 +76,6 @@ public class BuildingFloorOverlaysController {
     }
 
     private String deleteABuildingFloorOverlay(int buildingFloorOverlayId) throws SQLException {
-        Application a = new Application();
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
@@ -96,7 +95,6 @@ public class BuildingFloorOverlaysController {
     }
 
     private String createABuildingFloorOverlay(BuildingFloorOverlayUpdateData overlayData) throws SQLException {
-        Application a = new Application();
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
@@ -141,7 +139,6 @@ public class BuildingFloorOverlaysController {
     }
 
     private String updateABuildingFloorOverlay(BuildingFloorOverlayUpdateData overlayData) throws SQLException {
-        Application a = new Application();
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
@@ -165,42 +162,42 @@ public class BuildingFloorOverlaysController {
         }
     }
 
-    private BuildingFloorOverlayUpdateData checkDataForUpdates(BuildingFloorOverlayUpdateData checkedBFOData, BuildingFloorOverlay BFOInDatabase) throws SQLException {
-        if (checkedBFOData.getBuilding_id() == -2)
-            checkedBFOData.setBuilding_id(BFOInDatabase.getBuilding_id());
+    private BuildingFloorOverlayUpdateData checkDataForUpdates(BuildingFloorOverlayUpdateData checkedOverlayData, BuildingFloorOverlay BFOInDatabase) throws SQLException {
+        if (checkedOverlayData.getBuilding_id() == -2)
+            checkedOverlayData.setBuilding_id(BFOInDatabase.getBuilding_id());
         else
-            checkedBFOData.setErrorMessage(checkedBFOData.getErrorMessage() +
-                    CommonFunctions.checkIfBuildingExist(checkedBFOData.getBuilding_id()));
+            checkedOverlayData.setErrorMessage(checkedOverlayData.getErrorMessage() +
+                    CommonFunctions.checkIfBuildingExist(checkedOverlayData.getBuilding_id()));
 
         boolean checkFloor = false;
-        if ("".equals(checkedBFOData.getErrorMessage()))
+        if ("".equals(checkedOverlayData.getErrorMessage()))
             checkFloor = true;
 
-        if (checkedBFOData.getPhoto_id() == -3)
-            checkedBFOData.setPhoto_id(BFOInDatabase.getPhoto_id());
+        if (checkedOverlayData.getPhoto_id() == -3)
+            checkedOverlayData.setPhoto_id(BFOInDatabase.getPhoto_id());
         else
-            checkedBFOData.setErrorMessage(checkedBFOData.getErrorMessage() +
-                    CommonFunctions.checkIfPhotoExist(checkedBFOData.getPhoto_id()));
+            checkedOverlayData.setErrorMessage(checkedOverlayData.getErrorMessage() +
+                    CommonFunctions.checkIfPhotoExist(checkedOverlayData.getPhoto_id()));
 
-        if (checkedBFOData.getFloor() == -4)
-            checkedBFOData.setFloor(BFOInDatabase.getFloor());
+        if (checkedOverlayData.getFloor() == -4)
+            checkedOverlayData.setFloor(BFOInDatabase.getFloor());
         else if (checkFloor)
-            checkedBFOData.setErrorMessage(checkedBFOData.getErrorMessage() +
-                    checkIfBuildingFloorOverlayExist(checkedBFOData.getBuilding_id(), checkedBFOData.getFloor(), checkedBFOData.getId()));
+            checkedOverlayData.setErrorMessage(checkedOverlayData.getErrorMessage() +
+                    checkIfBuildingFloorOverlayExist(checkedOverlayData.getBuilding_id(), checkedOverlayData.getFloor(), checkedOverlayData.getId()));
 
-        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedBFOData.getSouthWestLatitude(), -5))
-            checkedBFOData.setSouthWestLatitude(BFOInDatabase.getSouthWestLatitude());
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedOverlayData.getSouthWestLatitude(), -5))
+            checkedOverlayData.setSouthWestLatitude(BFOInDatabase.getSouthWestLatitude());
 
-        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedBFOData.getSouthWestLongitude(), -6))
-            checkedBFOData.setSouthWestLongitude(BFOInDatabase.getSouthWestLongitude());
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedOverlayData.getSouthWestLongitude(), -6))
+            checkedOverlayData.setSouthWestLongitude(BFOInDatabase.getSouthWestLongitude());
 
-        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedBFOData.getNorthEastLatitude(), -7))
-            checkedBFOData.setNorthEastLatitude(BFOInDatabase.getNorthEastLatitude());
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedOverlayData.getNorthEastLatitude(), -7))
+            checkedOverlayData.setNorthEastLatitude(BFOInDatabase.getNorthEastLatitude());
 
-        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedBFOData.getNorthEastLongitude(), -8))
-            checkedBFOData.setNorthEastLongitude(BFOInDatabase.getNorthEastLongitude());
+        if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedOverlayData.getNorthEastLongitude(), -8))
+            checkedOverlayData.setNorthEastLongitude(BFOInDatabase.getNorthEastLongitude());
 
-        return checkedBFOData;
+        return checkedOverlayData;
     }
 
     private class BuildingFloorOverlayUpdateData {
