@@ -122,11 +122,7 @@ public class BuildingFloorOverlaysController {
                 qBuilder.orderBy("id", false); // false for descending order
                 qBuilder.limit(1);
                 BuildingFloorOverlay createdBuildingFloorOverlay = a.buildingFloorOverlayDao.queryForId(qBuilder.query().get(0).getId());
-                System.out.println(createdBuildingFloorOverlay.getId() + " | " + createdBuildingFloorOverlay.getBuilding_id() + " | " +
-                        createdBuildingFloorOverlay.getPhoto_id() + " | " + createdBuildingFloorOverlay.getFloor() + " | " +
-                        createdBuildingFloorOverlay.getSouthWestLatitude() + " | " + createdBuildingFloorOverlay.getSouthWestLongitude() + " | " +
-                        createdBuildingFloorOverlay.getNorthEastLatitude() + " | " + createdBuildingFloorOverlay.getNorthEastLongitude() + " | " +
-                        createdBuildingFloorOverlay.getModified());
+                printBuildingFloorOverlayData(createdBuildingFloorOverlay);
                 connectionSource.close();
                 return "0. Building floor overlay with id=" + createdBuildingFloorOverlay.getId() + " was successfully created.\n";
             } else {
@@ -134,6 +130,14 @@ public class BuildingFloorOverlaysController {
                 return "-1. " + errorMessageOnCreate;
             }
         }
+    }
+
+    private void printBuildingFloorOverlayData(BuildingFloorOverlay buildingFloorOverlay) {
+        System.out.println(buildingFloorOverlay.getId() + " | " + buildingFloorOverlay.getBuilding_id() + " | " +
+                buildingFloorOverlay.getPhoto_id() + " | " + buildingFloorOverlay.getFloor() + " | " +
+                buildingFloorOverlay.getSouthWestLatitude() + " | " + buildingFloorOverlay.getSouthWestLongitude() + " | " +
+                buildingFloorOverlay.getNorthEastLatitude() + " | " + buildingFloorOverlay.getNorthEastLongitude() + " | " +
+                buildingFloorOverlay.getModified());
     }
 
     private String updateABuildingFloorOverlay(BuildingFloorOverlayUpdateData overlayData) throws SQLException {
