@@ -84,7 +84,7 @@ public class BuildingFloorOverlaysController {
                 } else {
                     System.out.println("Received POST request: create new building floor overlay");
                     String errorMessageOnCreate = checkIfBuildingFloorOverlayCanBeCreated(building_id, photo_id, floor, id);
-                    if (errorMessageOnCreate.equals("")) {
+                    if ("".equals(errorMessageOnCreate)) {
                         a.buildingFloorOverlayDao.create(new BuildingFloorOverlay(id, building_id, photo_id, floor, southWestLatitude,
                                 southWestLongitude, northEastLatitude, northEastLongitude, new Date()));
                         QueryBuilder<BuildingFloorOverlay, Integer> qBuilder = a.buildingFloorOverlayDao.queryBuilder();
@@ -113,7 +113,7 @@ public class BuildingFloorOverlaysController {
                     BuildingFloorOverlayUpdateData updBFO =
                             checkDataForUpdates(new BuildingFloorOverlayUpdateData(id, building_id, photo_id, floor, southWestLatitude,
                                     southWestLongitude, northEastLatitude, northEastLongitude), a.buildingFloorOverlayDao.queryForId(id));
-                    if (updBFO.getErrorMessage().equals("")) {
+                    if ("".equals(updBFO.getErrorMessage())) {
                         a.buildingFloorOverlayDao.update(new BuildingFloorOverlay(id, updBFO.getBuilding_id(), updBFO.getPhoto_id(), updBFO.getFloor(),
                                 updBFO.getSouthWestLatitude(), updBFO.getSouthWestLongitude(), updBFO.getNorthEastLatitude(), updBFO.getNorthEastLongitude(), new Date()));
                         connectionSource.close();
@@ -135,7 +135,7 @@ public class BuildingFloorOverlaysController {
                     CommonFunctions.checkIfBuildingExist(checkedBFOData.getBuilding_id()));
 
         boolean checkFloor = false;
-        if (checkedBFOData.getErrorMessage().equals(""))
+        if ("".equals(checkedBFOData.getErrorMessage()))
             checkFloor = true;
 
         if (checkedBFOData.getPhoto_id() == -3)
