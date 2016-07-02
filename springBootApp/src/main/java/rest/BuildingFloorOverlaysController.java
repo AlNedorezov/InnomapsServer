@@ -162,9 +162,9 @@ public class BuildingFloorOverlaysController {
         }
     }
 
-    private BuildingFloorOverlayUpdateData checkDataForUpdates(BuildingFloorOverlayUpdateData checkedOverlayData, BuildingFloorOverlay BFOInDatabase) throws SQLException {
+    private BuildingFloorOverlayUpdateData checkDataForUpdates(BuildingFloorOverlayUpdateData checkedOverlayData, BuildingFloorOverlay overlayInDatabase) throws SQLException {
         if (checkedOverlayData.getBuilding_id() == -2)
-            checkedOverlayData.setBuilding_id(BFOInDatabase.getBuilding_id());
+            checkedOverlayData.setBuilding_id(overlayInDatabase.getBuilding_id());
         else
             checkedOverlayData.setErrorMessage(checkedOverlayData.getErrorMessage() +
                     CommonFunctions.checkIfBuildingExist(checkedOverlayData.getBuilding_id()));
@@ -174,28 +174,28 @@ public class BuildingFloorOverlaysController {
             checkFloor = true;
 
         if (checkedOverlayData.getPhoto_id() == -3)
-            checkedOverlayData.setPhoto_id(BFOInDatabase.getPhoto_id());
+            checkedOverlayData.setPhoto_id(overlayInDatabase.getPhoto_id());
         else
             checkedOverlayData.setErrorMessage(checkedOverlayData.getErrorMessage() +
                     CommonFunctions.checkIfPhotoExist(checkedOverlayData.getPhoto_id()));
 
         if (checkedOverlayData.getFloor() == -4)
-            checkedOverlayData.setFloor(BFOInDatabase.getFloor());
+            checkedOverlayData.setFloor(overlayInDatabase.getFloor());
         else if (checkFloor)
             checkedOverlayData.setErrorMessage(checkedOverlayData.getErrorMessage() +
                     checkIfBuildingFloorOverlayExist(checkedOverlayData.getBuilding_id(), checkedOverlayData.getFloor(), checkedOverlayData.getId()));
 
         if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedOverlayData.getSouthWestLatitude(), -5))
-            checkedOverlayData.setSouthWestLatitude(BFOInDatabase.getSouthWestLatitude());
+            checkedOverlayData.setSouthWestLatitude(overlayInDatabase.getSouthWestLatitude());
 
         if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedOverlayData.getSouthWestLongitude(), -6))
-            checkedOverlayData.setSouthWestLongitude(BFOInDatabase.getSouthWestLongitude());
+            checkedOverlayData.setSouthWestLongitude(overlayInDatabase.getSouthWestLongitude());
 
         if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedOverlayData.getNorthEastLatitude(), -7))
-            checkedOverlayData.setNorthEastLatitude(BFOInDatabase.getNorthEastLatitude());
+            checkedOverlayData.setNorthEastLatitude(overlayInDatabase.getNorthEastLatitude());
 
         if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedOverlayData.getNorthEastLongitude(), -8))
-            checkedOverlayData.setNorthEastLongitude(BFOInDatabase.getNorthEastLongitude());
+            checkedOverlayData.setNorthEastLongitude(overlayInDatabase.getNorthEastLongitude());
 
         return checkedOverlayData;
     }
