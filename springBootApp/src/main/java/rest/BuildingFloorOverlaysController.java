@@ -104,25 +104,34 @@ public class BuildingFloorOverlaysController {
                     }
                 }
             } else {
-                // Updating a building
-                System.out.println("Received POST request: update building floor overlay with id=" + id);
-                if (!a.buildingFloorOverlayDao.idExists(id)) {
-                    connectionSource.close();
-                    return "-1. There is no such building floor overlay.\n";
-                } else {
-                    BuildingFloorOverlayUpdateData updBFO =
-                            checkDataForUpdates(new BuildingFloorOverlayUpdateData(id, building_id, photo_id, floor, southWestLatitude,
-                                    southWestLongitude, northEastLatitude, northEastLongitude), a.buildingFloorOverlayDao.queryForId(id));
-                    if ("".equals(updBFO.getErrorMessage())) {
-                        a.buildingFloorOverlayDao.update(new BuildingFloorOverlay(id, updBFO.getBuilding_id(), updBFO.getPhoto_id(), updBFO.getFloor(),
-                                updBFO.getSouthWestLatitude(), updBFO.getSouthWestLongitude(), updBFO.getNorthEastLatitude(), updBFO.getNorthEastLongitude(), new Date()));
-                        connectionSource.close();
-                        return "0. Building floor overlay with id=" + id + " was successfully updated.\n";
-                    } else {
-                        connectionSource.close();
-                        return "-1. " + updBFO.getErrorMessage();
-                    }
-                }
+                // Updating a building floor overlay
+                return updateABuildingFloorOverlay(new BuildingFloorOverlayUpdateData(id, building_id, photo_id,
+                        floor, southWestLatitude, southWestLongitude, northEastLatitude, northEastLongitude));
+            }
+        }
+    }
+
+    private String updateABuildingFloorOverlay(BuildingFloorOverlayUpdateData buildingFloorOverlay) throws SQLException {
+        Application a = new Application();
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+
+        System.out.println("Received POST request: update building floor overlay with id=" + buildingFloorOverlay.getId());
+        if (!a.buildingFloorOverlayDao.idExists(buildingFloorOverlay.getId())) {
+            connectionSource.close();
+            return "-1. There is no such building floor overlay.\n";
+        } else {
+            BuildingFloorOverlayUpdateData updatedOverlay =
+                    checkDataForUpdates(buildingFloorOverlay, a.buildingFloorOverlayDao.queryForId(buildingFloorOverlay.getId()));
+            if ("".equals(updatedOverlay.getErrorMessage())) {
+                a.buildingFloorOverlayDao.update(new BuildingFloorOverlay(buildingFloorOverlay.getId(), updatedOverlay.getBuilding_id(), updatedOverlay.getPhoto_id(), updatedOverlay.getFloor(),
+                        updatedOverlay.getSouthWestLatitude(), updatedOverlay.getSouthWestLongitude(), updatedOverlay.getNorthEastLatitude(), updatedOverlay.getNorthEastLongitude(), new Date()));
+                connectionSource.close();
+                return "0. Building floor overlay with id=" + buildingFloorOverlay.getId() + " was successfully updated.\n";
+            } else {
+                connectionSource.close();
+                return "-1. " + updatedOverlay.getErrorMessage();
             }
         }
     }
@@ -148,7 +157,7 @@ public class BuildingFloorOverlaysController {
             checkedBFOData.setFloor(BFOInDatabase.getFloor());
         else if (checkFloor)
             checkedBFOData.setErrorMessage(checkedBFOData.getErrorMessage() +
-                    checkIfBuildingFloorOverlayExist(checkedBFOData.getBuilding_id(), checkedBFOData.getFloor(), checkedBFOData.getBFOid()));
+                    checkIfBuildingFloorOverlayExist(checkedBFOData.getBuilding_id(), checkedBFOData.getFloor(), checkedBFOData.getId()));
 
         if (CommonFunctions.doubleValuesAreSimilarWithPrecision16(checkedBFOData.getSouthWestLatitude(), -5))
             checkedBFOData.setSouthWestLatitude(BFOInDatabase.getSouthWestLatitude());
@@ -166,7 +175,7 @@ public class BuildingFloorOverlaysController {
     }
 
     private class BuildingFloorOverlayUpdateData {
-        private int BFOid;
+        private int id;
         private int building_id;
         private int photo_id;
         private int floor;
@@ -176,8 +185,8 @@ public class BuildingFloorOverlaysController {
         private double northEastLongitude;
         private String errorMessage;
 
-        public BuildingFloorOverlayUpdateData(int BFOid, int building_id, int photo_id, int floor, double southWestLatitude, double southWestLongitude, double northEastLatitude, double northEastLongitude) {
-            this.BFOid = BFOid;
+        public BuildingFloorOverlayUpdateData(int id, int building_id, int photo_id, int floor, double southWestLatitude, double southWestLongitude, double northEastLatitude, double northEastLongitude) {
+            this.id = id;
             this.building_id = building_id;
             this.photo_id = photo_id;
             this.floor = floor;
@@ -188,12 +197,12 @@ public class BuildingFloorOverlaysController {
             this.errorMessage = "";
         }
 
-        public int getBFOid() {
-            return BFOid;
+        public int getId() {
+            return id;
         }
 
-        public void setBFOid(int BFOid) {
-            this.BFOid = BFOid;
+        public void setId(int id) {
+            this.id = id;
         }
 
         public int getBuilding_id() {
