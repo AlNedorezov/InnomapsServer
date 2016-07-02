@@ -58,51 +58,15 @@ public class BuildingFloorOverlaysController {
                 CommonFunctions.doubleValuesAreSimilarWithPrecision16(southWestLongitude, -6) &&
                 CommonFunctions.doubleValuesAreSimilarWithPrecision16(northEastLatitude, -7) &&
                 CommonFunctions.doubleValuesAreSimilarWithPrecision16(northEastLongitude, -8);
-        if (building_id == -2 && photo_id == -3 && floor == -4 && coordinatesAreDefault) {
+        boolean buildingIdAndPhotoIdAndFloorAreDefault = building_id == -2 && photo_id == -3 && floor == -4;
+        if (buildingIdAndPhotoIdAndFloorAreDefault && coordinatesAreDefault) {
             // Deleting a building floor overlay
-            System.out.println("Received POST request: delete building floor overlay with id=" + id);
-            if (id == -1)
-                return "-1. Wrong parameters.\n";
-            else if (!a.buildingFloorOverlayDao.idExists(id)) {
-                connectionSource.close();
-                return "-1. There is no such building floor overlay.\n";
-            } else {
-                a.buildingFloorOverlayDao.deleteById(id);
-                connectionSource.close();
-                return "0. Building floor overlay with id=" + id + " was successfully deleted.\n";
-            }
+            return deleteABuildingFloorOverlay(id);
         } else {
             if (id == -1) {
                 // Creating a building floor overlay
-                boolean someCoordinatesAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision16(southWestLatitude, -5) ||
-                        CommonFunctions.doubleValuesAreSimilarWithPrecision16(southWestLongitude, -6) ||
-                        CommonFunctions.doubleValuesAreSimilarWithPrecision16(northEastLatitude, -7) ||
-                        CommonFunctions.doubleValuesAreSimilarWithPrecision16(northEastLongitude, -8);
-                if (building_id == -2 || photo_id == -3 || floor == -4 || someCoordinatesAreDefault) {
-                    connectionSource.close();
-                    return "-1. Wrong parameters.\n";
-                } else {
-                    System.out.println("Received POST request: create new building floor overlay");
-                    String errorMessageOnCreate = checkIfBuildingFloorOverlayCanBeCreated(building_id, photo_id, floor, id);
-                    if ("".equals(errorMessageOnCreate)) {
-                        a.buildingFloorOverlayDao.create(new BuildingFloorOverlay(id, building_id, photo_id, floor, southWestLatitude,
-                                southWestLongitude, northEastLatitude, northEastLongitude, new Date()));
-                        QueryBuilder<BuildingFloorOverlay, Integer> qBuilder = a.buildingFloorOverlayDao.queryBuilder();
-                        qBuilder.orderBy("id", false); // false for descending order
-                        qBuilder.limit(1);
-                        BuildingFloorOverlay createdBuildingFloorOverlay = a.buildingFloorOverlayDao.queryForId(qBuilder.query().get(0).getId());
-                        System.out.println(createdBuildingFloorOverlay.getId() + " | " + createdBuildingFloorOverlay.getBuilding_id() + " | " +
-                                createdBuildingFloorOverlay.getPhoto_id() + " | " + createdBuildingFloorOverlay.getFloor() + " | " +
-                                createdBuildingFloorOverlay.getSouthWestLatitude() + " | " + createdBuildingFloorOverlay.getSouthWestLongitude() + " | " +
-                                createdBuildingFloorOverlay.getNorthEastLatitude() + " | " + createdBuildingFloorOverlay.getNorthEastLongitude() + " | " +
-                                createdBuildingFloorOverlay.getModified());
-                        connectionSource.close();
-                        return "0. Building floor overlay with id=" + createdBuildingFloorOverlay.getId() + " was successfully created.\n";
-                    } else {
-                        connectionSource.close();
-                        return "-1. " + errorMessageOnCreate;
-                    }
-                }
+                return createABuildingFloorOverlay(new BuildingFloorOverlayUpdateData(id, building_id, photo_id,
+                        floor, southWestLatitude, southWestLongitude, northEastLatitude, northEastLongitude));
             } else {
                 // Updating a building floor overlay
                 return updateABuildingFloorOverlay(new BuildingFloorOverlayUpdateData(id, building_id, photo_id,
@@ -111,24 +75,85 @@ public class BuildingFloorOverlaysController {
         }
     }
 
-    private String updateABuildingFloorOverlay(BuildingFloorOverlayUpdateData buildingFloorOverlay) throws SQLException {
+    private String deleteABuildingFloorOverlay(int buildingFloorOverlayId) throws SQLException {
         Application a = new Application();
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
 
-        System.out.println("Received POST request: update building floor overlay with id=" + buildingFloorOverlay.getId());
-        if (!a.buildingFloorOverlayDao.idExists(buildingFloorOverlay.getId())) {
+        System.out.println("Received POST request: delete building floor overlay with id=" + buildingFloorOverlayId);
+        if (buildingFloorOverlayId == -1) {
+            connectionSource.close();
+            return "-1. Wrong parameters.\n";
+        } else if (!a.buildingFloorOverlayDao.idExists(buildingFloorOverlayId)) {
+            connectionSource.close();
+            return "-1. There is no such building floor overlay.\n";
+        } else {
+            a.buildingFloorOverlayDao.deleteById(buildingFloorOverlayId);
+            connectionSource.close();
+            return "0. Building floor overlay with id=" + buildingFloorOverlayId + " was successfully deleted.\n";
+        }
+    }
+
+    private String createABuildingFloorOverlay(BuildingFloorOverlayUpdateData overlayData) throws SQLException {
+        Application a = new Application();
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+
+        boolean someCoordinatesAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision16(overlayData.getSouthWestLatitude(), -5) ||
+                CommonFunctions.doubleValuesAreSimilarWithPrecision16(overlayData.getSouthWestLongitude(), -6) ||
+                CommonFunctions.doubleValuesAreSimilarWithPrecision16(overlayData.getNorthEastLatitude(), -7) ||
+                CommonFunctions.doubleValuesAreSimilarWithPrecision16(overlayData.getNorthEastLongitude(), -8);
+        boolean buildingIdOrPhotoIdOrFloorAreDefault = overlayData.getBuilding_id() == -2 ||
+                overlayData.getPhoto_id() == -3 || overlayData.getFloor() == -4;
+        if (buildingIdOrPhotoIdOrFloorAreDefault || someCoordinatesAreDefault) {
+            connectionSource.close();
+            return "-1. Wrong parameters.\n";
+        } else {
+            System.out.println("Received POST request: create new building floor overlay");
+            String errorMessageOnCreate = checkIfBuildingFloorOverlayCanBeCreated(overlayData.getBuilding_id(),
+                    overlayData.getPhoto_id(), overlayData.getFloor(), overlayData.getId());
+            if ("".equals(errorMessageOnCreate)) {
+                a.buildingFloorOverlayDao.create(new BuildingFloorOverlay(overlayData.getId(), overlayData.getBuilding_id(),
+                        overlayData.getPhoto_id(), overlayData.getFloor(), overlayData.getSouthWestLatitude(),
+                        overlayData.getSouthWestLongitude(), overlayData.getNorthEastLatitude(), overlayData.getNorthEastLongitude(), new Date()));
+                QueryBuilder<BuildingFloorOverlay, Integer> qBuilder = a.buildingFloorOverlayDao.queryBuilder();
+                qBuilder.orderBy("id", false); // false for descending order
+                qBuilder.limit(1);
+                BuildingFloorOverlay createdBuildingFloorOverlay = a.buildingFloorOverlayDao.queryForId(qBuilder.query().get(0).getId());
+                System.out.println(createdBuildingFloorOverlay.getId() + " | " + createdBuildingFloorOverlay.getBuilding_id() + " | " +
+                        createdBuildingFloorOverlay.getPhoto_id() + " | " + createdBuildingFloorOverlay.getFloor() + " | " +
+                        createdBuildingFloorOverlay.getSouthWestLatitude() + " | " + createdBuildingFloorOverlay.getSouthWestLongitude() + " | " +
+                        createdBuildingFloorOverlay.getNorthEastLatitude() + " | " + createdBuildingFloorOverlay.getNorthEastLongitude() + " | " +
+                        createdBuildingFloorOverlay.getModified());
+                connectionSource.close();
+                return "0. Building floor overlay with id=" + createdBuildingFloorOverlay.getId() + " was successfully created.\n";
+            } else {
+                connectionSource.close();
+                return "-1. " + errorMessageOnCreate;
+            }
+        }
+    }
+
+    private String updateABuildingFloorOverlay(BuildingFloorOverlayUpdateData overlayData) throws SQLException {
+        Application a = new Application();
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
+                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        a.setupDatabase(connectionSource, false);
+
+        System.out.println("Received POST request: update building floor overlay with id=" + overlayData.getId());
+        if (!a.buildingFloorOverlayDao.idExists(overlayData.getId())) {
             connectionSource.close();
             return "-1. There is no such building floor overlay.\n";
         } else {
             BuildingFloorOverlayUpdateData updatedOverlay =
-                    checkDataForUpdates(buildingFloorOverlay, a.buildingFloorOverlayDao.queryForId(buildingFloorOverlay.getId()));
+                    checkDataForUpdates(overlayData, a.buildingFloorOverlayDao.queryForId(overlayData.getId()));
             if ("".equals(updatedOverlay.getErrorMessage())) {
-                a.buildingFloorOverlayDao.update(new BuildingFloorOverlay(buildingFloorOverlay.getId(), updatedOverlay.getBuilding_id(), updatedOverlay.getPhoto_id(), updatedOverlay.getFloor(),
+                a.buildingFloorOverlayDao.update(new BuildingFloorOverlay(overlayData.getId(), updatedOverlay.getBuilding_id(), updatedOverlay.getPhoto_id(), updatedOverlay.getFloor(),
                         updatedOverlay.getSouthWestLatitude(), updatedOverlay.getSouthWestLongitude(), updatedOverlay.getNorthEastLatitude(), updatedOverlay.getNorthEastLongitude(), new Date()));
                 connectionSource.close();
-                return "0. Building floor overlay with id=" + buildingFloorOverlay.getId() + " was successfully updated.\n";
+                return "0. Building floor overlay with id=" + overlayData.getId() + " was successfully updated.\n";
             } else {
                 connectionSource.close();
                 return "-1. " + updatedOverlay.getErrorMessage();
