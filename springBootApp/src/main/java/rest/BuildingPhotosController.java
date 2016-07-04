@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.BuildingPhotosObject;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -25,11 +27,24 @@ public class BuildingPhotosController {
     Application a = new Application();
 
     @RequestMapping("/resources/buildingphotos")
-    public BuildingPhotosObject buildingPhotos() throws SQLException {
+    public BuildingPhotosObject buildingPhotos(@RequestParam(value = "createdAfterDate", defaultValue = "-1") String date) throws SQLException, ParseException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
                 Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
         a.setupDatabase(connectionSource, false);
-        BuildingPhotosObject buildingPhotos1 = new BuildingPhotosObject(a.buildingPhotoDao.queryForAll());
+        BuildingPhotosObject buildingPhotos1;
+
+        if("-1".equals(date))
+            // if created after date is not specified, return all building photos
+            buildingPhotos1 = new BuildingPhotosObject(a.buildingPhotoDao.queryForAll());
+        else {
+            // if created after date is specified, return all building photos that were
+            // created after on on specified date
+            Date createdDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(date);
+            QueryBuilder<BuildingPhoto, Integer> qb = a.buildingPhotoDao.queryBuilder();
+            qb.where().ge("created", createdDate);
+            PreparedQuery<BuildingPhoto> pc = qb.prepare();
+            buildingPhotos1 = new BuildingPhotosObject(a.buildingPhotoDao.query(pc));
+        }
         connectionSource.close();
         return buildingPhotos1;
     }
