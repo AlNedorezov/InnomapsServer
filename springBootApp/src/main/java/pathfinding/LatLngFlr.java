@@ -31,7 +31,7 @@ public class LatLngFlr extends LatLng {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + floor;
+        result = 31 * result + getFloor();
         return result;
     }
 
