@@ -23,8 +23,8 @@ public class EventCreatorsController {
 
     @RequestMapping("/resources/eventcreators")
     public EventCreatorsObject eventCreators() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         EventCreatorsObject eventCreators1 = new EventCreatorsObject(a.eventCreatorDao.queryForAll());
         connectionSource.close();
@@ -33,8 +33,8 @@ public class EventCreatorsController {
 
     @RequestMapping("/resources/eventcreator")
     public EventCreator eventCreator(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         EventCreator eventCreator1 = a.eventCreatorDao.queryForId(id);
         connectionSource.close();
@@ -47,8 +47,8 @@ public class EventCreatorsController {
                        @RequestParam(value = "email", defaultValue = "!~NO_EMAIL") String email,
                        @RequestParam(value = "telegramusername", defaultValue = "!~NO_TELEGRAM_USERNAME") String telegram_username) throws SQLException {
 
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         if (name.equals("!~NO_NAME") && email.equals("!~NO_EMAIL") && telegram_username.equals("!~NO_TELEGRAM_USERNAME")) {
@@ -165,8 +165,8 @@ public class EventCreatorsController {
     }
 
     private String checkIfEventCreatorCanBeDeleted(int creatorId) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 

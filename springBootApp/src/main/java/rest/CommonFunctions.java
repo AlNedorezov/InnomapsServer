@@ -16,8 +16,8 @@ public class CommonFunctions {
     protected static Application a = new Application();
 
     static String checkIfCoordinateExist(int coordinate_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 
@@ -29,8 +29,8 @@ public class CommonFunctions {
     }
 
     static String checkIfBuildingExist(int building_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 
@@ -42,8 +42,8 @@ public class CommonFunctions {
     }
 
     static String checkIfPhotoExist(int photo_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 
@@ -55,8 +55,8 @@ public class CommonFunctions {
     }
 
     static String checkIfEventExist(int event_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 
@@ -68,8 +68,8 @@ public class CommonFunctions {
     }
 
     static String checkIfEventCreatorExist(int creator_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 
@@ -84,8 +84,8 @@ public class CommonFunctions {
     // event creators can be assigned to multiple events with the same name, as, for example,
     // creator 1 can organize one of such events on his own and other with co-organizers
     static String checkIfEventCreatorAlreadyHasTheEventWithTheSameName(int event_id, int event_creator_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 

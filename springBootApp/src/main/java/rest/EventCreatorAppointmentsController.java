@@ -25,8 +25,8 @@ public class EventCreatorAppointmentsController {
 
     @RequestMapping("/resources/eventcreatorappointments")
     public EventCreatorAppointmentsObject eventcreatorappointments() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         EventCreatorAppointmentsObject eventCreatorAppointments1 = new EventCreatorAppointmentsObject(a.eventCreatorAppointmentDao.queryForAll());
         connectionSource.close();
@@ -35,8 +35,8 @@ public class EventCreatorAppointmentsController {
 
     @RequestMapping("/resources/eventcreatorappointment")
     public EventCreatorAppointment eventcreatorappointment(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         EventCreatorAppointment eventCreatorAppointment1 = a.eventCreatorAppointmentDao.queryForId(id);
         connectionSource.close();
@@ -46,8 +46,8 @@ public class EventCreatorAppointmentsController {
     @RequestMapping(value = "/resources/eventcreatorappointment", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "eventid", defaultValue = "-1") int event_id,
                        @RequestParam(value = "eventcreatorid", defaultValue = "-2") int event_creator_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         QueryBuilder<EventCreatorAppointment, Integer> qb = a.eventCreatorAppointmentDao.queryBuilder();
         qb.where().eq("event_id", event_id).and().eq("event_creator_id", event_creator_id);

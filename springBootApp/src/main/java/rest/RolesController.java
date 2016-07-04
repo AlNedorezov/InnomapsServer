@@ -22,8 +22,8 @@ public class RolesController {
 
     @RequestMapping("/resources/roles")
     public RolesObject roles() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         RolesObject roles1 = new RolesObject(a.roleDao.queryForAll());
         connectionSource.close();
@@ -32,8 +32,8 @@ public class RolesController {
 
     @RequestMapping("/resources/role")
     public Role role(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         Role role1 = a.roleDao.queryForId(id);
         connectionSource.close();
@@ -43,8 +43,8 @@ public class RolesController {
     @RequestMapping(value = "/resources/role", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id,
                        @RequestParam(value = "name", defaultValue = "!~DELETE") String name) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         if (name.equals("!~DELETE")) {

@@ -22,8 +22,8 @@ public class BuildingFloorOverlaysController {
 
     @RequestMapping("/resources/buildingflooroverlays")
     public BuildingFloorOverlaysObject buildings() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         BuildingFloorOverlaysObject buildings1 = new BuildingFloorOverlaysObject(a.buildingFloorOverlayDao.queryForAll());
         connectionSource.close();
@@ -32,8 +32,8 @@ public class BuildingFloorOverlaysController {
 
     @RequestMapping("/resources/buildingflooroverlay")
     public BuildingFloorOverlay building(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         BuildingFloorOverlay buildingFloorOverlay1 = a.buildingFloorOverlayDao.queryForId(id);
         connectionSource.close();
@@ -50,8 +50,8 @@ public class BuildingFloorOverlaysController {
                        @RequestParam(value = "northeastlatitude", defaultValue = "-7") double northEastLatitude,
                        @RequestParam(value = "northeastlongitude", defaultValue = "-8") double northEastLongitude) throws SQLException {
 
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         boolean coordinatesAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision16(southWestLatitude, -5) &&
@@ -76,8 +76,8 @@ public class BuildingFloorOverlaysController {
     }
 
     private String deleteABuildingFloorOverlay(int buildingFloorOverlayId) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         System.out.println("Received POST request: delete building floor overlay with id=" + buildingFloorOverlayId);
@@ -95,8 +95,8 @@ public class BuildingFloorOverlaysController {
     }
 
     private String createABuildingFloorOverlay(BuildingFloorOverlayUpdateData overlayData) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         boolean someCoordinatesAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision16(overlayData.getSouthWestLatitude(), -5) ||
@@ -139,8 +139,8 @@ public class BuildingFloorOverlaysController {
     }
 
     private String updateABuildingFloorOverlay(BuildingFloorOverlayUpdateData overlayData) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         System.out.println("Received POST request: update building floor overlay with id=" + overlayData.getId());
@@ -307,8 +307,8 @@ public class BuildingFloorOverlaysController {
     }
 
     private String checkIfBuildingFloorOverlayExist(int building_id, int floor, int BFOid) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 

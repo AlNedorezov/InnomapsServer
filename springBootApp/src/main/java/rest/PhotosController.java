@@ -23,8 +23,8 @@ public class PhotosController {
 
     @RequestMapping("/resources/photos")
     public PhotosObject photos() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         PhotosObject photos1 = new PhotosObject(a.photoDao.queryForAll());
         connectionSource.close();
@@ -33,8 +33,8 @@ public class PhotosController {
 
     @RequestMapping("/resources/photo")
     public Photo photo(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         Photo photo1 = a.photoDao.queryForId(id);
         connectionSource.close();
@@ -44,8 +44,8 @@ public class PhotosController {
     @RequestMapping(value = "/resources/photo", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id,
                        @RequestParam(value = "url", defaultValue = "!~DELETE") String url) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         if (url.equals("!~DELETE")) {
@@ -101,8 +101,8 @@ public class PhotosController {
     }
 
     private String checkIfPhotoCanBeDeleted(int photoId) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 

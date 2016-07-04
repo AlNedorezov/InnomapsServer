@@ -26,8 +26,8 @@ public class BuildingsController {
 
     @RequestMapping("/resources/buildings")
     public BuildingsObject buildings() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         BuildingsObject buildings1 = new BuildingsObject(a.buildingDao.queryForAll());
         connectionSource.close();
@@ -36,8 +36,8 @@ public class BuildingsController {
 
     @RequestMapping("/resources/building")
     public Building building(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         Building building1 = a.buildingDao.queryForId(id);
         connectionSource.close();
@@ -51,8 +51,8 @@ public class BuildingsController {
                        @RequestParam(value = "coordinateid", defaultValue = "-3") int coordinate_id,
                        @RequestParam(value = "streetid", defaultValue = "-4") int street_id) throws SQLException {
 
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         if (number.equals("") && blockStr.equals("-2") && description.equals("!~NO_DESCRIPTION") &&
@@ -240,8 +240,8 @@ public class BuildingsController {
     }
 
     private String checkIfBuildingCanBeDeleted(int buildingId) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 
@@ -264,8 +264,8 @@ public class BuildingsController {
     }
 
     private String checkIfStreetExist(int street_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 

@@ -156,8 +156,8 @@ public class JsonParseTask {
 
     private List<Integer> createEventCreatorsIfNeeded(List<String> telegram_usernames) throws SQLException {
         Application a = new Application();
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         List<Integer> event_creators_ids = new ArrayList<>();
@@ -188,8 +188,8 @@ public class JsonParseTask {
 
     private int addEvent(String gcals_event_id, String event_name, String description, String link) throws SQLException {
         Application a = new Application();
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         int event_id;
@@ -215,8 +215,8 @@ public class JsonParseTask {
 
     private void assignCreatorsForTheEvent(int event_id, List<Integer> event_creators_ids) throws SQLException {
         Application a = new Application();
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         // find ids of previously assigned event creators
@@ -256,8 +256,8 @@ public class JsonParseTask {
         JSONArray events = dataJsonObj.getJSONArray("items");
 
         Application a = new Application();
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         for (int i = 0; i < events.length(); i++) {
@@ -373,8 +373,8 @@ public class JsonParseTask {
 
     private int addEventSchedule(String finalStartDate, String finalEndDate, String location, int event_id) throws SQLException, ParseException {
         Application a = new Application();
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         int eventsSchedulesInserted = 0;

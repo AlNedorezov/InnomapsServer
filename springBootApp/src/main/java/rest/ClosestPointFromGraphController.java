@@ -32,7 +32,7 @@ public class ClosestPointFromGraphController {
         LatLngFlr receivedCoordinates = new LatLngFlr(latitude, longitude, floor);
 
         JGraphTWrapper jGraphTWrapper = new JGraphTWrapper();
-        jGraphTWrapper.importGraphFromDB(Application.DATABASE_URL, Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        jGraphTWrapper.importGraphFromDB(Application.getDatabaseUrl(), Application.getDatabaseUsername(), Application.getDatabasePassword());
 
         if (jGraphTWrapper.graphContainsVertexWithCoordinates(receivedCoordinates))
             return new ClosestCoordinateWithDistance(receivedCoordinates, 0);

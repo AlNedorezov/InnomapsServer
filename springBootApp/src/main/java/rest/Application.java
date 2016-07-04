@@ -35,9 +35,9 @@ import java.text.ParseException;
 @SpringBootApplication
 public class Application {
 
-    public static String DATABASE_URL;
-    public static String DATABASE_USERNAME;
-    public static String DATABASE_PASSWORD;
+    private static String databaseUrl;
+    private static String databaseUsername;
+    private static String databasePassword;
 
     protected Dao<User, Integer> userDao;
     protected Dao<Role, Integer> roleDao;
@@ -62,12 +62,24 @@ public class Application {
     @Autowired
     private MyBean myBean;
 
+    public static String getDatabaseUrl() {
+        return databaseUrl;
+    }
+
+    public static String getDatabaseUsername() {
+        return databaseUsername;
+    }
+
+    public static String getDatabasePassword() {
+        return databasePassword;
+    }
+
     public static void main(String[] args) throws SQLException {
         String ip = args[0];
         String port = args[1];
-        DATABASE_URL = "jdbc:h2:tcp://" + ip + ":" + port + "/test;IFEXISTS=TRUE";
-        DATABASE_USERNAME = args[2];
-        DATABASE_PASSWORD = args[3];
+        databaseUrl = "jdbc:h2:tcp://" + ip + ":" + port + "/test;IFEXISTS=TRUE";
+        databaseUsername = args[2];
+        databasePassword = args[3];
 
         // Initial connect to the database // check that tables are created
         new Application().connectToDB();
@@ -95,7 +107,7 @@ public class Application {
     private void connectToDB() throws SQLException {
         JdbcConnectionSource connectionSource;
         // create our data source
-        connectionSource = new JdbcConnectionSource(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        connectionSource = new JdbcConnectionSource(databaseUrl, databaseUsername, databasePassword);
         // setup our database and DAOs
         setupDatabase(connectionSource, true);
     }
@@ -181,7 +193,7 @@ public class Application {
      */
     private void insertDemoDataInTheDatabase() throws SQLException, ParseException {
         // create our data source
-        ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl, databaseUsername, databasePassword);
         setupDatabase(connectionSource, false);
 
         int id;
@@ -226,7 +238,7 @@ public class Application {
             }
 
             // create our data source
-            ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl, databaseUsername, databasePassword);
             setupDatabase(connectionSource, false);
 
             coordinatesList = jGraphTWrapper.getVertices();

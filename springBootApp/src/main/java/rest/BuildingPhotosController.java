@@ -28,8 +28,8 @@ public class BuildingPhotosController {
 
     @RequestMapping("/resources/buildingphotos")
     public BuildingPhotosObject buildingPhotos(@RequestParam(value = "createdAfterDate", defaultValue = "-1") String date) throws SQLException, ParseException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         BuildingPhotosObject buildingPhotos1;
 
@@ -51,8 +51,8 @@ public class BuildingPhotosController {
 
     @RequestMapping("/resources/buildingphoto")
     public BuildingPhotosObject building(@RequestParam(value = "buildingid", defaultValue = "-1") int building_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         QueryBuilder<BuildingPhoto, Integer> qb = a.buildingPhotoDao.queryBuilder();
         qb.where().eq("building_id", building_id);
@@ -64,8 +64,8 @@ public class BuildingPhotosController {
     @RequestMapping(value = "/resources/buildingphoto", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "buildingid", defaultValue = "-1") int building_id,
                        @RequestParam(value = "photoid", defaultValue = "-2") int photo_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         QueryBuilder<BuildingPhoto, Integer> qb = a.buildingPhotoDao.queryBuilder();
         qb.where().eq("building_id", building_id).and().eq("photo_id", photo_id);

@@ -27,8 +27,8 @@ public class EdgesController {
 
     @RequestMapping("/resources/edges")
     public EdgesObject edges() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         EdgesObject edges1 = new EdgesObject(a.edgeDao.queryForAll());
         connectionSource.close();
@@ -37,8 +37,8 @@ public class EdgesController {
 
     @RequestMapping("/resources/edge")
     public Edge edge(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         Edge edge1 = a.edgeDao.queryForId(id);
         connectionSource.close();
@@ -55,8 +55,8 @@ public class EdgesController {
         if (checkConnectivityStr.equals("false"))
             checkConnectivity = false;
 
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         if (type_id == -2 && source_id == -3 && target_id == -4) {
@@ -205,8 +205,8 @@ public class EdgesController {
     }
 
     private String checkIfEdgeCanBeDeleted(int edge_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         Edge checkedEdge = a.edgeDao.queryForId(edge_id);
         int source_id = checkedEdge.getSource_id();
@@ -214,7 +214,7 @@ public class EdgesController {
         String errorMessage = "";
 
         JGraphTWrapper jGraphTWrapper = new JGraphTWrapper();
-        jGraphTWrapper.importGraphFromDB(Application.DATABASE_URL, Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        jGraphTWrapper.importGraphFromDB(Application.getDatabaseUrl(), Application.getDatabaseUsername(), Application.getDatabasePassword());
         LatLngGraphVertex sourceVertex, targetVertex;
         Coordinate sourceCoordinate = a.coordinateDao.queryForId(source_id);
         Coordinate targetCoordinate = a.coordinateDao.queryForId(target_id);
@@ -281,8 +281,8 @@ public class EdgesController {
     }
 
     private String checkIfCoordinateExist(int coordinate_id, String coordinateName) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 
@@ -294,8 +294,8 @@ public class EdgesController {
     }
 
     private String checkIfTypeExist(int type_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 

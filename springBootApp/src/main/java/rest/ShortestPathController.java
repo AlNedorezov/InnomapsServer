@@ -39,7 +39,7 @@ public class ShortestPathController {
         LatLngFlr vertexTwo = new LatLngFlr(vertexTwoLatitude, vertexTwoLongitude, vertexTwoFloor);
 
         JGraphTWrapper jGraphTWrapper = new JGraphTWrapper();
-        jGraphTWrapper.importGraphFromDB(Application.DATABASE_URL, Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        jGraphTWrapper.importGraphFromDB(Application.getDatabaseUrl(), Application.getDatabaseUsername(), Application.getDatabasePassword());
 
         return new VerticesListObject(jGraphTWrapper.shortestPath(vertexOne, vertexTwo));
     }

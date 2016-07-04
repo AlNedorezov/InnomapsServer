@@ -23,8 +23,8 @@ public class EventsController {
 
     @RequestMapping("/resources/events")
     public EventsObject events() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         EventsObject events1 = new EventsObject(a.eventDao.queryForAll());
         connectionSource.close();
@@ -33,8 +33,8 @@ public class EventsController {
 
     @RequestMapping("/resources/event")
     public Event event(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         Event event1 = a.eventDao.queryForId(id);
         connectionSource.close();
@@ -47,8 +47,8 @@ public class EventsController {
                        @RequestParam(value = "description", defaultValue = "!~NO_DESCRIPTION") String description,
                        @RequestParam(value = "link", defaultValue = "!~NO_LINK") String link) throws SQLException {
 
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         if (name.equals("!~NO_NAME") && description.equals("!~NO_DESCRIPTION") && link.equals("!~NO_LINK")) {
@@ -178,8 +178,8 @@ public class EventsController {
     }
 
     private String checkIfEventCanBeDeleted(int eventId) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 

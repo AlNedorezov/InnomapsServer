@@ -22,8 +22,8 @@ public class RoomsController {
 
     @RequestMapping("/resources/rooms")
     public RoomsObject rooms() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         RoomsObject rooms1 = new RoomsObject(a.roomDao.queryForAll());
         connectionSource.close();
@@ -32,8 +32,8 @@ public class RoomsController {
 
     @RequestMapping("/resources/room")
     public Room room(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         Room room1 = a.roomDao.queryForId(id);
         connectionSource.close();
@@ -47,8 +47,8 @@ public class RoomsController {
                        @RequestParam(value = "coordinateid", defaultValue = "-4") int coordinate_id,
                        @RequestParam(value = "typeid", defaultValue = "-5") int type_id) throws SQLException {
 
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         if (numberStr.equals("-2") && building_id == -3 && coordinate_id == -4 && type_id == -5) {
@@ -215,8 +215,8 @@ public class RoomsController {
     }
 
     private String checkIfTypeExist(int type_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 

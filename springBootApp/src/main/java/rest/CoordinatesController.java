@@ -22,8 +22,8 @@ public class CoordinatesController {
 
     @RequestMapping("/resources/coordinates")
     public CoordinatesObject coordinates() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         CoordinatesObject coordinates1 = new CoordinatesObject(a.coordinateDao.queryForAll());
         connectionSource.close();
@@ -32,8 +32,8 @@ public class CoordinatesController {
 
     @RequestMapping("/resources/coordinate")
     public Coordinate coordinate(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         Coordinate coordinate1 = a.coordinateDao.queryForId(id);
         connectionSource.close();
@@ -46,8 +46,8 @@ public class CoordinatesController {
                        @RequestParam(value = "typeid", defaultValue = "-5") int type_id, @RequestParam(value = "name", defaultValue = "!~NO_NAME") String name,
                        @RequestParam(value = "description", defaultValue = "!~NO_DESCRIPTION") String description) throws SQLException {
 
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         boolean latitudeAndLongitudeAreDefault = CommonFunctions.doubleValuesAreSimilarWithPrecision16(latitude, -2) &&
@@ -295,8 +295,8 @@ public class CoordinatesController {
     }
 
     private String checkIfCoordinateCanBeDeleted(int coordinateId) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 
@@ -325,8 +325,8 @@ public class CoordinatesController {
     }
 
     private String checkIfTypeExist(int type_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 

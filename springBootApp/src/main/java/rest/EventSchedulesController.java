@@ -23,8 +23,8 @@ public class EventSchedulesController {
 
     @RequestMapping("/resources/eventschedules")
     public EventSchedulesObject eventSchedules() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         EventSchedulesObject eventSchedules1 = new EventSchedulesObject(a.eventScheduleDao.queryForAll());
         connectionSource.close();
@@ -33,8 +33,8 @@ public class EventSchedulesController {
 
     @RequestMapping("/resources/eventschedule")
     public EventSchedule eventSchedule(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         EventSchedule eventSchedule1 = a.eventScheduleDao.queryForId(id);
         connectionSource.close();
@@ -49,8 +49,8 @@ public class EventSchedulesController {
                        @RequestParam(value = "comment", defaultValue = "!~NO_COMMENT") String comment,
                        @RequestParam(value = "eventid", defaultValue = "-5") int event_id) throws SQLException, java.text.ParseException {
 
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         if (start_datetimeStr.equals("-2") && end_datetimeStr.equals("-3") && location_id == -4 &&

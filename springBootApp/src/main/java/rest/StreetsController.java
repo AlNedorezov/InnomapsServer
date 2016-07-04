@@ -22,8 +22,8 @@ public class StreetsController {
 
     @RequestMapping("/resources/streets")
     public StreetsObject streets() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         StreetsObject streets1 = new StreetsObject(a.streetDao.queryForAll());
         connectionSource.close();
@@ -32,8 +32,8 @@ public class StreetsController {
 
     @RequestMapping("/resources/street")
     public Street street(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         Street street1 = a.streetDao.queryForId(id);
         connectionSource.close();
@@ -43,8 +43,8 @@ public class StreetsController {
     @RequestMapping(value = "/resources/street", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id,
                        @RequestParam(value = "name", defaultValue = "!~DELETE") String name) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         if (name.equals("!~DELETE")) {

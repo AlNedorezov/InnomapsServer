@@ -22,8 +22,8 @@ public class CoordinateTypesController {
 
     @RequestMapping("/resources/coordinatetypes")
     public CoordinateTypesObject coordinateTypes() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         CoordinateTypesObject coordinateTypes1 = new CoordinateTypesObject(a.coordinateTypeDao.queryForAll());
         connectionSource.close();
@@ -32,8 +32,8 @@ public class CoordinateTypesController {
 
     @RequestMapping("/resources/coordinatetype")
     public CoordinateType coordinateType(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         CoordinateType coordinateType1 = a.coordinateTypeDao.queryForId(id);
         connectionSource.close();
@@ -43,8 +43,8 @@ public class CoordinateTypesController {
     @RequestMapping(value = "/resources/coordinatetype", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "id", defaultValue = "-1") int id,
                        @RequestParam(value = "name", defaultValue = "!~DELETE") String name) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
         if (name.equals("!~DELETE")) {

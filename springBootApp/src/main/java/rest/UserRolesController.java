@@ -25,8 +25,8 @@ public class UserRolesController {
 
     @RequestMapping("/resources/userroles")
     public UserRolesObject userRoles() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         UserRolesObject userRolesObject1 = new UserRolesObject(a.userRoleDao.queryForAll());
         connectionSource.close();
@@ -35,8 +35,8 @@ public class UserRolesController {
 
     @RequestMapping("/resources/userrole")
     public UserRole userrole(@RequestParam(value = "userid", defaultValue = "-1") int userid) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         QueryBuilder<UserRole, Integer> qb = a.userRoleDao.queryBuilder();
         qb.where().eq("user_id", userid);
@@ -48,8 +48,8 @@ public class UserRolesController {
     @RequestMapping(value = "/resources/userrole", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "userid", defaultValue = "-1") int userid,
                        @RequestParam(value = "roleid", defaultValue = "-1") int roleid) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         QueryBuilder<UserRole, Integer> qb = a.userRoleDao.queryBuilder();
         qb.where().eq("user_id", userid).and().eq("role_id", roleid);

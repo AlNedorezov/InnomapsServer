@@ -25,8 +25,8 @@ public class RoomPhotosController {
 
     @RequestMapping("/resources/roomphotos")
     public RoomPhotosObject roomPhotos() throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         RoomPhotosObject roomPhotos1 = new RoomPhotosObject(a.roomPhotoDao.queryForAll());
         connectionSource.close();
@@ -35,8 +35,8 @@ public class RoomPhotosController {
 
     @RequestMapping("/resources/roomphoto")
     public RoomPhotosObject room(@RequestParam(value = "roomid", defaultValue = "-1") int room_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         QueryBuilder<RoomPhoto, Integer> qb = a.roomPhotoDao.queryBuilder();
         qb.where().eq("room_id", room_id);
@@ -48,8 +48,8 @@ public class RoomPhotosController {
     @RequestMapping(value = "/resources/roomphoto", method = RequestMethod.POST)
     public String logs(@RequestParam(value = "roomid", defaultValue = "-1") int room_id,
                        @RequestParam(value = "photoid", defaultValue = "-2") int photo_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         QueryBuilder<RoomPhoto, Integer> qb = a.roomPhotoDao.queryBuilder();
         qb.where().eq("room_id", room_id).and().eq("photo_id", photo_id);
@@ -96,8 +96,8 @@ public class RoomPhotosController {
     }
 
     private String checkIfRoomExist(int room_id) throws SQLException {
-        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.DATABASE_URL,
-                Application.DATABASE_USERNAME, Application.DATABASE_PASSWORD);
+        JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
+                Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         String errorMessage = "";
 
