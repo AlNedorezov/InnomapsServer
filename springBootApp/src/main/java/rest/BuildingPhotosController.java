@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.BuildingPhotosObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,7 +72,7 @@ public class BuildingPhotosController {
                 return "-1. " + errorMessageOnAdd;
             } else if (action.equals("add")) {
                 System.out.println("Received POST request: photo with id=" + photo_id + " was assigned to building with id=" + building_id);
-                a.buildingPhotoDao.create(new BuildingPhoto(building_id, photo_id));
+                a.buildingPhotoDao.create(new BuildingPhoto(building_id, photo_id, new Date()));
                 connectionSource.close();
                 return "0. Photo with id=" + photo_id + " was assigned to building with id=" + building_id + "\n";
             } else { // if action = delete
