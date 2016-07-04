@@ -36,6 +36,8 @@ public class LatLngGraphEdge extends DefaultWeightedEdge {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + (graphEdgeType != null ? graphEdgeType.hashCode() : 0);
+        return result;
     }
 }
