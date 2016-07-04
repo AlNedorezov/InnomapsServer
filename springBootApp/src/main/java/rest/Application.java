@@ -35,11 +35,9 @@ import java.text.ParseException;
 @SpringBootApplication
 public class Application {
 
-    public final static String DATABASE_URL = "jdbc:h2:tcp://10.90.104.144:9092/test;IFEXISTS=TRUE";
-    public final static String DATABASE_USERNAME = "sa";
-    public final static String DATABASE_PASSWORD = "sa";
-    // change 'localhost' to 10.90.104.144 for debug and vice versa for deploy
-    // 10.90.104.144 works only for devices connected to the IU network
+    public static String DATABASE_URL;
+    public static String DATABASE_USERNAME;
+    public static String DATABASE_PASSWORD;
 
     protected Dao<User, Integer> userDao;
     protected Dao<Role, Integer> roleDao;
@@ -65,6 +63,11 @@ public class Application {
     private MyBean myBean;
 
     public static void main(String[] args) throws SQLException {
+        String ip = args[0];
+        String port = args[1];
+        DATABASE_URL = "jdbc:h2:tcp://" + ip + ":" + port + "/test;IFEXISTS=TRUE";
+        DATABASE_USERNAME = args[2];
+        DATABASE_PASSWORD = args[3];
 
         // Initial connect to the database // check that tables are created
         new Application().connectToDB();
