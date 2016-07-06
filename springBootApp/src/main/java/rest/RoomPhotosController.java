@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.RoomPhotosObject;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,11 +27,24 @@ public class RoomPhotosController {
     Application a = new Application();
 
     @RequestMapping("/resources/roomphotos")
-    public RoomPhotosObject roomPhotos() throws SQLException {
+    public RoomPhotosObject roomPhotos(@RequestParam(value = "createdAfterDate", defaultValue = "-1") String date) throws SQLException, ParseException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
-        RoomPhotosObject roomPhotos1 = new RoomPhotosObject(a.roomPhotoDao.queryForAll());
+        RoomPhotosObject roomPhotos1;
+
+        if("-1".equals(date))
+            // if created after date is not specified, return all building photos
+            roomPhotos1 = new RoomPhotosObject(a.roomPhotoDao.queryForAll());
+        else {
+            // if created after date is specified, return all building photos that were
+            // created after on on specified date
+            Date createdDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(date);
+            QueryBuilder<RoomPhoto, Integer> qb = a.roomPhotoDao.queryBuilder();
+            qb.where().ge("created", createdDate);
+            PreparedQuery<RoomPhoto> pc = qb.prepare();
+            roomPhotos1 = new RoomPhotosObject(a.roomPhotoDao.query(pc));
+        }
         connectionSource.close();
         return roomPhotos1;
     }
@@ -71,7 +87,7 @@ public class RoomPhotosController {
                 return "-1. " + errorMessageOnAdd;
             } else if (action.equals("add")) {
                 System.out.println("Received POST request: photo with id=" + photo_id + " was assigned to room with id=" + room_id);
-                a.roomPhotoDao.create(new RoomPhoto(room_id, photo_id));
+                a.roomPhotoDao.create(new RoomPhoto(room_id, photo_id, new Date()));
                 connectionSource.close();
                 return "0. Photo with id=" + photo_id + " was assigned to room with id=" + room_id + "\n";
             } else { // if action = delete
