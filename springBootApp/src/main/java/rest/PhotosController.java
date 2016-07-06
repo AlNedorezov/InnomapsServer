@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.PhotosObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/23/16.
@@ -71,12 +72,13 @@ public class PhotosController {
             if (id == -1) {
                 // Creating a photo
                 System.out.println("Received POST request: create photo with url=" + url);
-                a.photoDao.create(new Photo(id, url));
+                a.photoDao.create(new Photo(id, url, new Date()));
                 QueryBuilder<Photo, Integer> qBuilder = a.photoDao.queryBuilder();
                 qBuilder.orderBy("id", false); // false for descending order
                 qBuilder.limit(1);
                 Photo createdPhoto = a.photoDao.queryForId(qBuilder.query().get(0).getId());
-                System.out.println(createdPhoto.getId() + " | " + createdPhoto.getUrl());
+                System.out.println(createdPhoto.getId() + " | " + createdPhoto.getUrl() + " | " +
+                                    createdPhoto.getModified());
                 connectionSource.close();
                 return "0. Photo with id=" + createdPhoto.getId() + " was successfully created.\n";
             } else {
@@ -92,7 +94,7 @@ public class PhotosController {
                         updUrl = url;
                     else
                         updUrl = photo1.getUrl();
-                    a.photoDao.update(new Photo(id, updUrl));
+                    a.photoDao.update(new Photo(id, updUrl, new Date()));
                     connectionSource.close();
                     return "0. Photo with id=" + id + " was successfully updated.\n";
                 }
