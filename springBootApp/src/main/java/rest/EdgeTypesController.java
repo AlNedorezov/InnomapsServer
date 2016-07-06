@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.EdgeTypesObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/21/16.
@@ -71,12 +72,13 @@ public class EdgeTypesController {
             if (id == -1) {
                 // Creating an edge type
                 System.out.println("Received POST request: create edge type with name=" + name);
-                a.edgeTypeDao.create(new EdgeType(id, name));
+                a.edgeTypeDao.create(new EdgeType(id, name, new Date()));
                 QueryBuilder<EdgeType, Integer> qBuilder = a.edgeTypeDao.queryBuilder();
                 qBuilder.orderBy("id", false); // false for descending order
                 qBuilder.limit(1);
                 EdgeType createdEdgeType = a.edgeTypeDao.queryForId(qBuilder.query().get(0).getId());
-                System.out.println(createdEdgeType.getId() + " | " + createdEdgeType.getName());
+                System.out.println(createdEdgeType.getId() + " | " + createdEdgeType.getName() + " | " +
+                                    createdEdgeType.getModified());
                 connectionSource.close();
                 return "0. Edge type with id=" + createdEdgeType.getId() + " was successfully created.\n";
             } else {
@@ -92,7 +94,7 @@ public class EdgeTypesController {
                         updName = name;
                     else
                         updName = edgeType1.getName();
-                    a.edgeTypeDao.update(new EdgeType(id, updName));
+                    a.edgeTypeDao.update(new EdgeType(id, updName, new Date()));
                     connectionSource.close();
                     return "0. Edge type with id=" + id + " was successfully updated.\n";
                 }

@@ -257,13 +257,13 @@ public class Application {
             streetDao.create(new Street(1, "Universitetskaya", modifiedDateTime));
             buildingDao.create(new Building(1, String.valueOf(1), null, IU_description, 1, 1, modifiedDateTime));
 
-            roomTypeDao.create(new RoomType(1, "ROOM"));
-            roomTypeDao.create(new RoomType(2, "FOOD"));
-            roomTypeDao.create(new RoomType(3, "WC"));
-            roomTypeDao.create(new RoomType(4, "CLINIC"));
-            roomTypeDao.create(new RoomType(5, "READING"));
-            roomTypeDao.create(new RoomType(6, "DOOR"));
-            roomTypeDao.create(new RoomType(7, "LIBRARY"));
+            roomTypeDao.create(new RoomType(1, "ROOM", modifiedDateTime));
+            roomTypeDao.create(new RoomType(2, "FOOD", modifiedDateTime));
+            roomTypeDao.create(new RoomType(3, "WC", modifiedDateTime));
+            roomTypeDao.create(new RoomType(4, "CLINIC", modifiedDateTime));
+            roomTypeDao.create(new RoomType(5, "READING", modifiedDateTime));
+            roomTypeDao.create(new RoomType(6, "DOOR", modifiedDateTime));
+            roomTypeDao.create(new RoomType(7, "LIBRARY", modifiedDateTime));
 
             for (int i = 0; i < coordinatesList.length; i++) {
                 if (coordinatesList[i] != null) {
@@ -279,7 +279,7 @@ public class Application {
                     if (qBuilder.countOf() > 0 && coordinateTypeDao.query(preparedQuery).size() > 0) {
                         coordinate_type_id = coordinateTypeDao.query(preparedQuery).get(0).getId();
                     } else {
-                        coordinateTypeDao.create(new CoordinateType(0, coordinatesList[i].getGraphVertexType().toString()));
+                        coordinateTypeDao.create(new CoordinateType(0, coordinatesList[i].getGraphVertexType().toString(), modifiedDateTime));
                         qBuilder.reset();
                         qBuilder.orderBy("id", false); // false for descending order
                         qBuilder.limit(1);
@@ -329,8 +329,8 @@ public class Application {
 
             edgesList = jGraphTWrapper.getEdges();
 
-            edgeTypeDao.create(new EdgeType(1, "DEFAULT"));
-            edgeTypeDao.create(new EdgeType(2, "STAIRS"));
+            edgeTypeDao.create(new EdgeType(1, "DEFAULT", modifiedDateTime));
+            edgeTypeDao.create(new EdgeType(2, "STAIRS", modifiedDateTime));
 
             for (int i = 0; i < edgesList.length; i++) {
                 if (edgesList[i] != null) {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.CoordinateTypesObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/21/16.
@@ -71,12 +72,13 @@ public class CoordinateTypesController {
             if (id == -1) {
                 // Creating a coordinate type
                 System.out.println("Received POST request: create coordinate type with name=" + name);
-                a.coordinateTypeDao.create(new CoordinateType(id, name));
+                a.coordinateTypeDao.create(new CoordinateType(id, name, new Date()));
                 QueryBuilder<CoordinateType, Integer> qBuilder = a.coordinateTypeDao.queryBuilder();
                 qBuilder.orderBy("id", false); // false for descending order
                 qBuilder.limit(1);
                 CoordinateType createdCoordinateType = a.coordinateTypeDao.queryForId(qBuilder.query().get(0).getId());
-                System.out.println(createdCoordinateType.getId() + " | " + createdCoordinateType.getName());
+                System.out.println(createdCoordinateType.getId() + " | " + createdCoordinateType.getName() + " | " +
+                                    createdCoordinateType.getModified());
                 connectionSource.close();
                 return "0. Coordinate type with id=" + createdCoordinateType.getId() + " was successfully created.\n";
             } else {
@@ -92,7 +94,7 @@ public class CoordinateTypesController {
                         updName = name;
                     else
                         updName = coordinateType1.getName();
-                    a.coordinateTypeDao.update(new CoordinateType(id, updName));
+                    a.coordinateTypeDao.update(new CoordinateType(id, updName, new Date()));
                     connectionSource.close();
                     return "0. Coordinate type with id=" + id + " was successfully updated.\n";
                 }

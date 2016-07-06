@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.RoomTypesObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/23/16.
@@ -71,12 +72,13 @@ public class RoomTypesController {
             if (id == -1) {
                 // Creating a room type
                 System.out.println("Received POST request: create room type with name=" + name);
-                a.roomTypeDao.create(new RoomType(id, name));
+                a.roomTypeDao.create(new RoomType(id, name, new Date()));
                 QueryBuilder<RoomType, Integer> qBuilder = a.roomTypeDao.queryBuilder();
                 qBuilder.orderBy("id", false); // false for descending order
                 qBuilder.limit(1);
                 RoomType createdRoomType = a.roomTypeDao.queryForId(qBuilder.query().get(0).getId());
-                System.out.println(createdRoomType.getId() + " | " + createdRoomType.getName());
+                System.out.println(createdRoomType.getId() + " | " + createdRoomType.getName() + " | " +
+                                    createdRoomType.getModified());
                 connectionSource.close();
                 return "0. Room type with id=" + createdRoomType.getId() + " was successfully created.\n";
             } else {
@@ -92,7 +94,7 @@ public class RoomTypesController {
                         updName = name;
                     else
                         updName = roomType1.getName();
-                    a.roomTypeDao.update(new RoomType(id, updName));
+                    a.roomTypeDao.update(new RoomType(id, updName, new Date()));
                     connectionSource.close();
                     return "0. Room type with id=" + id + " was successfully updated.\n";
                 }
