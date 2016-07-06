@@ -254,7 +254,7 @@ public class Application {
             // Coordinate for Innopolis University are taken from Google Maps
             // Coordinate_type=2 (DAFAULT)
             coordinateDao.create(new Coordinate(0, 55.7541793, 48.744085, 1, 2, "Innopolis University", IU_description, modifiedDateTime));
-            streetDao.create(new Street(1, "Universitetskaya"));
+            streetDao.create(new Street(1, "Universitetskaya", modifiedDateTime));
             buildingDao.create(new Building(1, String.valueOf(1), null, IU_description, 1, 1, modifiedDateTime));
 
             roomTypeDao.create(new RoomType(1, "ROOM"));

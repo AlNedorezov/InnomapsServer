@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.StreetsObject;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by alnedorezov on 6/23/16.
@@ -71,12 +72,13 @@ public class StreetsController {
             if (id == -1) {
                 // Creating a street
                 System.out.println("Received POST request: create street with name=" + name);
-                a.streetDao.create(new Street(id, name));
+                a.streetDao.create(new Street(id, name, new Date()));
                 QueryBuilder<Street, Integer> qBuilder = a.streetDao.queryBuilder();
                 qBuilder.orderBy("id", false); // false for descending order
                 qBuilder.limit(1);
                 Street createdStreet = a.streetDao.queryForId(qBuilder.query().get(0).getId());
-                System.out.println(createdStreet.getId() + " | " + createdStreet.getName());
+                System.out.println(createdStreet.getId() + " | " + createdStreet.getName() + " | " +
+                        createdStreet.getModified());
                 connectionSource.close();
                 return "0. Street with id=" + createdStreet.getId() + " was successfully created.\n";
             } else {
@@ -92,7 +94,7 @@ public class StreetsController {
                         updName = name;
                     else
                         updName = street1.getName();
-                    a.streetDao.update(new Street(id, updName));
+                    a.streetDao.update(new Street(id, updName, new Date()));
                     connectionSource.close();
                     return "0. Street with id=" + id + " was successfully updated.\n";
                 }
