@@ -78,7 +78,7 @@ public class CoordinateTypesController {
                 qBuilder.limit(1);
                 CoordinateType createdCoordinateType = a.coordinateTypeDao.queryForId(qBuilder.query().get(0).getId());
                 System.out.println(createdCoordinateType.getId() + " | " + createdCoordinateType.getName() + " | " +
-                                    createdCoordinateType.getModified());
+                        createdCoordinateType.getModified());
                 connectionSource.close();
                 return "0. Coordinate type with id=" + createdCoordinateType.getId() + " was successfully created.\n";
             } else {

@@ -33,7 +33,7 @@ public class EventCreatorAppointmentsController {
         a.setupDatabase(connectionSource, false);
         EventCreatorAppointmentsObject eventCreatorAppointments1;
 
-        if("-1".equals(date))
+        if ("-1".equals(date))
             // if created after date is not specified, return all event creator appointments
             eventCreatorAppointments1 = new EventCreatorAppointmentsObject(a.eventCreatorAppointmentDao.queryForAll());
         else {

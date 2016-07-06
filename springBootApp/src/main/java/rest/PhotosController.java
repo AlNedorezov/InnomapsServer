@@ -78,7 +78,7 @@ public class PhotosController {
                 qBuilder.limit(1);
                 Photo createdPhoto = a.photoDao.queryForId(qBuilder.query().get(0).getId());
                 System.out.println(createdPhoto.getId() + " | " + createdPhoto.getUrl() + " | " +
-                                    createdPhoto.getModified());
+                        createdPhoto.getModified());
                 connectionSource.close();
                 return "0. Photo with id=" + createdPhoto.getId() + " was successfully created.\n";
             } else {

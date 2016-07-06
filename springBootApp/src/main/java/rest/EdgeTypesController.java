@@ -78,7 +78,7 @@ public class EdgeTypesController {
                 qBuilder.limit(1);
                 EdgeType createdEdgeType = a.edgeTypeDao.queryForId(qBuilder.query().get(0).getId());
                 System.out.println(createdEdgeType.getId() + " | " + createdEdgeType.getName() + " | " +
-                                    createdEdgeType.getModified());
+                        createdEdgeType.getModified());
                 connectionSource.close();
                 return "0. Edge type with id=" + createdEdgeType.getId() + " was successfully created.\n";
             } else {

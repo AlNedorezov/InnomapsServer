@@ -33,7 +33,7 @@ public class RoomPhotosController {
         a.setupDatabase(connectionSource, false);
         RoomPhotosObject roomPhotos1;
 
-        if("-1".equals(date))
+        if ("-1".equals(date))
             // if created after date is not specified, return all room photos
             roomPhotos1 = new RoomPhotosObject(a.roomPhotoDao.queryForAll());
         else {

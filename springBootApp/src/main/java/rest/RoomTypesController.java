@@ -78,7 +78,7 @@ public class RoomTypesController {
                 qBuilder.limit(1);
                 RoomType createdRoomType = a.roomTypeDao.queryForId(qBuilder.query().get(0).getId());
                 System.out.println(createdRoomType.getId() + " | " + createdRoomType.getName() + " | " +
-                                    createdRoomType.getModified());
+                        createdRoomType.getModified());
                 connectionSource.close();
                 return "0. Room type with id=" + createdRoomType.getId() + " was successfully created.\n";
             } else {

@@ -33,7 +33,7 @@ public class BuildingPhotosController {
         a.setupDatabase(connectionSource, false);
         BuildingPhotosObject buildingPhotos1;
 
-        if("-1".equals(date))
+        if ("-1".equals(date))
             // if created after date is not specified, return all building photos
             buildingPhotos1 = new BuildingPhotosObject(a.buildingPhotoDao.queryForAll());
         else {
