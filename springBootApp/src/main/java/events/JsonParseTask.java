@@ -237,7 +237,7 @@ public class JsonParseTask {
             qbECA = a.eventCreatorAppointmentDao.queryBuilder();
             qbECA.where().eq("event_creator_id", event_creator_id).and().eq("event_id", event_id);
             if (qbECA.query().size() == 0)
-                a.eventCreatorAppointmentDao.create(new EventCreatorAppointment(event_id, event_creator_id));
+                a.eventCreatorAppointmentDao.create(new EventCreatorAppointment(event_id, event_creator_id, new Date()));
         }
 
         // unassign creators that were previously assigned for event but no longer assigned for it

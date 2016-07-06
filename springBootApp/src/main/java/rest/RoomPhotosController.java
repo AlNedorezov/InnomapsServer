@@ -34,10 +34,10 @@ public class RoomPhotosController {
         RoomPhotosObject roomPhotos1;
 
         if("-1".equals(date))
-            // if created after date is not specified, return all building photos
+            // if created after date is not specified, return all room photos
             roomPhotos1 = new RoomPhotosObject(a.roomPhotoDao.queryForAll());
         else {
-            // if created after date is specified, return all building photos that were
+            // if created after date is specified, return all room photos that were
             // created after on on specified date
             Date createdDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(date);
             QueryBuilder<RoomPhoto, Integer> qb = a.roomPhotoDao.queryBuilder();

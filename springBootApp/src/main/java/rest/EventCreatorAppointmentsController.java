@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientServerCommunicationClasses.EventCreatorAppointmentsObject;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,23 +27,38 @@ public class EventCreatorAppointmentsController {
     Application a = new Application();
 
     @RequestMapping("/resources/eventcreatorappointments")
-    public EventCreatorAppointmentsObject eventcreatorappointments() throws SQLException {
+    public EventCreatorAppointmentsObject eventcreatorappointments(@RequestParam(value = "createdAfterDate", defaultValue = "-1") String date) throws SQLException, ParseException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
-        EventCreatorAppointmentsObject eventCreatorAppointments1 = new EventCreatorAppointmentsObject(a.eventCreatorAppointmentDao.queryForAll());
+        EventCreatorAppointmentsObject eventCreatorAppointments1;
+
+        if("-1".equals(date))
+            // if created after date is not specified, return all event creator appointments
+            eventCreatorAppointments1 = new EventCreatorAppointmentsObject(a.eventCreatorAppointmentDao.queryForAll());
+        else {
+            // if created after date is specified, return all event creator apointmenments that were
+            // created after on on specified date
+            Date createdDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(date);
+            QueryBuilder<EventCreatorAppointment, Integer> qb = a.eventCreatorAppointmentDao.queryBuilder();
+            qb.where().ge("created", createdDate);
+            PreparedQuery<EventCreatorAppointment> pc = qb.prepare();
+            eventCreatorAppointments1 = new EventCreatorAppointmentsObject(a.eventCreatorAppointmentDao.query(pc));
+        }
         connectionSource.close();
         return eventCreatorAppointments1;
     }
 
     @RequestMapping("/resources/eventcreatorappointment")
-    public EventCreatorAppointment eventcreatorappointment(@RequestParam(value = "id", defaultValue = "-1") int id) throws SQLException {
+    public EventCreatorAppointmentsObject room(@RequestParam(value = "eventid", defaultValue = "-1") int event_id) throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
-        EventCreatorAppointment eventCreatorAppointment1 = a.eventCreatorAppointmentDao.queryForId(id);
+        QueryBuilder<EventCreatorAppointment, Integer> qb = a.eventCreatorAppointmentDao.queryBuilder();
+        qb.where().eq("event_id", event_id);
+        EventCreatorAppointmentsObject eventCreatorAppointments1 = new EventCreatorAppointmentsObject(qb.query());
         connectionSource.close();
-        return eventCreatorAppointment1;
+        return eventCreatorAppointments1;
     }
 
     @RequestMapping(value = "/resources/eventcreatorappointment", method = RequestMethod.POST)
@@ -69,7 +87,7 @@ public class EventCreatorAppointmentsController {
                 return "-1. " + errorMessageOnAddorDelete;
             } else if (action.equals("add")) {
                 System.out.println("Received POST request: event creator with id=" + event_creator_id + " was assigned to event with id=" + event_id);
-                a.eventCreatorAppointmentDao.create(new EventCreatorAppointment(event_id, event_creator_id));
+                a.eventCreatorAppointmentDao.create(new EventCreatorAppointment(event_id, event_creator_id, new Date()));
                 connectionSource.close();
                 return "0. Event creator with id=" + event_creator_id + " was assigned to event with id=" + event_id + "\n";
             } else { // if action = delete
