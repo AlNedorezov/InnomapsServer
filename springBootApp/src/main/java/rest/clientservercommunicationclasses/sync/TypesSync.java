@@ -29,8 +29,8 @@ public class TypesSync {
         this.coordinateTypeIds.set(index, coordinateTypeId);
     }
 
-    public void getCoordinateTypeId(int index) {
-        this.coordinateTypeIds.get(index);
+    public Integer getCoordinateTypeId(int index) {
+         return coordinateTypeIds.get(index);
     }
 
     public void removeCoordinateTypeId(int index) {
@@ -50,9 +50,7 @@ public class TypesSync {
         this.edgeTypeIds.set(index, edgeTypeId);
     }
 
-    public void getEdgeTypeId(int index) {
-        this.edgeTypeIds.get(index);
-    }
+    public Integer getEdgeTypeId(int index) { return edgeTypeIds.get(index); }
 
     public void removeEdgeTypeId(int index) {
         this.edgeTypeIds.remove(index);
@@ -71,8 +69,8 @@ public class TypesSync {
         this.roomTypeIds.set(index, roomTypeId);
     }
 
-    public void getRoomTypeId(int index) {
-        this.roomTypeIds.get(index);
+    public Integer getRoomTypeId(int index) {
+        return roomTypeIds.get(index);
     }
 
     public void removeRoomTypeId(int index) {
