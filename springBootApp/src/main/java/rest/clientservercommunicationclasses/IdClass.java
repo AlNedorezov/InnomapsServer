@@ -1,4 +1,4 @@
-package rest.clientServerCommunicationClasses;
+package rest.clientservercommunicationclasses;
 
 /**
  * Created by alnedorezov on 3/6/16.

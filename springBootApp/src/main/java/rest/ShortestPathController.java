@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pathfinding.JGraphTWrapper;
 import pathfinding.LatLngFlr;
-import rest.clientServerCommunicationClasses.VerticesListObject;
+import rest.clientservercommunicationclasses.VerticesListObject;
 
 import java.sql.SQLException;
 import java.util.Date;

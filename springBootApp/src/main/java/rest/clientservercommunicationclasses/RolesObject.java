@@ -1,4 +1,4 @@
-package rest.clientServerCommunicationClasses;
+package rest.clientservercommunicationclasses;
 
 import db.Role;
 

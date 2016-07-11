@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pathfinding.JGraphTWrapper;
 import pathfinding.LatLngFlr;
 import pathfinding.LatLngGraphVertex;
-import rest.clientServerCommunicationClasses.EdgesObject;
+import rest.clientservercommunicationclasses.EdgesObject;
 
 import java.sql.SQLException;
 import java.util.Date;

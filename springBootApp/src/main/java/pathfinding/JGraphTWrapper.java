@@ -11,7 +11,7 @@ import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.SimpleWeightedGraph;
 import org.jgrapht.graph.UndirectedWeightedSubgraph;
 import rest.Application;
-import rest.clientServerCommunicationClasses.ClosestCoordinateWithDistance;
+import rest.clientservercommunicationclasses.ClosestCoordinateWithDistance;
 
 import java.sql.SQLException;
 import java.util.*;
