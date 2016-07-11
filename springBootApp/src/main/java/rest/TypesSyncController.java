@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import rest.clientservercommunicationclasses.sync.TypesSync;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,30 +51,33 @@ public class TypesSyncController {
     }
 
     @RequestMapping("/resources/sync/types")
-    public TypesSync sync(@RequestParam(value = "date", defaultValue = "2015-07-26 15:00:00.0") String date) throws Exception {
+    public TypesSync syncTypes(@RequestParam(value = "date", defaultValue = "2015-07-26 15:00:00.0") String date) throws SQLException, ParseException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
         Date modifiedDate;
+        String modified = "modified";
+        String dateFormat = "yyyy-MM-dd HH:mm:ss.S";
 
         QueryBuilder<CoordinateType, Integer> qbCoordinateType = a.coordinateTypeDao.queryBuilder();
-        modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(date);
-        qbCoordinateType.where().ge("modified", modifiedDate);
+        modifiedDate = new SimpleDateFormat(dateFormat).parse(date);
+        qbCoordinateType.where().ge(modified, modifiedDate);
         PreparedQuery<CoordinateType> pcCoordinateType = qbCoordinateType.prepare();
         List<CoordinateType> coordinateTypes = a.coordinateTypeDao.query(pcCoordinateType);
 
         QueryBuilder<EdgeType, Integer> qbEdgeType = a.edgeTypeDao.queryBuilder();
-        modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(date);
-        qbEdgeType.where().ge("modified", modifiedDate);
+        modifiedDate = new SimpleDateFormat(dateFormat).parse(date);
+        qbEdgeType.where().ge(modified, modifiedDate);
         PreparedQuery<EdgeType> pcEdgeType = qbEdgeType.prepare();
         List<EdgeType> edgeTypes = a.edgeTypeDao.query(pcEdgeType);
 
         QueryBuilder<RoomType, Integer> qbRoomType = a.roomTypeDao.queryBuilder();
-        modifiedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(date);
-        qbRoomType.where().ge("modified", modifiedDate);
+        modifiedDate = new SimpleDateFormat(dateFormat).parse(date);
+        qbRoomType.where().ge(modified, modifiedDate);
         PreparedQuery<RoomType> pcRoomType = qbRoomType.prepare();
         List<RoomType> roomTypes = a.roomTypeDao.query(pcRoomType);
 
+        connectionSource.close();
         return new TypesSync(getIdsFromCoordinateTypes(coordinateTypes), getIdsFromEdgeTypes(edgeTypes), getIdsFromRoomTypes(roomTypes));
     }
 }
