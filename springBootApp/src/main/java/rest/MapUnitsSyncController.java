@@ -81,7 +81,7 @@ public class MapUnitsSyncController {
     }
 
     @RequestMapping("/resources/sync/mapunits")
-    public MapUnitsSync syncTypes(@RequestParam(value = "date", defaultValue = "2015-07-26 15:00:00.0") String date) throws SQLException, ParseException {
+    public MapUnitsSync syncMapUnits(@RequestParam(value = "date", defaultValue = "2015-07-26 15:00:00.0") String date) throws SQLException, ParseException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
