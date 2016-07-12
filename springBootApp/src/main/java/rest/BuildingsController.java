@@ -22,7 +22,7 @@ import java.util.Date;
 
 @RestController
 public class BuildingsController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/buildings")
     public BuildingsObject buildings() throws SQLException {

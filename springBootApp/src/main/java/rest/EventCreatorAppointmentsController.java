@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 public class EventCreatorAppointmentsController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/eventcreatorappointments")
     public EventCreatorAppointmentsObject eventcreatorappointments(@RequestParam(value = "createdAfterDate", defaultValue = "-1") String date) throws SQLException, ParseException {

@@ -19,7 +19,7 @@ import java.util.Date;
 
 @RestController
 public class EventsController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/events")
     public EventsObject events() throws SQLException {

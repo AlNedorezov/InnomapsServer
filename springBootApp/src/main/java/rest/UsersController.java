@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 @RestController
 public class UsersController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @Autowired
     private PasswordEncoder passwordEncoder;

@@ -19,7 +19,7 @@ import java.util.Date;
 
 @RestController
 public class StreetsController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/streets")
     public StreetsObject streets() throws SQLException {

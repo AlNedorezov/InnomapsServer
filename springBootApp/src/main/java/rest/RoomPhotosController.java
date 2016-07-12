@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 public class RoomPhotosController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/roomphotos")
     public RoomPhotosObject roomPhotos(@RequestParam(value = "createdAfterDate", defaultValue = "-1") String date) throws SQLException, ParseException {

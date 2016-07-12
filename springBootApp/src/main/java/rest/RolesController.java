@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 @RestController
 public class RolesController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/roles")
     public RolesObject roles() throws SQLException {

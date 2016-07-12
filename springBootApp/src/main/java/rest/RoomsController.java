@@ -18,7 +18,7 @@ import java.util.Date;
 
 @RestController
 public class RoomsController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/rooms")
     public RoomsObject rooms() throws SQLException {

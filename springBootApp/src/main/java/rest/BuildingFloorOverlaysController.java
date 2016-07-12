@@ -18,7 +18,7 @@ import java.util.Date;
 
 @RestController
 public class BuildingFloorOverlaysController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/buildingflooroverlays")
     public BuildingFloorOverlaysObject buildings() throws SQLException {

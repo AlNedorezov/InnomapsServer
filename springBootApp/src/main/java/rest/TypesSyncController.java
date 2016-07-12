@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 public class TypesSyncController {
-    Application a = new Application();
+    private Application a = new Application();
 
     private List<Integer> getIdsFromCoordinateTypes(List<CoordinateType> list) throws ParseException {
         List<Integer> ids = new ArrayList<>();

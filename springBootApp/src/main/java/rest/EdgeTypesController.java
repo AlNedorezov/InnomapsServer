@@ -19,7 +19,7 @@ import java.util.Date;
 
 @RestController
 public class EdgeTypesController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/edgetypes")
     public EdgeTypesObject edgeTypes() throws SQLException {

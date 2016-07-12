@@ -19,7 +19,7 @@ import java.util.Date;
 
 @RestController
 public class RoomTypesController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/roomtypes")
     public RoomTypesObject roomTypes() throws SQLException {

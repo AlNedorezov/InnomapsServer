@@ -18,7 +18,7 @@ import java.util.Date;
 
 @RestController
 public class CoordinatesController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/coordinates")
     public CoordinatesObject coordinates() throws SQLException {

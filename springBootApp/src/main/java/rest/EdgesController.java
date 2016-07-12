@@ -23,7 +23,7 @@ import java.util.List;
 
 @RestController
 public class EdgesController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/edges")
     public EdgesObject edges() throws SQLException {

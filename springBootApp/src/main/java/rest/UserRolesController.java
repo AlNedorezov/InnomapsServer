@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 public class UserRolesController {
-    Application a = new Application();
+    private Application a = new Application();
 
     @RequestMapping("/resources/userroles")
     public UserRolesObject userRoles() throws SQLException {

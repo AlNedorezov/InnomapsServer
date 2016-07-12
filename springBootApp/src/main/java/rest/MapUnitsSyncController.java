@@ -22,7 +22,7 @@ import java.util.List;
 
 @RestController
 public class MapUnitsSyncController {
-    Application a = new Application();
+    private Application a = new Application();
 
     private List<Integer> getIdsFromCoordinates(List<Coordinate> list) throws ParseException {
         List<Integer> ids = new ArrayList<>();
