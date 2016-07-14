@@ -122,8 +122,8 @@ public class GeneralSync {
         this.coordinateTypes.set(index, coordinateType);
     }
 
-    public void getCoordinateType(int index) {
-        this.coordinateTypes.get(index);
+    public CoordinateType getCoordinateType(int index) {
+        return this.coordinateTypes.get(index);
     }
 
     public void removeCoordinateType(int index) {
@@ -143,8 +143,8 @@ public class GeneralSync {
         this.edgeTypes.set(index, edgeType);
     }
 
-    public void getEdgeType(int index) {
-        this.edgeTypes.get(index);
+    public EdgeType getEdgeType(int index) {
+        return this.edgeTypes.get(index);
     }
 
     public void removeEdgeType(int index) {
@@ -164,8 +164,8 @@ public class GeneralSync {
         this.roomTypes.set(index, roomType);
     }
 
-    public void getRoomType(int index) {
-        this.roomTypes.get(index);
+    public RoomType getRoomType(int index) {
+        return this.roomTypes.get(index);
     }
 
     public void removeRoomType(int index) {
@@ -185,8 +185,8 @@ public class GeneralSync {
         this.coordinates.set(index, coordinate);
     }
 
-    public void getCoordinate(int index) {
-        this.coordinates.get(index);
+    public Coordinate getCoordinate(int index) {
+        return this.coordinates.get(index);
     }
 
     public void removeCoordinate(int index) {
@@ -206,8 +206,8 @@ public class GeneralSync {
         this.edges.set(index, edge);
     }
 
-    public void getEdge(int index) {
-        this.edges.get(index);
+    public Edge getEdge(int index) {
+        return this.edges.get(index);
     }
 
     public void removeEdge(int index) {
@@ -227,8 +227,8 @@ public class GeneralSync {
         this.streets.set(index, street);
     }
 
-    public void getStreet(int index) {
-        this.streets.get(index);
+    public Street getStreet(int index) {
+        return this.streets.get(index);
     }
 
     public void removeStreet(int index) {
@@ -248,8 +248,8 @@ public class GeneralSync {
         this.buildings.set(index, building);
     }
 
-    public void getBuilding(int index) {
-        this.buildings.get(index);
+    public Building getBuilding(int index) {
+        return this.buildings.get(index);
     }
 
     public void removeBuilding(int index) {
@@ -269,8 +269,8 @@ public class GeneralSync {
         this.rooms.set(index, room);
     }
 
-    public void getRoom(int index) {
-        this.rooms.get(index);
+    public Room getRoom(int index) {
+        return this.rooms.get(index);
     }
 
     public void removeRoom(int index) {
@@ -290,8 +290,8 @@ public class GeneralSync {
         this.photos.set(index, photo);
     }
 
-    public void getPhoto(int index) {
-        this.photos.get(index);
+    public Photo getPhoto(int index) {
+        return this.photos.get(index);
     }
 
     public void removePhoto(int index) {
@@ -311,8 +311,8 @@ public class GeneralSync {
         this.buildingPhotos.set(index, buildingPhoto);
     }
 
-    public void getBuildingPhoto(int index) {
-        this.buildingPhotos.get(index);
+    public BuildingPhoto getBuildingPhoto(int index) {
+        return this.buildingPhotos.get(index);
     }
 
     public void removeBuildingPhoto(int index) {
@@ -332,8 +332,8 @@ public class GeneralSync {
         this.roomPhotos.set(index, roomPhoto);
     }
 
-    public void getRoomPhoto(int index) {
-        this.roomPhotos.get(index);
+    public RoomPhoto getRoomPhoto(int index) {
+        return this.roomPhotos.get(index);
     }
 
     public void removeRoomPhoto(int index) {
@@ -353,8 +353,8 @@ public class GeneralSync {
         this.buildingFloorOverlays.set(index, buildingFloorOverlay);
     }
 
-    public void getBuildingFloorOverlay(int index) {
-        this.buildingFloorOverlays.get(index);
+    public BuildingFloorOverlay getBuildingFloorOverlay(int index) {
+        return this.buildingFloorOverlays.get(index);
     }
 
     public void removeBuildingFloorOverlay(int index) {
@@ -374,8 +374,8 @@ public class GeneralSync {
         this.eventCreators.set(index, eventCreator);
     }
 
-    public void getEventCreator(int index) {
-        this.eventCreators.get(index);
+    public EventCreator getEventCreator(int index) {
+        return this.eventCreators.get(index);
     }
 
     public void removeEventCreator(int index) {
@@ -395,8 +395,8 @@ public class GeneralSync {
         this.events.set(index, event);
     }
 
-    public void getEvent(int index) {
-        this.events.get(index);
+    public Event getEvent(int index) {
+        return this.events.get(index);
     }
 
     public void removeEvent(int index) {
@@ -416,8 +416,8 @@ public class GeneralSync {
         this.eventSchedules.set(index, eventSchedule);
     }
 
-    public void getEventSchedule(int index) {
-        this.eventSchedules.get(index);
+    public EventSchedule getEventSchedule(int index) {
+        return this.eventSchedules.get(index);
     }
 
     public void removeEventSchedule(int index) {
@@ -437,8 +437,8 @@ public class GeneralSync {
         this.eventCreatorAppointments.set(index, eventCreatorAppointment);
     }
 
-    public void getEventCreatorAppointment(int index) {
-        this.eventCreatorAppointments.get(index);
+    public EventCreatorAppointment getEventCreatorAppointment(int index) {
+        return this.eventCreatorAppointments.get(index);
     }
 
     public void removeEventCreatorAppointment(int index) {
