@@ -130,7 +130,7 @@ public class GeneralSync {
         this.coordinateTypes.remove(index);
     }
 
-    public List<CoordinateType> getCoordinatetypes() {
+    public List<CoordinateType> getCoordinateTypes() {
         return coordinateTypes;
     }
 
@@ -151,7 +151,7 @@ public class GeneralSync {
         this.edgeTypes.remove(index);
     }
 
-    public List<EdgeType> getEdgetypes() {
+    public List<EdgeType> getEdgeTypes() {
         return edgeTypes;
     }
 
@@ -172,7 +172,7 @@ public class GeneralSync {
         this.roomTypes.remove(index);
     }
 
-    public List<RoomType> getRoomtypes() {
+    public List<RoomType> getRoomTypes() {
         return roomTypes;
     }
 
@@ -319,7 +319,7 @@ public class GeneralSync {
         this.buildingPhotos.remove(index);
     }
 
-    public List<BuildingPhoto> getBuildingphotos() {
+    public List<BuildingPhoto> getBuildingPhotos() {
         return buildingPhotos;
     }
 
@@ -340,7 +340,7 @@ public class GeneralSync {
         this.roomPhotos.remove(index);
     }
 
-    public List<RoomPhoto> getRoomphotos() {
+    public List<RoomPhoto> getRoomPhotos() {
         return roomPhotos;
     }
 
@@ -361,7 +361,7 @@ public class GeneralSync {
         this.buildingFloorOverlays.remove(index);
     }
 
-    public List<BuildingFloorOverlay> getBuildingflooroverlays() {
+    public List<BuildingFloorOverlay> getBuildingFloorOverlays() {
         return buildingFloorOverlays;
     }
 
@@ -382,7 +382,7 @@ public class GeneralSync {
         this.eventCreators.remove(index);
     }
 
-    public List<EventCreator> getEventcreators() {
+    public List<EventCreator> getEventCreators() {
         return eventCreators;
     }
 
@@ -424,7 +424,7 @@ public class GeneralSync {
         this.eventSchedules.remove(index);
     }
 
-    public List<EventSchedule> getEventschedules() {
+    public List<EventSchedule> getEventSchedules() {
         return eventSchedules;
     }
 
