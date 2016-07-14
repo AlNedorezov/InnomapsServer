@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientservercommunicationclasses.sync.GeneralSync;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ public class GeneralSyncController {
     private Application a = new Application();
 
     @RequestMapping("/resources/sync/general")
-    public GeneralSync sync() throws SQLException, ParseException {
+    public GeneralSync sync() throws SQLException {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
