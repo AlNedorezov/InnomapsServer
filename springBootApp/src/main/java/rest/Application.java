@@ -61,9 +61,9 @@ public class Application {
     public Dao<EventSchedule, Integer> eventScheduleDao;
     protected Dao<BuildingFloorOverlay, Integer> buildingFloorOverlayDao;
     public Dao<EventCreatorAppointment, Integer> eventCreatorAppointmentDao;
-    public Dao<Location, Integer> locationDao;
-    public Dao<AccessPoint, Integer> accessPointDao;
-    public Dao<LocationAccessPoint, Integer> locationAccessPointDao;
+    public Dao<Location, Integer> fingerprintLocationDao;
+    public Dao<AccessPoint, Integer> fingerprintAccessPointDao;
+    public Dao<LocationAccessPoint, Integer> fingerprintLocationAccessPointDao;
 
     @Autowired
     private MyBean myBean;
@@ -142,9 +142,9 @@ public class Application {
         eventScheduleDao = DaoManager.createDao(connectionSource, EventSchedule.class);
         buildingFloorOverlayDao = DaoManager.createDao(connectionSource, BuildingFloorOverlay.class);
         eventCreatorAppointmentDao = DaoManager.createDao(connectionSource, EventCreatorAppointment.class);
-        locationDao = DaoManager.createDao(connectionSource, Location.class);
-        accessPointDao = DaoManager.createDao(connectionSource, AccessPoint.class);
-        locationAccessPointDao = DaoManager.createDao(connectionSource, LocationAccessPoint.class);
+        fingerprintLocationDao = DaoManager.createDao(connectionSource, Location.class);
+        fingerprintAccessPointDao = DaoManager.createDao(connectionSource, AccessPoint.class);
+        fingerprintLocationAccessPointDao = DaoManager.createDao(connectionSource, LocationAccessPoint.class);
 
         // if you need to create tables
         if (createTables) {

@@ -11,7 +11,7 @@ import java.util.Date;
  * Created by alnedorezov on 7/19/16.
  */
 
-@DatabaseTable(tableName = "Access_points")
+@DatabaseTable(tableName = "Fingerprint_access_points")
 public class AccessPoint {
     @DatabaseField(generatedId = true, unique = true)
     private long id;
