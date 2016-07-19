@@ -8,6 +8,9 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import db.*;
+import db.fingerprinting.AccessPoint;
+import db.fingerprinting.Location;
+import db.fingerprinting.LocationAccessPoint;
 import events.CalendarSyncThread;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -58,6 +61,9 @@ public class Application {
     public Dao<EventSchedule, Integer> eventScheduleDao;
     protected Dao<BuildingFloorOverlay, Integer> buildingFloorOverlayDao;
     public Dao<EventCreatorAppointment, Integer> eventCreatorAppointmentDao;
+    public Dao<Location, Integer> locationDao;
+    public Dao<AccessPoint, Integer> accessPointDao;
+    public Dao<LocationAccessPoint, Integer> locationAccessPointDao;
 
     @Autowired
     private MyBean myBean;
@@ -136,6 +142,9 @@ public class Application {
         eventScheduleDao = DaoManager.createDao(connectionSource, EventSchedule.class);
         buildingFloorOverlayDao = DaoManager.createDao(connectionSource, BuildingFloorOverlay.class);
         eventCreatorAppointmentDao = DaoManager.createDao(connectionSource, EventCreatorAppointment.class);
+        locationDao = DaoManager.createDao(connectionSource, Location.class);
+        accessPointDao = DaoManager.createDao(connectionSource, AccessPoint.class);
+        locationAccessPointDao = DaoManager.createDao(connectionSource, LocationAccessPoint.class);
 
         // if you need to create tables
         if (createTables) {
@@ -185,6 +194,9 @@ public class Application {
                 eventScheduleDao.updateRaw("ALTER TABLE EVENT_SCHEDULES ALTER COLUMN COMMENT VARCHAR(2500)");
             TableUtils.createTableIfNotExists(connectionSource, BuildingFloorOverlay.class);
             TableUtils.createTableIfNotExists(connectionSource, EventCreatorAppointment.class);
+            TableUtils.createTableIfNotExists(connectionSource, Location.class);
+            TableUtils.createTableIfNotExists(connectionSource, AccessPoint.class);
+            TableUtils.createTableIfNotExists(connectionSource, LocationAccessPoint.class);
         }
     }
 
