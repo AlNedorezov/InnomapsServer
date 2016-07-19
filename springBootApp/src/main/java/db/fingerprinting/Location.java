@@ -32,7 +32,7 @@ public class Location {
         this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
     }
 
-    public Location(long id, double latitude, double longitude, int floor, int type_id, String name, String description, Date modified) {
+    public Location(long id, double latitude, double longitude, int floor, Date modified) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;

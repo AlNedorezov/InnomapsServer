@@ -24,7 +24,7 @@ public class LocationAccessPoint {
     @DatabaseField
     private Date modified = null;
 
-    public LocationAccessPoint(int id, int location_id, int access_point_id, double level, String modifiedStr) throws ParseException {
+    public LocationAccessPoint(long id, long location_id, long access_point_id, double level, String modifiedStr) throws ParseException {
         this.id = id;
         this.location_id = location_id;
         this.access_point_id = access_point_id;
@@ -32,7 +32,7 @@ public class LocationAccessPoint {
         this.modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(modifiedStr);
     }
 
-    public LocationAccessPoint(int id, int location_id, int access_point_id, double level, Date modified) {
+    public LocationAccessPoint(long id, long location_id, long access_point_id, double level, Date modified) {
         this.id = id;
         this.location_id = location_id;
         this.access_point_id = access_point_id;
