@@ -23,8 +23,8 @@ public class BuildingAuxiliaryCoordinatesObject {
         this.buildingAuxiliaryCoordinates.set(index, buildingAuxiliaryCoordinate);
     }
 
-    public void getBuildingAuxiliaryCoordinate(int index) {
-        this.buildingAuxiliaryCoordinates.get(index);
+    public BuildingAuxiliaryCoordinate getBuildingAuxiliaryCoordinate(int index) {
+        return this.buildingAuxiliaryCoordinates.get(index);
     }
 
     public void removeBuildingAuxiliaryCoordinate(int index) {

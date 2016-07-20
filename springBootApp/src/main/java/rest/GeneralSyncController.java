@@ -41,11 +41,12 @@ public class GeneralSyncController {
         List<Event> events = a.eventDao.queryForAll();
         List<EventSchedule> eventSchedules = a.eventScheduleDao.queryForAll();
         List<EventCreatorAppointment> eventCreatorAppointments = a.eventCreatorAppointmentDao.queryForAll();
+        List<BuildingAuxiliaryCoordinate> buildingAuxiliaryCoordinates = a.buildingAuxiliaryCoordinateDao.queryForAll();
 
         generalSyncBuilder.setTypes(coordinateTypes, edgeTypes, roomTypes);
         generalSyncBuilder.setMapUnits(coordinates, edges, streets, buildings, rooms, photos, buildingFloorOverlays);
         generalSyncBuilder.setEvents(eventCreators, events, eventSchedules);
-        generalSyncBuilder.setAssignments(buildingPhotos, roomPhotos, eventCreatorAppointments);
+        generalSyncBuilder.setAssignments(buildingPhotos, roomPhotos, eventCreatorAppointments, buildingAuxiliaryCoordinates);
 
         connectionSource.close();
         return generalSyncBuilder.build();
