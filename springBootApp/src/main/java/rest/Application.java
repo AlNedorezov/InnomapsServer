@@ -27,6 +27,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.List;
 
 /**
  * Created by alnedorezov on 6/7/16.
@@ -61,6 +62,7 @@ public class Application {
     public Dao<EventSchedule, Integer> eventScheduleDao;
     protected Dao<BuildingFloorOverlay, Integer> buildingFloorOverlayDao;
     public Dao<EventCreatorAppointment, Integer> eventCreatorAppointmentDao;
+    public Dao<BuildingAuxiliaryCoordinate, Integer> buildingAuxiliaryCoordinateDao;
     public Dao<Location, Integer> fingerprintLocationDao;
     public Dao<AccessPoint, Integer> fingerprintAccessPointDao;
     public Dao<LocationAccessPoint, Integer> fingerprintLocationAccessPointDao;
@@ -142,6 +144,7 @@ public class Application {
         eventScheduleDao = DaoManager.createDao(connectionSource, EventSchedule.class);
         buildingFloorOverlayDao = DaoManager.createDao(connectionSource, BuildingFloorOverlay.class);
         eventCreatorAppointmentDao = DaoManager.createDao(connectionSource, EventCreatorAppointment.class);
+        buildingAuxiliaryCoordinateDao = DaoManager.createDao(connectionSource, BuildingAuxiliaryCoordinate.class);
         fingerprintLocationDao = DaoManager.createDao(connectionSource, Location.class);
         fingerprintAccessPointDao = DaoManager.createDao(connectionSource, AccessPoint.class);
         fingerprintLocationAccessPointDao = DaoManager.createDao(connectionSource, LocationAccessPoint.class);
@@ -194,6 +197,7 @@ public class Application {
                 eventScheduleDao.updateRaw("ALTER TABLE EVENT_SCHEDULES ALTER COLUMN COMMENT VARCHAR(2500)");
             TableUtils.createTableIfNotExists(connectionSource, BuildingFloorOverlay.class);
             TableUtils.createTableIfNotExists(connectionSource, EventCreatorAppointment.class);
+            TableUtils.createTableIfNotExists(connectionSource, BuildingAuxiliaryCoordinate.class);
             TableUtils.createTableIfNotExists(connectionSource, Location.class);
             TableUtils.createTableIfNotExists(connectionSource, AccessPoint.class);
             TableUtils.createTableIfNotExists(connectionSource, LocationAccessPoint.class);
@@ -364,7 +368,25 @@ public class Application {
                 }
             }
 
+            assignAuxiliaryCoordinatesFromXmlToBuildings();
+
             connectionSource.close();
         }
+    }
+
+    private void assignAuxiliaryCoordinatesFromXmlToBuildings() throws SQLException, ParseException {
+        ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl, databaseUsername, databasePassword);
+        setupDatabase(connectionSource, false);
+
+        String modifiedDateTime = "2016-02-03 04:05:06.7";
+        QueryBuilder<Coordinate, Integer> queryBuilder = coordinateDao.queryBuilder();
+        queryBuilder.where().eq("type_id", 1).or().eq("type_id", 8).or().eq("type_id", 9);
+        List<Coordinate> coordinates = queryBuilder.query();
+
+        for (Coordinate coordinate : coordinates) {
+            buildingAuxiliaryCoordinateDao.create(new BuildingAuxiliaryCoordinate(1, coordinate.getId(), modifiedDateTime));
+        }
+
+        connectionSource.close();
     }
 }
