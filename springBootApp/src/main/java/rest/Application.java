@@ -63,9 +63,9 @@ public class Application {
     protected Dao<BuildingFloorOverlay, Integer> buildingFloorOverlayDao;
     public Dao<EventCreatorAppointment, Integer> eventCreatorAppointmentDao;
     public Dao<BuildingAuxiliaryCoordinate, Integer> buildingAuxiliaryCoordinateDao;
-    public Dao<Location, Integer> fingerprintLocationDao;
-    public Dao<AccessPoint, Integer> fingerprintAccessPointDao;
-    public Dao<LocationAccessPoint, Integer> fingerprintLocationAccessPointDao;
+    public Dao<Location, Long> fingerprintLocationDao;
+    public Dao<AccessPoint, Long> fingerprintAccessPointDao;
+    public Dao<LocationAccessPoint, Long> fingerprintLocationAccessPointDao;
 
     @Autowired
     private MyBean myBean;
