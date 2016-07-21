@@ -13,11 +13,16 @@ import java.util.Date;
 
 @DatabaseTable(tableName = "Fingerprint_access_points")
 public class AccessPoint {
-    @DatabaseField(generatedId = true, unique = true)
+
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_BSSID = "bssid";
+    public static final String COLUMN_MODIFIED = "modified";
+
+    @DatabaseField(generatedId = true, unique = true, columnName = COLUMN_ID)
     private long id;
-    @DatabaseField(unique = true)
+    @DatabaseField(unique = true, columnName = COLUMN_BSSID)
     private String BSSID;
-    @DatabaseField
+    @DatabaseField(columnName = COLUMN_MODIFIED)
     private Date modified = null;
 
     public AccessPoint(long id, String BSSID, String modifiedStr) throws ParseException {
@@ -28,6 +33,11 @@ public class AccessPoint {
 
     public AccessPoint(long id, String BSSID, Date modified) {
         this.id = id;
+        this.BSSID = BSSID;
+        this.modified = modified;
+    }
+
+    public AccessPoint(String BSSID, Date modified) {
         this.BSSID = BSSID;
         this.modified = modified;
     }

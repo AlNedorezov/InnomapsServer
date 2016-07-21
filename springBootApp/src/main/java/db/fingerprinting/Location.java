@@ -13,15 +13,22 @@ import java.util.Date;
 
 @DatabaseTable(tableName = "Fingerprint_locations")
 public class Location {
-    @DatabaseField(generatedId = true, unique = true)
+
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_LATITUDE = "latitude";
+    public static final String COLUMN_LONGITUDE = "longitude";
+    public static final String COLUMN_FLOOR = "floor";
+    public static final String COLUMN_MODIFIED = "modified";
+
+    @DatabaseField(generatedId = true, unique = true, columnName = COLUMN_ID)
     private long id;
-    @DatabaseField(uniqueCombo = true)
+    @DatabaseField(uniqueCombo = true, columnName = COLUMN_LATITUDE)
     private double latitude;
-    @DatabaseField(uniqueCombo = true)
+    @DatabaseField(uniqueCombo = true, columnName = COLUMN_LONGITUDE)
     private double longitude;
-    @DatabaseField(uniqueCombo = true)
+    @DatabaseField(uniqueCombo = true, columnName = COLUMN_FLOOR)
     private int floor;
-    @DatabaseField
+    @DatabaseField (columnName = COLUMN_MODIFIED)
     private Date modified = null;
 
     public Location(long id, double latitude, double longitude, int floor, String modifiedStr) throws ParseException {
@@ -34,6 +41,13 @@ public class Location {
 
     public Location(long id, double latitude, double longitude, int floor, Date modified) {
         this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.floor = floor;
+        this.modified = modified;
+    }
+
+    public Location(double latitude, double longitude, int floor, Date modified) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.floor = floor;

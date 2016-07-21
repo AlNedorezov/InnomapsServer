@@ -13,15 +13,22 @@ import java.util.Date;
 
 @DatabaseTable(tableName = "Fingerprint_location_access_points")
 public class LocationAccessPoint {
-    @DatabaseField(generatedId = true, unique = true)
+
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_LOCATION_ID = "location_id";
+    public static final String COLUMN_ACCESS_POINT_ID = "access_point_id";
+    public static final String COLUMN_LEVEL = "level";
+    public static final String COLUMN_MODIFIED = "modified";
+
+    @DatabaseField(generatedId = true, unique = true, columnName = COLUMN_ID)
     private long id;
-    @DatabaseField(uniqueCombo = true)
+    @DatabaseField(uniqueCombo = true, columnName = COLUMN_LOCATION_ID)
     private long location_id;
-    @DatabaseField(uniqueCombo = true)
+    @DatabaseField(uniqueCombo = true ,columnName = COLUMN_ACCESS_POINT_ID)
     private long access_point_id;
-    @DatabaseField
+    @DatabaseField(columnName = COLUMN_LEVEL)
     private double level;
-    @DatabaseField
+    @DatabaseField(columnName = COLUMN_MODIFIED)
     private Date modified = null;
 
     public LocationAccessPoint(long id, long location_id, long access_point_id, double level, String modifiedStr) throws ParseException {
@@ -34,6 +41,13 @@ public class LocationAccessPoint {
 
     public LocationAccessPoint(long id, long location_id, long access_point_id, double level, Date modified) {
         this.id = id;
+        this.location_id = location_id;
+        this.access_point_id = access_point_id;
+        this.level = level;
+        this.modified = modified;
+    }
+
+    public LocationAccessPoint(long location_id, long access_point_id, double level, Date modified) {
         this.location_id = location_id;
         this.access_point_id = access_point_id;
         this.level = level;
