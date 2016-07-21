@@ -56,7 +56,7 @@ public class TypesSyncController {
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
-        System.out.println(new Date() + "Received GET request: return types synchronization data");
+        System.out.println(new Date() + " Received GET request: return types synchronization data");
 
         Date modifiedDate;
         String modified = "modified";

@@ -24,7 +24,7 @@ public class GeneralSyncController {
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
-        System.out.println(new Date() + "Received GET request: return general synchronization data");
+        System.out.println(new Date() + " Received GET request: return general synchronization data");
 
         GeneralSync.GeneralSyncBuilder generalSyncBuilder = new GeneralSync.GeneralSyncBuilder();
 

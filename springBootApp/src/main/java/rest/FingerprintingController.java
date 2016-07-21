@@ -32,7 +32,7 @@ public class FingerprintingController {
         a.setupDatabase(connectionSource, false);
 
         // For log on the server
-        System.out.println(new java.util.Date() + "Received POST request: save location with access points");
+        System.out.println(new java.util.Date() + " Received POST request: save location with access points");
 
         Location location = getOrCreateLocation(locationAccessPoints.getLatitude(), locationAccessPoints.getLongitude(),
                                                 locationAccessPoints.getFloor());

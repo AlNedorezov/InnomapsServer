@@ -86,7 +86,7 @@ public class MapUnitsSyncController {
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
 
-        System.out.println(new Date() + "Received GET request: return map units synchronization data");
+        System.out.println(new Date() + " Received GET request: return map units synchronization data");
 
         Date modifiedDate;
         String modified = "modified";
