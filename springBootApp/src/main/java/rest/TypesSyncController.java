@@ -55,6 +55,9 @@ public class TypesSyncController {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
+
+        System.out.println(new Date() + "Received GET request: return types synchronization data");
+
         Date modifiedDate;
         String modified = "modified";
         String dateFormat = "yyyy-MM-dd HH:mm:ss.S";

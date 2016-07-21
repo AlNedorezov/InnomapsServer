@@ -109,6 +109,7 @@ public class JsonParseTask {
     }
 
     public void updateDbIfNeeded() {
+        System.out.println(new Date() + " Starting scheduled update of the events from google calendar");
         String strJson = getGoogleApi();
         JSONObject dataJsonObj;
         String md5 = new String(Hex.encodeHex(DigestUtils.md5(strJson)));

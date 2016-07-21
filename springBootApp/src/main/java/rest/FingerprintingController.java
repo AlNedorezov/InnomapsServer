@@ -30,6 +30,10 @@ public class FingerprintingController {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
+
+        // For log on the server
+        System.out.println(new java.util.Date() + "Received POST request: save location with access points");
+
         Location location = getOrCreateLocation(locationAccessPoints.getLatitude(), locationAccessPoints.getLongitude(),
                                                 locationAccessPoints.getFloor());
         for(WrapperAccessPoints accessPointWithLevel: locationAccessPoints.getAccessPoints()){

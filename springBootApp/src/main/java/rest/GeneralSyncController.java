@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.clientservercommunicationclasses.sync.GeneralSync;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +23,8 @@ public class GeneralSyncController {
         JdbcConnectionSource connectionSource = new JdbcConnectionSource(Application.getDatabaseUrl(),
                 Application.getDatabaseUsername(), Application.getDatabasePassword());
         a.setupDatabase(connectionSource, false);
+
+        System.out.println(new Date() + "Received GET request: return general synchronization data");
 
         GeneralSync.GeneralSyncBuilder generalSyncBuilder = new GeneralSync.GeneralSyncBuilder();
 
