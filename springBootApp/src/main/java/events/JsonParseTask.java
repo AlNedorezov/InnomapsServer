@@ -136,11 +136,15 @@ public class JsonParseTask {
 
         if (substringsOrderInArray == 0 && substringsOrderInArray == arrayLength - 1)
             result = description.replaceFirst(substringToRemove, "");
-        else if (substringsOrderInArray > 0 && substringsOrderInArray == arrayLength - 1)
+        else if (substringsOrderInArray > 0 && substringsOrderInArray == arrayLength - 1) {
             result = description.replaceFirst("\n" + substringToRemove, "");
-        else if ((substringsOrderInArray == 0 && substringsOrderInArray < arrayLength - 1) || (substringsOrderInArray > 0 && substringsOrderInArray < arrayLength - 1))
+            if (description.equals(result))
+                result = description.replaceFirst(substringToRemove, "");
+        } else if ((substringsOrderInArray == 0 && substringsOrderInArray < arrayLength - 1) || (substringsOrderInArray > 0 && substringsOrderInArray < arrayLength - 1)) {
             result = description.replaceFirst(substringToRemove + "\n", "");
-        else
+            if (description.equals(result))
+                result = description.replaceFirst(substringToRemove, "");
+        } else
             result = description;
 
         return result;
